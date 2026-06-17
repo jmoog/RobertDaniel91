@@ -1,0 +1,14 @@
+node_modules
+dist
+.astro
+.git
+.DS_Store
+*.pdf
+photos
+photos-renommees
+galerie
+logo
+contenuWordpress
+*.md
+*.csv
+*.txt

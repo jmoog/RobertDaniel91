@@ -1,0 +1,203 @@
+---
+// Header double barre :
+// 1. barre cuivre — telephone (bouton blanc) + liens institutionnels
+// 2. barre claire — logo + menu services
+---
+<header class="entete">
+  <div class="entete__topbar">
+    <div class="conteneur entete__topbar-int">
+      <a href="tel:0683961518" class="entete__tel">
+        <svg class="icone" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 1H8C6.34 1 5 2.34 5 4v16c0 1.66 1.34 3 3 3h8c1.66 0 3-1.34 3-3V4c0-1.66-1.34-3-3-3zm-2 20h-4v-1h4v1zm3.25-3H6.75V4h10.5v14z"/></svg>
+        06 83 96 15 18
+      </a>
+      <nav aria-label="Navigation secondaire">
+        <ul class="entete__liens">
+          <li><a href="/">Accueil</a></li>
+          <li><a href="/a-propos/">À propos</a></li>
+          <li><a href="/devis-gratuit/">Devis gratuit</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <div class="entete__principal">
+    <div class="conteneur entete__principal-int">
+      <a href="/" class="entete__marque" aria-label="Robert Daniel Couverture — retour a l'accueil">
+        <img
+          src="/logo-robert-daniel-artisan-couvreur-91.webp"
+          alt="Robert Daniel Couverture — couvreur a Étréchy (91)"
+          class="entete__logo"
+          width="240"
+          height="120"
+          decoding="async"
+        />
+      </a>
+
+      <nav class="entete__nav" aria-label="Navigation principale">
+        <button class="entete__burger" type="button" aria-expanded="false" aria-controls="menu-principal">
+          <span class="visuallyhidden">Menu</span>
+          <svg class="icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <ul id="menu-principal" class="entete__menu">
+          <li><a href="/renovation-toiture/">Rénovation</a></li>
+          <li><a href="/reparation-toiture/">Réparation</a></li>
+          <li><a href="/nettoyage-toiture/">Nettoyage</a></li>
+          <li><a href="/charpente/">Charpente</a></li>
+          <li><a href="/zinguerie/">Zinguerie</a></li>
+          <li class="entete__menu-cta"><a href="tel:0683961518" class="btn btn--cuivre">06 83 96 15 18</a></li>
+          <li class="entete__menu-cta"><a href="/devis-gratuit/" class="btn btn--bleu">Devis gratuit</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<style>
+  .entete {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: var(--ombre);
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+  }
+  .entete--cachee { transform: translateY(-100%); }
+
+  .entete__topbar { background: var(--cuivre); }
+  .entete__topbar-int {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding-block: 0.55rem;
+  }
+  .entete__tel {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    background: var(--blanc);
+    color: var(--bleu);
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    padding: 0.45em 1em;
+    border-radius: var(--rayon);
+    white-space: nowrap;
+  }
+  .entete__tel:hover { color: var(--cuivre-fonce); }
+  .entete__liens {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.6rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .entete__liens a {
+    color: var(--blanc);
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+  }
+  .entete__liens a:hover { text-decoration: underline; color: var(--blanc); }
+
+  .entete__principal { background: #e5f1f9; }
+  .entete__principal-int {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-block: 0.4rem;
+  }
+  .entete__marque {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+  }
+  .entete__logo {
+    display: block;
+    width: auto;
+    height: 60px;
+    transition: opacity var(--transition);
+  }
+  .entete__marque:hover .entete__logo { opacity: 0.85; }
+
+  @media (max-width: 800px) {
+    .entete__logo { height: 48px; }
+  }
+
+  .entete__menu {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .entete__menu a:not(.btn) {
+    text-decoration: none;
+    color: var(--bleu);
+    font-weight: 600;
+    font-size: 0.98rem;
+    transition: color var(--transition);
+  }
+  .entete__menu a:not(.btn):hover { color: var(--cuivre); }
+  .entete__menu-cta { display: none; }
+
+  .entete__burger {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--bleu);
+    padding: 0.4rem;
+    cursor: pointer;
+  }
+  .entete__burger .icone { width: 1.9rem; height: 1.9rem; }
+
+  @media (max-width: 1080px) {
+    .entete__liens { display: none; }
+    .entete__topbar-int { justify-content: center; }
+  }
+  @media (max-width: 800px) {
+    .entete__topbar { display: none; }
+    .entete__burger { display: block; }
+    .entete__menu {
+      display: none;
+      position: absolute;
+      inset-inline: 0;
+      top: 100%;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      background: var(--blanc);
+      box-shadow: var(--ombre-forte);
+      padding: 0.5rem 1rem 1.2rem;
+    }
+    .entete__menu.ouvert { display: flex; }
+    .entete__menu li { border-bottom: 1px solid var(--gris-100); }
+    .entete__menu a:not(.btn) { display: block; padding: 0.8em 0.2em; font-size: 1.02rem; }
+    .entete__menu-cta { display: block; border-bottom: none !important; padding-top: 0.8rem; }
+    .entete__menu-cta .btn { width: 100%; }
+  }
+</style>
+
+<script>
+  const burger = document.querySelector('.entete__burger');
+  const menu = document.getElementById('menu-principal');
+  burger?.addEventListener('click', () => {
+    const ouvert = menu?.classList.toggle('ouvert');
+    burger.setAttribute('aria-expanded', String(Boolean(ouvert)));
+  });
+
+  const entete = document.querySelector('.entete');
+  const mobile = window.matchMedia('(max-width: 800px)');
+  let tick = false;
+  window.addEventListener('scroll', () => {
+    if (tick) return;
+    tick = true;
+    requestAnimationFrame(() => {
+      const cacher = mobile.matches && window.scrollY > 900 && !menu?.classList.contains('ouvert');
+      entete?.classList.toggle('entete--cachee', Boolean(cacher));
+      tick = false;
+    });
+  }, { passive: true });
+</script>

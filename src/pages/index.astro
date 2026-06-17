@@ -1,0 +1,211 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaDevis from '../components/CtaDevis.astro';
+import Temoignages from '../components/Temoignages.astro';
+import services from '../data/services.json';
+import villes from '../data/villes.json';
+
+const title = "Couvreur dans l'Essonne (91) - Robert Daniel Couverture - Étréchy";
+const description = "Robert Daniel Couverture, artisan couvreur dans l'Essonne (91). Renovation, reparation, nettoyage de toiture, charpente, zinguerie à Étréchy et alentours. Devis gratuit.";
+---
+<BaseLayout title={title} description={description}>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="conteneur hero__grille">
+      <div class="hero__texte">
+        <div class="hero__eyebrow">
+          <p class="hero__badge"><span class="hero__point" aria-hidden="true"></span> Artisan couvreur depuis plus de 15 ans</p>
+          <img class="hero__allianz" src="/images/logo-allianz.png" alt="Garantie décennale assurée par Allianz" width="92" height="58" loading="lazy" decoding="async" />
+        </div>
+        <h1>Votre couvreur dans l'Essonne (91)</h1>
+        <p class="hero__marque">Robert Daniel</p>
+        <p class="hero__accroche">
+          Vous êtes à la recherche d'une <strong>entreprise de couverture dans l'Essonne (91)</strong> ?
+          Je réalise tous les travaux pour votre toiture : création d'une couverture neuve,
+          rénovation d'une toiture ancienne, réparation et recherche de fuite. J'interviens sur les toits,
+          les charpentes et la zinguerie, partout dans le département de l'Essonne.
+        </p>
+        <ul>
+          <li><strong>Spécialiste de l'entretien de toiture</strong> : nettoyage et démoussage professionnel.</li>
+          <li><strong>Recherche de fuite</strong> et infiltration.</li>
+          <li><strong>Devis gratuit</strong> et sans engagement, déplacement offert.</li>
+        </ul>
+        <div class="hero__actions">
+          <a href="tel:0683961518" class="btn btn--cuivre">
+            <svg class="icone" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 1H8C6.34 1 5 2.34 5 4v16c0 1.66 1.34 3 3 3h8c1.66 0 3-1.34 3-3V4c0-1.66-1.34-3-3-3zm-2 20h-4v-1h4v1zm3.25-3H6.75V4h10.5v14z"/></svg>
+            06 83 96 15 18
+          </a>
+          <a href="/devis-gratuit/" class="btn btn--bleu">Devis Gratuit &rarr;</a>
+        </div>
+      </div>
+      <div class="hero__media">
+        <video
+          class="hero__photo hero__video"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          poster="/images/hero-renovation-toiture-etrechy.jpg"
+          aria-label="Rénovation de toiture à Étréchy par Robert Daniel Couverture"
+        >
+          <source src="/videos/renovation-toiture-etrechy-91.mp4" type="video/mp4" />
+        </video>
+        <div class="carte hero__garantie">
+          <p><strong>Robert Daniel</strong>, couvreur zingueur dans l'Essonne : tous matériaux de couverture — tuiles plates, tuiles mécaniques, ardoises, zinc, bac acier et shingle.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chantier reel : triptyque etapes -->
+  <section class="section chantier">
+    <div class="conteneur">
+      <div class="section__entete">
+        <span class="surtitre">Une réalisation récente</span>
+        <h2>Un chantier de couverture à Étréchy</h2>
+        <p>De la dépose de l'ancienne toiture à la pose de la nouvelle couverture, voici les grandes étapes d'un de mes chantiers.</p>
+      </div>
+      <div class="chantier__triptyque">
+        <figure class="chantier__etape">
+          <img src="/images/chantier-renovation-toiture-etrechy-1.jpg" alt="Dépose de l'ancienne toiture et pose des liteaux sur une maison à Étréchy" width="900" height="675" loading="lazy" decoding="async" />
+          <figcaption><span class="chantier__num">1</span> Dépose &amp; liteaunage</figcaption>
+        </figure>
+        <figure class="chantier__etape">
+          <img src="/images/chantier-renovation-toiture-etrechy-2.jpg" alt="Pose de la nouvelle couverture en tuiles sur le toit" width="900" height="1200" loading="lazy" decoding="async" />
+          <figcaption><span class="chantier__num">2</span> Pose de la nouvelle couverture</figcaption>
+        </figure>
+        <figure class="chantier__etape">
+          <img src="/images/chantier-renovation-toiture-etrechy-3.jpg" alt="La maison rénovée vue de la rue avec le panneau Robert Daniel Couverture" width="900" height="675" loading="lazy" decoding="async" />
+          <figcaption><span class="chantier__num">3</span> Le chantier, vu de la rue</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Temoignages -->
+  <Temoignages />
+
+  <!-- Chiffres cles (bande ligne de toit) -->
+  <div class="chiffres">
+    <ul class="conteneur chiffres__liste">
+      <li class="chiffres__item">
+        <span class="chiffres__valeur">15<span class="chiffres__plus">+</span></span>
+        <span class="chiffres__libelle">ans d'expérience</span>
+      </li>
+      <li class="chiffres__item">
+        <span class="chiffres__valeur">5,0</span>
+        <span class="chiffres__etoiles" aria-label="5 étoiles sur 5">★★★★★</span>
+        <span class="chiffres__libelle">69 avis Google</span>
+      </li>
+      <li class="chiffres__item">
+        <span class="chiffres__garantie">Garantie décennale</span>
+        <span class="chiffres__libelle">sur tous mes travaux</span>
+      </li>
+      <li class="chiffres__item">
+        <span class="chiffres__valeur">24h</span>
+        <span class="chiffres__libelle">intervention rapide</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Verification de toiture par drone -->
+  <section class="section section--gris">
+    <div class="conteneur duo">
+      <img src="/images/robert-daniel-drone-verification-etrechy.jpg" alt="Robert Daniel avec son drone devant son showroom, pour la vérification de toiture à Étréchy, dans l'Essonne" width="1000" height="880" loading="lazy" decoding="async" />
+      <div class="prose">
+        <span class="surtitre">Vérification de toiture gratuite</span>
+        <h2>Vérification de toiture par drone piloté</h2>
+        <p>Avant d'engager le moindre travaux, j'inspecte votre toiture par drone piloté : un diagnostic précis, sans monter sur le toit ni louer de nacelle. Vous obtenez des photos et vidéos haute définition de l'état réel de votre couverture.</p>
+        <p>Une méthode rapide, sûre et sans engagement, partout dans l'Essonne (91).</p>
+        <a href="/inspection-toiture-drone/" class="btn btn--bleu">Demander une vérification &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="section">
+    <div class="conteneur">
+      <span class="surtitre">Mes prestations</span>
+      <h2>Mes services de couverture dans l'Essonne</h2>
+      <div class="grille-services">
+        {services.filter((s) => !['ramonage-cheminee', 'inspection-toiture-drone', 'zinguerie'].includes(s.slug)).map((s) => (
+          <a href={s.slug === 'zinguerie' ? '/zinguerie/' : `/${s.slug}/`} class="carte carte-service">
+            <img class="carte-service__img" src={s.image} alt={s.alt} width="700" height="438" loading="lazy" decoding="async" />
+            <div class="carte-service__corps">
+              <h3>{s.label}</h3>
+              <p>{s.accroche}</p>
+              <span class="carte-service__lien">{s.lien} &rarr;</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Duo editorial : artisan -->
+  <section class="section section--bleute">
+    <div class="conteneur duo">
+      <img src="/images/vehicules-robert-daniel-couverture-essonne.jpg" alt="Les véhicules de Robert Daniel Couverture, artisan couvreur à Étréchy dans l'Essonne" width="900" height="600" loading="lazy" decoding="async" />
+      <div class="prose">
+        <span class="surtitre">Artisan couvreur</span>
+        <h2>Votre artisan couvreur de proximité dans l'Essonne</h2>
+        <p>Installé à Étréchy, au cœur de l'Essonne, je mets plus de 15 ans d'expérience au service des particuliers et des professionnels du département. De la simple réparation au remplacement complet de toiture, je traite chaque chantier avec le même soin.</p>
+        <p>Couverture, zinguerie, charpente, isolation : vous avez un seul interlocuteur, moi. Je prends le temps de vous expliquer et je tiens mes engagements.</p>
+        <a href="/a-propos/" class="btn btn--bleu">En savoir plus &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Duo inverse : pourquoi nous choisir -->
+  <section class="section">
+    <div class="conteneur duo duo--inverse">
+      <img src="/images/toiture-renovee-essonne.jpg" alt="Maison avec toiture en cours de rénovation et panneau Robert Daniel Couverture dans l'Essonne" width="900" height="600" loading="lazy" decoding="async" />
+      <div class="prose">
+        <span class="surtitre">Pourquoi me choisir</span>
+        <h2>Un couvreur dans l'Essonne sur qui compter</h2>
+        <p>Une toiture bien faite se voit pendant des années. Je travaille proprement, dans les délais annoncés, avec des matériaux de qualité et la garantie décennale sur l'ensemble de mes travaux.</p>
+        <ul>
+          <li>Je vous offre le devis et le déplacement dans l'Essonne (91).</li>
+          <li>Je laisse un chantier propre et rangé, du début à la fin.</li>
+          <li>Des conseils honnêtes, des tarifs corrects et 69 avis Google 5/5.</li>
+        </ul>
+        <div class="badge-decennale">
+          <img src="/images/logo-allianz.png" alt="Allianz" width="96" height="60" loading="lazy" decoding="async" />
+          <div class="badge-decennale__texte">
+            <strong>Garantie décennale</strong>
+            <span>Assurée par Allianz</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <CtaDevis />
+
+  <!-- Villes -->
+  <section class="section section--gris">
+    <div class="conteneur">
+      <span class="surtitre">Zone d'intervention</span>
+      <h2>Couvreur dans l'Essonne — les communes où j'interviens</h2>
+      <ul class="nuage-villes">
+        {villes.map((v) => (
+          <li><a href={`/${v.slug}/`}>{v.nom}</a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- CTA final -->
+  <section class="section section--bleu cta-final">
+    <div class="conteneur">
+      <h2>Besoin d'un couvreur dans l'Essonne ?</h2>
+      <p>Couverture, rénovation, réparation, zinguerie, charpente : contactez-moi pour un devis gratuit et sans engagement, à Étréchy et dans toute l'Essonne.</p>
+      <div class="cta-final__actions">
+        <a href="tel:0683961518" class="btn btn--cuivre">06 83 96 15 18</a>
+        <a href="/devis-gratuit/" class="btn btn--contour">Demander un devis &rarr;</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

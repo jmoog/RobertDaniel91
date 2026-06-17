@@ -1,0 +1,56 @@
+URL source (ancienne),URL cible (nouveau slug propre),Code,Note
+/,/,200,Accueil conservee (optimiser balises money couvreur 91)
+/a-propos/,/a-propos/,200,Conservee
+/contact/,/contact/,200,Conservee
+/mentions-legales/,/mentions-legales/,200,Conservee
+/plan-du-site/,/plan-du-site/,200,Regenerer apres migration
+/zinguerie/,/zinguerie/,200,Pilier conserve (corriger lien /lien)
+/services/gouttieres-zinc-91/,/zinguerie/gouttieres-zinc/,301,Cocon zinguerie niche
+/services/gouttieres-aluminium-91/,/zinguerie/gouttieres-aluminium/,301,Cocon zinguerie niche
+/services/gouttieres-pvc/,/zinguerie/gouttieres-pvc/,301,Cocon zinguerie niche
+/services/descentes-eaux-pluviales-91/,/zinguerie/descentes-eaux-pluviales/,301,Cocon zinguerie niche
+/services/noues-aretiers-zinc-91/,/zinguerie/noues-aretiers/,301,Cocon zinguerie niche
+/services/solins-raccords-91/,/zinguerie/solins-raccords/,301,Cocon zinguerie niche
+/services/couvertines-91/,/zinguerie/couvertines/,301,ATTENTION page qui rank pos 3 - surveiller apres 301
+/services/inspection-toiture-drone-91/,/inspection-toiture-drone/,301,Excellent contenu - slug propre
+/diagnostic-de-toiture-91/,/inspection-toiture-drone/,301,Fusion diagnostic vers inspection drone
+/renovation-de-toiture-91/,/renovation-toiture/,301,Pilier renovation - reecrire/enrichir
+/couverture-generale/,/renovation-toiture/,301,Pilier vide fusionne
+/services/renovation-toiture-91/,/renovation-toiture/,301,Coquille vide
+/services/pose-tuiles-91/,/renovation-toiture/,301,Coquille vide (couverture neuve)
+/services/pose-ardoises-91/,/renovation-toiture/,301,Coquille vide
+/services/toiture-zinc-91/,/renovation-toiture/,301,Coquille vide (envisager page dediee plus tard)
+/remplacement-de-toiture-91/,/remplacement-toiture/,301,Meilleur ranking service (pos 5.35) - reecrire
+/services/remplacement-toiture-91/,/remplacement-toiture/,301,Coquille vide
+/reparation-de-toiture-91/,/reparation-toiture/,301,Pilier reparation - fusionner urgence/fuite
+/reparation/,/reparation-toiture/,301,Pilier vide
+/recherche-de-fuites-toitures-91/,/reparation-toiture/,301,Vieil article fusionne dans reparation
+/services/recherche-fuite-toiture-91/,/reparation-toiture/,301,Coquille vide
+/services/infiltration-toiture-91/,/reparation-toiture/,301,Coquille vide
+/services/pose-bache-protection-91/,/reparation-toiture/,301,Coquille vide (urgence)
+/nettoyage-de-toiture-dans-l-essonne-91/,/nettoyage-toiture/,301,Pilier entretien - slug sur mot-cle volume
+/entretien-toiture/,/nettoyage-toiture/,301,Pilier vide fusionne
+/services/nettoyage-toiture-91/,/nettoyage-toiture/,301,Coquille vide
+/services/demoussage-toiture-91/,/nettoyage-toiture/,301,Coquille vide
+/services/traitement-toiture-91/,/nettoyage-toiture/,301,Coquille vide
+/application-de-traitement-hydrofuge-91/,/nettoyage-toiture/,301,Fusion hydrofuge dans entretien
+/traitement-de-charpente-91/,/charpente/,301,Contenu source du pilier charpente (title vide a corriger)
+/charpente/,/charpente/,200,Pilier a RECREER avec contenu (actuellement vide)
+/services/diagnostic-charpente-91/,/charpente/,301,Coquille vide
+/services/traitement-charpente-91/,/charpente/,301,Coquille vide
+/services/reparation-charpente-91/,/charpente/,301,Coquille vide
+/services/modification-charpente-91/,/charpente/,301,Coquille vide
+/services/isolation-toiture-91/,/isolation-toiture/,301,A RECREER avec contenu (a du volume)
+/pose-remplacement-de-velux/,/fenetre-de-toit-velux/,301,Contenu existant - slug propre
+/services/fenetre-toit-velux-91/,/fenetre-de-toit-velux/,301,Coquille vide
+/pose-et-remplacement-de-gouttieres/,/zinguerie/,301,Vieil article gouttieres vers pilier zinguerie
+/ramonage-de-cheminees-dans-l-essonne-91/,/ramonage-cheminee/,301,Contenu existant - slug propre
+/services/ramonage-cheminee-91/,/ramonage-cheminee/,301,Coquille vide
+/couvreur-a-etrechy-91580/,/couvreur-etrechy/,301,Page ville reference - surveiller (page la plus forte)
+/couvreur-a-etrechy-91580/remplacement-de-toiture-a-etrechy/,/couvreur-etrechy/,301,Sous-page ville abandonnee
+/couvreur-a-etrechy-91580/isolation-de-toiture-a-etrechy/,/couvreur-etrechy/,301,Sous-page ville abandonnee
+/couvreur-a-etrechy-91580/etancheite-de-toiture-a-etrechy/,/couvreur-etrechy/,301,Sous-page ville abandonnee
+/couvreur-a-etampes-91150/,/couvreur-etampes/,301,Page ville - reecrire (typos/dedup)
+/couvreur-a-orsay-91400/,/couvreur-orsay/,301,Page ville
+/couvreur-a-orsay-91400/nettoyage-de-toiture-a-orsay/,/couvreur-orsay/,301,Sous-page ville abandonnee
+/couvreur-a-orsay-91400/installation-de-fenetre-de-toit-a-orsay/,/couvreur-orsay/,301,Sous-page ville abandonnee

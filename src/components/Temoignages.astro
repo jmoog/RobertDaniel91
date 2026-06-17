@@ -1,0 +1,159 @@
+---
+// Section temoignages — carrousel de 6 avis Google generalistes.
+// Visuel uniquement, AUCUN balisage Review/AggregateRating (self-serving).
+const avis = [
+  { nom: 'Caroline David', texte: "Un artisan très professionnel, aimable, qui tient ses engagements. Je recommande fortement ses services. Merci." },
+  { nom: 'Olivier Loret', texte: "Travail fait dans les temps, équipe très professionnelle et sympathique, un travail très soigné. Monsieur Robert à l'écoute de ses clients. Je recommande vivement." },
+  { nom: 'Michel Curan', texte: "Travaux plus rapides que prévu, résultat impeccable, communication au top. Il prend le temps d'expliquer, équipe sympa. Je recommande." },
+  { nom: 'Mathieu Ponson', texte: "Mr Robert a su parfaitement répondre à mes besoins dans les délais. Chantier impeccable, belle expérience client. Je recommande les yeux fermés." },
+  { nom: 'Jean-Claude Loubignac', texte: "Travail très soigné. Entreprise sérieuse et à l'écoute. Je recommande vivement." },
+  { nom: 'Émilie Ventura', texte: "Monsieur Robert est un artisan très professionnel et à l'écoute. Le travail est impeccable. Un grand merci !" },
+];
+const lienGoogle = 'https://maps.app.goo.gl/rYpVbKYbBB64Uk2y6';
+---
+<section class="section section--gris temoignages">
+  <div class="conteneur">
+    <div class="section__entete">
+        <span class="surtitre">Avis clients</span>
+        <h2>Ils m'ont fait confiance dans l'Essonne</h2>
+        <p class="temoignages__note">
+          <span class="temoignages__etoiles" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </span>
+          <strong>5,0 / 5</strong> — 69 avis Google
+        </p>
+      </div>
+
+    <div class="carrousel">
+      <button type="button" class="carrousel__fleche carrousel__fleche--prec" data-dir="prec" aria-label="Avis précédents">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <ul class="carrousel__piste">
+      {avis.map((a) => (
+        <li class="carrousel__slide">
+          <figure class="carte temoignage">
+            <div class="temoignage__etoiles" aria-label="Note : 5 sur 5">
+              {Array(5).fill(0).map(() => (
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              ))}
+            </div>
+            <blockquote class="temoignage__texte">{a.texte}</blockquote>
+            <figcaption class="temoignage__auteur">
+              <span class="temoignage__nom">{a.nom}</span>
+              <span class="temoignage__source">Avis Google</span>
+            </figcaption>
+          </figure>
+        </li>
+      ))}
+      </ul>
+      <button type="button" class="carrousel__fleche carrousel__fleche--suiv" data-dir="suiv" aria-label="Avis suivants">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+
+    <div class="temoignages__cta">
+      <a href={lienGoogle} class="btn btn--bleu" target="_blank" rel="noopener noreferrer">Voir tous les avis Google &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .temoignages__note {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    margin-top: 0.6rem;
+    font-size: 1.05rem;
+    color: var(--gris-700);
+  }
+  .temoignages__etoiles { display: inline-flex; gap: 1px; }
+  .temoignages__etoiles svg { width: 1.15em; height: 1.15em; fill: #fbbc04; }
+  .temoignages__note strong { color: var(--bleu); }
+
+  .carrousel { display: flex; align-items: center; gap: 0.75rem; }
+  .carrousel__piste { flex: 1; min-width: 0; }
+  .carrousel__fleche {
+    flex-shrink: 0;
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 50%;
+    border: none;
+    background: var(--bleu);
+    color: var(--blanc);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background var(--transition), transform var(--transition);
+  }
+  .carrousel__fleche:hover { background: var(--bleu-fonce); }
+  .carrousel__fleche:active { transform: scale(0.94); }
+  .carrousel__fleche svg { width: 1.4rem; height: 1.4rem; }
+
+  .carrousel__piste {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0.4rem 0;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .carrousel__piste::-webkit-scrollbar { display: none; }
+  .carrousel__slide {
+    scroll-snap-align: start;
+    flex: 0 0 100%;
+  }
+  @media (min-width: 680px) {
+    .carrousel__slide { flex-basis: calc((100% - 1.5rem) / 2); }
+  }
+  @media (min-width: 1000px) {
+    .carrousel__slide { flex-basis: calc((100% - 3rem) / 3); }
+  }
+
+  .temoignage {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    padding: 1.6rem;
+    background: var(--blanc);
+  }
+  .temoignage:hover { transform: none; }
+  .temoignage__etoiles { display: inline-flex; gap: 2px; }
+  .temoignage__etoiles svg { width: 1.1rem; height: 1.1rem; fill: #fbbc04; }
+  .temoignage__texte {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--gris-700);
+    flex: 1;
+  }
+  .temoignage__auteur { margin-top: auto; }
+  .temoignage__nom { display: block; font-weight: 700; color: var(--bleu); }
+  .temoignage__source { display: block; font-size: 0.85rem; color: var(--gris-500); }
+  .temoignages__cta { text-align: center; margin-top: 2.5rem; }
+</style>
+
+<script>
+  const piste = document.querySelector('.carrousel__piste');
+  const pas = () => {
+    if (!piste) return 300;
+    const slide = piste.querySelector('.carrousel__slide');
+    const gap = parseFloat(getComputedStyle(piste).columnGap || '24');
+    return slide ? slide.getBoundingClientRect().width + gap : 300;
+  };
+  document.querySelectorAll('.carrousel__fleche').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const dir = btn.getAttribute('data-dir') === 'suiv' ? 1 : -1;
+      piste?.scrollBy({ left: dir * pas(), behavior: 'smooth' });
+    });
+  });
+</script>

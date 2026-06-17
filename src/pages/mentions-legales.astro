@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FilAriane from '../components/FilAriane.astro';
+
+const title = 'Mentions legales - Robert Daniel Couverture';
+const description = "Mentions legales du site robert-daniel-couverture.fr. Informations sur l'editeur, l'hebergeur et les conditions d'utilisation.";
+---
+<BaseLayout title={title} description={description}>
+  <section class="section">
+    <div class="conteneur prose" style="max-width:70ch;margin-inline:auto;">
+      <FilAriane items={[{ label: 'Accueil', href: '/' }, { label: 'Mentions legales' }]} />
+      <h1>Mentions légales</h1>
+
+      <h2>Éditeur du site</h2>
+      <p>Le site <strong>robert-daniel-couverture.fr</strong> est édité par :</p>
+      <p><strong>SAS MR ROBERT</strong><br />
+      Société par actions simplifiée au capital de 1 000 €<br />
+      Siège social : 3 route de Briis, 91460 Marcoussis<br />
+      Bureau (vitrine) : 42 Grande Rue, 91580 Étréchy<br />
+      SIRET : <a href="https://annuaire-entreprises.data.gouv.fr/entreprise/mr-robert-937889236" target="_blank" rel="noopener noreferrer">937 889 236 00017</a><br />
+      SIREN : 937 889 236<br />
+      TVA intracommunautaire : FR69 937 889 236<br />
+      Code NAF / APE : 43.91B — Travaux de couverture par éléments<br />
+      Président : M. Robert Daniel</p>
+      <p>Téléphone : <a href="tel:0683961518">06 83 96 15 18</a><br />
+      Email : <a href="mailto:robert.entreprise@outlook.fr">robert.entreprise@outlook.fr</a></p>
+
+      <h2>Conception et réalisation</h2>
+      <p>Ce site a été conçu et réalisé par <strong>The Local Place</strong>.</p>
+
+      <h2>Hébergement</h2>
+      <p>Le site est hébergé par :<br />
+      <strong>Hetzner Online GmbH</strong><br />
+      Industriestr. 25, 91710 Gunzenhausen, Allemagne<br />
+      Site web : <a href="https://www.hetzner.com" target="_blank" rel="noopener noreferrer">www.hetzner.com</a></p>
+
+      <h2>Propriété intellectuelle</h2>
+      <p>L'ensemble du contenu du site robert-daniel-couverture.fr (textes, images, photographies, logos, vidéos, éléments graphiques et sonores) est la propriété exclusive de la SAS MR ROBERT ou de ses partenaires et est protégé par les lois françaises et internationales relatives à la propriété intellectuelle. Toute reproduction, représentation, modification, publication, adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite sans l'autorisation écrite préalable de la SAS MR ROBERT.</p>
+
+      <h2>Responsabilité</h2>
+      <p>La SAS MR ROBERT s'efforce d'assurer au mieux l'exactitude et la mise à jour des informations diffusées sur ce site. Toutefois, elle ne peut garantir l'exactitude, la précision ou l'exhaustivité des informations mises à disposition sur ce site. En conséquence, la SAS MR ROBERT décline toute responsabilité pour les éventuelles imprécisions, inexactitudes ou omissions portant sur des informations disponibles sur ce site.</p>
+
+      <h2>Données personnelles</h2>
+      <p>Les informations recueillies via le formulaire de contact ou de demande de devis sont destinées à la SAS MR ROBERT et sont utilisées uniquement pour répondre à votre demande. Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi Informatique et Libertés, vous disposez d'un droit d'accès, de rectification, de suppression et d'opposition aux données vous concernant. Vous pouvez exercer ces droits en nous contactant par email à <a href="mailto:robert.entreprise@outlook.fr">robert.entreprise@outlook.fr</a> ou par courrier à l'adresse du siège social.</p>
+
+      <h2>Cookies</h2>
+      <p>Ce site peut utiliser des cookies à des fins de mesure d'audience (Google Analytics). Un bandeau de consentement vous permet d'accepter ou de refuser le dépôt de ces cookies lors de votre première visite. Les cookies de mesure d'audience ne sont déposés qu'après votre consentement explicite. Vous pouvez à tout moment modifier vos préférences en supprimant les cookies de votre navigateur.</p>
+    </div>
+  </section>
+</BaseLayout>

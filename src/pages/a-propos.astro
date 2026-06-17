@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FilAriane from '../components/FilAriane.astro';
+import CtaDevis from '../components/CtaDevis.astro';
+
+const title = 'À propos - Robert Daniel Couverture - Couvreur Essonne';
+const description = "Decouvrez Robert Daniel Couverture, artisan couvreur installe à Étréchy dans l'Essonne (91). Plus de 15 ans d'experience en couverture, charpente et zinguerie.";
+---
+<BaseLayout title={title} description={description}>
+  <section class="hero">
+    <div class="conteneur">
+      <FilAriane items={[{ label: 'Accueil', href: '/' }, { label: 'À propos' }]} />
+    </div>
+    <div class="conteneur apropos-hero__grille">
+      <div class="apropos-hero__texte">
+        <h1>À propos de Robert Daniel, votre couvreur dans l'Essonne</h1>
+        <p class="hero__accroche">
+          Couvreur de père en fils, j'ai grandi sur les toits. Tout jeune, j'accompagnais déjà
+          mon père sur les chantiers : c'est là que j'ai appris l'essentiel — le sens du détail,
+          la sécurité et le goût du travail bien fait.
+        </p>
+        <p>
+          Après des années d'apprentissage et d'expérience sur tous types de couvertures, j'ai créé
+          ma propre entreprise à Étréchy, au cœur de l'Essonne, pour mettre ce savoir-faire familial
+          au service des particuliers et des professionnels du département. Voici mon parcours et mon
+          attachement aux toitures de la région.
+        </p>
+      </div>
+      <div class="apropos-hero__media">
+        <img src="/images/robert-daniel-drone-verification-etrechy.jpg" alt="Robert Daniel, artisan couvreur, avec son drone devant son showroom à Étréchy dans l'Essonne" width="1000" height="880" loading="lazy" decoding="async" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="conteneur duo">
+      <img src="/images/artisan-couvreur-essonne.jpg" alt="Robert Daniel sur un chantier de charpente dans l'Essonne" width="900" height="600" loading="lazy" decoding="async" />
+      <div class="prose">
+        <span class="surtitre">Mon parcours</span>
+        <h2>Un savoir-faire transmis de père en fils</h2>
+        <p>La couverture, chez moi, c'est une histoire de famille. J'ai grandi au milieu des tuiles, des ardoises et des outils de couvreur : c'est mon père qui m'a transmis le goût du travail bien fait et le respect du métier. J'ai d'abord appris sur le tas, puis en apprentissage, avant de fonder ma propre entreprise.</p>
+        <p>Plus de 15 ans plus tard, je monte sur les toits chaque jour avec la même passion. Chaque toiture est unique : je traite celle de mes clients comme si c'était la mienne, avec exigence et honnêteté.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--bleute">
+    <div class="conteneur duo duo--inverse">
+      <img src="/images/maison-toiture-renovee-essonne.jpg" alt="Maison avec toiture rénovée par Robert Daniel dans l'Essonne" width="900" height="600" loading="lazy" decoding="async" />
+      <div class="prose">
+        <span class="surtitre">Ma zone d'intervention</span>
+        <h2>Un artisan qui connaît l'Essonne par cœur</h2>
+        <p>Installé au 42 Grande Rue à Étréchy, j'interviens dans tout le département de l'Essonne : Étampes, Orsay, Lardy, Chamarande et toutes les communes alentour. Je connais les toitures de la région, leurs matériaux et leurs contraintes — des vieilles tuiles plates aux constructions plus récentes.</p>
+        <p>Cette proximité, c'est un vrai atout : je me déplace rapidement, je réponds présent en cas d'urgence, et vous avez toujours affaire à la même personne, du devis à la fin du chantier.</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaDevis />
+</BaseLayout>
+
+<style>
+  .apropos-hero__grille { display: grid; gap: 2.5rem; align-items: center; }
+  @media (min-width: 900px) {
+    .apropos-hero__grille { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 3.5rem; }
+  }
+  .apropos-hero__texte h1 { white-space: normal; }
+  .apropos-hero__media img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--rayon);
+    box-shadow: var(--ombre-forte);
+  }
+</style>

@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Page introuvable - Robert Daniel Couverture';
+const description = "La page que vous recherchez n'existe pas ou a ete deplacee.";
+---
+<BaseLayout title={title} description={description}>
+  <section class="section" style="text-align:center;padding-block:6rem;">
+    <div class="conteneur">
+      <h1>Page introuvable</h1>
+      <p style="font-size:1.15rem;margin-block:1.5rem;color:var(--gris-700);">
+        La page que vous recherchez n'existe pas ou a ete deplacee.
+      </p>
+      <a href="/" class="btn btn--bleu">Retour a l'accueil</a>
+    </div>
+  </section>
+</BaseLayout>

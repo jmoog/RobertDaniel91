@@ -1,0 +1,22 @@
+---
+// Page fusionnee avec /renovation-toiture/ (anti-cannibalisation).
+// Redirection vers le pilier Renovation de toiture. Page sortie de l'index.
+const dest = '/renovation-toiture/';
+---
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.png?v=3" type="image/png" />
+    <meta name="robots" content="noindex,follow" />
+    <link rel="canonical" href="https://robert-daniel-couverture.fr/renovation-toiture/" />
+    <meta http-equiv="refresh" content={`0; url=${dest}`} />
+    <title>Remplacement de toiture — voir Rénovation de toiture dans l'Essonne</title>
+    <script set:html={`window.location.replace('${dest}');`}></script>
+  </head>
+  <body>
+    <p>Cette page a été regroupée avec notre page
+      <a href={dest}>Rénovation de toiture dans l'Essonne (91)</a>, qui couvre aussi le
+      remplacement complet de toiture.</p>
+  </body>
+</html>

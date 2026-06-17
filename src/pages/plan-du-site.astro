@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FilAriane from '../components/FilAriane.astro';
+import services from '../data/services.json';
+import villes from '../data/villes.json';
+
+const title = 'Plan du site - Robert Daniel Couverture';
+const description = "Plan du site robert-daniel-couverture.fr. Retrouvez toutes les pages de notre site : services, villes d'intervention, informations.";
+
+const zingueriePages = [
+  { slug: 'gouttieres-zinc', label: 'Gouttieres zinc' },
+  { slug: 'gouttieres-aluminium', label: 'Gouttieres aluminium' },
+  { slug: 'gouttieres-pvc', label: 'Gouttieres PVC' },
+  { slug: 'descentes-eaux-pluviales', label: 'Descentes eaux pluviales' },
+  { slug: 'noues-aretiers', label: 'Noues et aretiers' },
+  { slug: 'solins-raccords', label: 'Solins et raccords' },
+  { slug: 'couvertines', label: 'Couvertines' },
+];
+---
+<BaseLayout title={title} description={description}>
+  <section class="section">
+    <div class="conteneur prose" style="max-width:70ch;margin-inline:auto;">
+      <FilAriane items={[{ label: 'Accueil', href: '/' }, { label: 'Plan du site' }]} />
+      <h1>Plan du site</h1>
+
+      <h2>Pages principales</h2>
+      <ul>
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/a-propos/">À propos</a></li>
+        <li><a href="/devis-gratuit/">Contact</a></li>
+        <li><a href="/mentions-legales/">Mentions legales</a></li>
+      </ul>
+
+      <h2>Services</h2>
+      <ul>
+        {services.map((s) => (
+          <li><a href={s.slug === 'zinguerie' ? '/zinguerie/' : `/${s.slug}/`}>{s.label}</a></li>
+        ))}
+      </ul>
+
+      <h3>Zinguerie — detail</h3>
+      <ul>
+        {zingueriePages.map((z) => (
+          <li><a href={`/zinguerie/${z.slug}/`}>{z.label}</a></li>
+        ))}
+      </ul>
+
+      <h2>Villes d'intervention</h2>
+      <ul>
+        {villes.map((v) => (
+          <li><a href={`/${v.slug}/`}>Couvreur {v.nom}</a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

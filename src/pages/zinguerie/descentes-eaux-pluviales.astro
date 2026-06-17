@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FilAriane from '../../components/FilAriane.astro';
+import CtaDevis from '../../components/CtaDevis.astro';
+import villes from '../../data/villes.json';
+
+const title = "Descentes eaux pluviales dans l'Essonne (91) - Robert Daniel Couverture";
+const description = "Installation et remplacement de descentes d'eaux pluviales à Étréchy et dans l'Essonne. Zinc, aluminium, PVC. Devis gratuit.";
+
+const extraSchemas = [{
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Descentes eaux pluviales',
+  serviceType: 'Zinguerie',
+  provider: { '@id': 'https://robert-daniel-couverture.fr/#localbusiness' },
+  areaServed: { '@type': 'AdministrativeArea', name: 'Essonne (91)' },
+  url: 'https://robert-daniel-couverture.fr/zinguerie/descentes-eaux-pluviales/',
+  description,
+}];
+---
+<BaseLayout title={title} description={description} extraSchemas={extraSchemas}>
+  <section class="hero">
+    <div class="conteneur">
+      <FilAriane items={[{ label: 'Accueil', href: '/' }, { label: 'Zinguerie', href: '/zinguerie/' }, { label: 'Descentes eaux pluviales' }]} />
+    </div>
+    <div class="conteneur hero__grille">
+      <div class="hero__texte">
+        <h1>Descentes eaux pluviales dans l'Essonne</h1>
+        <p class="hero__accroche">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <ul>
+          <li><strong>Lorem ipsum</strong> dolor sit amet.</li>
+          <li><strong>Consectetur</strong> adipiscing elit.</li>
+          <li><strong>Garantie décennale</strong> sur tous nos travaux.</li>
+        </ul>
+        <div class="hero__actions">
+          <a href="tel:0683961518" class="btn btn--cuivre">
+            <svg class="icone" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 1H8C6.34 1 5 2.34 5 4v16c0 1.66 1.34 3 3 3h8c1.66 0 3-1.34 3-3V4c0-1.66-1.34-3-3-3zm-2 20h-4v-1h4v1zm3.25-3H6.75V4h10.5v14z"/></svg>
+            06 83 96 15 18
+          </a>
+          <a href="/devis-gratuit/" class="btn btn--bleu">Devis Gratuit &rarr;</a>
+        </div>
+      </div>
+      <div class="hero__media">
+        <div class="placeholder-img hero__photo">Photo Descentes eaux pluviales</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="conteneur duo">
+      <div class="placeholder-img">Photo Descentes eaux pluviales detail</div>
+      <div class="prose">
+        <h2>Lorem ipsum dolor sit amet</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--bleute">
+    <div class="conteneur duo duo--inverse">
+      <div class="placeholder-img">Photo Descentes eaux pluviales chantier</div>
+      <div class="prose">
+        <h2>Lorem ipsum dolor sit amet consectetur</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nemo enim ipsam voluptatem quia voluptas sit aspernatur.</p>
+        <ul>
+          <li>Lorem ipsum dolor sit amet.</li>
+          <li>Consectetur adipiscing elit.</li>
+          <li>Sed do eiusmod tempor.</li>
+        </ul>
+        <a href="/zinguerie/" class="btn btn--bleu">Tous nos services zinguerie &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <CtaDevis />
+
+  <section class="section section--gris">
+    <div class="conteneur">
+      <h2>Descentes eaux pluviales — nos communes</h2>
+      <ul class="nuage-villes">
+        {villes.map((v) => (
+          <li><a href={`/${v.slug}/`}>{v.nom}</a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

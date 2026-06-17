@@ -1,0 +1,99 @@
+---
+import services from '../data/services.json';
+import villes from '../data/villes.json';
+---
+<footer class="pied">
+  <div class="conteneur pied__grille">
+    <div class="pied__bloc pied__marque">
+      <div class="pied__logo-placeholder">Robert Daniel Couverture</div>
+      <p><strong>Robert Daniel Couverture</strong><br />Artisan couvreur dans l'Essonne (91)</p>
+      <p>42 Grande Rue<br />91580 Étréchy</p>
+      <p>
+        <a href="tel:0683961518">06 83 96 15 18</a><br />
+        <a href="mailto:robert.entreprise@outlook.fr">robert.entreprise@outlook.fr</a>
+      </p>
+      <p class="pied__horaires">Lun — Sam : 08h00 — 20h00</p>
+    </div>
+
+    <nav class="pied__bloc" aria-label="Nos services">
+      <h2>Nos services</h2>
+      <ul>
+        {services.map((s) => (
+          <li><a href={s.slug === 'zinguerie' ? '/zinguerie/' : `/${s.slug}/`}>{s.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <nav class="pied__bloc" aria-label="Zone d'intervention">
+      <h2>Essonne et alentours</h2>
+      <ul>
+        {villes.map((v) => (
+          <li><a href={`/${v.slug}/`}>{v.nom}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <nav class="pied__bloc" aria-label="Informations">
+      <h2>Informations</h2>
+      <ul>
+        <li><a href="/a-propos/">À propos</a></li>
+        <li><a href="/devis-gratuit/">Devis gratuit</a></li>
+        <li><a href="/mentions-legales/">Mentions legales</a></li>
+        <li><a href="/plan-du-site/">Plan du site</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="pied__legal">
+    <p><span>SAS MR ROBERT — Robert Daniel Couverture — Artisan couvreur dans l'Essonne.</span> <span>Garantie décennale · SIRET <a href="https://annuaire-entreprises.data.gouv.fr/entreprise/mr-robert-937889236" target="_blank" rel="noopener noreferrer">937 889 236 00017</a></span></p>
+  </div>
+</footer>
+
+<style>
+  .pied {
+    background: var(--bleu-fonce);
+    color: rgba(255, 255, 255, 0.85);
+    margin-top: auto;
+    font-size: 0.93rem;
+  }
+  .pied__grille {
+    display: grid;
+    gap: 2.5rem;
+    padding-block: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+  .pied__bloc h2 {
+    color: var(--blanc);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 1rem;
+  }
+  .pied__bloc ul { list-style: none; padding: 0; display: grid; gap: 0.4rem; }
+  .pied a { color: rgba(255, 255, 255, 0.85); text-decoration: none; }
+  .pied a:hover { color: var(--cuivre); text-decoration: underline; }
+  .pied__logo-placeholder {
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--blanc);
+    margin-bottom: 1rem;
+  }
+  .pied__marque p { margin-block: 0.5rem; }
+  .pied__horaires { font-size: 0.88rem; color: rgba(255, 255, 255, 0.7); }
+  .pied__legal {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    text-align: center;
+    padding: 1.2rem 1rem;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+  .pied__legal p { margin: 0; text-align: center; }
+  .pied__legal span { display: inline-block; }
+
+  @media (max-width: 800px) {
+    .pied__grille { text-align: center; }
+    .pied__grille p { text-align: center; }
+    .pied__bloc h2 { text-align: center; }
+    .pied__bloc ul { justify-items: center; }
+  }
+</style>

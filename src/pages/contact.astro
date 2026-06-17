@@ -1,0 +1,19 @@
+---
+// Page Contact fusionnee avec /devis-gratuit/. Stub de redirection (noindex).
+const dest = '/devis-gratuit/';
+---
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.png?v=3" type="image/png" />
+    <meta name="robots" content="noindex,follow" />
+    <link rel="canonical" href="https://robert-daniel-couverture.fr/devis-gratuit/" />
+    <meta http-equiv="refresh" content={`0; url=${dest}`} />
+    <title>Contact — Devis gratuit couvreur dans l'Essonne</title>
+    <script set:html={`window.location.replace('${dest}');`}></script>
+  </head>
+  <body>
+    <p>Cette page a été remplacée par notre <a href={dest}>page Devis gratuit</a>.</p>
+  </body>
+</html>

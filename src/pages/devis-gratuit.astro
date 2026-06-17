@@ -1,0 +1,254 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FilAriane from '../components/FilAriane.astro';
+
+const title = "Devis gratuit couvreur dans l'Essonne (91) — Robert Daniel Couverture";
+const description = "Demandez votre devis gratuit à Robert Daniel, couvreur zingueur à Étréchy. Rénovation, réparation, ramonage, Velux dans toute l'Essonne (91). Réponse rapide et sans engagement.";
+
+const avis = [
+  { nom: 'Caroline David', texte: "Un artisan très professionnel, aimable, qui tient ses engagements. Je recommande fortement." },
+  { nom: 'Mathieu Ponson', texte: "Il a parfaitement répondu à mes besoins dans les délais. Chantier impeccable, je recommande les yeux fermés." },
+  { nom: 'Olivier Loret', texte: "Travail fait dans les temps, équipe professionnelle et soignée. À l'écoute. Je recommande vivement." },
+];
+const etoile = "M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z";
+---
+<BaseLayout title={title} description={description}>
+  <!-- Hero + formulaire -->
+  <section class="hero devis-hero">
+    <div class="conteneur">
+      <FilAriane items={[{ label: 'Accueil', href: '/' }, { label: 'Devis gratuit' }]} />
+    </div>
+    <div class="conteneur devis-hero__grille">
+      <div class="devis-hero__texte">
+        <span class="surtitre">Devis gratuit &amp; sans engagement</span>
+        <h1>Demandez votre devis gratuit</h1>
+        <p class="hero__accroche">
+          Un projet de toiture, une fuite, un entretien ? Décrivez-moi votre besoin :
+          je vous réponds rapidement et je me déplace gratuitement à Étréchy et dans toute l'Essonne.
+          Je suis <a href="/">votre couvreur 91</a> de proximité.
+        </p>
+        <ul class="devis-points">
+          <li>Réponse sous 24h, devis détaillé et gratuit.</li>
+          <li>Déplacement et vérification de toiture offerts.</li>
+          <li>Garantie décennale Allianz sur tous mes travaux.</li>
+        </ul>
+        <div class="contact-infos">
+          <p><strong>Téléphone :</strong> <a href="tel:0683961518">06 83 96 15 18</a></p>
+          <p><strong>Email :</strong> <a href="mailto:robert.entreprise@outlook.fr">robert.entreprise@outlook.fr</a></p>
+          <p><strong>Adresse :</strong> 42 Grande Rue, 91580 Étréchy</p>
+          <p><strong>Horaires :</strong> du lundi au samedi, 08h00 — 20h00 (urgences en dehors)</p>
+        </div>
+      </div>
+
+      <div class="devis-form__carte carte">
+        <form id="form-devis" class="form-devis" action="https://api.web3forms.com/submit" method="POST" novalidate>
+          <input type="hidden" name="access_key" value="VOTRE_CLE_WEB3FORMS" />
+          <input type="hidden" name="subject" value="Nouvelle demande de devis — robert-daniel-couverture.fr" />
+          <input type="hidden" name="from_name" value="Site Robert Daniel Couverture" />
+          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
+          <div class="hp" aria-hidden="true">
+            <label>Ne pas remplir<input type="text" name="site_web" tabindex="-1" autocomplete="off" /></label>
+          </div>
+
+          <div class="form-ligne">
+            <label for="nom">Nom et prénom *</label>
+            <input id="nom" name="nom" type="text" required autocomplete="name" />
+          </div>
+          <div class="form-duo">
+            <div class="form-ligne">
+              <label for="tel">Téléphone *</label>
+              <input id="tel" name="telephone" type="tel" required autocomplete="tel" />
+            </div>
+            <div class="form-ligne">
+              <label for="email">Email *</label>
+              <input id="email" name="email" type="email" required autocomplete="email" />
+            </div>
+          </div>
+          <div class="form-duo">
+            <div class="form-ligne">
+              <label for="ville">Ville</label>
+              <input id="ville" name="ville" type="text" placeholder="Étréchy, Étampes…" />
+            </div>
+            <div class="form-ligne">
+              <label for="travaux">Type de travaux</label>
+              <select id="travaux" name="travaux">
+                <option value="Rénovation de toiture">Rénovation de toiture</option>
+                <option value="Réparation / recherche de fuite">Réparation / recherche de fuite</option>
+                <option value="Nettoyage / démoussage">Nettoyage / démoussage</option>
+                <option value="Charpente">Charpente</option>
+                <option value="Isolation de toiture">Isolation de toiture</option>
+                <option value="Fenêtre de toit Velux">Fenêtre de toit Velux</option>
+                <option value="Zinguerie / gouttières">Zinguerie / gouttières</option>
+                <option value="Ramonage de cheminée">Ramonage de cheminée</option>
+                <option value="Autre / je ne sais pas">Autre / je ne sais pas</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-ligne">
+            <label for="message">Votre projet *</label>
+            <textarea id="message" name="message" rows="4" required placeholder="Décrivez votre projet, vos questions…"></textarea>
+          </div>
+          <button type="submit" class="btn btn--cuivre form-submit">Recevoir mon devis gratuit</button>
+          <p class="form-statut" role="status" aria-live="polite"></p>
+          <p class="form-rgpd">Vos données ne servent qu'à vous recontacter. Aucun spam, aucune revente.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ramonage -->
+  <section class="section section--gris">
+    <div class="conteneur duo">
+      <img src="/images/ramonage-cheminee-essonne.jpg" alt="Robert Daniel ramonant une cheminée sur un toit en tuiles dans l'Essonne" width="800" height="837" loading="lazy" decoding="async" />
+      <div class="prose">
+        <span class="surtitre">Ramonage de cheminée</span>
+        <h2>Je ramone votre cheminée en toute sécurité</h2>
+        <p>Le ramonage régulier de votre conduit est obligatoire et indispensable : il évite les risques d'incendie et d'intoxication au monoxyde de carbone, et il est exigé par votre assurance. J'interviens sur cheminées, inserts et poêles, par le toit ou par l'intérieur.</p>
+        <p>Je vous remets un certificat de ramonage après chaque intervention. Profitez-en pour me demander un devis ramonage + entretien de toiture en une seule visite.</p>
+        <a href="/ramonage-cheminee/" class="btn btn--bleu">En savoir plus sur le ramonage &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Velux -->
+  <section class="section">
+    <div class="conteneur duo duo--inverse">
+      <img src="/images/services/velux.jpg" alt="Fenêtre de toit Velux posée sur une toiture en tuiles dans l'Essonne" width="700" height="438" loading="lazy" decoding="async" />
+      <div class="prose">
+        <span class="surtitre">Fenêtre de toit Velux</span>
+        <h2>Pose et remplacement de fenêtres Velux</h2>
+        <p>Vous manquez de lumière sous les combles ? Je pose et remplace vos fenêtres de toit Velux pour apporter clarté et confort, avec une étanchéité parfaite et des finitions soignées. Pose neuve, remplacement à l'identique ou agrandissement : je vous conseille la meilleure solution.</p>
+        <p>Demandez votre devis Velux gratuit — je me déplace pour prendre les mesures et étudier votre toiture.</p>
+        <a href="/fenetre-de-toit-velux/" class="btn btn--bleu">En savoir plus sur le Velux &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Avis -->
+  <section class="section section--gris">
+    <div class="conteneur">
+      <div class="section__entete">
+        <span class="surtitre">Avis clients</span>
+        <h2>Ils m'ont fait confiance</h2>
+        <p>Note moyenne de 5,0 / 5 sur 69 avis Google.</p>
+      </div>
+      <div class="avis-grille">
+        {avis.map((a) => (
+          <figure class="carte avis-carte">
+            <div class="avis-etoiles" aria-label="Note : 5 sur 5">
+              {Array(5).fill(0).map(() => (
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d={etoile} /></svg>
+              ))}
+            </div>
+            <blockquote>{a.texte}</blockquote>
+            <figcaption>{a.nom} — <span>Avis Google</span></figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .devis-hero { background: var(--blanc); padding-block: clamp(2rem, 4vw, 3.5rem); }
+  .devis-hero__grille { display: grid; gap: 2.5rem; align-items: start; }
+  @media (min-width: 940px) {
+    .devis-hero__grille { grid-template-columns: 1fr 1fr; gap: 3.5rem; }
+  }
+  .devis-hero__texte h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem); margin-block: 0.3rem 1rem; }
+  .devis-points { margin-block: 1.2rem; padding-left: 1.2em; }
+  .devis-points li { margin-block: 0.3rem; }
+  .contact-infos { margin-top: 1.4rem; }
+  .contact-infos p { margin-block: 0.4rem; font-size: 1rem; }
+
+  .devis-form__carte { padding: 1.6rem; }
+  .form-devis { display: flex; flex-direction: column; gap: 1rem; }
+  .form-duo { display: grid; gap: 1rem; }
+  @media (min-width: 520px) { .form-duo { grid-template-columns: 1fr 1fr; } }
+  .form-ligne { display: flex; flex-direction: column; gap: 0.35rem; }
+  .form-ligne label { font-weight: 600; font-size: 0.92rem; color: var(--bleu); }
+  .form-devis input,
+  .form-devis select,
+  .form-devis textarea {
+    font: inherit;
+    padding: 0.7em 0.9em;
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon);
+    background: var(--blanc);
+    color: var(--noir);
+    width: 100%;
+  }
+  .form-devis input:focus,
+  .form-devis select:focus,
+  .form-devis textarea:focus {
+    outline: 2px solid var(--bleu);
+    outline-offset: 1px;
+    border-color: var(--bleu);
+  }
+  .form-devis textarea { resize: vertical; }
+  .form-submit { margin-top: 0.4rem; width: 100%; }
+  .form-statut { margin: 0; font-weight: 600; min-height: 1.2em; }
+  .form-statut.ok { color: #197a3a; }
+  .form-statut.ko { color: var(--cuivre-fonce); }
+  .form-rgpd { margin: 0; font-size: 0.82rem; color: var(--gris-500); }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+  .avis-grille {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+    margin-top: 2rem;
+  }
+  @media (min-width: 760px) { .avis-grille { grid-template-columns: repeat(3, 1fr); } }
+  .avis-carte { padding: 1.5rem; display: flex; flex-direction: column; gap: 0.8rem; background: var(--blanc); }
+  .avis-carte:hover { transform: none; }
+  .avis-etoiles { display: inline-flex; gap: 2px; }
+  .avis-etoiles svg { width: 1.1rem; height: 1.1rem; fill: #fbbc04; }
+  .avis-carte blockquote { margin: 0; color: var(--gris-700); line-height: 1.6; flex: 1; }
+  .avis-carte figcaption { font-weight: 700; color: var(--bleu); }
+  .avis-carte figcaption span { font-weight: 400; font-size: 0.85rem; color: var(--gris-500); }
+</style>
+
+<script>
+  const form = document.getElementById('form-devis');
+  if (form) {
+    const charge = Date.now();
+    const statut = form.querySelector('.form-statut');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const hp = form.querySelector('input[name="site_web"]');
+      if (hp && hp.value) return;
+      if (Date.now() - charge < 3000) {
+        statut.textContent = "Merci de patienter un instant avant d'envoyer.";
+        statut.className = 'form-statut ko';
+        return;
+      }
+      if (!form.checkValidity()) {
+        statut.textContent = 'Merci de remplir les champs obligatoires.';
+        statut.className = 'form-statut ko';
+        form.reportValidity();
+        return;
+      }
+      const btn = form.querySelector('.form-submit');
+      btn.disabled = true;
+      statut.textContent = 'Envoi en cours…';
+      statut.className = 'form-statut';
+      try {
+        const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+        const data = await res.json();
+        if (data.success) {
+          form.reset();
+          statut.textContent = 'Merci ! Votre demande a bien été envoyée, je vous recontacte rapidement.';
+          statut.className = 'form-statut ok';
+        } else {
+          throw new Error(data.message || 'Erreur');
+        }
+      } catch (err) {
+        statut.textContent = "L'envoi a échoué. Appelez-moi au 06 83 96 15 18 ou réessayez.";
+        statut.className = 'form-statut ko';
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  }
+</script>

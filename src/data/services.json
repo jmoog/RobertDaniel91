@@ -1,0 +1,83 @@
+[
+  {
+    "slug": "renovation-toiture",
+    "labelNav": "Renovation",
+    "label": "Renovation de toiture",
+    "accroche": "Je refais votre toiture à neuf, étanche et durable.",
+    "image": "/images/services/renovation-toiture.jpg",
+    "alt": "Renovation de toiture dans l'Essonne par Robert Daniel Couverture",
+    "lien": "Renover ma toiture"
+  },
+  {
+    "slug": "reparation-toiture",
+    "labelNav": "Reparation",
+    "label": "Reparation de toiture",
+    "accroche": "Je répare fuites, tuiles cassées et infiltrations, rapidement.",
+    "image": "/images/services/reparation-toiture.jpg",
+    "alt": "Reparation de toiture et recherche de fuites dans l'Essonne",
+    "lien": "Reparer ma toiture"
+  },
+  {
+    "slug": "nettoyage-toiture",
+    "labelNav": "Nettoyage",
+    "label": "Nettoyage de toiture",
+    "accroche": "Je nettoie et démousse votre toiture pour prolonger sa durée de vie.",
+    "image": "/images/services/nettoyage-toiture.jpg",
+    "alt": "Nettoyage et demoussage de toiture dans l'Essonne",
+    "lien": "Nettoyer ma toiture"
+  },
+  {
+    "slug": "charpente",
+    "labelNav": "Charpente",
+    "label": "Charpente",
+    "accroche": "Je crée, rénove et traite votre charpente bois.",
+    "image": "/images/services/charpente.jpg",
+    "alt": "Travaux de charpente par Robert Daniel Couverture",
+    "lien": "Traiter ma charpente"
+  },
+  {
+    "slug": "isolation-toiture",
+    "labelNav": "Isolation",
+    "label": "Isolation de toiture",
+    "accroche": "J'isole votre toiture et vos combles pour plus de confort.",
+    "image": "/images/services/isolation-toiture.jpg",
+    "alt": "Isolation de toiture et combles dans l'Essonne",
+    "lien": "Isoler ma toiture"
+  },
+  {
+    "slug": "fenetre-de-toit-velux",
+    "labelNav": "Velux",
+    "label": "Fenetre de toit Velux",
+    "accroche": "Je pose et remplace vos fenêtres de toit Velux.",
+    "image": "/images/services/velux.jpg",
+    "alt": "Pose de fenetre de toit Velux dans l'Essonne",
+    "lien": "Poser un Velux"
+  },
+  {
+    "slug": "inspection-toiture-drone",
+    "labelNav": "Inspection drone",
+    "label": "Inspection de toiture par drone",
+    "accroche": "J'inspecte votre toiture par drone, sans monter sur le toit.",
+    "image": "/images/services/inspection-drone.jpg",
+    "alt": "Inspection de toiture par drone dans le 91",
+    "lien": "Inspecter ma toiture"
+  },
+  {
+    "slug": "ramonage-cheminee",
+    "labelNav": "Ramonage",
+    "label": "Ramonage de cheminee",
+    "accroche": "Je ramone votre cheminée dans les règles, en toute sécurité.",
+    "image": "/images/services/ramonage.jpg",
+    "alt": "Ramonage de cheminee dans l'Essonne",
+    "lien": "Ramoner ma cheminee"
+  },
+  {
+    "slug": "zinguerie",
+    "labelNav": "Zinguerie",
+    "label": "Zinguerie",
+    "accroche": "Je réalise gouttières, descentes, couvertines et zinc sur mesure.",
+    "image": "/images/services/zinguerie.jpg",
+    "alt": "Travaux de zinguerie et gouttieres dans l'Essonne",
+    "lien": "Voir nos prestations zinguerie"
+  }
+]

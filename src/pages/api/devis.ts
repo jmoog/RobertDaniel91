@@ -13,7 +13,7 @@ export const prerender = false;
 // ────────────────────────────────────────────────────────────────────────
 
 const BREVO_API_URL = 'https://api.brevo.com/v3/smtp/email';
-const LOGO_URL = 'https://robert-daniel-couverture.fr/logo-robert-daniel-artisan-couvreur-91.webp';
+const LOGO_URL = 'https://robert-daniel-couverture.fr/images/logo-email.png';
 const TEL_AFFICHE = '06 83 96 15 18';
 const TEL_HREF = '+33683961518';
 
@@ -143,17 +143,14 @@ function notifTemplate(d: DevisData) {
   <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background:${COLOR_LIGHT};padding:24px 12px;">
     <tr><td align="center">
       <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="max-width:600px;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.06);">
-        <tr><td style="background:${COLOR_BLUE};padding:24px 32px;color:#fff;">
-          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%"><tr>
-            <td valign="middle">
-              <div style="font-size:12px;text-transform:uppercase;letter-spacing:.1em;opacity:.75;font-weight:700;">Nouvelle demande de devis</div>
-              <div style="font-size:22px;font-weight:800;margin-top:6px;">${escapeHtml(presta)}</div>
-              <div style="font-size:14px;opacity:.85;margin-top:4px;">${escapeHtml(ville)}</div>
-            </td>
-            <td valign="middle" align="right" width="72">
-              <img src="${LOGO_URL}" width="64" alt="Robert Daniel Couverture" style="display:block;width:64px;height:auto;border:0;background:#fff;border-radius:8px;">
-            </td>
-          </tr></table>
+        <tr><td style="height:5px;background:${COLOR_RED};line-height:5px;font-size:0;">&nbsp;</td></tr>
+        <tr><td style="background:#ffffff;padding:26px 32px 20px;text-align:center;border-bottom:1px solid ${COLOR_BORDER};">
+          <img src="${LOGO_URL}" width="210" alt="Robert Daniel Couverture — Artisan couvreur dans l'Essonne" style="display:block;margin:0 auto;width:210px;max-width:72%;height:auto;border:0;">
+        </td></tr>
+        <tr><td style="background:${COLOR_BLUE};padding:22px 32px;color:#fff;text-align:center;">
+          <div style="font-size:12px;text-transform:uppercase;letter-spacing:.12em;opacity:.85;font-weight:700;">Nouvelle demande de devis</div>
+          <div style="font-size:22px;font-weight:800;margin-top:6px;">${escapeHtml(presta)}</div>
+          <div style="font-size:14px;opacity:.9;margin-top:4px;">${escapeHtml(ville)}</div>
         </td></tr>
         <tr><td style="padding:24px 32px 8px;">
           <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:${COLOR_MUTED};font-weight:700;margin-bottom:8px;">Client</div>
@@ -214,20 +211,24 @@ function ackTemplate(d: DevisData) {
   <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background:${COLOR_LIGHT};padding:24px 12px;">
     <tr><td align="center">
       <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="max-width:600px;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.06);">
-        <tr><td style="background:${COLOR_BLUE};padding:36px 32px 28px;color:#fff;text-align:center;">
-          <img src="${LOGO_URL}" width="120" alt="Robert Daniel Couverture" style="display:block;margin:0 auto 14px;width:120px;height:auto;border:0;background:#fff;border-radius:8px;padding:6px;">
-          <div style="font-size:22px;font-weight:800;letter-spacing:.02em;">Robert Daniel Couverture</div>
-          <div style="font-size:13px;opacity:.85;margin-top:4px;">Artisan couvreur dans l'Essonne (91)</div>
+        <tr><td style="height:5px;background:${COLOR_RED};line-height:5px;font-size:0;">&nbsp;</td></tr>
+        <tr><td style="background:#ffffff;padding:34px 32px 24px;text-align:center;">
+          <img src="${LOGO_URL}" width="240" alt="Robert Daniel Couverture — Artisan couvreur dans l'Essonne" style="display:block;margin:0 auto;width:240px;max-width:78%;height:auto;border:0;">
         </td></tr>
-        <tr><td style="padding:32px 32px 12px;">
-          <h1 style="margin:0 0 16px;font-size:22px;font-weight:800;color:${COLOR_BLUE};line-height:1.3;">Bonjour ${escapeHtml(prenom)},</h1>
-          <p style="margin:0 0 16px;font-size:15px;line-height:1.65;color:${COLOR_TEXT};">
-            J'ai bien reçu votre demande de devis pour <strong>${escapeHtml(presta)}</strong>${d.ville ? ' à <strong>' + escapeHtml(d.ville) + '</strong>' : ''}. Merci de votre confiance.
+        <tr><td style="background:${COLOR_BLUE};padding:12px 32px;color:#fff;text-align:center;font-size:13px;letter-spacing:.06em;font-weight:600;">
+          Artisan couvreur dans l'Essonne (91)
+        </td></tr>
+        <tr><td style="padding:34px 36px 10px;">
+          <h1 style="margin:0 0 18px;font-size:21px;font-weight:800;color:${COLOR_BLUE};line-height:1.35;">Bonjour ${escapeHtml(prenom)},</h1>
+          <p style="margin:0 0 18px;font-size:15px;line-height:1.75;color:${COLOR_TEXT};">
+            Merci pour votre demande&nbsp;: j'ai bien reçu votre projet de <strong>${escapeHtml(presta)}</strong>${d.ville ? ' à <strong>' + escapeHtml(d.ville) + '</strong>' : ''}, et je vous remercie de votre confiance.
           </p>
-          <p style="margin:0 0 16px;font-size:15px;line-height:1.65;color:${COLOR_TEXT};">
-            Je vous recontacte rapidement pour échanger sur vos travaux, convenir d'un passage si nécessaire et vous remettre un devis détaillé, gratuit et sans engagement.
+          <p style="margin:0 0 18px;font-size:15px;line-height:1.75;color:${COLOR_TEXT};">
+            Je reviens vers vous <strong>très rapidement</strong> pour échanger sur vos travaux, convenir d'une visite si besoin, et vous remettre un devis détaillé, gratuit et sans engagement.
           </p>
-          <p style="margin:0 0 24px;font-size:15px;line-height:1.65;color:${COLOR_TEXT};">En cas d'urgence, vous pouvez m'appeler directement.</p>
+          <p style="margin:0 0 26px;font-size:15px;line-height:1.75;color:${COLOR_TEXT};">
+            Une urgence, une fuite à stopper&nbsp;? N'attendez pas mon rappel, appelez-moi directement&nbsp;:
+          </p>
         </td></tr>
         <tr><td style="padding:0 32px 24px;" align="center">
           <a href="tel:${TEL_HREF}" style="display:inline-block;background:${COLOR_RED};color:#fff;text-decoration:none;padding:14px 28px;border-radius:8px;font-weight:700;font-size:15px;">Appeler le ${TEL_AFFICHE}</a>

@@ -11,6 +11,7 @@ export interface Props {
   canonical?: string;
   ogImage?: string;
   extraSchemas?: object[];
+  noindex?: boolean;
 }
 
 const {
@@ -19,6 +20,7 @@ const {
   canonical,
   ogImage = '/images/logo-robert-daniel-couverture.png',
   extraSchemas = [],
+  noindex = false,
 } = Astro.props;
 const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).toString();
 ---
@@ -49,6 +51,7 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).toStri
     <!-- SEO -->
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex,follow" />}
     <link rel="canonical" href={canonicalURL} />
 
     <!-- Open Graph -->

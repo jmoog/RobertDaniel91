@@ -1,17 +1,103 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const title = 'Page introuvable - Robert Daniel Couverture';
-const description = "La page que vous recherchez n'existe pas ou a ete deplacee.";
+const title = "Page introuvable (404) — Robert Daniel Couverture";
+const description = "Cette page n'existe pas ou a été déplacée. Retrouvez les services de Robert Daniel, couvreur dans l'Essonne, ou demandez votre devis gratuit.";
+
+const services = [
+  { slug: 'renovation-toiture', label: 'Rénovation de toiture' },
+  { slug: 'reparation-toiture', label: 'Réparation de toiture' },
+  { slug: 'nettoyage-toiture', label: 'Nettoyage & démoussage' },
+  { slug: 'zinguerie', label: 'Zinguerie & gouttières' },
+  { slug: 'charpente', label: 'Charpente' },
+  { slug: 'ramonage-cheminee', label: 'Ramonage de cheminée' },
+];
 ---
 <BaseLayout title={title} description={description}>
-  <section class="section" style="text-align:center;padding-block:6rem;">
-    <div class="conteneur">
-      <h1>Page introuvable</h1>
-      <p style="font-size:1.15rem;margin-block:1.5rem;color:var(--gris-700);">
-        La page que vous recherchez n'existe pas ou a ete deplacee.
+  <section class="err">
+    <div class="conteneur err__conteneur">
+      <div class="err__visuel" aria-hidden="true">
+        <span class="err__code">404</span>
+        <svg class="err__toit" viewBox="0 0 240 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 70 L120 14 L230 70" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M40 70 L40 84 L200 84 L200 70" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M150 84 L150 60 L172 60 L172 84" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
+
+      <h1>Cette page a glissé du toit</h1>
+      <p class="err__accroche">
+        La page que vous cherchez n'existe pas ou a été déplacée. Pas d'inquiétude&nbsp;:
+        voici de quoi retrouver votre chemin.
       </p>
-      <a href="/" class="btn btn--bleu">Retour a l'accueil</a>
+
+      <div class="err__actions">
+        <a href="/" class="btn btn--bleu">Retour à l'accueil</a>
+        <a href="/devis-gratuit/" class="btn btn--cuivre">Demander un devis gratuit</a>
+        <a href="tel:0683961518" class="btn btn--blanc">06 83 96 15 18</a>
+      </div>
+
+      <p class="err__sous">Ou rendez-vous directement sur l'un de mes services&nbsp;:</p>
+      <ul class="err__services">
+        {services.map((s) => (
+          <li><a href={`/${s.slug}/`}>{s.label}</a></li>
+        ))}
+      </ul>
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .err { background: var(--blanc); padding-block: clamp(2.5rem, 6vw, 5rem); }
+  .err__conteneur { max-width: 720px; margin-inline: auto; text-align: center; }
+
+  .err__visuel { position: relative; display: inline-block; margin-bottom: 1.4rem; color: var(--bleu); }
+  .err__code {
+    font-family: var(--font-titres);
+    font-weight: 700;
+    font-size: clamp(4.5rem, 16vw, 8rem);
+    line-height: 1;
+    color: var(--bleu);
+    letter-spacing: 0.02em;
+  }
+  .err__toit {
+    display: block;
+    width: clamp(150px, 40vw, 220px);
+    margin: -0.6rem auto 0;
+    color: var(--cuivre);
+  }
+
+  .err h1 { font-size: clamp(1.6rem, 4vw, 2.3rem); margin-block: 0.4rem 1rem; }
+  .err__accroche { font-size: 1.12rem; color: var(--gris-700); max-width: 52ch; margin-inline: auto; line-height: 1.65; }
+
+  .err__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-block: 2rem;
+  }
+
+  .err__sous { color: var(--gris-700); margin-bottom: 1rem; }
+  .err__services {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+  }
+  .err__services a {
+    display: inline-block;
+    padding: 0.5em 1em;
+    background: var(--gris-50);
+    border: 1px solid var(--gris-200);
+    border-radius: var(--rayon);
+    text-decoration: none;
+    color: var(--bleu);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .err__services a:hover { background: var(--gris-100); border-color: var(--bleu-clair); }
+</style>

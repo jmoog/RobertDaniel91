@@ -1,0 +1,127 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "Merci ! Votre demande de devis est bien envoyée — Robert Daniel Couverture";
+const description = "Votre demande a bien été reçue. Robert Daniel, couvreur dans l'Essonne, vous recontacte sous 24h. Un accusé de réception vient de vous être envoyé par email.";
+---
+<BaseLayout title={title} description={description} noindex={true}>
+  <section class="merci">
+    <div class="conteneur merci__conteneur">
+      <div class="merci__icone" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 6 9 17l-5-5" />
+        </svg>
+      </div>
+
+      <span class="surtitre">Demande bien reçue</span>
+      <h1>Merci, votre demande est envoyée&nbsp;!</h1>
+      <p class="merci__accroche">
+        J'ai bien reçu votre demande de devis. Je l'étudie et je vous recontacte
+        <strong>sous 24&nbsp;heures</strong> (jours ouvrés). Un accusé de réception vient de vous
+        être envoyé par email&nbsp;: pensez à vérifier vos spams s'il n'apparaît pas.
+      </p>
+
+      <div class="merci__etapes">
+        <div class="merci__etape">
+          <span class="merci__num">1</span>
+          <p>J'étudie votre demande et je prépare votre devis détaillé.</p>
+        </div>
+        <div class="merci__etape">
+          <span class="merci__num">2</span>
+          <p>Je vous rappelle pour préciser le projet et convenir d'une visite gratuite.</p>
+        </div>
+        <div class="merci__etape">
+          <span class="merci__num">3</span>
+          <p>Vous recevez un devis clair, gratuit et sans engagement.</p>
+        </div>
+      </div>
+
+      <div class="merci__urgent carte">
+        <p><strong>Une fuite ou une urgence&nbsp;?</strong> N'attendez pas mon rappel, appelez-moi directement.</p>
+        <a href="tel:0683961518" class="btn btn--cuivre">
+          <svg class="icone" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 1H8C6.34 1 5 2.34 5 4v16c0 1.66 1.34 3 3 3h8c1.66 0 3-1.34 3-3V4c0-1.66-1.34-3-3-3zm-2 20h-4v-1h4v1zm3.25-3H6.75V4h10.5v14z"/></svg>
+          06 83 96 15 18
+        </a>
+      </div>
+
+      <p class="merci__suite">En attendant, découvrez quelques réalisations ou explorez mes services&nbsp;:</p>
+      <div class="merci__liens">
+        <a href="/" class="btn btn--bleu">Retour à l'accueil</a>
+        <a href="/renovation-toiture/" class="btn btn--blanc">Rénovation de toiture</a>
+        <a href="/reparation-toiture/" class="btn btn--blanc">Réparation de toiture</a>
+        <a href="/zinguerie/" class="btn btn--blanc">Zinguerie</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .merci { background: var(--blanc); padding-block: clamp(2.5rem, 6vw, 5rem); }
+  .merci__conteneur { max-width: 760px; margin-inline: auto; text-align: center; }
+  .merci__icone {
+    width: 84px;
+    height: 84px;
+    margin: 0 auto 1.4rem;
+    display: grid;
+    place-items: center;
+    color: var(--blanc);
+    background: #197a3a;
+    border-radius: 50%;
+    box-shadow: var(--ombre-forte);
+  }
+  .merci__icone svg { width: 44px; height: 44px; }
+  .merci h1 { font-size: clamp(1.7rem, 4vw, 2.5rem); margin-block: 0.4rem 1rem; }
+  .merci__accroche { font-size: 1.12rem; color: var(--gris-700); max-width: 60ch; margin-inline: auto; line-height: 1.65; }
+
+  .merci__etapes {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+    margin-block: 2.4rem;
+    text-align: left;
+  }
+  @media (min-width: 760px) { .merci__etapes { grid-template-columns: repeat(3, 1fr); } }
+  .merci__etape {
+    background: var(--gris-50);
+    border-radius: var(--rayon);
+    padding: 1.3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .merci__etape p { margin: 0; color: var(--gris-700); line-height: 1.5; }
+  .merci__num {
+    display: grid;
+    place-items: center;
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: 50%;
+    background: var(--bleu);
+    color: var(--blanc);
+    font-family: var(--font-titres);
+    font-weight: 700;
+  }
+
+  .merci__urgent {
+    padding: 1.4rem 1.6rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    text-align: left;
+    border-left: 4px solid var(--cuivre);
+  }
+  .merci__urgent p { margin: 0; color: var(--gris-700); }
+  .merci__urgent .btn { flex-shrink: 0; }
+
+  .merci__suite { margin-block: 2.2rem 1rem; color: var(--gris-700); }
+  .merci__liens { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; }
+</style>
+
+<script is:inline>
+  // Conversion : signale la réception d'un lead à Google Analytics si gtag est présent.
+  if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+    window.gtag('event', 'generate_lead', { event_category: 'devis', event_label: 'formulaire devis' });
+  }
+</script>

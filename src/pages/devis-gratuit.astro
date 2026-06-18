@@ -251,8 +251,9 @@ const etoile = "M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2
         const json = await res.json().catch(() => ({}));
         if (res.ok && json.ok) {
           form.reset();
-          statut.textContent = 'Merci ! Votre demande a bien été envoyée, je vous recontacte rapidement. Un accusé de réception vient de vous être envoyé par email.';
+          statut.textContent = 'Merci ! Redirection en cours…';
           statut.className = 'form-statut ok';
+          window.location.assign('/merci/');
         } else {
           throw new Error(json.error || 'Erreur ' + res.status);
         }

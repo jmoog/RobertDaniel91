@@ -176,15 +176,9 @@ const wa = 'https://wa.me/33683961518';
     .entete__topbar { display: none; }
     .entete__logo { height: 50px; }
 
-    /* Logo centré, burger à droite */
-    .entete__principal-int { position: relative; justify-content: center; }
-    .entete__burger {
-      display: block;
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-    }
+    /* Logo à gauche, burger à droite */
+    .entete__principal-int { justify-content: space-between; }
+    .entete__burger { display: block; }
 
     .entete__menu {
       display: none;

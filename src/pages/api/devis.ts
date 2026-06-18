@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro';
+import { LOGO_EMAIL_BASE64 } from '../../email-logo';
 
 // Route a la demande (pas de prerendu statique).
 export const prerender = false;
@@ -13,7 +14,9 @@ export const prerender = false;
 // ────────────────────────────────────────────────────────────────────────
 
 const BREVO_API_URL = 'https://api.brevo.com/v3/smtp/email';
-const LOGO_URL = 'https://robert-daniel-couverture.fr/images/logo-email.png';
+// Logo intégré inline (CID) : s'affiche dans Outlook sans "télécharger les images".
+const LOGO_CID = 'logo-rdc.png';
+const LOGO_URL = `cid:${LOGO_CID}`;
 const TEL_AFFICHE = '06 83 96 15 18';
 const TEL_HREF = '+33683961518';
 
@@ -90,6 +93,7 @@ interface BrevoSendArgs {
   replyTo?: { email: string; name?: string };
   subject: string;
   htmlContent: string;
+  attachment?: Array<{ content: string; name: string }>;
 }
 
 async function brevoSend(args: BrevoSendArgs): Promise<{ ok: boolean; error?: string }> {
@@ -100,6 +104,7 @@ async function brevoSend(args: BrevoSendArgs): Promise<{ ok: boolean; error?: st
     htmlContent: args.htmlContent,
   };
   if (args.replyTo) body.replyTo = args.replyTo;
+  if (args.attachment) body.attachment = args.attachment;
 
   try {
     const res = await fetch(BREVO_API_URL, {
@@ -348,6 +353,7 @@ export const POST: APIRoute = async ({ request }) => {
     replyTo: { email: data.email, name: data.nom },
     subject: notif.subject,
     htmlContent: notif.html,
+    attachment: [{ content: LOGO_EMAIL_BASE64, name: LOGO_CID }],
   });
   if (!r1.ok) {
     console.error('[devis] Erreur envoi notif admin:', r1.error);
@@ -364,6 +370,7 @@ export const POST: APIRoute = async ({ request }) => {
     replyTo: { email: fromEmail, name: fromName },
     subject: ack.subject,
     htmlContent: ack.html,
+    attachment: [{ content: LOGO_EMAIL_BASE64, name: LOGO_CID }],
   });
   if (!r2.ok) console.error('[devis] Echec accusé client (non bloquant):', r2.error);
 

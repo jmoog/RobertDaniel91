@@ -28,6 +28,18 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).toStri
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Google Search Console -->
+    <meta name="google-site-verification" content="RZ91L_09GryLedIG7CbNh3i1aDNpvRKLSQLN3C7A_44" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V457V2WS4D" is:inline></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-V457V2WS4D');
+    </script>
+
     <link rel="icon" href="/favicon.png?v=3" type="image/png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3" />
 

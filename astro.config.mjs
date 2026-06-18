@@ -1,12 +1,23 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import node from '@astrojs/node';
 
 export default defineConfig({
   site: 'https://robert-daniel-couverture.fr',
   output: 'static',
   trailingSlash: 'always',
   compressHTML: true,
+
+  // Pages prerendues en statique + route serveur /api/devis (Brevo).
+  adapter: node({ mode: 'standalone' }),
+
+  // Derriere le reverse proxy Coolify, l'Origin percu peut differer du Host
+  // reel -> 403 sur les POST. La route /api/devis a son propre honeypot +
+  // validation + Turnstile, on desactive donc le check CSRF d'Astro.
+  security: {
+    checkOrigin: false,
+  },
 
   // Polices 100% locales : fichiers woff2 dans /public/fonts, @font-face dans
   // global.css. Aucune requete vers Google, ni au build ni au runtime (RGPD).

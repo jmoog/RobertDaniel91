@@ -1,6 +1,11 @@
 ---
-// Barre de contact fixe en bas d'ecran sur mobile : appel + contact.
+// Mobile : bouton WhatsApp rond flottant + barre fixe (Appeler / Devis) en bas.
+const wa = 'https://wa.me/33683961518';
 ---
+<a href={wa} class="wa-fab" target="_blank" rel="noopener noreferrer" aria-label="Contacter sur WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+</a>
+
 <div class="contact-flottant" role="complementary" aria-label="Contact rapide">
   <a href="tel:0683961518" class="contact-flottant__btn contact-flottant__btn--appel">
     <svg class="icone" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 1H8C6.34 1 5 2.34 5 4v16c0 1.66 1.34 3 3 3h8c1.66 0 3-1.34 3-3V4c0-1.66-1.34-3-3-3zm-2 20h-4v-1h4v1zm3.25-3H6.75V4h10.5v14z"/></svg>
@@ -41,21 +46,49 @@
   .contact-flottant__btn--appel { background: var(--bleu); }
   .contact-flottant__btn--devis { background: var(--cuivre); }
 
-  @media (max-width: 800px) {
-    .contact-flottant { display: grid; }
-    :global(body) { padding-bottom: calc(56px + env(safe-area-inset-bottom)); }
-    .contact-flottant { padding-bottom: env(safe-area-inset-bottom); }
+  /* Bouton WhatsApp rond flottant */
+  .wa-fab {
+    position: fixed;
+    right: 1rem;
+    bottom: calc(56px + env(safe-area-inset-bottom) + 0.9rem);
+    z-index: 61;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: #25D366;
+    color: var(--blanc);
+    box-shadow: 0 6px 18px rgba(37, 211, 102, 0.45);
+    transform: translateY(150%);
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   }
+  .wa-fab svg { width: 1.9rem; height: 1.9rem; }
+  .wa-fab--visible { transform: translateY(0); }
+
+  @media (max-width: 800px) {
+    .contact-flottant { display: grid; padding-bottom: env(safe-area-inset-bottom); }
+    .wa-fab { display: inline-flex; }
+    :global(body) { padding-bottom: calc(56px + env(safe-area-inset-bottom)); }
+  }
+
+  /* Masquer quand le menu mobile est ouvert */
+  :global(body.menu-ouvert) .contact-flottant { transform: translateY(110%); }
+  :global(body.menu-ouvert) .wa-fab { transform: translateY(150%); }
 </style>
 
 <script>
   const barre = document.querySelector('.contact-flottant');
+  const fab = document.querySelector('.wa-fab');
   let tickCF = false;
   window.addEventListener('scroll', () => {
     if (tickCF) return;
     tickCF = true;
     requestAnimationFrame(() => {
-      barre?.classList.toggle('contact-flottant--visible', window.scrollY > 450);
+      const visible = window.scrollY > 450;
+      barre?.classList.toggle('contact-flottant--visible', visible);
+      fab?.classList.toggle('wa-fab--visible', visible);
       tickCF = false;
     });
   }, { passive: true });

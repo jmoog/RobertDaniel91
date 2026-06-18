@@ -4,14 +4,14 @@ import FilAriane from '../components/FilAriane.astro';
 import CtaDevis from '../components/CtaDevis.astro';
 import villes from '../data/villes.json';
 
-const title = "Inspection de toiture par drone dans l'Essonne (91) - Robert Daniel Couverture";
-const description = "Inspection et diagnostic de toiture par drone à Étréchy et dans l'Essonne. Rapport photo HD sans echafaudage. Devis gratuit.";
+const title = "Inspection de toiture par drone — Essonne (91) M. Robert";
+const description = "Inspection de toiture par drone à Étréchy et dans l'Essonne : état du toit sans monter dessus, images à l'appui. M. Robert Daniel. Devis gratuit.";
 
 const extraSchemas = [{
   '@context': 'https://schema.org',
   '@type': 'Service',
   name: 'Inspection de toiture par drone',
-  serviceType: 'Inspection de toiture par drone',
+  serviceType: 'Inspection et diagnostic de toiture par drone',
   provider: { '@id': 'https://robert-daniel-couverture.fr/#localbusiness' },
   areaServed: { '@type': 'AdministrativeArea', name: 'Essonne (91)' },
   url: 'https://robert-daniel-couverture.fr/inspection-toiture-drone/',
@@ -21,17 +21,21 @@ const extraSchemas = [{
 <BaseLayout title={title} description={description} extraSchemas={extraSchemas}>
   <section class="hero">
     <div class="conteneur">
-      <FilAriane items={[{ label: 'Accueil', href: '/' }, { label: 'Inspection toiture drone' }]} />
+      <FilAriane items={[{ label: 'Accueil', href: '/' }, { label: 'Inspection par drone' }]} />
     </div>
     <div class="conteneur hero__grille">
       <div class="hero__texte">
-        <p class="hero__badge"><span class="hero__point" aria-hidden="true"></span> Diagnostic sans echafaudage</p>
+        <p class="hero__badge"><span class="hero__point" aria-hidden="true"></span> Voir votre toiture en temps réel</p>
         <h1>Inspection de toiture par drone dans l'Essonne</h1>
-        <p class="hero__accroche">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p class="hero__accroche">
+          Besoin de savoir dans quel état est votre toit sans monter dessus ? J'inspecte les
+          toitures au drone dans l'Essonne et je vous montre, images à l'appui, ce qui doit être
+          repris.
+        </p>
         <ul>
-          <li><strong>Lorem ipsum</strong> dolor sit amet.</li>
-          <li><strong>Consectetur</strong> adipiscing elit.</li>
-          <li><strong>Garantie décennale</strong> sur tous nos travaux.</li>
+          <li><strong>Sans monter</strong> sur la toiture.</li>
+          <li><strong>Images</strong> de chaque pan du toit.</li>
+          <li><strong>Devis gratuit</strong> et sans engagement.</li>
         </ul>
         <div class="hero__actions">
           <a href="tel:0683961518" class="btn btn--cuivre">
@@ -42,37 +46,141 @@ const extraSchemas = [{
         </div>
       </div>
       <div class="hero__media">
-        <div class="placeholder-img hero__photo">Photo inspection drone toiture Essonne</div>
+        <video
+          class="hero__photo hero__video"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          poster="/videos/inspection-toiture-drone-poster.jpg"
+          aria-label="Inspection et vérification de toiture par drone à Étréchy dans l'Essonne"
+        >
+          <source src="/videos/inspection-toiture-drone-etrechy-91.mp4" type="video/mp4" />
+        </video>
         <div class="carte hero__garantie">
           <p><strong>Garantie Décennale</strong><br />Pour tous travaux de couverture</p>
+          <img src="/images/logo-allianz.png" alt="Garantie décennale assurée par Allianz" width="92" height="58" loading="lazy" decoding="async" />
         </div>
       </div>
     </div>
   </section>
 
   <section class="section">
+    <div class="conteneur">
+      <div class="encadre">
+        <h2>Ce que vous devez savoir</h2>
+        <p>
+          Couvreur dans l'Essonne, j'inspecte les toitures au drone pour
+          poser un diagnostic sans abîmer la couverture. Le drone survole chaque pan et filme le
+          faîtage, les noues, les rives et les solins : vous voyez votre toiture en temps réel,
+          sur l'écran, et vous constatez vous-même ce qui se passe là-haut. Plus besoin de me
+          croire sur parole — les défauts qu'on ne distingue pas du sol apparaissent à l'image,
+          sous vos yeux. Je vous donne ensuite mon avis de couvreur sur ce qui doit être repris,
+          avec un devis si des travaux sont nécessaires. Mes devis sont gratuits et sans
+          engagement.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="conteneur duo">
-      <div class="placeholder-img">Photo chantier Inspection toiture drone</div>
+      <img src="/images/robert-daniel-drone-verification-etrechy.jpg" alt="Robert Daniel pilotant son drone pour inspecter une toiture à Étréchy dans l'Essonne" width="1000" height="880" loading="lazy" decoding="async" />
       <div class="prose">
-        <h2>Lorem ipsum dolor sit amet</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        <h2>Inspecter une toiture sans monter dessus</h2>
+        <p>
+          Sur un toit pentu, fragile ou difficile d'accès, circuler sur la couverture risque
+          d'abîmer des tuiles et prend du temps. Le drone change la donne : il s'approche au plus
+          près du toit, photographie les zones inaccessibles et permet d'examiner l'ensemble de
+          la couverture en quelques minutes, sans poser le pied dessus.
+        </p>
+        <p>
+          Les images sont nettes et exploitables. Je les commente avec vous, je pointe les
+          défauts et je vous explique ce qu'ils impliquent. Vous comprenez l'état de votre toit
+          sans avoir à me croire sur parole : vous le voyez.
+        </p>
       </div>
     </div>
   </section>
 
   <section class="section section--bleute">
+    <div class="conteneur prose prose--large">
+      <h2>Ce que le drone permet de voir</h2>
+      <p>
+        Un survol bien mené met en évidence des défauts qui passent inaperçus depuis le sol et
+        qui annoncent souvent une fuite à venir :
+      </p>
+      <ul>
+        <li>Tuiles ou ardoises <strong>cassées, fissurées ou glissées</strong>.</li>
+        <li>Faîtage et rives <strong>descellés</strong>.</li>
+        <li><strong>Solins</strong> de cheminée fissurés ou décollés.</li>
+        <li><strong>Noues</strong> encrassées ou percées.</li>
+        <li>Mousses et dépôts qui retiennent l'eau.</li>
+        <li>Gouttières désaxées ou pleines de débris.</li>
+      </ul>
+      <p>
+        À partir de ce relevé, je distingue ce qui demande une intervention rapide de ce qui peut
+        attendre. Vous savez exactement où en est votre toiture et vous décidez en connaissance de
+        cause.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="conteneur duo duo--inverse">
-      <div class="placeholder-img">Photo Inspection toiture drone</div>
+      <img src="/images/chantier-robert-daniel-couverture-essonne.jpg" alt="Couvreur examinant les images de toiture relevées par drone dans l'Essonne" width="900" height="600" loading="lazy" decoding="async" />
       <div class="prose">
-        <h2>Lorem ipsum dolor sit amet consectetur</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nemo enim ipsam voluptatem quia voluptas sit aspernatur.</p>
-        <ul>
-          <li>Lorem ipsum dolor sit amet.</li>
-          <li>Consectetur adipiscing elit.</li>
-          <li>Sed do eiusmod tempor.</li>
-        </ul>
+        <h2>Quand faire inspecter sa toiture par drone</h2>
+        <p>
+          L'inspection par drone est utile à plusieurs moments : avant l'achat d'une maison pour
+          connaître l'état réel du toit, après un événement qui a pu déplacer des tuiles, devant
+          une trace d'humidité dont on cherche l'origine, ou simplement pour un contrôle régulier
+          d'une toiture vieillissante.
+        </p>
+        <p>
+          C'est aussi un bon point de départ avant des travaux : le relevé sert de base au devis
+          et permet de chiffrer juste, sans surprise une fois le chantier lancé. Pour un dossier
+          d'assurance, les images constituent une trace datée de l'état de la couverture.
+        </p>
       </div>
+    </div>
+  </section>
+
+  <section class="section section--bleute">
+    <div class="conteneur prose prose--large">
+      <h2>Du diagnostic aux travaux</h2>
+      <p>
+        L'inspection n'est pas une fin en soi : elle débouche sur des solutions concrètes. Si le
+        drone révèle un défaut, je vous propose la réparation ou la rénovation correspondante, et
+        comme je suis couvreur, je réalise moi-même les travaux. Vous avez un seul interlocuteur,
+        du relevé jusqu'à la toiture remise en état.
+      </p>
+      <p>
+        Installé à Étréchy, j'inspecte les toitures des communes voisines. Tous mes travaux sont
+        couverts par la garantie décennale, assurée chez Allianz. Pour faire le point sur votre
+        toit, demandez votre devis gratuit : je viens, je survole la couverture et je vous remets
+        un diagnostic clair.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="conteneur prose prose--large">
+      <h2>Drone ou contrôle classique : comment je choisis</h2>
+      <p>
+        Le drone ne remplace pas toujours une montée sur le toit, mais il la précède souvent
+        utilement. Pour un premier état des lieux, un repérage de fuite ou une toiture fragile,
+        le survol donne une vue d'ensemble rapide et complète, sans circuler sur la couverture.
+        J'identifie les zones à examiner de plus près et je cible ensuite mon intervention.
+      </p>
+      <p>
+        Pour une réparation, je monte évidemment sur le toit pour travailler. Le drone sert alors
+        à préparer le chantier : il montre où regarder et permet de chiffrer juste. Selon votre
+        toiture et votre besoin, je vous propose le moyen le plus adapté, parfois les deux. Dans
+        tous les cas, il s'agit de comprendre l'état réel de votre toit avant d'engager des
+        travaux.
+      </p>
     </div>
   </section>
 
@@ -80,7 +188,7 @@ const extraSchemas = [{
 
   <section class="section section--gris">
     <div class="conteneur">
-      <h2>Inspection toiture drone — nos communes</h2>
+      <h2>Inspection de toiture par drone — les communes où j'interviens</h2>
       <ul class="nuage-villes">
         {villes.map((v) => (
           <li><a href={`/${v.slug}/`}>{v.nom}</a></li>

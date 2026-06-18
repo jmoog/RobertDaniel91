@@ -540,6 +540,16 @@ h3 { font-size: 1.2rem; }
 .prose ul, .prose ol { margin-block: 0.9rem; }
 .prose li { margin-block: 0.3rem; }
 .prose img { border-radius: var(--rayon); margin-block: 1.5rem; }
+.prose--large { max-width: 80ch; }
+.prose table, .conteneur > table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-block: 1.4rem;
+  font-size: 0.97rem;
+}
+.prose th, .prose td { text-align: left; padding: 0.7rem 0.9rem; border-bottom: 1px solid var(--gris-200, #e2e5e9); vertical-align: top; }
+.prose thead th { background: var(--bleu-pale, #eaf3fb); color: var(--bleu-nuit, var(--bleu)); font-weight: 700; }
+.prose tbody tr:last-child td { border-bottom: none; }
 
 /* ── Placeholder images ─────────────────────────────────────── */
 .placeholder-img {
@@ -553,6 +563,35 @@ h3 { font-size: 1.2rem; }
   font-size: 0.9rem;
   font-weight: 500;
 }
+
+/* ── Galerie photos ───────────────────────────────────────────── */
+.galerie { display: grid; gap: 1.2rem; grid-template-columns: repeat(2, 1fr); margin-top: 2.5rem; }
+@media (min-width: 860px) { .galerie { grid-template-columns: repeat(4, 1fr); } }
+.galerie figure { margin: 0; }
+.galerie img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--rayon);
+  box-shadow: var(--ombre);
+}
+.galerie figcaption { margin-top: 0.5rem; font-size: 0.9rem; color: var(--gris-700); }
+
+/* ── Encadré « Ce que vous devez savoir » ─────────────────────── */
+.encadre {
+  background: var(--bleu-pale, #eaf3fb);
+  border-left: 5px solid var(--bleu);
+  border-radius: var(--rayon);
+  padding: 1.6rem 1.8rem;
+  margin-block: 0;
+}
+.encadre h2 {
+  font-size: 1.25rem;
+  color: var(--bleu-nuit, var(--bleu));
+  margin: 0 0 0.6rem;
+}
+.encadre p { margin: 0.5rem 0 0; color: var(--gris-700); }
+.encadre p:first-of-type { margin-top: 0; }
 
 /* ── Fil d'Ariane ──────────────────────────────────────────────── */
 .fil-ariane {

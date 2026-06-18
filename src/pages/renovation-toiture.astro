@@ -4,14 +4,14 @@ import FilAriane from '../components/FilAriane.astro';
 import CtaDevis from '../components/CtaDevis.astro';
 import villes from '../data/villes.json';
 
-const title = "Renovation de toiture dans l'Essonne (91) - Robert Daniel Couverture";
-const description = "Renovation de toiture à Étréchy et dans l'Essonne : refection partielle ou complete, ecran sous-toiture, pose de tuiles et ardoises. Devis gratuit.";
+const title = "Rénovation de toiture dans l'Essonne (91) — M. Robert";
+const description = "Rénovation de toiture à Étréchy et dans l'Essonne : réfection partielle ou complète, écran sous-toiture, tuiles, ardoise et zinc. M. Robert Daniel, devis gratuit.";
 
 const extraSchemas = [{
   '@context': 'https://schema.org',
   '@type': 'Service',
-  name: 'Renovation de toiture',
-  serviceType: 'Renovation de toiture',
+  name: 'Rénovation de toiture',
+  serviceType: 'Rénovation de toiture',
   provider: { '@id': 'https://robert-daniel-couverture.fr/#localbusiness' },
   areaServed: { '@type': 'AdministrativeArea', name: 'Essonne (91)' },
   url: 'https://robert-daniel-couverture.fr/renovation-toiture/',
@@ -21,20 +21,21 @@ const extraSchemas = [{
 <BaseLayout title={title} description={description} extraSchemas={extraSchemas}>
   <section class="hero">
     <div class="conteneur">
-      <FilAriane items={[{ label: 'Accueil', href: '/' }, { label: 'Renovation de toiture' }]} />
+      <FilAriane items={[{ label: 'Accueil', href: '/' }, { label: 'Rénovation de toiture' }]} />
     </div>
     <div class="conteneur hero__grille">
       <div class="hero__texte">
-        <p class="hero__badge"><span class="hero__point" aria-hidden="true"></span> Refection partielle ou complete</p>
-        <h1>Renovation de toiture dans l'Essonne</h1>
+        <p class="hero__badge"><span class="hero__point" aria-hidden="true"></span> Réfection partielle ou complète</p>
+        <h1>Rénovation de toiture dans l'Essonne</h1>
         <p class="hero__accroche">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+          Votre toit est ancien, fatigué ou prend l'eau ? Je rénove les toitures dans
+          l'Essonne, de la reprise ponctuelle au remplacement complet de la couverture,
+          pour retrouver un toit étanche et solide.
         </p>
         <ul>
-          <li><strong>Lorem ipsum</strong> dolor sit amet consectetur.</li>
-          <li><strong>Sed do eiusmod</strong> tempor incididunt ut labore.</li>
-          <li><strong>Garantie décennale</strong> sur tous nos travaux.</li>
+          <li><strong>Garantie décennale</strong> sur tous mes travaux de couverture.</li>
+          <li><strong>Devis gratuit</strong> et détaillé, sans engagement.</li>
+          <li><strong>Tous matériaux</strong> : tuile, ardoise et zinc.</li>
         </ul>
         <div class="hero__actions">
           <a href="tel:0683961518" class="btn btn--cuivre">
@@ -45,37 +46,154 @@ const extraSchemas = [{
         </div>
       </div>
       <div class="hero__media">
-        <div class="placeholder-img hero__photo">Photo renovation toiture Essonne</div>
+        <img class="hero__photo" src="/images/services/renovation-toiture.jpg" alt="Rénovation de toiture en tuiles par Robert Daniel Couverture dans l'Essonne" width="900" height="600" fetchpriority="high" decoding="async" />
         <div class="carte hero__garantie">
           <p><strong>Garantie Décennale</strong><br />Pour tous travaux de couverture</p>
+          <img src="/images/logo-allianz.png" alt="Garantie décennale assurée par Allianz" width="92" height="58" loading="lazy" decoding="async" />
         </div>
       </div>
     </div>
   </section>
 
   <section class="section">
+    <div class="conteneur">
+      <div class="encadre">
+        <h2>Ce que vous devez savoir</h2>
+        <p>
+          Couvreur installé à Étréchy, je rénove des toitures dans l'Essonne depuis plus de
+          quinze ans. Je travaille la tuile plate, la tuile mécanique, l'ardoise et le zinc, et
+          j'adapte la rénovation à l'état réel de votre toit : une reprise ciblée quand elle
+          suffit, une réfection complète quand la couverture arrive en fin de vie. Avant tout
+          chiffrage, j'examine la toiture, je vous montre ce qui est usé et je vous explique ce
+          qui doit être repris, sans travaux inutiles. Mes devis sont gratuits, détaillés et
+          sans engagement.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="conteneur duo">
-      <div class="placeholder-img">Photo chantier renovation toiture</div>
+      <img src="/images/chantier-renovation-toiture-etrechy-1.jpg" alt="Dépose de l'ancienne couverture et pose des liteaux sur une maison à Étréchy" width="900" height="675" loading="lazy" decoding="async" />
       <div class="prose">
-        <h2>Lorem ipsum dolor sit amet</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+        <h2>Rénover sa toiture dans l'Essonne : partielle ou complète</h2>
+        <p>
+          Une toiture vieillit par le dessus comme par le dessous. Les tuiles se fendent ou
+          glissent, les ardoises se délitent, l'écran de sous-toiture finit par perdre son rôle
+          et les premières traces d'humidité apparaissent dans les combles. Selon l'âge du toit
+          et l'étendue des dégâts, deux voies sont possibles : la rénovation partielle ou la
+          réfection complète.
+        </p>
+        <p>
+          La <strong>rénovation partielle</strong> consiste à reprendre les zones abîmées :
+          remplacement des tuiles ou ardoises cassées, réfection d'un pan exposé, reprise des
+          rives, du faîtage ou de la zinguerie. Elle convient quand l'ossature et la majeure
+          partie de la couverture restent saines. Je l'utilise pour prolonger la vie d'un toit
+          encore en bon état sans engager de gros travaux.
+        </p>
+        <p>
+          Quand la couverture est généralement poreuse, que les tuiles s'effritent ou que
+          l'écran a vécu, la <strong>réfection complète</strong> devient le bon choix. Je
+          dépose l'ancienne couverture, je contrôle la charpente et les liteaux, puis je repose
+          un toit neuf, étanche et ventilé. C'est aussi le moment idéal pour isoler par
+          l'extérieur ou poser une fenêtre de toit.
+        </p>
       </div>
     </div>
   </section>
 
   <section class="section section--bleute">
     <div class="conteneur duo duo--inverse">
-      <div class="placeholder-img">Photo toiture renovee</div>
+      <img src="/images/maison-toiture-renovee-essonne.jpg" alt="Maison avec toiture rénovée à neuf dans l'Essonne par Robert Daniel Couverture" width="900" height="600" loading="lazy" decoding="async" />
       <div class="prose">
-        <h2>Lorem ipsum dolor sit amet consectetur</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
+        <h2>Remplacement complet et réfection de toiture</h2>
+        <p>
+          Remplacer une toiture, c'est repartir d'une base saine. Après la dépose de l'ancienne
+          couverture, je vérifie l'état des chevrons et des liteaux, je remplace les bois
+          atteints, puis je pose un écran de sous-toiture qui protège le bâti et améliore la
+          ventilation. La nouvelle couverture est ensuite montée tuile par tuile ou ardoise par
+          ardoise, avec reprise du faîtage, des rives, des solins et des raccords de zinguerie.
+        </p>
+        <p>
+          Un toit refait correctement protège votre maison pour plusieurs décennies. Je choisis
+          avec vous le matériau adapté à votre maison et à votre budget, et je vous remets un
+          devis clair qui détaille chaque poste : dépose, fournitures, pose, évacuation des
+          gravats. Voici les situations qui justifient le plus souvent un remplacement complet :
+        </p>
         <ul>
-          <li>Lorem ipsum dolor sit amet.</li>
-          <li>Consectetur adipiscing elit.</li>
-          <li>Sed do eiusmod tempor.</li>
+          <li>Tuiles ou ardoises poreuses, gélives ou nombreuses à remplacer.</li>
+          <li>Infiltrations répétées malgré des réparations successives.</li>
+          <li>Toiture de plus de quarante ou cinquante ans jamais refaite.</li>
+          <li>Projet d'isolation des combles ou de surélévation.</li>
         </ul>
       </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="conteneur prose prose--large">
+      <h2>Les matériaux de couverture que je pose</h2>
+      <p>
+        Le choix du matériau dépend de votre maison, de l'aspect recherché et de votre budget.
+        Dans l'Essonne, je rénove principalement en tuile et en ardoise, et j'interviens en zinc
+        pour les raccords et les parties de toiture qui le demandent.
+      </p>
+      <table>
+        <thead>
+          <tr><th>Matériau</th><th>Bien adapté à</th><th>À retenir</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Tuile plate</td><td>Maisons traditionnelles, petits pans</td><td>Aspect fin, rendu authentique</td></tr>
+          <tr><td>Tuile mécanique</td><td>Pavillons, grandes surfaces</td><td>Pose rapide, bon rapport qualité-prix</td></tr>
+          <tr><td>Ardoise</td><td>Toitures pentues, belles demeures</td><td>Tenue dans le temps, rendu élégant</td></tr>
+          <tr><td>Zinc</td><td>Noues, rives, raccords et petits pans</td><td>Étanchéité durable des points sensibles</td></tr>
+        </tbody>
+      </table>
+      <p>
+        Pour chaque rénovation, je complète la couverture par la zinguerie nécessaire :
+        gouttières, descentes, noues et solins. Une toiture étanche tient autant à ses tuiles
+        qu'à la qualité de ses raccords, c'est pourquoi je traite les deux ensemble.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--bleute">
+    <div class="conteneur duo">
+      <img src="/images/chantier-renovation-toiture-etrechy-3.jpg" alt="Maison rénovée vue de la rue avec le panneau Robert Daniel Couverture dans l'Essonne" width="900" height="675" loading="lazy" decoding="async" />
+      <div class="prose">
+        <h2>Comment se déroule une rénovation de toiture</h2>
+        <p>
+          Tout commence par une visite chez vous. Je monte sur la toiture ou je l'inspecte au
+          drone pour évaluer l'état réel de la couverture, de la charpente et de la zinguerie.
+          Je vous remets ensuite un devis détaillé, que nous adaptons à vos priorités.
+        </p>
+        <p>
+          Le chantier suit des étapes claires : installation et protection des abords, dépose de
+          l'ancienne couverture quand elle est nécessaire, contrôle et reprise du support, pose
+          de l'écran de sous-toiture, puis pose de la nouvelle couverture et de la zinguerie.
+          Le chantier se termine par le nettoyage complet et l'évacuation des déchets. Je
+          travaille seul ou avec mon équipe, et je reste votre interlocuteur du premier
+          rendez-vous à la réception des travaux.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="conteneur prose prose--large">
+      <h2>Pourquoi confier votre rénovation à un couvreur de l'Essonne</h2>
+      <p>
+        Basé à Étréchy, j'interviens chaque semaine sur les communes voisines. Cette proximité
+        me permet de me déplacer vite pour un diagnostic, de suivre un chantier au quotidien et
+        de revenir facilement si vous avez la moindre question après les travaux. Vous avez un
+        seul interlocuteur, du devis à la fin du chantier.
+      </p>
+      <p>
+        Plus de quinze ans sur les toits de la région m'ont appris à reconnaître les points
+        faibles d'une toiture et à choisir la réparation qui dure plutôt que la rustine qui
+        tient un hiver. Tous mes travaux sont couverts par la garantie décennale, assurée chez
+        Allianz. Avant de vous engager, vous savez exactement ce qui sera fait et à quel prix.
+      </p>
     </div>
   </section>
 
@@ -83,7 +201,7 @@ const extraSchemas = [{
 
   <section class="section section--gris">
     <div class="conteneur">
-      <h2>Renovation de toiture — nos communes</h2>
+      <h2>Rénovation de toiture — les communes où j'interviens</h2>
       <ul class="nuage-villes">
         {villes.map((v) => (
           <li><a href={`/${v.slug}/`}>{v.nom}</a></li>

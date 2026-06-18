@@ -5,6 +5,11 @@ import FilAriane from '../components/FilAriane.astro';
 const title = "Devis gratuit couvreur dans l'Essonne (91) — Robert Daniel Couverture";
 const description = "Demandez votre devis gratuit à Robert Daniel, couvreur zingueur à Étréchy. Rénovation, réparation, ramonage, Velux dans toute l'Essonne (91). Réponse rapide et sans engagement.";
 
+// Anti-robot Cloudflare Turnstile (optionnel) : le widget ne s'affiche que si
+// la cle de site PUBLIC_TURNSTILE_SITE_KEY est definie (build-time).
+// L'envoi des emails passe par la route serveur /api/devis (Brevo).
+const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+
 const avis = [
   { nom: 'Caroline David', texte: "Un artisan très professionnel, aimable, qui tient ses engagements. Je recommande fortement." },
   { nom: 'Mathieu Ponson', texte: "Il a parfaitement répondu à mes besoins dans les délais. Chantier impeccable, je recommande les yeux fermés." },
@@ -41,11 +46,7 @@ const etoile = "M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2
       </div>
 
       <div class="devis-form__carte carte">
-        <form id="form-devis" class="form-devis" action="https://api.web3forms.com/submit" method="POST" novalidate>
-          <input type="hidden" name="access_key" value="VOTRE_CLE_WEB3FORMS" />
-          <input type="hidden" name="subject" value="Nouvelle demande de devis — robert-daniel-couverture.fr" />
-          <input type="hidden" name="from_name" value="Site Robert Daniel Couverture" />
-          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
+        <form id="form-devis" class="form-devis" novalidate>
           <div class="hp" aria-hidden="true">
             <label>Ne pas remplir<input type="text" name="site_web" tabindex="-1" autocomplete="off" /></label>
           </div>
@@ -88,6 +89,9 @@ const etoile = "M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2
             <label for="message">Votre projet *</label>
             <textarea id="message" name="message" rows="4" required placeholder="Décrivez votre projet, vos questions…"></textarea>
           </div>
+          {TURNSTILE_SITE_KEY && (
+            <div class="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} style="margin:0 0 0.4rem"></div>
+          )}
           <button type="submit" class="btn btn--cuivre form-submit">Recevoir mon devis gratuit</button>
           <p class="form-statut" role="status" aria-live="polite"></p>
           <p class="form-rgpd">Vos données ne servent qu'à vous recontacter. Aucun spam, aucune revente.</p>
@@ -233,22 +237,34 @@ const etoile = "M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2
       btn.disabled = true;
       statut.textContent = 'Envoi en cours…';
       statut.className = 'form-statut';
+
+      const fd = new FormData(form);
+      const data = {};
+      fd.forEach((v, k) => { data[k] = v; });
+
       try {
-        const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
-        const data = await res.json();
-        if (data.success) {
+        const res = await fetch('/api/devis/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(data),
+        });
+        const json = await res.json().catch(() => ({}));
+        if (res.ok && json.ok) {
           form.reset();
-          statut.textContent = 'Merci ! Votre demande a bien été envoyée, je vous recontacte rapidement.';
+          statut.textContent = 'Merci ! Votre demande a bien été envoyée, je vous recontacte rapidement. Un accusé de réception vient de vous être envoyé par email.';
           statut.className = 'form-statut ok';
         } else {
-          throw new Error(data.message || 'Erreur');
+          throw new Error(json.error || 'Erreur ' + res.status);
         }
       } catch (err) {
         statut.textContent = "L'envoi a échoué. Appelez-moi au 06 83 96 15 18 ou réessayez.";
         statut.className = 'form-statut ko';
-      } finally {
         btn.disabled = false;
+        if (window.turnstile) { try { window.turnstile.reset(); } catch (e) {} }
       }
     });
   }
 </script>
+{TURNSTILE_SITE_KEY && (
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer is:inline></script>
+)}

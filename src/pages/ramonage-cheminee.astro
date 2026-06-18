@@ -4,14 +4,14 @@ import FilAriane from '../components/FilAriane.astro';
 import CtaDevis from '../components/CtaDevis.astro';
 import villes from '../data/villes.json';
 
-const title = "Ramonage de cheminee dans l'Essonne (91) - Robert Daniel Couverture";
-const description = "Ramonage de cheminee à Étréchy et dans l'Essonne. Certificat de ramonage, intervention rapide. Artisan couvreur.";
+const title = "Ramonage de cheminée dans l'Essonne (91) — M. Robert";
+const description = "Ramonage de cheminée à Étréchy et dans l'Essonne : conduit, poêle et insert, attestation remise. M. Robert Daniel, couvreur. Devis gratuit.";
 
 const extraSchemas = [{
   '@context': 'https://schema.org',
   '@type': 'Service',
-  name: 'Ramonage de cheminee',
-  serviceType: 'Ramonage de cheminee',
+  name: 'Ramonage de cheminée',
+  serviceType: 'Ramonage de cheminée et de conduit',
   provider: { '@id': 'https://robert-daniel-couverture.fr/#localbusiness' },
   areaServed: { '@type': 'AdministrativeArea', name: 'Essonne (91)' },
   url: 'https://robert-daniel-couverture.fr/ramonage-cheminee/',
@@ -21,17 +21,20 @@ const extraSchemas = [{
 <BaseLayout title={title} description={description} extraSchemas={extraSchemas}>
   <section class="hero">
     <div class="conteneur">
-      <FilAriane items={[{ label: 'Accueil', href: '/' }, { label: 'Ramonage de cheminee' }]} />
+      <FilAriane items={[{ label: 'Accueil', href: '/' }, { label: 'Ramonage de cheminée' }]} />
     </div>
     <div class="conteneur hero__grille">
       <div class="hero__texte">
-        <p class="hero__badge"><span class="hero__point" aria-hidden="true"></span> Certificat de ramonage</p>
-        <h1>Ramonage de cheminee dans l'Essonne</h1>
-        <p class="hero__accroche">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p class="hero__badge"><span class="hero__point" aria-hidden="true"></span> Conduit, poêle et insert</p>
+        <h1>Ramonage de cheminée dans l'Essonne</h1>
+        <p class="hero__accroche">
+          Cheminée, poêle ou insert : je ramone vos conduits dans l'Essonne et je vous remets
+          l'attestation à conserver pour votre assurance.
+        </p>
         <ul>
-          <li><strong>Lorem ipsum</strong> dolor sit amet.</li>
-          <li><strong>Consectetur</strong> adipiscing elit.</li>
-          <li><strong>Garantie décennale</strong> sur tous nos travaux.</li>
+          <li><strong>Ramonage mécanique</strong> du conduit.</li>
+          <li><strong>Attestation</strong> remise après l'intervention.</li>
+          <li><strong>Devis gratuit</strong> et sans engagement.</li>
         </ul>
         <div class="hero__actions">
           <a href="tel:0683961518" class="btn btn--cuivre">
@@ -42,37 +45,132 @@ const extraSchemas = [{
         </div>
       </div>
       <div class="hero__media">
-        <div class="placeholder-img hero__photo">Photo ramonage cheminee Essonne</div>
+        <img class="hero__photo" src="/images/services/ramonage.jpg" alt="Ramonage de cheminée par Robert Daniel Couverture dans l'Essonne" width="900" height="600" fetchpriority="high" decoding="async" />
         <div class="carte hero__garantie">
           <p><strong>Garantie Décennale</strong><br />Pour tous travaux de couverture</p>
+          <img src="/images/logo-allianz.png" alt="Garantie décennale assurée par Allianz" width="92" height="58" loading="lazy" decoding="async" />
         </div>
       </div>
     </div>
   </section>
 
   <section class="section">
+    <div class="conteneur">
+      <div class="encadre">
+        <h2>Ce que vous devez savoir</h2>
+        <p>
+          Couvreur à Étréchy, je ramone les conduits de cheminée dans l'Essonne. Le ramonage
+          retire la suie et le bistre qui s'accumulent dans le conduit, rétablit le tirage et
+          réduit le risque de feu de cheminée et d'intoxication au monoxyde de carbone. Je ramone
+          mécaniquement, par le toit ou par le foyer selon la configuration, puis je vous remets
+          l'attestation que votre assurance peut demander. Et comme j'interviens depuis le toit,
+          j'en profite pour contrôler le solin et la souche, là où le conduit traverse la
+          couverture. Mes devis sont gratuits et sans engagement.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="conteneur duo">
-      <div class="placeholder-img">Photo chantier Ramonage de cheminee</div>
+      <img src="/images/ramonage-cheminee-essonne.jpg" alt="Ramonage d'un conduit de cheminée depuis le toit dans l'Essonne" width="900" height="600" loading="lazy" decoding="async" />
       <div class="prose">
-        <h2>Lorem ipsum dolor sit amet</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        <h2>Le ramonage, un entretien à ne pas négliger</h2>
+        <p>
+          À l'usage, un conduit s'encrasse. La suie et le bistre se déposent sur les parois,
+          réduisent le passage de l'air et finissent par gêner le tirage. Un conduit encrassé
+          chauffe mal, enfume la pièce et peut s'enflammer. Le ramonage retire ces dépôts et
+          remet le conduit en état de fonctionner correctement.
+        </p>
+        <p>
+          Pour une cheminée, un poêle ou un insert utilisés régulièrement, l'entretien du conduit
+          se fait généralement deux fois par an, dont une fois pendant la période de chauffe. Au-delà
+          du confort de chauffe, c'est une condition souvent exigée par les contrats d'assurance
+          habitation.
+        </p>
       </div>
     </div>
   </section>
 
   <section class="section section--bleute">
+    <div class="conteneur prose prose--large">
+      <h2>Ramonage de cheminée, poêle et insert</h2>
+      <p>
+        J'interviens sur les différents appareils de chauffage au bois et sur leurs conduits.
+        Selon l'installation, le ramonage se fait par le toit ou depuis le foyer :
+      </p>
+      <table>
+        <thead>
+          <tr><th>Installation</th><th>Ce que je ramone</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Cheminée à foyer ouvert</td><td>Conduit, débistrage des parois, vérification de la souche</td></tr>
+          <tr><td>Insert et foyer fermé</td><td>Conduit et raccordement, contrôle du tirage</td></tr>
+          <tr><td>Poêle à bois</td><td>Conduit et tuyau de raccordement</td></tr>
+        </tbody>
+      </table>
+      <p>
+        Le <strong>ramonage mécanique</strong>, au hérisson, est la référence : il décolle
+        réellement les dépôts, là où une simple bûche de ramonage ne fait qu'un nettoyage de
+        surface. C'est cette intervention qui donne droit à une attestation valable.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="conteneur duo duo--inverse">
-      <div class="placeholder-img">Photo Ramonage de cheminee</div>
+      <img src="/images/cheminee-solin-essonne.jpg" alt="Contrôle du solin de cheminée et de la souche depuis le toit dans l'Essonne" width="825" height="1100" loading="lazy" decoding="async" />
       <div class="prose">
-        <h2>Lorem ipsum dolor sit amet consectetur</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nemo enim ipsam voluptatem quia voluptas sit aspernatur.</p>
-        <ul>
-          <li>Lorem ipsum dolor sit amet.</li>
-          <li>Consectetur adipiscing elit.</li>
-          <li>Sed do eiusmod tempor.</li>
-        </ul>
+        <h2>Ramonage et couverture : le solin de cheminée</h2>
+        <p>
+          Là où le conduit traverse la toiture, la souche et son solin sont des points sensibles.
+          Un solin fissuré laisse l'eau s'infiltrer le long du conduit et marque les murs
+          intérieurs. C'est l'avantage d'un couvreur ramoneur : pendant l'intervention, je
+          contrôle l'état de la souche, du solin et des tuiles autour.
+        </p>
+        <p>
+          Si je repère un solin fatigué ou une souche dégradée, je vous le signale et je vous
+          propose la reprise. Vous traitez le conduit et son raccord à la toiture d'un seul coup,
+          avec le même artisan.
+        </p>
       </div>
+    </div>
+  </section>
+
+  <section class="section section--bleute">
+    <div class="conteneur prose prose--large">
+      <h2>Attestation et devis</h2>
+      <p>
+        Après le ramonage, je vous remets l'attestation qui mentionne le conduit ramoné et la
+        vacuité du conduit. Conservez-la : votre assureur peut la réclamer, et elle est exigée en
+        cas de sinistre lié à la cheminée. Le tarif est connu d'avance, sans supplément une fois
+        sur place.
+      </p>
+      <p>
+        Installé à Étréchy, je ramone les conduits des communes voisines. Tous mes travaux de
+        couverture sont couverts par la garantie décennale, assurée chez Allianz. Pour planifier
+        votre ramonage ou faire contrôler une souche, demandez votre devis gratuit : je conviens
+        d'un rendez-vous avec vous rapidement.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="conteneur prose prose--large">
+      <h2>Les signes qu'un conduit doit être ramoné</h2>
+      <p>
+        Certains signes montrent qu'un conduit s'encrasse et réclame un ramonage : un feu
+        difficile à démarrer, une fumée qui reflue dans la pièce, une odeur de suie persistante
+        ou un tirage qui faiblit. Un dépôt de bistre brillant sur les parois est, lui aussi, le
+        signe d'un conduit qui demande une intervention sans tarder.
+      </p>
+      <p>
+        Au-delà de ces signaux, le ramonage régulier reste la meilleure habitude : il évite que
+        la suie ne s'accumule au point de boucher le conduit. En entretenant votre cheminée ou
+        votre poêle deux fois dans l'année, vous gardez un appareil qui chauffe bien et vous
+        restez en règle avec votre assurance. Lors de mon passage, je vous indique l'état du
+        conduit et le bon rythme pour la suite.
+      </p>
     </div>
   </section>
 
@@ -80,7 +178,7 @@ const extraSchemas = [{
 
   <section class="section section--gris">
     <div class="conteneur">
-      <h2>Ramonage de cheminee — nos communes</h2>
+      <h2>Ramonage de cheminée — les communes où j'interviens</h2>
       <ul class="nuage-villes">
         {villes.map((v) => (
           <li><a href={`/${v.slug}/`}>{v.nom}</a></li>

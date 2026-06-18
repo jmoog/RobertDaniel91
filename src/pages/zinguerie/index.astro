@@ -4,17 +4,17 @@ import FilAriane from '../../components/FilAriane.astro';
 import CtaDevis from '../../components/CtaDevis.astro';
 import villes from '../../data/villes.json';
 
-const title = "Zinguerie dans l'Essonne (91) - Robert Daniel Couverture";
-const description = "Travaux de zinguerie à Étréchy et dans l'Essonne : gouttieres zinc, aluminium, PVC, descentes, noues, solins, couvertines. Devis gratuit.";
+const title = "Zinguerie dans l'Essonne (91) — M. Robert couvreur zingueur";
+const description = "Zinguerie à Étréchy et dans l'Essonne : gouttières zinc, aluminium et PVC, descentes, noues, solins, couvertines. M. Robert Daniel, couvreur zingueur. Devis gratuit.";
 
 const sousPages = [
-  { slug: 'gouttieres-zinc', label: 'Gouttieres zinc' },
-  { slug: 'gouttieres-aluminium', label: 'Gouttieres aluminium' },
-  { slug: 'gouttieres-pvc', label: 'Gouttieres PVC' },
-  { slug: 'descentes-eaux-pluviales', label: 'Descentes eaux pluviales' },
-  { slug: 'noues-aretiers', label: 'Noues et aretiers' },
-  { slug: 'solins-raccords', label: 'Solins et raccords' },
-  { slug: 'couvertines', label: 'Couvertines' },
+  { slug: 'gouttieres-zinc', label: 'Gouttières zinc', desc: 'La gouttière qui dure : zinc soudé et façonné sur mesure pour évacuer l’eau pendant des décennies.' },
+  { slug: 'gouttieres-aluminium', label: 'Gouttières aluminium', desc: 'Posée sans soudure, en longueur continue et dans de nombreux coloris. L’aluminium ne rouille pas.' },
+  { slug: 'gouttieres-pvc', label: 'Gouttières PVC', desc: 'Une solution légère et économique, simple à poser et à entretenir, pour les petites toitures.' },
+  { slug: 'descentes-eaux-pluviales', label: 'Descentes eaux pluviales', desc: 'Les tuyaux et raccords qui conduisent l’eau de la gouttière jusqu’au sol ou au réseau.' },
+  { slug: 'noues-aretiers', label: 'Noues et arêtiers', desc: 'Les lignes de jonction de la toiture, façonnées en zinc pour canaliser l’eau sans fuite.' },
+  { slug: 'solins-raccords', label: 'Solins et raccords', desc: 'L’étanchéité entre la couverture et les murs, cheminées et souches, refaite proprement.' },
+  { slug: 'couvertines', label: 'Couvertines', desc: 'Le couronnement métallique qui protège le haut des murs et des acrotères de l’eau.' },
 ];
 
 const extraSchemas = [{
@@ -35,13 +35,17 @@ const extraSchemas = [{
     </div>
     <div class="conteneur hero__grille">
       <div class="hero__texte">
-        <p class="hero__badge"><span class="hero__point" aria-hidden="true"></span> Gouttieres, descentes, noues, solins</p>
+        <p class="hero__badge"><span class="hero__point" aria-hidden="true"></span> Gouttières, descentes, noues, solins</p>
         <h1>Zinguerie dans l'Essonne</h1>
-        <p class="hero__accroche">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p class="hero__accroche">
+          L'eau doit quitter votre toit sans jamais s'attarder. Je réalise toute la zinguerie
+          dans l'Essonne — gouttières, descentes, noues, solins et habillages — en zinc,
+          aluminium ou PVC.
+        </p>
         <ul>
-          <li><strong>Lorem ipsum</strong> dolor sit amet.</li>
-          <li><strong>Consectetur</strong> adipiscing elit.</li>
-          <li><strong>Garantie décennale</strong> sur tous nos travaux.</li>
+          <li><strong>Gouttières sur mesure</strong>, façonnées et posées.</li>
+          <li><strong>Zinc, aluminium ou PVC</strong> selon votre toit.</li>
+          <li><strong>Devis gratuit</strong> et sans engagement.</li>
         </ul>
         <div class="hero__actions">
           <a href="tel:0683961518" class="btn btn--cuivre">
@@ -52,26 +56,154 @@ const extraSchemas = [{
         </div>
       </div>
       <div class="hero__media">
-        <div class="placeholder-img hero__photo">Photo zinguerie Essonne</div>
+        <img class="hero__photo" src="/images/zinguerie-chien-assis-zinc-essonne.jpg" alt="Chiens-assis avec joues en zinc sur une toiture en tuiles dans l'Essonne" width="1200" height="900" fetchpriority="high" decoding="async" />
         <div class="carte hero__garantie">
           <p><strong>Garantie Décennale</strong><br />Pour tous travaux de couverture</p>
+          <img src="/images/logo-allianz.png" alt="Garantie décennale assurée par Allianz" width="92" height="58" loading="lazy" decoding="async" />
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Sous-pages cocon zinguerie -->
   <section class="section">
     <div class="conteneur">
+      <div class="encadre">
+        <h2>Ce que vous devez savoir</h2>
+        <p>
+          Couvreur zingueur à Étréchy, je façonne et pose la zinguerie dans l'Essonne depuis plus
+          de quinze ans. La zinguerie, c'est tout ce qui conduit l'eau de pluie hors de votre
+          toit : gouttières, descentes, noues, solins, couvertines et habillages. Je travaille le
+          zinc à la main, je le soude et je l'ajuste à votre toiture, et je pose aussi l'aluminium
+          et le PVC selon le besoin et le budget. Une zinguerie bien réalisée éloigne l'eau du
+          bâti et protège vos murs et vos fondations. Mes devis sont gratuits et sans engagement.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="conteneur duo">
+      <img src="/images/zinguerie-toiture-tuiles-essonne.jpg" alt="Toiture en tuiles équipée de sa zinguerie dans l'Essonne par Robert Daniel Couverture" width="1100" height="825" loading="lazy" decoding="async" />
+      <div class="prose">
+        <h2>La zinguerie, le système qui évacue l'eau de votre toit</h2>
+        <p>
+          Une toiture ne se limite pas à ses tuiles. Toute l'eau qui ruisselle sur les pans doit
+          être récupérée puis conduite jusqu'au sol. C'est le rôle de la zinguerie : les noues
+          rassemblent l'eau dans les angles rentrants, les gouttières la collectent en bas de
+          pente, les descentes l'évacuent vers le sol ou le réseau.
+        </p>
+        <p>
+          Quand cet ensemble est ancien, percé ou mal raccordé, l'eau déborde et ruisselle le
+          long des murs. Apparaissent alors des traces sur la façade, des infiltrations au pied
+          des murs et, à terme, des dégâts sur le bâti. Une zinguerie en bon état est ce qui
+          tient l'eau à distance de votre maison.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--bleute">
+    <div class="conteneur duo duo--inverse">
+      <img src="/images/zinguerie-gouttiere-zinc-anthracite-essonne.jpg" alt="Gouttière et habillage en zinc anthracite posés en rive de toiture dans l'Essonne" width="1100" height="825" loading="lazy" decoding="async" />
+      <div class="prose">
+        <h2>Mes prestations de zinguerie</h2>
+        <p>
+          Je réalise l'ensemble des ouvrages qui font tenir l'eau là où elle doit aller. Sur une
+          toiture neuve, en rénovation ou en simple reprise, j'interviens sur :
+        </p>
+        <ul>
+          <li><strong>Gouttières</strong> en zinc, aluminium ou PVC, posées sur mesure.</li>
+          <li><strong>Descentes d'eaux pluviales</strong> et leurs raccords.</li>
+          <li><strong>Noues et arêtiers</strong> façonnés pour canaliser l'eau.</li>
+          <li><strong>Solins</strong> de cheminée, de souche et contre les murs.</li>
+          <li><strong>Couvertines</strong> de couronnement des murs et acrotères.</li>
+          <li><strong>Habillages</strong> de lucarnes, chiens-assis, rives et bandeaux.</li>
+        </ul>
+        <p>
+          Tous ces ouvrages disposent de leur page dédiée, plus bas, pour entrer dans le détail
+          de la prestation qui vous concerne.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="conteneur prose prose--large">
+      <h2>Zinc, aluminium ou PVC : quel matériau choisir ?</h2>
+      <p>
+        Le bon matériau dépend de votre toiture, du rendu souhaité et de votre budget. Je pose
+        les trois et je vous conseille sans vous orienter vers le plus cher par principe.
+      </p>
+      <table>
+        <thead>
+          <tr><th>Matériau</th><th>Points forts</th><th>Bien adapté à</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Zinc</td><td>Soudé et façonné sur mesure, belle tenue dans le temps</td><td>Maisons traditionnelles, ouvrages exposés</td></tr>
+          <tr><td>Aluminium</td><td>Posé sans soudure, en longueur continue, nombreux coloris, ne rouille pas</td><td>Façades soignées, grandes longueurs</td></tr>
+          <tr><td>PVC</td><td>Léger, économique, simple à poser et à entretenir</td><td>Petites toitures, budgets serrés</td></tr>
+        </tbody>
+      </table>
+      <p>
+        Le <strong>zinc</strong> reste la référence pour une gouttière qui dure et pour tous les
+        ouvrages façonnés, comme l'habillage d'un chien-assis. L'<strong>aluminium</strong>
+        séduit par sa pose continue et ses coloris, le <strong>PVC</strong> par son prix.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--bleute">
+    <div class="conteneur duo">
+      <img src="/images/zinguerie-gouttiere-descente-zinc-essonne.jpg" alt="Gouttière et descente en zinc anthracite sur la rive d'une maison dans l'Essonne" width="1100" height="825" loading="lazy" decoding="async" />
+      <div class="prose">
+        <h2>Habillage des lucarnes, chiens-assis et rives</h2>
+        <p>
+          Au-delà des gouttières, le zinc habille les parties de toiture qu'aucune tuile ne
+          couvre : les joues d'un chien-assis, le pourtour d'une lucarne, les rives et les
+          bandeaux. Ces ouvrages se façonnent sur place, pli par pli, pour épouser exactement la
+          forme du toit.
+        </p>
+        <p>
+          C'est un travail de précision où chaque raccord compte : un habillage bien plié et bien
+          soudé reste étanche là où l'eau s'accumule le plus. Vous trouverez plus bas quelques
+          réalisations d'habillage en zinc sur des chiens-assis dans l'Essonne.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="conteneur duo duo--inverse">
+      <img src="/images/zinguerie-habillage-zinc-facade-essonne.jpg" alt="Habillage en zinc en haut d'une façade avec descente d'eau pluviale dans l'Essonne" width="825" height="1100" loading="lazy" decoding="async" />
+      <div class="prose">
+        <h2>Pourquoi confier sa zinguerie à un couvreur zingueur</h2>
+        <p>
+          La zinguerie et la couverture forment un tout. Un solin mal raccordé ou une noue mal
+          façonnée laisse passer l'eau, même sous des tuiles neuves. En confiant les deux au même
+          artisan, vous avez des raccords maîtrisés entre la couverture et chaque ouvrage de
+          zinc, sans zone de doute entre deux corps de métier.
+        </p>
+        <p>
+          Installé à Étréchy, j'interviens sur la zinguerie des communes voisines, en neuf comme
+          en rénovation. Tous mes travaux sont couverts par la garantie décennale, assurée chez
+          Allianz. Pour une gouttière à remplacer ou une zinguerie complète à reprendre, demandez
+          votre devis gratuit.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sous-pages cocon zinguerie -->
+  <section class="section section--gris">
+    <div class="conteneur">
       <span class="surtitre">Nos prestations de zinguerie</span>
-      <h2>Tous nos services de zinguerie</h2>
+      <h2>Le détail de mes services de zinguerie</h2>
       <div class="grille-services">
         {sousPages.map((sp) => (
           <a href={`/zinguerie/${sp.slug}/`} class="carte carte-service">
-            <div class="carte-service__img">{sp.label}</div>
             <div class="carte-service__corps">
               <h3>{sp.label}</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.</p>
+              <p>{sp.desc}</p>
               <span class="carte-service__lien">En savoir plus &rarr;</span>
             </div>
           </a>
@@ -80,13 +212,30 @@ const extraSchemas = [{
     </div>
   </section>
 
-  <section class="section section--bleute">
-    <div class="conteneur duo">
-      <div class="placeholder-img">Photo travaux zinguerie</div>
-      <div class="prose">
-        <h2>Lorem ipsum dolor sit amet</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+  <section class="section chantier">
+    <div class="conteneur">
+      <div class="section__entete">
+        <span class="surtitre">En images</span>
+        <h2>Habillage en zinc d'un chien-assis</h2>
+        <p>Pose des joues, des raccords et des finitions en zinc sur des chiens-assis, dans l'Essonne.</p>
+      </div>
+      <div class="galerie">
+        <figure>
+          <img src="/images/zinguerie-chien-assis-zinc-essonne-4.jpg" alt="Joues en zinc et faîtage d'un chien-assis sur une toiture en tuiles dans l'Essonne" width="1000" height="750" loading="lazy" decoding="async" />
+          <figcaption>Joues en zinc et faîtage du chien-assis</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/zinguerie-chien-assis-zinc-essonne-1.jpg" alt="Chien-assis habillé de zinc raccordé à la couverture en tuiles dans l'Essonne" width="1000" height="750" loading="lazy" decoding="async" />
+          <figcaption>Chien-assis raccordé à la couverture</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/zinguerie-chien-assis-zinc-essonne-2.jpg" alt="Habillage en zinc de la joue d'un chien-assis dans l'Essonne" width="1000" height="750" loading="lazy" decoding="async" />
+          <figcaption>Habillage zinc de la joue</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/zinguerie-chien-assis-zinc-essonne-3.jpg" alt="Finition en zinc d'un chien-assis vue de dessus dans l'Essonne" width="1000" height="750" loading="lazy" decoding="async" />
+          <figcaption>Finitions zinc vues de dessus</figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -95,7 +244,7 @@ const extraSchemas = [{
 
   <section class="section section--gris">
     <div class="conteneur">
-      <h2>Zinguerie — nos communes</h2>
+      <h2>Zinguerie — les communes où j'interviens</h2>
       <ul class="nuage-villes">
         {villes.map((v) => (
           <li><a href={`/${v.slug}/`}>{v.nom}</a></li>

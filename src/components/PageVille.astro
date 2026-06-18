@@ -1,0 +1,175 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FilAriane from '../components/FilAriane.astro';
+import villes from '../data/villes.json';
+import contenu from '../data/villes-contenu.json';
+
+const { slug } = Astro.props;
+const d = contenu[slug];
+const autresVilles = villes.filter((v) => v.slug !== slug);
+
+const services = [
+  { href: '/renovation-toiture/', label: 'Rénovation de toiture', img: '/images/services/renovation-toiture.jpg', desc: 'Réfection partielle ou complète de votre toit.' },
+  { href: '/reparation-toiture/', label: 'Réparation de toiture', img: '/images/services/reparation-toiture.jpg', desc: 'Recherche de fuite et reprise des tuiles.' },
+  { href: '/nettoyage-toiture/', label: 'Nettoyage de toiture', img: '/images/services/nettoyage-toiture.jpg', desc: 'Démoussage et traitement de la couverture.' },
+  { href: '/zinguerie/', label: 'Zinguerie', img: '/images/services/zinguerie.jpg', desc: 'Gouttières, descentes, noues et solins.' },
+  { href: '/charpente/', label: 'Charpente', img: '/images/services/charpente.jpg', desc: 'Traitement, réparation et remplacement du bois.' },
+  { href: '/isolation-toiture/', label: 'Isolation de toiture', img: '/images/services/isolation-toiture.jpg', desc: 'Isolation des combles et de la sous-toiture.' },
+  { href: '/fenetre-de-toit-velux/', label: 'Fenêtre de toit Velux', img: '/images/services/velux.jpg', desc: 'Pose et remplacement de fenêtres de toit.' },
+  { href: '/ramonage-cheminee/', label: 'Ramonage de cheminée', img: '/images/services/ramonage.jpg', desc: 'Ramonage du conduit et attestation remise.' },
+  { href: '/inspection-toiture-drone/', label: 'Inspection par drone', img: '/images/services/inspection-drone.jpg', desc: "État de votre toiture, images à l'appui." },
+];
+
+const extraSchemas = [{
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: `Couvreur à ${d.nom}`,
+  serviceType: 'Travaux de couverture',
+  provider: { '@id': 'https://robert-daniel-couverture.fr/#localbusiness' },
+  areaServed: { '@type': 'City', name: d.nom, address: { '@type': 'PostalAddress', postalCode: d.cp } },
+  url: `https://robert-daniel-couverture.fr/${slug}/`,
+  description: d.metaDescription,
+}];
+---
+<BaseLayout title={d.title} description={d.metaDescription} extraSchemas={extraSchemas}>
+  <section class="hero">
+    <div class="conteneur">
+      <FilAriane items={[{ label: 'Accueil', href: '/' }, { label: `Couvreur à ${d.nom}` }]} />
+    </div>
+    <div class="conteneur hero__grille">
+      <div class="hero__texte">
+        <p class="hero__badge"><span class="hero__point" aria-hidden="true"></span> {d.badge}</p>
+        <h1>{d.h1}</h1>
+        <p class="hero__accroche">{d.accroche}</p>
+        <ul>
+          {d.bullets.map((b) => (
+            <li><strong>{b.t}</strong> {b.r}</li>
+          ))}
+        </ul>
+        <div class="hero__actions">
+          <a href="tel:0683961518" class="btn btn--cuivre">
+            <svg class="icone" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 1H8C6.34 1 5 2.34 5 4v16c0 1.66 1.34 3 3 3h8c1.66 0 3-1.34 3-3V4c0-1.66-1.34-3-3-3zm-2 20h-4v-1h4v1zm3.25-3H6.75V4h10.5v14z"/></svg>
+            06 83 96 15 18
+          </a>
+          <a href="/devis-gratuit/" class="btn btn--bleu">Devis Gratuit &rarr;</a>
+        </div>
+      </div>
+      <div class="hero__media">
+        <img class="hero__photo" src={d.heroImg.src} alt={d.heroImg.alt} width={d.heroImg.w} height={d.heroImg.h} fetchpriority="high" decoding="async" />
+        <div class="carte hero__garantie">
+          <p><strong>Garantie Décennale</strong><br />Pour tous travaux de couverture</p>
+          <img src="/images/logo-allianz.png" alt="Garantie décennale assurée par Allianz" width="92" height="58" loading="lazy" decoding="async" />
+        </div>
+        {d.adresse && (
+          <div class="carte hero__garantie">
+            <svg class="icone" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:1.8rem;height:1.8rem;flex-shrink:0;color:var(--cuivre);"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"/></svg>
+            <p><strong>Mon showroom à Étréchy</strong><br />{d.adresse}</p>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- Avis clients -->
+  <section class="section section--gris">
+    <div class="conteneur">
+      <span class="surtitre">Avis clients</span>
+      <h2>{d.avisTitre}</h2>
+      <div class="avis-grille">
+        {d.avis.map((a) => (
+          <figure class="carte avis-carte">
+            <div class="avis-carte__etoiles" aria-label="Note : 5 sur 5">
+              {Array(5).fill(0).map(() => (
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              ))}
+            </div>
+            <blockquote>{a.texte}</blockquote>
+            <figcaption>
+              <span class="avis-carte__nom">{a.nom}</span>
+              <span class="avis-carte__source">Avis Google</span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="section">
+    <div class="conteneur">
+      <span class="surtitre">Mes prestations</span>
+      <h2>{d.servicesTitre}</h2>
+      <p class="section__intro">{d.servicesIntro}</p>
+      <div class="grille-services">
+        {services.map((s) => (
+          <a href={s.href} class="carte carte-service">
+            <img class="carte-service__img" src={s.img} alt={`${s.label} à ${d.nom} dans l'Essonne`} width="700" height="438" loading="lazy" decoding="async" />
+            <div class="carte-service__corps">
+              <h3>{s.label}</h3>
+              <p>{s.desc}</p>
+              <span class="carte-service__lien">En savoir plus &rarr;</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA ville -->
+  <section class="section section--bleu cta-final">
+    <div class="conteneur" style="text-align:center;">
+      <h2>{d.ctaTitre}</h2>
+      <p style="max-width:62ch;margin:0.8rem auto 1.6rem;">{d.ctaTexte}</p>
+      <div class="hero__actions" style="justify-content:center;">
+        <a href="tel:0683961518" class="btn btn--cuivre">
+          <svg class="icone" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 1H8C6.34 1 5 2.34 5 4v16c0 1.66 1.34 3 3 3h8c1.66 0 3-1.34 3-3V4c0-1.66-1.34-3-3-3zm-2 20h-4v-1h4v1zm3.25-3H6.75V4h10.5v14z"/></svg>
+          06 83 96 15 18
+        </a>
+        <a href="/devis-gratuit/" class="btn btn--bleu">Devis Gratuit &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Autres communes -->
+  <section class="section section--gris">
+    <div class="conteneur">
+      <h2>J'interviens aussi dans ces communes</h2>
+      <ul class="nuage-villes">
+        {autresVilles.map((v) => (
+          <li><a href={`/${v.slug}/`}>{v.nom}</a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .section__intro { max-width: 70ch; margin: 0.4rem 0 0.5rem; color: var(--gris-700); }
+  .avis-grille {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+    margin-top: 2rem;
+  }
+  @media (min-width: 720px) { .avis-grille { grid-template-columns: repeat(3, 1fr); } }
+  .avis-carte {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 1.6rem;
+    background: var(--blanc);
+  }
+  .avis-carte:hover { transform: none; }
+  .avis-carte__etoiles { display: inline-flex; gap: 2px; }
+  .avis-carte__etoiles svg { width: 1.1rem; height: 1.1rem; fill: #fbbc04; }
+  .avis-carte blockquote {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--gris-700);
+    flex: 1;
+  }
+  .avis-carte figcaption { margin-top: auto; }
+  .avis-carte__nom { display: block; font-weight: 700; color: var(--bleu); }
+  .avis-carte__source { display: block; font-size: 0.85rem; color: var(--gris-500); }
+</style>

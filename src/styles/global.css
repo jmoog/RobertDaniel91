@@ -282,6 +282,20 @@ h3 { font-size: 1.2rem; }
 }
 .hero__accroche { font-size: 1.12rem; margin-bottom: 1rem; }
 .hero__texte p, .hero__texte ul { margin-bottom: 0.9rem; }
+/* Puces du hero : coche de validation rouge */
+.hero__texte ul { list-style: none; padding-left: 0; }
+.hero__texte ul li { position: relative; padding-left: 1.9em; }
+.hero__texte ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.12em;
+  width: 1.3em;
+  height: 1.3em;
+  background: var(--cuivre);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.42z'/%3E%3C/svg%3E") no-repeat center / contain;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.42z'/%3E%3C/svg%3E") no-repeat center / contain;
+}
 .hero__actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.6rem; }
 .hero__media { display: grid; gap: 1.5rem; align-content: start; }
 .hero__photo {
@@ -318,6 +332,8 @@ h3 { font-size: 1.2rem; }
   .hero__texte > ul { order: 7; margin-bottom: 1rem; }
   .hero__texte > .hero__actions { order: 8; }
   .hero__media > .hero__garantie { order: 9; margin-top: 1.6rem; }
+  /* Carte garantie : logo Allianz sous le texte (pas à droite) */
+  .hero__garantie { flex-direction: column; align-items: flex-start; gap: 0.9rem; }
 }
 
 /* ── Bandeau de reassurance ───────────────────────────────────── */

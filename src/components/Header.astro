@@ -9,7 +9,7 @@ const wa = 'https://wa.me/33683961518';
     <div class="conteneur entete__topbar-int">
       <div class="entete__topbar-contacts">
         <a href="tel:0683961518" class="entete__tel">
-          <svg class="icone" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 1H8C6.34 1 5 2.34 5 4v16c0 1.66 1.34 3 3 3h8c1.66 0 3-1.34 3-3V4c0-1.66-1.34-3-3-3zm-2 20h-4v-1h4v1zm3.25-3H6.75V4h10.5v14z"/></svg>
+          <svg class="icone-tel" viewBox="0 0 24 24" aria-hidden="true"><g class="icone-tel__corps"><path fill="currentColor" d="M14 1H6C4.9 1 4 1.9 4 3v18c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-4 21c-.8 0-1.5-.7-1.5-1.5S9.2 19 10 19s1.5.7 1.5 1.5S10.8 22 10 22zm4-4H6V4h8v14z"/></g><path class="icone-tel__onde" d="M18.5 8.5a4 4 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="icone-tel__onde icone-tel__onde--2" d="M21 6a7.5 7.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           06 83 96 15 18
         </a>
         <a href={wa} class="entete__wa" target="_blank" rel="noopener noreferrer">
@@ -21,6 +21,7 @@ const wa = 'https://wa.me/33683961518';
         <ul class="entete__liens">
           <li><a href="/">Accueil</a></li>
           <li><a href="/a-propos/">À propos</a></li>
+          <li><a href="/realisations/">Réalisations</a></li>
           <li><a href="/devis-gratuit/">Devis gratuit</a></li>
         </ul>
       </nav>
@@ -48,6 +49,7 @@ const wa = 'https://wa.me/33683961518';
         <ul id="menu-principal" class="entete__menu">
           <li class="entete__menu-mobile"><a href="/">Accueil</a></li>
           <li class="entete__menu-mobile"><a href="/a-propos/">À propos</a></li>
+          <li class="entete__menu-mobile"><a href="/realisations/">Réalisations</a></li>
           <li><a href="/renovation-toiture/">Rénovation</a></li>
           <li><a href="/reparation-toiture/">Réparation</a></li>
           <li><a href="/nettoyage-toiture/">Nettoyage</a></li>
@@ -57,7 +59,7 @@ const wa = 'https://wa.me/33683961518';
           <li class="entete__menu-extra"><a href="/fenetre-de-toit-velux/">Fenêtre de toit Velux</a></li>
           <li class="entete__menu-extra"><a href="/ramonage-cheminee/">Ramonage</a></li>
           <li class="entete__menu-extra"><a href="/inspection-toiture-drone/">Inspection par drone</a></li>
-          <li class="entete__menu-mobile entete__menu-devis"><a href="/devis-gratuit/">Demander un devis gratuit &rarr;</a></li>
+          <li class="entete__menu-mobile entete__menu-devis"><a href="/devis-gratuit/">Demander un devis gratuit <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
         </ul>
       </nav>
     </div>
@@ -84,22 +86,30 @@ const wa = 'https://wa.me/33683961518';
     padding-block: 0.55rem;
   }
   .entete__topbar-contacts { display: flex; align-items: center; gap: 0.7rem; }
+  /* Boutons pilule (même format que les boutons du site) */
   .entete__tel, .entete__wa {
     display: inline-flex;
     align-items: center;
-    gap: 0.5em;
+    gap: 10px;
+    min-height: 40px;
+    font-family: var(--font-titres);
     font-weight: 700;
-    font-size: 0.95rem;
+    font-size: 15px;
+    line-height: 1.2;
     text-decoration: none;
-    padding: 0.45em 1em;
-    border-radius: var(--rayon);
+    padding: 9px 20px;
+    border-radius: 999px;
     white-space: nowrap;
+    box-shadow: 0 4px 12px rgb(0 42 69 / .15);
+    transition: background-color .25s ease, color .25s ease, transform .25s ease, box-shadow .25s ease;
   }
-  .entete__tel { background: var(--blanc); color: var(--bleu); }
-  .entete__tel:hover { color: var(--cuivre-fonce); }
+  .entete__tel:hover, .entete__wa:hover { transform: translate3d(0, -2px, 0); box-shadow: 0 10px 22px rgb(0 42 69 / .22); }
+  .entete__tel { background: var(--blanc); color: var(--bleu-fonce); }
+  .entete__tel:hover { background: var(--gris-100); color: var(--bleu-fonce); }
   .entete__wa { background: #25D366; color: var(--blanc); }
   .entete__wa:hover { background: #1ebe5b; color: var(--blanc); }
-  .entete__tel .icone, .entete__wa .icone { width: 1.1rem; height: 1.1rem; }
+  .entete__wa .icone { width: 1.15rem; height: 1.15rem; }
+  .entete__tel .icone-tel { width: 18px; height: 18px; }
 
   .entete__liens {
     display: flex;
@@ -202,13 +212,20 @@ const wa = 'https://wa.me/33683961518';
 
     /* Lien devis mis en avant en bas du menu */
     .entete__menu-devis { border-bottom: none !important; margin-top: 0.5rem; }
+    .entete__menu-devis { display: flex; justify-content: center; }
     .entete__menu-devis a {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: auto;
+      max-width: max-content;
       background: var(--cuivre);
       color: var(--blanc);
-      text-align: center;
-      border-radius: var(--rayon);
-      padding: 0.85em 1em;
+      border-radius: 999px;
+      padding: 12px 20px;
+      font-family: var(--font-titres);
       font-weight: 700;
+      box-shadow: 0 4px 12px rgb(0 42 69 / .12);
     }
     .entete__menu-devis a:hover { color: var(--blanc); }
   }

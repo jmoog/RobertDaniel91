@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import FilAriane from '../components/FilAriane.astro';
 import services from '../data/services.json';
 import villes from '../data/villes.json';
+import realisations from '../data/realisations.json';
 
 const title = 'Plan du site - Robert Daniel Couverture';
 const description = "Plan du site robert-daniel-couverture.fr. Retrouvez toutes les pages de notre site : services, villes d'intervention, informations.";
@@ -42,6 +43,14 @@ const zingueriePages = [
       <ul>
         {zingueriePages.map((z) => (
           <li><a href={`/zinguerie/${z.slug}/`}>{z.label}</a></li>
+        ))}
+      </ul>
+
+      <h2>Réalisations</h2>
+      <ul>
+        <li><a href="/realisations/">Toutes les réalisations</a></li>
+        {realisations.map((r) => (
+          <li><a href={r.url}>{r.h1}</a></li>
         ))}
       </ul>
 

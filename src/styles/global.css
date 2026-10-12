@@ -195,29 +195,69 @@ h3 { font-size: 1.2rem; }
 .duo img { border-radius: var(--rayon); box-shadow: var(--ombre-forte); width: 100%; object-fit: cover; }
 
 /* ── Boutons ───────────────────────────────────────────────────── */
+/* Boutons — format pilule (refonte accueil oct. 2026) : jamais pleine largeur,
+   flèche cerclée qui glisse au survol, smartphone qui sonne sur les boutons téléphone. */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5em;
-  padding: 0.8em 1.6em;
-  border-radius: var(--rayon);
+  gap: 12px;
+  width: auto;
+  max-width: max-content;
+  min-height: 50px;
+  padding: 14px 26px;
+  border-radius: 999px;
+  font-family: var(--font-titres);
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 16px;
+  line-height: 1.2;
   text-decoration: none;
-  border: 2px solid transparent;
+  white-space: nowrap;
+  border: 0;
   cursor: pointer;
-  transition: background var(--transition), color var(--transition), border-color var(--transition), transform var(--transition);
+  box-shadow: 0 4px 12px rgb(0 42 69 / .12);
+  transition: background-color .25s ease, color .25s ease, transform .25s ease, box-shadow .25s ease;
 }
-.btn:active { transform: scale(0.97); }
+.btn:hover { transform: translate3d(0, -2px, 0); box-shadow: 0 10px 22px rgb(0 42 69 / .2); }
+.btn:active { transform: translate3d(0, 0, 0); }
 .btn--cuivre { background: var(--cuivre); color: var(--blanc); }
 .btn--cuivre:hover { background: var(--cuivre-fonce); color: var(--blanc); }
-.btn--blanc { background: var(--blanc); color: var(--bleu); }
-.btn--blanc:hover { background: var(--gris-100); color: var(--bleu); }
-.btn--contour { border-color: currentColor; color: var(--blanc); background: transparent; }
-.btn--contour:hover { background: rgba(255, 255, 255, 0.12); color: var(--blanc); }
+.btn--blanc { background: var(--blanc); color: var(--bleu-fonce); }
+.btn--blanc:hover { background: var(--gris-100); color: var(--bleu-fonce); }
+.btn--contour { box-shadow: inset 0 0 0 2px currentColor; color: var(--blanc); background: transparent; }
+.btn--contour:hover { background: rgba(255, 255, 255, 0.12); color: var(--blanc); box-shadow: inset 0 0 0 2px currentColor; }
 .btn--bleu { background: var(--bleu); color: var(--blanc); }
-.btn--bleu:hover { background: var(--bleu-clair); color: var(--blanc); }
+.btn--bleu:hover { background: var(--bleu-fonce); color: var(--blanc); }
+@media (max-width: 767px) {
+  .btn { min-height: 46px; padding: 12px 18px; font-size: 15px; gap: 10px; }
+}
+
+/* Flèche cerclée (rond blanc, flèche de la couleur du bouton) */
+.btn__fleche {
+  display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+  width: 26px; height: 26px; border-radius: 50%; overflow: hidden;
+  background: var(--blanc); color: var(--cuivre);
+}
+.btn--bleu .btn__fleche { color: var(--bleu); }
+.btn--blanc .btn__fleche { background: var(--bleu); color: var(--blanc); }
+.btn__fleche svg { width: 14px; height: 14px; transition: transform .3s ease; }
+.btn:hover .btn__fleche svg { transform: translate3d(3px, 0, 0); }
+
+/* Smartphone qui sonne */
+.icone-tel { width: 20px; height: 20px; flex-shrink: 0; overflow: visible; }
+.icone-tel__corps { transform-origin: 40% 50%; animation: icone-tel-sonne 2.4s ease-in-out infinite; }
+.icone-tel__onde { opacity: 0; animation: icone-tel-onde 2.4s ease-out infinite; }
+.icone-tel__onde--2 { animation-delay: .25s; }
+@keyframes icone-tel-sonne {
+  0%, 70%, 100% { transform: rotate(0); }
+  75% { transform: rotate(-12deg); } 80% { transform: rotate(10deg); }
+  85% { transform: rotate(-8deg); } 90% { transform: rotate(6deg); }
+}
+@keyframes icone-tel-onde { 0%, 60% { opacity: 0; } 75% { opacity: 1; } 100% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .icone-tel__corps, .icone-tel__onde { animation: none; }
+  .icone-tel__onde { opacity: 1; }
+}
 
 /* Icone inline */
 .icone { width: 1.1em; height: 1.1em; flex-shrink: 0; display: inline-block; vertical-align: -0.18em; }
@@ -272,6 +312,8 @@ h3 { font-size: 1.2rem; }
   flex-shrink: 0;
 }
 .hero h1 { font-size: clamp(1.05rem, 3.4vw, 1.9rem); font-weight: 700; white-space: nowrap; }
+/* Titres longs (pages réalisations) : retour à la ligne autorisé, 2 lignes max */
+.hero h1.h1-long { white-space: normal; font-size: clamp(1.4rem, 5.4vw, 2.3rem); }
 .hero__marque {
   font-family: var(--font-titres);
   font-size: clamp(2.6rem, 6vw, 4.2rem);

@@ -1,0 +1,64 @@
+---
+// Cartes de chantiers réalisés. Le lien porte sur le titre (H3) et la carte
+// entière est rendue cliquable en CSS (::after étendu) : l'ancre reste
+// « [prestation] à [commune] », pertinente pour le maillage interne.
+import realisations from '../data/realisations.json';
+
+export interface Props {
+  slugs?: string[];
+  titre?: string;
+  intro?: string;
+  limite?: number;
+  lienTout?: boolean;
+  fond?: 'blanc' | 'gris';
+}
+const { slugs, titre, intro, limite, lienTout = true, fond = 'blanc' } = Astro.props;
+let items = slugs ? slugs.map((s) => realisations.find((r) => r.slug === s)).filter(Boolean) : realisations;
+if (limite) items = items.slice(0, limite);
+---
+{items.length > 0 && (
+  <section class={`section realisations-bloc ${fond === 'gris' ? 'section--gris' : ''}`}>
+    <div class="conteneur">
+      {titre && <h2>{titre}</h2>}
+      {intro && <p class="realisations-bloc__intro" set:html={intro} />}
+      <ul class="grille-chantiers">
+        {items.map((r) => {
+          const c = r.photos.find((p) => p.cover) || r.photos[0];
+          return (
+            <li class="carte carte-chantier">
+              <img src={c.small} alt={c.alt} width="800" height={Math.round(800 * c.height / c.width)} loading="lazy" decoding="async" />
+              <div class="carte-chantier__corps">
+                <p class="carte-chantier__infos">{r.commune} · {r.mois}</p>
+                <h3><a href={r.url} class="carte-chantier__lien">{r.h1}</a></h3>
+                <p>{r.carte}</p>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+      {lienTout && (
+        <p class="realisations-bloc__tout"><a href="/realisations/" class="btn btn--bleu">Toutes mes réalisations <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></p>
+      )}
+    </div>
+  </section>
+)}
+
+<style>
+  .realisations-bloc__intro { max-width: 70ch; margin: 0.6rem 0 0; color: var(--gris-700); }
+  .grille-chantiers {
+    list-style: none; padding: 0; margin: 2rem 0 0;
+    display: grid; gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  }
+  @media (min-width: 1100px) { .grille-chantiers { grid-template-columns: repeat(3, 1fr); } }
+  .carte-chantier { position: relative; display: flex; flex-direction: column; }
+  .carte-chantier img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+  .carte-chantier__corps { padding: 1.2rem 1.3rem 1.4rem; display: flex; flex-direction: column; gap: 0.45rem; }
+  .carte-chantier__infos { margin: 0; font-size: 0.88rem; font-weight: 600; color: var(--gris-500); }
+  .carte-chantier h3 { margin: 0; font-size: 1.15rem; }
+  .carte-chantier__lien { color: var(--bleu); text-decoration: none; }
+  .carte-chantier__lien::after { content: ""; position: absolute; inset: 0; border-radius: var(--rayon); }
+  .carte-chantier:hover .carte-chantier__lien, .carte-chantier__lien:focus-visible { text-decoration: underline; }
+  .carte-chantier p:last-child { margin: 0; color: var(--gris-700); font-size: 0.95rem; }
+  .realisations-bloc__tout { margin: 2rem 0 0; text-align: center; }
+</style>

@@ -1,4 +1,299 @@
 ---
-import PageVille from '../components/PageVille.astro';
+// Page mère du cocon « couvreur à Étréchy » (bureau de l'artisan).
+// Page dédiée (et non le gabarit PageVille) : contenu, photos et maillage propres à Étréchy.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FilAriane from '../components/FilAriane.astro';
+import CartesRealisations from '../components/CartesRealisations.astro';
+import contenu from '../data/villes-contenu.json';
+import villes from '../data/villes.json';
+import distances from '../data/villes-distance-etrechy.json';
+
+const d = contenu['couvreur-etrechy'];
+const title = 'Couvreur à Étréchy (91580) – Devis gratuit - M. Robert';
+const description = "✓ Entreprise de couverture à Étréchy : réparation de fuite, démoussage et rénovation de toiture. Robert Daniel, tél. 06 83 96 15 18 – devis gratuit.";
+const voisines = villes.filter((v) => v.slug !== 'couvreur-etrechy' && distances[v.slug] <= 5)
+  .sort((a, b) => distances[a.slug] - distances[b.slug]);
+
+const prestations = [
+  { href: '/reparation-toiture/', titre: 'Réparation de toiture à Étréchy', img: '/images/realisations/refection-faitage-etrechy/refection-faitage-etrechy-03-800w.webp', w: 600, h: 800,
+    alt: "Faîtage en cours de réfection sur une toiture d'Étréchy",
+    texte: "Tuile cassée ou déplacée, faîtage descellé, solin fissuré, fuite autour d'une cheminée : je trouve l'origine de l'infiltration et je la répare pour de bon." },
+  { href: '/renovation-toiture/', titre: 'Rénovation et remplacement de toiture', img: '/images/realisations/renovation-toiture-etrechy/renovation-toiture-etrechy-05-800w.webp', w: 800, h: 600,
+    alt: "Pose de tuiles neuves lors d'une rénovation de toiture à Étréchy",
+    texte: "Quand la couverture arrive en fin de vie, je dépose l'ancienne toiture, je contrôle la charpente, puis je pose écran sous-toiture, liteaux et tuiles neuves." },
+  { href: '/nettoyage-toiture/', titre: 'Démoussage et nettoyage de toiture', img: '/images/etrechy/demoussage-toiture-etrechy.webp', w: 600, h: 800,
+    alt: "Traitement d'une toiture par pulvérisation après démoussage à Étréchy",
+    texte: "Mousses et lichens abîment les tuiles et bouchent les gouttières. Je nettoie la couverture, je dégage les gouttières et j'applique un traitement adapté." },
+];
+
+const extraSchemas = [{
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': 'https://robert-daniel-couverture.fr/couvreur-etrechy/#service',
+  name: 'Couvreur à Étréchy',
+  serviceType: 'Travaux de couverture',
+  url: 'https://robert-daniel-couverture.fr/couvreur-etrechy/',
+  description: "Réparation, rénovation, démoussage de toiture, zinguerie et pose de fenêtres de toit à Étréchy (91580) par Robert Daniel, artisan couvreur installé 42 Grande Rue.",
+  provider: { '@id': 'https://robert-daniel-couverture.fr/#localbusiness' },
+  areaServed: {
+    '@type': 'City', name: 'Étréchy',
+    sameAs: 'https://fr.wikipedia.org/wiki/%C3%89tr%C3%A9chy_(Essonne)',
+    address: { '@type': 'PostalAddress', postalCode: '91580', addressLocality: 'Étréchy', addressCountry: 'FR' },
+    containedInPlace: { '@type': 'AdministrativeArea', name: 'Essonne' },
+  },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog', name: 'Travaux de couverture à Étréchy',
+    itemListElement: ['Réparation de toiture', 'Rénovation et remplacement de toiture', 'Démoussage et nettoyage de toiture', 'Zinguerie et gouttières', 'Pose de fenêtres de toit', 'Isolation de toiture', 'Charpente', 'Ramonage de cheminée']
+      .map((n) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: n, areaServed: 'Étréchy' } })),
+  },
+}];
+const tel = 'M16 1H8C6.34 1 5 2.34 5 4v16c0 1.66 1.34 3 3 3h8c1.66 0 3-1.34 3-3V4c0-1.66-1.34-3-3-3zm-2 20h-4v-1h4v1zm3.25-3H6.75V4h10.5v14z';
 ---
-<PageVille slug="couvreur-etrechy" />
+<BaseLayout title={title} description={description} ogImage="/images/realisations/renovation-toiture-etrechy/renovation-toiture-etrechy-08.webp" extraSchemas={extraSchemas}>
+  <script is:inline>document.documentElement.classList.add('anim');</script>
+
+  <section class="hero">
+    <div class="conteneur">
+      <FilAriane items={[{ label: 'Accueil', href: '/' }, { label: 'Couvreur à Étréchy' }]} />
+    </div>
+    <div class="conteneur hero__grille">
+      <div class="hero__texte">
+        <h1 class="h1-long">Artisan couvreur à Étréchy<span class="h1__nom">Robert Daniel</span></h1>
+        <div class="artisan">
+          <img src="/images/robert-daniel-artisan-couvreur-portrait.webp" alt="Robert Daniel, artisan couvreur à Étréchy" width="600" height="600" decoding="async" />
+          <p><strong>Bureau 42 Grande Rue</strong><br />Étréchy (91580)</p>
+        </div>
+        <p class="hero__accroche">
+          Une fuite, des tuiles qui ont glissé, une toiture à nettoyer ou à refaire ?
+          <strong>Robert Daniel est votre spécialiste de la toiture à Étréchy</strong>, en tuile plate,
+          tuile mécanique, ardoise ou zinc.
+        </p>
+        <ul>
+          <li><strong>Garantie décennale</strong> sur tous mes travaux de couverture.</li>
+          <li><strong>Devis gratuit</strong>, détaillé et sans engagement.</li>
+          <li><strong>Réparation en urgence</strong> à Étréchy et dans les communes voisines.</li>
+        </ul>
+        <div class="hero__actions">
+          <a href="tel:0683961518" class="btn btn--cuivre">
+            <svg class="icone-tel" viewBox="0 0 24 24" aria-hidden="true"><g class="icone-tel__corps"><path fill="currentColor" d="M14 1H6C4.9 1 4 1.9 4 3v18c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-4 21c-.8 0-1.5-.7-1.5-1.5S9.2 19 10 19s1.5.7 1.5 1.5S10.8 22 10 22zm4-4H6V4h8v14z"/></g><path class="icone-tel__onde" d="M18.5 8.5a4 4 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="icone-tel__onde icone-tel__onde--2" d="M21 6a7.5 7.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            06 83 96 15 18
+          </a>
+          <a href="/devis-gratuit/" class="btn btn--bleu">Devis gratuit <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        </div>
+      </div>
+      <div class="hero__media">
+        <img class="hero__photo" src="/images/realisations/renovation-toiture-etrechy/renovation-toiture-etrechy-08.webp" srcset="/images/realisations/renovation-toiture-etrechy/renovation-toiture-etrechy-08-800w.webp 800w, /images/realisations/renovation-toiture-etrechy/renovation-toiture-etrechy-08.webp 1600w" sizes="(min-width: 900px) 50vw, 100vw" alt="Pavillon d'Étréchy avec sa toiture refaite à neuf par Robert Daniel" width="1600" height="1200" fetchpriority="high" decoding="async" />
+        <div class="carte hero__garantie">
+          <p><strong>Garantie Décennale</strong><br />Pour tous travaux de couverture</p>
+          <img src="/images/logo-allianz.png" alt="Garantie décennale assurée par Allianz" width="92" height="58" loading="lazy" decoding="async" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--gris">
+    <div class="conteneur">
+      <h2 class="apparition">Mes prestations de couvreur à Étréchy</h2>
+      <p class="intro apparition">
+        À Étréchy, les demandes tournent presque toujours autour de trois besoins : arrêter une fuite, rendre
+        une toiture propre et saine, ou la refaire entièrement. Je connais les couvertures de la commune et les
+        matériaux qui les composent, ce qui me permet de vous proposer la solution adaptée à votre toit, sans
+        travaux inutiles.
+      </p>
+      <ul class="prestations">
+        {prestations.map((p) => (
+          <li class="carte prestation apparition">
+            <img src={p.img} alt={p.alt} width={p.w} height={p.h} loading="lazy" decoding="async" />
+            <div class="prestation__corps">
+              <h3><a href={p.href} class="prestation__lien">{p.titre}</a></h3>
+              <p>{p.texte}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+      <p class="autres-prestations apparition">
+        Je réalise aussi la <a href="/zinguerie/">zinguerie</a> (gouttières, descentes, noues et solins), la
+        <a href="/fenetre-de-toit-velux/">pose de fenêtres de toit</a>, l'<a href="/isolation-toiture/">isolation de la toiture</a>,
+        l'entretien de la <a href="/charpente/">charpente</a> et le <a href="/ramonage-cheminee/">ramonage des cheminées</a>.
+      </p>
+    </div>
+  </section>
+
+  <CartesRealisations
+    slugs={['renovation-toiture-etrechy', 'fenetre-de-toit-etrechy', 'refection-faitage-etrechy']}
+    titre="Mes derniers chantiers à Étréchy"
+    intro="Ces chantiers ont été réalisés dans la commune ces derniers mois. Les photos montrent toutes les étapes, de la dépose à la finition."
+    lienTout={false}
+  />
+
+  <section class="section section--gris">
+    <div class="conteneur">
+      <h2 class="apparition">{d.avisTitre}</h2>
+      <div class="avis-grille">
+        {d.avis.map((a) => (
+          <figure class="carte avis-carte apparition">
+            <div class="avis-carte__etoiles" aria-label="Note : 5 sur 5">
+              {Array(5).fill(0).map(() => (
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              ))}
+            </div>
+            <blockquote>{a.texte}</blockquote>
+            <figcaption>
+              <span class="avis-carte__nom">{a.nom}</span>
+              <span class="avis-carte__source">Avis Google</span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="conteneur editorial">
+      <div class="prose apparition">
+        <h2>Faites appel à une entreprise de couverture pour l'entretien de votre toiture</h2>
+        <p>
+          Mon bureau est installé au 42 Grande Rue, au centre d'Étréchy. Les habitants peuvent y passer pour me
+          montrer la photo d'une tuile qui a glissé, me décrire une fuite ou préparer la rénovation de leur toit.
+          Je travaille dans la commune toute l'année : je connais les rues, les accès et les toitures, et je reste
+          joignable une fois le chantier terminé.
+        </p>
+        <p>
+          Une toiture bien entretenue vieillit lentement. Un <a href="/nettoyage-toiture/">démoussage suivi d'un traitement de la couverture</a>
+          protège les tuiles, un faîtage repris à temps évite les infiltrations, et des
+          <a href="/zinguerie/descentes-eaux-pluviales/">gouttières et descentes dégagées</a> conduisent l'eau loin des murs.
+          Pour connaître l'état de votre toit sans attendre une fuite, je propose aussi une
+          <a href="/inspection-toiture-drone/">inspection de la toiture par drone</a> : vous voyez les photos de votre couverture, pan par pan.
+        </p>
+        <p>
+          Quand la couverture arrive en fin de vie, une réparation de plus ne règle rien. Je vous le dis franchement
+          et je vous propose alors une réfection complète : dépose, contrôle de la charpente, écran sous-toiture,
+          liteaux et tuiles neuves. C'est aussi le bon moment pour améliorer l'isolation par l'extérieur ou ajouter une
+          fenêtre de toit qui éclaire les combles. Mes devis sont gratuits, détaillés poste par poste, et tous mes
+          travaux sont couverts par la garantie décennale.
+        </p>
+        <p>
+          Avant de modifier l'aspect de votre toiture, renseignez-vous auprès du service urbanisme de la mairie.
+          Étréchy est couverte par un plan local d'urbanisme (PLU), dont la dernière version date de 2026. Le centre-ville
+          est classé site patrimonial remarquable et la commune fait partie du site inscrit de la vallée de la Juine :
+          pour un changement de matériau ou de teinte de tuiles, la pose d'une fenêtre de toit ou la réfection d'une
+          couverture visible depuis la rue, une déclaration préalable de travaux est en général nécessaire, souvent avec
+          l'avis de l'architecte des Bâtiments de France. Je vous fournis les références des matériaux et les éléments
+          techniques utiles au dossier.
+        </p>
+      </div>
+      <aside class="mairie apparition" aria-label="Mairie d'Étréchy">
+        <p class="mairie__titre">Mairie d'Étréchy</p>
+        <p>Place Charles-de-Gaulle<br />91580 Étréchy</p>
+        <p>
+          <svg class="icone" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.36 11.36 0 003.58.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1.02l-2.2 2.2z"/></svg>
+          01 60 80 67 57
+        </p>
+        <p><a href="https://www.ville-etrechy.fr/" target="_blank" rel="noopener">Site officiel de la mairie</a></p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section--gris">
+    <div class="conteneur duo">
+      <img class="apparition" src="/images/robert-daniel-artisan-couvreur-etrechy.jpg" alt="Robert Daniel devant son bureau, 42 Grande Rue à Étréchy" width="900" height="1200" loading="lazy" decoding="async" style="max-height:560px;object-position:center 40%;" />
+      <div class="prose apparition">
+        <h2>Robert Daniel, votre artisan au 42 Grande Rue</h2>
+        <p>
+          J'ai appris le métier auprès de mon père, sur les toits de la région, avant de créer ma propre
+          entreprise de couverture à Étréchy. Mon bureau vous accueille du lundi au samedi, de 8 h à 20 h : vous y
+          trouvez un conseil clair sur votre toiture, avant même le devis.
+        </p>
+        <p><strong>42 Grande Rue, 91580 Étréchy</strong></p>
+        <p><a href="https://maps.app.goo.gl/rYpVbKYbBB64Uk2y6" target="_blank" rel="noopener" class="btn btn--bleu">Voir l'itinéraire <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--bleu cta-ville">
+    <div class="conteneur cta-ville__grille apparition">
+      <img src="/images/robert-daniel-artisan-couvreur-portrait.webp" alt="Robert Daniel, artisan couvreur à Étréchy" width="600" height="600" loading="lazy" decoding="async" />
+      <div>
+        <h2>Contactez votre couvreur à Étréchy</h2>
+        <p>
+          Une fuite à réparer, une couverture à nettoyer ou à remplacer : appelez-moi ou passez au bureau de la
+          Grande Rue. Le devis est gratuit et sans engagement.
+        </p>
+        <div class="hero__actions">
+          <a href="tel:0683961518" class="btn btn--cuivre">
+            <svg class="icone-tel" viewBox="0 0 24 24" aria-hidden="true"><g class="icone-tel__corps"><path fill="currentColor" d="M14 1H6C4.9 1 4 1.9 4 3v18c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-4 21c-.8 0-1.5-.7-1.5-1.5S9.2 19 10 19s1.5.7 1.5 1.5S10.8 22 10 22zm4-4H6V4h8v14z"/></g><path class="icone-tel__onde" d="M18.5 8.5a4 4 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="icone-tel__onde icone-tel__onde--2" d="M21 6a7.5 7.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            06 83 96 15 18
+          </a>
+          <a href="/devis-gratuit/" class="btn btn--blanc">Devis gratuit <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="conteneur">
+      <h2>J'interviens aussi autour d'Étréchy</h2>
+      <p class="intro">Depuis mon bureau, j'interviens dans les communes voisines de la vallée de la Juine :</p>
+      <ul class="nuage-villes">
+        {voisines.map((v) => <li><a href={`/${v.slug}/`}>{v.nom}</a></li>)}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const els = document.querySelectorAll('.apparition');
+  if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const io = new IntersectionObserver((entries) => entries.forEach((en) => {
+      if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); }
+    }), { rootMargin: '0px 0px -8% 0px' });
+    els.forEach((el) => io.observe(el));
+  } else els.forEach((el) => el.classList.add('visible'));
+</script>
+
+<style>
+  :global(html.anim) .apparition { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+  :global(html.anim) .apparition.visible { opacity: 1; transform: none; }
+
+  .h1__nom { display: block; margin-top: 0.15em; color: var(--cuivre); font-size: 0.82em; }
+  .artisan { display: flex; align-items: center; gap: 0.9rem; margin: 0.4rem 0 1rem; }
+  .artisan img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; box-shadow: var(--ombre); }
+  .artisan p { margin: 0; line-height: 1.35; color: var(--gris-700); }
+  .artisan strong { color: var(--cuivre); font-size: 1.05rem; }
+  @media (max-width: 979px) { .hero__texte > .artisan { order: 3; } }
+
+  .intro { max-width: 72ch; margin: 0.6rem 0 0; color: var(--gris-700); }
+  .prestations { list-style: none; padding: 0; margin: 2rem 0 0; display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+  @media (min-width: 1000px) { .prestations { grid-template-columns: repeat(3, 1fr); } }
+  .prestation { position: relative; display: flex; flex-direction: column; }
+  .prestation img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+  .prestation__corps { padding: 1.2rem 1.3rem 1.4rem; display: grid; gap: 0.5rem; }
+  .prestation h3 { margin: 0; font-size: 1.15rem; }
+  .prestation__lien { color: var(--bleu); text-decoration: none; }
+  .prestation__lien::after { content: ""; position: absolute; inset: 0; border-radius: var(--rayon); }
+  .prestation:hover .prestation__lien { text-decoration: underline; }
+  .prestation p { margin: 0; color: var(--gris-700); font-size: 0.97rem; }
+  .autres-prestations { max-width: 72ch; margin: 1.8rem 0 0; color: var(--gris-700); }
+
+  .avis-grille { display: grid; gap: 1.5rem; grid-template-columns: 1fr; margin-top: 2rem; }
+  @media (min-width: 720px) { .avis-grille { grid-template-columns: repeat(3, 1fr); } }
+  .avis-carte { display: flex; flex-direction: column; gap: 0.8rem; padding: 1.6rem; background: var(--blanc); margin: 0; }
+  .avis-carte:hover { transform: none; }
+  .avis-carte__etoiles { display: inline-flex; gap: 2px; }
+  .avis-carte__etoiles svg { width: 1.1rem; height: 1.1rem; fill: #fbbc04; }
+  .avis-carte blockquote { margin: 0; font-size: 1rem; line-height: 1.6; color: var(--gris-700); flex: 1; }
+  .avis-carte__nom { display: block; font-weight: 700; color: var(--bleu); }
+  .avis-carte__source { display: block; font-size: 0.85rem; color: var(--gris-500); }
+
+  .editorial { display: grid; gap: 2.5rem; align-items: start; }
+  @media (min-width: 900px) { .editorial { grid-template-columns: minmax(0, 1fr) 300px; gap: 4rem; } }
+  .editorial .prose h2 { margin-top: 0; }
+  .mairie { background: var(--gris-50); border: 1px solid var(--gris-200); border-radius: var(--rayon); padding: 1.5rem 1.6rem; }
+  .mairie p { margin: 0.4rem 0; color: var(--gris-700); }
+  .mairie__titre { font-family: var(--font-titres); font-weight: 700; color: var(--bleu) !important; font-size: 1.1rem; }
+
+  .cta-ville__grille { display: grid; gap: 2rem; align-items: center; }
+  .cta-ville__grille img { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; justify-self: center; border: 4px solid rgba(255,255,255,.9); }
+  .cta-ville p { margin: 0.8rem 0 1.4rem; max-width: 60ch; }
+  @media (min-width: 760px) { .cta-ville__grille { grid-template-columns: 220px 1fr; } .cta-ville__grille img { width: 220px; height: 220px; } }
+</style>

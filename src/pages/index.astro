@@ -1,211 +1,578 @@
 ---
+// ════════════════════════════════════════════════════════════════════
+// PAGE D'ACCUEIL (refonte oct. 2026, brief Notion « rédaction de la nouvelle
+// page Home »). Design inspiré de entrepot-du-matelas.fr, adapté à la charte
+// Robert Daniel. Accueil centré sur l'Essonne uniquement (« dans l'Essonne »,
+// jamais « en Essonne ») pour ne plus concurrencer /couvreur-etrechy/.
+// Ancienne version archivée dans _archives/index-avant-refonte-2026-10-12.astro
+// ════════════════════════════════════════════════════════════════════
 import BaseLayout from '../layouts/BaseLayout.astro';
-import CtaDevis from '../components/CtaDevis.astro';
-import Temoignages from '../components/Temoignages.astro';
-import services from '../data/services.json';
+import CartesRealisations from '../components/CartesRealisations.astro';
 import villes from '../data/villes.json';
 
-const title = "Couvreur dans l'Essonne (91) - Robert Daniel Couverture - Étréchy";
-const description = "Robert Daniel Couverture, artisan couvreur dans l'Essonne (91). Renovation, reparation, nettoyage de toiture, charpente, zinguerie à Étréchy et alentours. Devis gratuit.";
+const title = "Robert Daniel Couverture – Couvreur 91";
+const description = "✓ Entreprise de couverture artisanale dans l'Essonne : Robert Daniel Couverture, 15 années d'expérience, devis gratuit, garantie décennale. 06 83 96 15 18";
+
+const savoirFaire = [
+  {
+    titre: 'Tous travaux de couverture',
+    img: '/images/services/renovation-toiture.jpg',
+    alt: "Rénovation complète d'une toiture en tuiles sur une maison de l'Essonne",
+    html: `Rénovation complète de toiture, pose de toiture neuve, réfection de toiture : j'interviens sur tous les types de toitures, en tuiles, en ardoises ou en zinc. Vous souhaitez refaire votre toiture dans l'Essonne ? Je suis le spécialiste de la <a href="/renovation-toiture/">rénovation de toiture</a> dans l'Essonne.`,
+  },
+  {
+    titre: 'Démoussage et nettoyage de toiture',
+    img: '/images/services/nettoyage-toiture.jpg',
+    alt: "Démoussage professionnel d'une toiture en ardoise dans l'Essonne",
+    html: `Votre toiture est envahie par les mousses, ou tout simplement sale ? Je suis spécialiste du démoussage professionnel : mes techniques nettoient votre toit sans jamais l'abîmer, et mes traitements font disparaître les végétaux en les empêchant de revenir. Confiez le <a href="/nettoyage-toiture/">nettoyage de toiture</a> à un artisan couvreur.`,
+  },
+  {
+    titre: 'Réparation de toiture',
+    img: '/images/services/reparation-toiture.jpg',
+    alt: "Réparation d'une toiture en tuiles mécaniques abîmée dans l'Essonne",
+    html: `Une fuite provient de votre toiture, ou votre toit est abîmé ? J'interviens rapidement chez vous : la <a href="/reparation-toiture/#recherche-de-fuite">recherche de fuite</a> identifie l'origine des infiltrations, puis j'effectue la <a href="/reparation-toiture/">réparation de toiture</a>. Vous retrouvez une toiture en bon état, résistante face aux intempéries.`,
+  },
+  {
+    titre: 'Pose de fenêtres de toit Velux',
+    img: '/images/fenetre-de-toit-velux-essonne-2.jpg',
+    alt: "Fenêtre de toit Velux posée sur une toiture en tuiles plates dans l'Essonne",
+    html: `Améliorez votre confort grâce à l'installation de fenêtres de toit de type Velux : elles font circuler l'air et apportent la lumière naturelle dans les combles que vous souhaitez aménager. La <a href="/fenetre-de-toit-velux/">pose de Velux</a> doit être réalisée par un professionnel pour garantir l'étanchéité de votre toiture.`,
+  },
+  {
+    titre: 'Pose et remplacement de gouttières',
+    img: '/images/zinguerie-gouttiere-descente-zinc-essonne.jpg',
+    alt: "Gouttière et descente d'eaux pluviales posées sur une maison de l'Essonne",
+    html: `Gouttières, noues et chéneaux évacuent les eaux de pluie et protègent les façades et les fondations de votre maison. J'assure la <a href="/zinguerie/">pose et le remplacement de gouttières</a> en zinc, en aluminium ou en PVC, et je vous conseille celle qui respecte l'esthétique de votre habitation.`,
+  },
+  {
+    titre: 'Isolation de toiture',
+    img: '/images/services/isolation-toiture.jpg',
+    alt: "Pose d'un isolant et d'un écran sous toiture sur une maison de l'Essonne",
+    html: `Votre toit joue un rôle central dans les économies d'énergie : bien isolé, il permet d'économiser jusqu'à 30 % d'énergie. J'installe des isolants performants et des écrans sous toiture, et je réalise l'<a href="/isolation-toiture/">isolation de toiture</a> par sarking ou par isolation soufflée, selon la configuration de votre toit.`,
+  },
+];
+
+const avis = [
+  { nom: 'Caroline David', texte: "Un artisan très professionnel, aimable, qui tient ses engagements. Je recommande fortement ses services. Merci." },
+  { nom: 'Michel Curan', texte: "Travaux plus rapides que prévu, résultat impeccable, communication au top. Il prend le temps d'expliquer, équipe sympa. Je recommande." },
+  { nom: 'Mathieu Ponson', texte: "Mr Robert a su parfaitement répondre à mes besoins dans les délais. Chantier impeccable, belle expérience client. Je recommande les yeux fermés." },
+];
+const lienGoogle = 'https://maps.app.goo.gl/rYpVbKYbBB64Uk2y6';
 ---
-<BaseLayout title={title} description={description}>
-  <!-- Hero -->
-  <section class="hero">
-    <div class="conteneur hero__grille">
-      <div class="hero__texte">
-        <div class="hero__eyebrow">
-          <p class="hero__badge"><span class="hero__point" aria-hidden="true"></span> Artisan couvreur depuis plus de 15 ans</p>
-        </div>
-        <h1>Votre couvreur dans l'Essonne (91)</h1>
-        <p class="hero__marque">Robert Daniel</p>
-        <p class="hero__accroche">
-          Vous êtes à la recherche d'une <strong>entreprise de couverture dans l'Essonne (91)</strong> ?
-          Je réalise tous les travaux pour votre toiture : création d'une couverture neuve,
-          rénovation d'une toiture ancienne, réparation et recherche de fuite. J'interviens sur les toits,
-          les charpentes et la zinguerie, partout dans le département de l'Essonne.
-        </p>
-        <ul>
-          <li><strong>Spécialiste de l'entretien de toiture</strong> : nettoyage et démoussage professionnel.</li>
-          <li><strong>Recherche de fuite</strong> et infiltration.</li>
-          <li><strong>Devis gratuit</strong> et sans engagement, déplacement offert.</li>
+<BaseLayout title={title} description={description} ogImage="/images/hero-renovation-toiture-etrechy.jpg">
+
+  <!-- ══ HERO ══ -->
+  <section class="dr-hero">
+    <div class="conteneur dr-hero__grille">
+      <h1 class="dr-hero__titre">
+        <span class="dr-ligne">Couvreur 91 – Essonne</span>
+        <span class="dr-ligne dr-hero__nom">Robert Daniel Couverture</span>
+      </h1>
+
+      <figure class="dr-hero__media">
+        <img class="dr-media__poster" src="/images/hero-renovation-toiture-etrechy.webp" alt="Rénovation d'une toiture dans l'Essonne par Robert Daniel Couverture" width="960" height="540" fetchpriority="high" decoding="async" />
+        <video class="dr-media__video" muted loop playsinline preload="none" aria-hidden="true" data-src="/videos/renovation-toiture-etrechy-91-480p.mp4" data-start="load"></video>
+      </figure>
+
+      <div class="dr-hero__texte">
+        <p class="dr-hero__lead">Un professionnel des <strong>travaux de couverture dans l'Essonne</strong> :</p>
+        <ul class="dr-coches">
+          <li>15 années d'expérience</li>
+          <li>Devis gratuit et sans engagement</li>
+          <li>Garantie décennale</li>
         </ul>
-        <div class="hero__actions">
-          <a href="tel:0683961518" class="btn btn--cuivre">
-            <svg class="icone" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 1H8C6.34 1 5 2.34 5 4v16c0 1.66 1.34 3 3 3h8c1.66 0 3-1.34 3-3V4c0-1.66-1.34-3-3-3zm-2 20h-4v-1h4v1zm3.25-3H6.75V4h10.5v14z"/></svg>
+        <div class="dr-actions">
+          <a href="/devis-gratuit/" class="dr-btn dr-btn--rouge">
+            Devis gratuit
+            <span class="dr-btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+          <a href="tel:0683961518" class="dr-btn dr-btn--blanc">
+            <svg class="dr-tel" viewBox="0 0 24 24" aria-hidden="true">
+              <g class="dr-tel__corps"><path fill="currentColor" d="M14 1H6C4.9 1 4 1.9 4 3v18c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-4 21c-.8 0-1.5-.7-1.5-1.5S9.2 19 10 19s1.5.7 1.5 1.5S10.8 22 10 22zm4-4H6V4h8v14z"/></g>
+              <path class="dr-tel__onde" d="M18.5 8.5a4 4 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path class="dr-tel__onde dr-tel__onde--2" d="M21 6a7.5 7.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
             06 83 96 15 18
           </a>
-          <a href="/devis-gratuit/" class="btn btn--bleu">Devis Gratuit &rarr;</a>
-        </div>
-      </div>
-      <div class="hero__media">
-        <video
-          class="hero__photo hero__video"
-          autoplay
-          muted
-          loop
-          playsinline
-          preload="metadata"
-          poster="/images/hero-renovation-toiture-etrechy.jpg"
-          aria-label="Rénovation de toiture à Étréchy par Robert Daniel Couverture"
-        >
-          <source src="/videos/renovation-toiture-etrechy-91.mp4" type="video/mp4" />
-        </video>
-        <div class="carte hero__garantie hero__garantie--accueil">
-          <p><strong>Robert Daniel</strong>, couvreur zingueur dans l'Essonne : tous matériaux de couverture — tuiles plates, tuiles mécaniques, ardoises, zinc, bac acier et shingle.</p>
-          <img class="hero__allianz" src="/images/logo-allianz.png" alt="Garantie décennale assurée par Allianz" width="150" height="94" loading="lazy" decoding="async" />
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Chantier reel : triptyque etapes -->
-  <section class="section chantier">
-    <div class="conteneur">
-      <div class="section__entete">
-        <span class="surtitre">Une réalisation récente</span>
-        <h2>Un chantier de couverture à Étréchy</h2>
-        <p>De la dépose de l'ancienne toiture à la pose de la nouvelle couverture, voici les grandes étapes d'un de mes chantiers.</p>
-      </div>
-      <div class="chantier__triptyque">
-        <figure class="chantier__etape">
-          <img src="/images/chantier-renovation-toiture-etrechy-1.jpg" alt="Dépose de l'ancienne toiture et pose des liteaux sur une maison à Étréchy" width="900" height="675" loading="lazy" decoding="async" />
-          <figcaption><span class="chantier__num">1</span> Dépose &amp; liteaunage</figcaption>
-        </figure>
-        <figure class="chantier__etape">
-          <img src="/images/chantier-renovation-toiture-etrechy-2.jpg" alt="Pose de la nouvelle couverture en tuiles sur le toit" width="900" height="1200" loading="lazy" decoding="async" />
-          <figcaption><span class="chantier__num">2</span> Pose de la nouvelle couverture</figcaption>
-        </figure>
-        <figure class="chantier__etape">
-          <img src="/images/chantier-renovation-toiture-etrechy-3.jpg" alt="La maison rénovée vue de la rue avec le panneau Robert Daniel Couverture" width="900" height="675" loading="lazy" decoding="async" />
-          <figcaption><span class="chantier__num">3</span> Le chantier, vu de la rue</figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- Temoignages -->
-  <Temoignages />
-
-  <!-- Chiffres cles (bande ligne de toit) -->
-  <div class="chiffres">
-    <ul class="conteneur chiffres__liste">
-      <li class="chiffres__item">
-        <span class="chiffres__valeur">15<span class="chiffres__plus">+</span></span>
-        <span class="chiffres__libelle">ans d'expérience</span>
-      </li>
-      <li class="chiffres__item">
-        <span class="chiffres__valeur">5,0</span>
-        <span class="chiffres__etoiles" aria-label="5 étoiles sur 5">★★★★★</span>
-        <span class="chiffres__libelle">69 avis Google</span>
-      </li>
-      <li class="chiffres__item">
-        <span class="chiffres__garantie">Garantie décennale</span>
-        <span class="chiffres__libelle">sur tous mes travaux</span>
-      </li>
-      <li class="chiffres__item">
-        <span class="chiffres__valeur">24h</span>
-        <span class="chiffres__libelle">intervention rapide</span>
-      </li>
+  <!-- ══ BANDEAU MATÉRIAUX (rouge) ══ -->
+  <div class="dr-bande">
+    <ul class="conteneur dr-bande__liste">
+      <li>Tuiles plates et mécaniques</li>
+      <li>Ardoises</li>
+      <li>Zinc et zinguerie</li>
+      <li>Bac acier et shingle</li>
     </ul>
   </div>
 
-  <!-- Verification de toiture par drone -->
-  <section class="section section--gris">
-    <div class="conteneur duo">
-      <img src="/images/robert-daniel-drone-verification-etrechy.jpg" alt="Robert Daniel avec son drone devant son showroom, pour la vérification de toiture à Étréchy, dans l'Essonne" width="1000" height="880" loading="lazy" decoding="async" />
-      <div class="prose">
-        <span class="surtitre">Vérification de toiture gratuite</span>
-        <h2>Vérification de toiture par drone piloté</h2>
-        <p>Avant d'engager le moindre travaux, j'inspecte votre toiture par drone piloté : un diagnostic précis, sans monter sur le toit ni louer de nacelle. Vous obtenez des photos et vidéos haute définition de l'état réel de votre couverture.</p>
-        <p>Une méthode rapide, sûre et sans engagement, partout dans l'Essonne (91).</p>
-        <a href="/inspection-toiture-drone/" class="btn btn--bleu">Demander une vérification &rarr;</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Services -->
-  <section class="section">
+  <!-- ══ SAVOIR-FAIRE ══ -->
+  <section class="dr-section">
     <div class="conteneur">
-      <span class="surtitre">Mes prestations</span>
-      <h2>Mes services de couverture dans l'Essonne</h2>
-      <div class="grille-services">
-        {services.filter((s) => !['ramonage-cheminee', 'inspection-toiture-drone', 'zinguerie'].includes(s.slug)).map((s) => (
-          <a href={s.slug === 'zinguerie' ? '/zinguerie/' : `/${s.slug}/`} class="carte carte-service">
-            <img class="carte-service__img" src={s.image} alt={s.alt} width="700" height="438" loading="lazy" decoding="async" />
-            <div class="carte-service__corps">
-              <h3>{s.label}</h3>
-              <p>{s.accroche}</p>
-              <span class="carte-service__lien">{s.lien} &rarr;</span>
+      <h2 class="dr-h2 dr-centre" data-anim="up">Mon savoir-faire de couvreur zingueur dans l'Essonne</h2>
+      <div class="dr-cartes">
+        {savoirFaire.map((s) => (
+          <article class="dr-carte" data-anim="up">
+            <img src={s.img} alt={s.alt} width="700" height="438" loading="lazy" decoding="async" />
+            <div class="dr-carte__corps">
+              <h3>{s.titre}</h3>
+              <p set:html={s.html} />
             </div>
-          </a>
+          </article>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Duo editorial : artisan -->
-  <section class="section section--bleute">
-    <div class="conteneur duo">
-      <img src="/images/vehicules-robert-daniel-couverture-essonne.jpg" alt="Les véhicules de Robert Daniel Couverture, artisan couvreur à Étréchy dans l'Essonne" width="900" height="600" loading="lazy" decoding="async" />
-      <div class="prose">
-        <span class="surtitre">Artisan couvreur</span>
-        <h2>Votre artisan couvreur de proximité dans l'Essonne</h2>
-        <p>Installé à Étréchy, au cœur de l'Essonne, je mets plus de 15 ans d'expérience au service des particuliers et des professionnels du département. De la simple réparation au remplacement complet de toiture, je traite chaque chantier avec le même soin.</p>
-        <p>Couverture, zinguerie, charpente, isolation : vous avez un seul interlocuteur, moi. Je prends le temps de vous expliquer et je tiens mes engagements.</p>
-        <a href="/a-propos/" class="btn btn--bleu">En savoir plus &rarr;</a>
+  <!-- ══ VÉRIFICATION DE TOITURE PAR DRONE ══ -->
+  <section class="dr-section dr-section--drone">
+    <div class="conteneur">
+      <article class="dr-drone" data-anim="up">
+        <figure class="dr-drone__media">
+          <img class="dr-media__poster" src="/images/inspection-toiture-drone-poster.webp" alt="Vue par drone d'une toiture dans l'Essonne pendant une vérification" width="960" height="540" loading="lazy" decoding="async" />
+          <video class="dr-media__video" muted loop playsinline preload="none" aria-hidden="true" data-src="/videos/inspection-toiture-drone-etrechy-91-480p.mp4" data-start="visible"></video>
+        </figure>
+        <div class="dr-drone__corps">
+          <h2>Vérification de toiture par drone dans l'Essonne</h2>
+          <p>Vous souhaitez connaître l'état réel de votre toiture ? Rien de mieux que de la voir. Grâce au drone piloté, vous constatez en temps réel l'état de votre couverture, sans que personne ne monte sur le toit : tuiles, faîtage, solins et gouttières apparaissent à l'écran.</p>
+          <p>Vous voyez ce que je vois, en photos et en vidéos haute définition. La <a href="/inspection-toiture-drone/">vérification de toiture par drone</a> vous permet de savoir précisément si des travaux sont nécessaires, et lesquels.</p>
+          <a href="/devis-gratuit/" class="dr-btn dr-btn--rouge">
+            Faire vérifier ma toiture
+            <span class="dr-btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ══ RAMONAGE ══ -->
+  <section class="dr-section dr-section--ramonage">
+    <div class="conteneur">
+      <article class="dr-ramonage" data-anim="up">
+        <div class="dr-ramonage__corps">
+          <h2>Ramonage de cheminée, poêle et insert</h2>
+          <p>Un conduit encrassé chauffe mal et peut s'enflammer : la suie et le bistre qui s'y déposent augmentent le risque de feu de cheminée et d'intoxication au monoxyde de carbone. Je réalise le <a href="/ramonage-cheminee/">ramonage de cheminée</a> mécaniquement, au hérisson, puis je vous remets l'attestation que votre assureur peut demander. Couvreur, je contrôle en même temps la souche et le solin, là où le conduit traverse votre toiture.</p>
+        </div>
+        <figure class="dr-ramonage__media">
+          <img src="/images/ramonage-cheminee-essonne.jpg" alt="Ramonage mécanique d'un conduit de cheminée depuis le toit dans l'Essonne" width="800" height="837" loading="lazy" decoding="async" />
+        </figure>
+      </article>
+    </div>
+  </section>
+
+  <!-- ══ L'ARTISAN (photos superposées, façon « Notre entreprise ») ══ -->
+  <section class="dr-section dr-section--gris">
+    <div class="conteneur dr-artisan">
+      <div class="dr-artisan__media" data-anim="fade">
+        <img class="dr-artisan__img" src="/images/robert-daniel-drone-verification-etrechy.jpg" alt="Robert Daniel, artisan couvreur, avec son drone d'inspection de toiture dans l'Essonne" width="1000" height="880" loading="lazy" decoding="async" />
+      </div>
+      <div class="dr-artisan__texte" data-anim="up">
+        <h2 class="dr-h2">Votre artisan couvreur dans l'Essonne – Robert Daniel</h2>
+        <p>Depuis plus de 15 ans, je réalise les travaux de couverture des particuliers de l'Essonne : couverture, zinguerie, charpente et isolation. Tuiles plates, tuiles mécaniques, ardoises, zinc ou bac acier : je connais chaque matériau et la façon de le mettre en œuvre.</p>
+        <p>Mon bureau est installé au 42 Grande Rue à Étréchy, et j'interviens dans toutes les communes du département.</p>
+        <div class="dr-garantie">
+          <img src="/images/logo-allianz.png" alt="Allianz" width="96" height="60" loading="lazy" decoding="async" />
+          <p><strong>Garantie décennale</strong> sur tous mes travaux, assurée par Allianz.</p>
+        </div>
+        <a href="/a-propos/" class="dr-btn dr-btn--bleu">
+          En savoir plus
+          <span class="dr-btn__fleche dr-btn__fleche--bleue" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- Duo inverse : pourquoi nous choisir -->
-  <section class="section">
-    <div class="conteneur duo duo--inverse">
-      <img src="/images/toiture-renovee-essonne.jpg" alt="Maison avec toiture en cours de rénovation et panneau Robert Daniel Couverture dans l'Essonne" width="900" height="600" loading="lazy" decoding="async" />
-      <div class="prose">
-        <span class="surtitre">Pourquoi me choisir</span>
-        <h2>Un couvreur dans l'Essonne sur qui compter</h2>
-        <p>Une toiture bien faite se voit pendant des années. Je travaille proprement, dans les délais annoncés, avec des matériaux de qualité et la garantie décennale sur l'ensemble de mes travaux.</p>
-        <ul>
-          <li>Je vous offre le devis et le déplacement dans l'Essonne (91).</li>
-          <li>Je laisse un chantier propre et rangé, du début à la fin.</li>
-          <li>Des conseils honnêtes, des tarifs corrects et 69 avis Google 5/5.</li>
-        </ul>
-        <div class="badge-decennale">
-          <img src="/images/logo-allianz.png" alt="Allianz" width="96" height="60" loading="lazy" decoding="async" />
-          <div class="badge-decennale__texte">
-            <strong>Garantie décennale</strong>
-            <span>Assurée par Allianz</span>
+  <!-- ══ RÉALISATIONS (composant existant) ══ -->
+  <CartesRealisations titre="Mes derniers chantiers dans l'Essonne" slugs={['renovation-toiture-auvers-saint-georges', 'fenetre-de-toit-etrechy', 'entretien-gouttieres-janville-sur-juine']} />
+
+  <!-- ══ AVIS ══ -->
+  <section class="dr-section dr-section--gris">
+    <div class="conteneur">
+      <div class="dr-entete" data-anim="up">
+        <h2 class="dr-h2">Les avis de mes clients dans l'Essonne</h2>
+        <p class="dr-note"><span class="dr-etoiles" aria-hidden="true">★★★★★</span> <strong>5,0 / 5</strong> sur Google</p>
+      </div>
+      <ul class="dr-avis">
+        {avis.map((a) => (
+          <li class="dr-avis__carte" data-anim="up">
+            <span class="dr-etoiles" aria-label="5 étoiles sur 5">★★★★★</span>
+            <blockquote>« {a.texte} »</blockquote>
+            <p class="dr-avis__nom">{a.nom}</p>
+          </li>
+        ))}
+      </ul>
+      <p class="dr-centre"><a href={lienGoogle} class="dr-btn dr-btn--bleu" target="_blank" rel="noopener">Tous les avis Google
+        <span class="dr-btn__fleche dr-btn__fleche--bleue" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a></p>
+    </div>
+  </section>
+
+  <!-- ══ ZONE D'INTERVENTION ══ -->
+  <section class="dr-section dr-section--gris">
+    <div class="conteneur">
+      <h2 class="dr-h2 dr-centre" data-anim="up">Les communes dans lesquelles j'interviens</h2>
+      <ul class="dr-villes" data-anim="up">
+        {villes.map((v) => (<li><a href={`/${v.slug}/`}>{v.nom}</a></li>))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══ CTA FINAL (photo du camion) ══ -->
+  <section class="dr-section dr-section--cta">
+    <div class="conteneur">
+      <div class="dr-cta" data-anim="up">
+        <figure class="dr-cta__media">
+          <img src="/images/vehicules-robert-daniel-couverture-essonne.jpg" alt="Les camions de Robert Daniel Couverture, artisan couvreur dans l'Essonne" width="900" height="600" loading="lazy" decoding="async" />
+        </figure>
+        <div class="dr-cta__corps">
+          <h2>Contactez votre couvreur dans l'Essonne</h2>
+          <p>Le devis est gratuit et sans engagement.</p>
+          <div class="dr-actions">
+            <a href="/devis-gratuit/" class="dr-btn dr-btn--rouge">
+              Devis gratuit
+              <span class="dr-btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            </a>
+            <a href="tel:0683961518" class="dr-btn dr-btn--blanc">
+              <svg class="dr-tel" viewBox="0 0 24 24" aria-hidden="true">
+                <g class="dr-tel__corps"><path fill="currentColor" d="M14 1H6C4.9 1 4 1.9 4 3v18c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-4 21c-.8 0-1.5-.7-1.5-1.5S9.2 19 10 19s1.5.7 1.5 1.5S10.8 22 10 22zm4-4H6V4h8v14z"/></g>
+                <path class="dr-tel__onde" d="M18.5 8.5a4 4 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path class="dr-tel__onde dr-tel__onde--2" d="M21 6a7.5 7.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              06 83 96 15 18
+            </a>
           </div>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- CTA -->
-  <CtaDevis />
-
-  <!-- Villes -->
-  <section class="section section--gris">
-    <div class="conteneur">
-      <span class="surtitre">Zone d'intervention</span>
-      <h2>Couvreur dans l'Essonne — les communes où j'interviens</h2>
-      <ul class="nuage-villes">
-        {villes.map((v) => (
-          <li><a href={`/${v.slug}/`}>{v.nom}</a></li>
-        ))}
-      </ul>
-    </div>
-  </section>
-
-  <!-- CTA final -->
-  <section class="section section--bleu cta-final">
-    <div class="conteneur">
-      <h2>Besoin d'un couvreur dans l'Essonne ?</h2>
-      <p>Couverture, rénovation, réparation, zinguerie, charpente : contactez-moi pour un devis gratuit et sans engagement, à Étréchy et dans toute l'Essonne.</p>
-      <div class="cta-final__actions">
-        <a href="tel:0683961518" class="btn btn--cuivre">06 83 96 15 18</a>
-        <a href="/devis-gratuit/" class="btn btn--contour">Demander un devis &rarr;</a>
-      </div>
-    </div>
-  </section>
 </BaseLayout>
+
+<script>
+  // Animations d'apparition (désactivées si l'utilisateur réduit les animations)
+  const els = document.querySelectorAll('[data-anim]');
+  if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    els.forEach((el) => el.classList.add('is-visible'));
+  } else {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    els.forEach((el) => io.observe(el));
+  }
+
+  // Vidéos : jamais chargées avant la fin du chargement de la page (Lighthouse / LCP).
+  // L'image d'affiche s'affiche tout de suite ; la vidéo la remplace en fondu une fois prête.
+  // Pas de vidéo si l'utilisateur limite ses données ou réduit les animations.
+  const conn = (navigator as any).connection;
+  const sobre = (conn && conn.saveData) || window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const lancer = (v: HTMLVideoElement) => {
+    if (v.src) return;
+    v.addEventListener('playing', () => v.classList.add('is-playing'), { once: true });
+    v.src = v.dataset.src || '';
+    v.play().catch(() => {});
+  };
+  const demarrer = () => {
+    if (sobre) return;
+    const videos = document.querySelectorAll<HTMLVideoElement>('video[data-src]');
+    const vio = 'IntersectionObserver' in window ? new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { lancer(e.target as HTMLVideoElement); vio.unobserve(e.target); } });
+    }, { rootMargin: '200px 0px' }) : null;
+    videos.forEach((v) => {
+      if (v.dataset.start === 'load' || !vio) lancer(v); else vio.observe(v);
+    });
+  };
+  const apresChargement = () => ('requestIdleCallback' in window ? (window as any).requestIdleCallback(demarrer, { timeout: 2000 }) : setTimeout(demarrer, 200));
+  if (document.readyState === 'complete') apresChargement(); else window.addEventListener('load', apresChargement, { once: true });
+</script>
+
+<style>
+  /* ── Jetons locaux (charte Robert Daniel) ── */
+  .dr-hero, .dr-section, .dr-bande {
+    --nuit: #062a45;
+    --rouge-clair: #ff4d42;
+    --ombre-carte: 0 6px 20px rgb(0 73 123 / .07);
+    --ombre-carte-hover: 0 16px 34px rgb(0 73 123 / .15);
+    --ligne: #e2e6ea;
+  }
+
+  /* ── Apparitions ── */
+  [data-anim] { opacity: 0; transition: opacity .7s ease, transform .7s ease; }
+  [data-anim="up"] { transform: translate3d(0, 28px, 0); }
+  [data-anim].is-visible { opacity: 1; transform: none; }
+
+  /* ── Sections ── */
+  .dr-section { padding-block: 88px; }
+  .dr-section--gris { background: var(--gris-50); }
+  @media (max-width: 1023px) { .dr-section { padding-block: 64px; } }
+  @media (max-width: 767px)  { .dr-section { padding-block: 52px; } }
+  .dr-centre { text-align: center; }
+  .dr-h2 {
+    font-family: var(--font-titres); font-weight: 700; color: var(--bleu-fonce);
+    font-size: clamp(19px, .6rem + 2.6vw, 36px); line-height: 1.2; text-wrap: balance; margin: 0;
+  }
+  .dr-h3 {
+    font-family: var(--font-titres); font-weight: 700; color: var(--bleu-fonce);
+    font-size: clamp(19px, .85rem + .6vw, 23px); line-height: 1.3; margin: 0;
+  }
+
+  /* ── Boutons (pilule, jamais pleine largeur) ── */
+  .dr-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+  .dr-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+    width: auto; max-width: max-content; min-height: 50px; padding: 14px 26px;
+    border-radius: 999px; font-family: var(--font-titres); font-weight: 700; font-size: 16px;
+    line-height: 1.2; text-decoration: none; white-space: nowrap;
+    box-shadow: 0 4px 12px rgb(0 42 69 / .12);
+    transition: background-color .25s ease, color .25s ease, transform .25s ease, box-shadow .25s ease;
+  }
+  .dr-btn:hover { transform: translate3d(0, -2px, 0); box-shadow: 0 10px 22px rgb(0 42 69 / .2); }
+  .dr-btn--rouge { background: var(--cuivre); color: #fff; }
+  .dr-btn--rouge:hover { background: var(--cuivre-fonce); color: #fff; }
+  .dr-btn--bleu { background: var(--bleu); color: #fff; }
+  .dr-btn--bleu:hover { background: var(--bleu-fonce); color: #fff; }
+  .dr-btn--blanc { background: #fff; color: var(--bleu-fonce); }
+  .dr-btn--blanc:hover { background: var(--gris-100); color: var(--bleu-fonce); }
+  .dr-btn--gris { background: var(--gris-100); color: var(--bleu-fonce); box-shadow: none; }
+  .dr-btn--gris:hover { background: var(--gris-200); color: var(--bleu-fonce); }
+  .dr-btn__fleche {
+    display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+    width: 26px; height: 26px; border-radius: 50%; background: #fff; color: var(--cuivre); overflow: hidden;
+  }
+  .dr-btn__fleche--bleue { color: var(--bleu); }
+  .dr-btn__fleche svg { width: 14px; height: 14px; transition: transform .3s ease; }
+  .dr-btn:hover .dr-btn__fleche svg { transform: translate3d(3px, 0, 0); }
+  @media (max-width: 767px) {
+    .dr-btn { min-height: 46px; padding: 12px 18px; font-size: 15px; gap: 10px; }
+  }
+
+  /* Smartphone qui sonne */
+  .dr-tel { width: 20px; height: 20px; flex-shrink: 0; overflow: visible; }
+  .dr-tel__corps { transform-origin: 40% 50%; animation: dr-sonne 2.4s ease-in-out infinite; }
+  .dr-tel__onde { opacity: 0; animation: dr-onde 2.4s ease-out infinite; }
+  .dr-tel__onde--2 { animation-delay: .25s; }
+  @keyframes dr-sonne {
+    0%, 70%, 100% { transform: rotate(0); }
+    75% { transform: rotate(-12deg); } 80% { transform: rotate(10deg); }
+    85% { transform: rotate(-8deg); } 90% { transform: rotate(6deg); }
+  }
+  @keyframes dr-onde { 0%, 60% { opacity: 0; } 75% { opacity: 1; } 100% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) {
+    .dr-tel__corps, .dr-tel__onde { animation: none; }
+    .dr-tel__onde { opacity: 1; }
+    [data-anim] { opacity: 1; transform: none; transition: none; }
+  }
+
+  /* ── Hero ── */
+  .dr-hero { background: var(--nuit); padding-block: 56px; overflow: hidden; }
+  .dr-hero__grille {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas: "titre media" "texte media"; align-items: center; gap: 22px 52px;
+  }
+  .dr-hero__titre {
+    grid-area: titre; align-self: end; margin: 0; color: #fff;
+    font-family: var(--font-titres); font-weight: 700;
+    font-size: clamp(28px, 3.1vw, 40px); line-height: 1.15;
+  }
+  .dr-ligne { display: block; white-space: nowrap; }
+  .dr-hero__nom { color: var(--rouge-clair); }
+  .dr-hero__media {
+    grid-area: media; margin: 0; border-radius: 16px; overflow: hidden; position: relative;
+    box-shadow: 0 20px 50px rgb(0 0 0 / .3); aspect-ratio: 3 / 2;
+  }
+  /* Affiche + vidéo superposée (la vidéo apparaît en fondu quand elle joue) */
+  .dr-media__poster, .dr-media__video { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .dr-media__video { position: absolute; inset: 0; opacity: 0; transition: opacity .6s ease; }
+  .dr-media__video.is-playing { opacity: 1; }
+  .dr-hero__texte { grid-area: texte; align-self: start; display: flex; flex-direction: column; gap: 22px; }
+  .dr-hero__lead { margin: 0; color: #d6e2ee; font-size: 19px; line-height: 1.6; }
+  .dr-hero__lead strong { color: #fff; }
+  .dr-coches { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .dr-coches li {
+    position: relative; padding-left: 34px; color: #fff; font-weight: 600; font-size: 17px;
+  }
+  .dr-coches li::before {
+    content: ""; position: absolute; left: 0; top: 1px; width: 22px; height: 22px; border-radius: 50%;
+    background: var(--cuivre) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / 14px no-repeat;
+  }
+  @media (max-width: 1023px) {
+    .dr-hero { padding-block: 36px 44px; }
+    .dr-hero__grille { grid-template-columns: minmax(0, 1fr); grid-template-areas: "titre" "media" "texte"; gap: 22px; }
+    .dr-hero__titre { text-align: center; }
+    .dr-hero__media { aspect-ratio: 16 / 9; }
+    .dr-hero__texte .dr-actions { justify-content: center; }
+  }
+  @media (max-width: 1023px) { .dr-hero__titre { font-size: clamp(19px, 5.9vw, 40px); } }
+  @media (max-width: 479px) { .dr-hero__lead { font-size: 17px; } }
+
+  /* ── Bandeau rouge ── */
+  .dr-bande { background: var(--cuivre); color: #fff; padding-block: 16px; }
+  .dr-bande__liste {
+    list-style: none; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 40px;
+  }
+  .dr-bande__liste li { font-family: var(--font-titres); font-weight: 600; font-size: 16px; }
+  @media (max-width: 767px) { .dr-bande__liste { gap: 6px 22px; } .dr-bande__liste li { font-size: 14px; } }
+
+  /* ── Cartes savoir-faire ── */
+  .dr-cartes {
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin-top: 44px;
+  }
+  .dr-carte {
+    display: flex; flex-direction: column; overflow: hidden; background: #fff;
+    border: 1px solid var(--ligne); border-radius: 14px; box-shadow: var(--ombre-carte);
+    transition: transform .25s ease, box-shadow .25s ease, opacity .7s ease;
+  }
+  .dr-carte.is-visible:hover { transform: translate3d(0, -4px, 0); box-shadow: var(--ombre-carte-hover); }
+  .dr-carte img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+  .dr-carte__corps { padding: 20px 20px 24px; display: flex; flex-direction: column; gap: 12px; }
+  .dr-carte h3 {
+    margin: 0; font-family: var(--font-titres); font-weight: 700; font-size: 19px; line-height: 1.25;
+    color: var(--bleu-fonce); text-wrap: balance;
+  }
+  .dr-carte p { margin: 0; color: var(--gris-700); font-size: 15.5px; line-height: 1.65; }
+  .dr-carte a { color: var(--bleu); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+  .dr-carte a:hover { color: var(--cuivre); }
+  @media (max-width: 899px) { .dr-cartes { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; } }
+  @media (max-width: 599px)  { .dr-cartes { grid-template-columns: minmax(0, 1fr); gap: 22px; margin-top: 28px; } .dr-carte__corps { padding: 18px 18px 22px; } }
+
+  /* ── Vérification par drone : carte bleu nuit + vidéo ── */
+  .dr-section--drone { padding-top: 0; }
+  .dr-drone {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); overflow: hidden;
+    background: var(--nuit); border-radius: 18px; box-shadow: 0 20px 50px rgb(0 42 69 / .22);
+  }
+  .dr-drone__media { margin: 0; position: relative; min-height: 340px; }
+  .dr-drone__media .dr-media__poster { position: absolute; inset: 0; }
+  .dr-drone__corps {
+    display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 16px;
+    padding: 46px 46px;
+  }
+  .dr-drone h2 {
+    margin: 0; color: #fff; font-family: var(--font-titres); font-weight: 700;
+    font-size: clamp(19px, .6rem + 2.1vw, 32px); line-height: 1.2; text-wrap: balance;
+  }
+  .dr-drone p { margin: 0; color: #d6e2ee; font-size: 17px; line-height: 1.65; text-align: left; }
+  .dr-drone p a { color: #fff; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+  .dr-drone p a:hover { color: var(--rouge-clair); }
+  .dr-drone .dr-btn { margin-top: 6px; }
+  @media (min-width: 900px) and (max-width: 1099px) {
+    .dr-drone h2 { font-size: 25px; }
+    .dr-drone__corps { padding: 34px 32px; }
+    .dr-drone p { font-size: 16px; }
+  }
+  @media (max-width: 899px) {
+    .dr-drone { grid-template-columns: minmax(0, 1fr); }
+    .dr-drone__media { min-height: 0; aspect-ratio: 16 / 9; }
+    .dr-drone__corps { padding: 28px 22px 32px; }
+    .dr-drone h2 { text-align: center; align-self: stretch; }
+    .dr-drone .dr-btn { align-self: center; }
+    .dr-drone p { font-size: 16px; }
+  }
+
+  /* ── Ramonage : carte claire, photo à droite ── */
+  .dr-section--ramonage { padding-top: 0; }
+  .dr-ramonage {
+    display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); overflow: hidden;
+    background: var(--gris-50); border-radius: 18px;
+  }
+  .dr-ramonage__corps { display: flex; flex-direction: column; justify-content: center; gap: 16px; padding: 46px; }
+  .dr-ramonage h2 {
+    margin: 0; color: var(--bleu-fonce); font-family: var(--font-titres); font-weight: 700;
+    font-size: clamp(19px, .6rem + 2.1vw, 32px); line-height: 1.2; text-wrap: balance;
+  }
+  .dr-ramonage p { margin: 0; color: var(--gris-700); font-size: 17px; line-height: 1.7; text-align: left; }
+  .dr-ramonage p a { color: var(--bleu); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+  .dr-ramonage p a:hover { color: var(--cuivre); }
+  .dr-ramonage__media { margin: 0; }
+  .dr-ramonage__media img { display: block; width: 100%; height: 100%; min-height: 300px; max-height: 420px; object-fit: cover; object-position: center 30%; }
+  @media (min-width: 900px) and (max-width: 1099px) {
+    .dr-ramonage h2 { font-size: 25px; }
+    .dr-ramonage__corps { padding: 34px 32px; }
+    .dr-ramonage p { font-size: 16px; }
+  }
+  @media (max-width: 899px) {
+    .dr-ramonage { grid-template-columns: minmax(0, 1fr); }
+    .dr-ramonage__media { order: -1; }
+    .dr-ramonage__media img { min-height: 0; max-height: none; aspect-ratio: 16 / 9; }
+    .dr-ramonage__corps { padding: 28px 22px 32px; }
+    .dr-ramonage h2 { text-align: center; }
+    .dr-ramonage p { font-size: 16px; }
+  }
+
+  /* ── Artisan (photos superposées) ── */
+  .dr-artisan { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 64px; }
+  .dr-artisan__media { margin: 0; }
+  .dr-artisan__img {
+    display: block; width: 100%; aspect-ratio: 25 / 22; object-fit: cover;
+    border-radius: 16px; box-shadow: 0 20px 50px rgb(0 42 69 / .16);
+  }
+  .dr-artisan__texte { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
+  .dr-artisan__texte p { margin: 0; font-size: 17px; line-height: 1.7; color: var(--gris-700); }
+  .dr-artisan__texte a:not(.dr-btn) { color: var(--bleu); font-weight: 700; }
+  .dr-garantie {
+    display: flex; align-items: center; gap: 16px; padding: 14px 18px; background: #fff; border-radius: var(--rayon);
+    box-shadow: var(--ombre-carte);
+  }
+  .dr-garantie img { width: 72px; height: auto; flex-shrink: 0; }
+  .dr-garantie p { font-size: 16px !important; color: var(--bleu-fonce) !important; }
+  @media (min-width: 1024px) and (max-width: 1199px) { .dr-artisan__texte .dr-h2 { font-size: 27px; } }
+  @media (max-width: 1023px) { .dr-artisan { grid-template-columns: minmax(0, 1fr); gap: 40px; } }
+  @media (max-width: 767px)  { .dr-artisan__texte .dr-btn { align-self: center; } }
+
+  /* ── Avis ── */
+  .dr-entete { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; margin-bottom: 40px; }
+  .dr-note { margin: 0; color: var(--gris-700); }
+  .dr-etoiles { color: #f5b301; letter-spacing: 2px; }
+  .dr-avis { list-style: none; margin: 0 0 36px; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+  .dr-avis__carte {
+    display: flex; flex-direction: column; gap: 12px; padding: 26px 24px; background: #fff;
+    border-radius: 14px; box-shadow: var(--ombre-carte);
+  }
+  .dr-avis__carte blockquote { margin: 0; color: var(--gris-700); font-size: 16px; line-height: 1.65; }
+  .dr-avis__nom { margin: auto 0 0; font-family: var(--font-titres); font-weight: 700; color: var(--bleu-fonce); }
+  @media (max-width: 1023px) { .dr-avis { grid-template-columns: minmax(0, 1fr); gap: 16px; } }
+
+  /* ── Communes ── */
+  .dr-villes { list-style: none; margin: 36px 0 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+  .dr-villes a {
+    display: inline-block; padding: 9px 16px; border-radius: 999px; background: #fff; color: var(--bleu-fonce);
+    font-weight: 600; text-decoration: none; box-shadow: var(--ombre-carte); transition: background-color .2s ease, color .2s ease;
+  }
+  .dr-villes a:hover { background: var(--bleu); color: #fff; }
+
+  /* ── Titres des cartes réalisations : 2 lignes max (override propre au draft) ── */
+  :global(.realisations-bloc .grille-chantiers .carte-chantier h3) { font-size: clamp(16px, .45rem + 1vw, 18.4px); text-wrap: balance; }
+
+  /* ── CTA final : carte bleu nuit + photo du camion ── */
+  .dr-section--cta { padding-top: 0; background: var(--gris-50); }
+  .dr-cta {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); overflow: hidden;
+    background: var(--nuit); border-radius: 18px; box-shadow: 0 20px 50px rgb(0 42 69 / .22);
+  }
+  .dr-cta__media { margin: 0; }
+  .dr-cta__media img { display: block; width: 100%; height: 100%; min-height: 320px; object-fit: cover; }
+  .dr-cta__corps {
+    display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 18px;
+    padding: 48px 46px;
+  }
+  .dr-cta h2 {
+    margin: 0; color: #fff; font-family: var(--font-titres); font-weight: 700;
+    font-size: clamp(19px, .6rem + 2.2vw, 34px); line-height: 1.2; text-wrap: balance;
+  }
+  .dr-cta p { margin: 0; color: #d6e2ee; font-size: 18px; }
+  .dr-cta .dr-actions { margin-top: 6px; }
+  @media (min-width: 900px) and (max-width: 1099px) {
+    .dr-cta h2 { font-size: 25px; }
+    .dr-cta__corps { padding: 36px 32px; }
+  }
+  @media (max-width: 899px) {
+    .dr-cta { grid-template-columns: minmax(0, 1fr); }
+    .dr-cta__media img { min-height: 0; aspect-ratio: 16 / 9; }
+    .dr-cta__corps { align-items: center; text-align: center; padding: 30px 22px 34px; }
+    .dr-cta__corps p { text-align: center; }
+    .dr-cta .dr-actions { justify-content: center; }
+  }
+</style>

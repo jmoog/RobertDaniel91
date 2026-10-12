@@ -21,3 +21,11 @@ contenuWordpress/
 *.pdf
 avis-robert-daniel-couvreur.txt
 https___robert-daniel-couverture.fr_-Performance-on-Search-2026-06-16/
+
+# lots photos prepares (Google + site)
+photos-organisees/
+
+# fichiers de travail (hors site)
+.planches-tmp/
+_archives/
+publications-google-oct-nov-2026/

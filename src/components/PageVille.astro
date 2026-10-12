@@ -3,10 +3,27 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import FilAriane from '../components/FilAriane.astro';
 import villes from '../data/villes.json';
 import contenu from '../data/villes-contenu.json';
+import CartesRealisations from './CartesRealisations.astro';
+import realisations from '../data/realisations.json';
+import proches from '../data/realisations-villes.json';
+import distances from '../data/villes-distance-etrechy.json';
 
 const { slug } = Astro.props;
 const d = contenu[slug];
 const autresVilles = villes.filter((v) => v.slug !== slug);
+const chantiers = proches[slug] || [];
+const rang = villes.findIndex((v) => v.slug === slug);
+// Nom de l'artisan / de l'entreprise sous le H1, en alternance d'une commune à l'autre
+const nomH1 = rang % 2 === 0 ? 'Robert Daniel' : 'Robert Daniel Couverture';
+// Lien vers Étréchy (bureau) seulement depuis les communes voisines, ancres variées
+const ancresEtrechy = ['artisan couvreur à Étréchy', 'couvreur à Étréchy', 'couvreur zingueur à Étréchy', 'spécialiste de la toiture à Étréchy'];
+const ancreEtrechy = ancresEtrechy[rang % ancresEtrechy.length];
+const km = distances[slug];
+const deVille = /^[AEIOUYÉÈÊÂÎÔÛaeiouyéèêâîôû]/.test(d.nom) ? `d'${d.nom}` : `de ${d.nom}`;
+const nbIci = realisations.filter((r) => r.pageVille === `/${slug}/`).length;
+const titreChantiers = nbIci >= chantiers.length && nbIci > 0
+  ? `Mes chantiers à ${d.nom}`
+  : nbIci > 0 ? `Mes chantiers à ${d.nom} et aux alentours` : `Mes chantiers près de ${d.nom}`;
 
 const services = [
   { href: '/renovation-toiture/', label: 'Rénovation de toiture', img: '/images/services/renovation-toiture.jpg', desc: 'Réfection partielle ou complète de votre toit.' },
@@ -39,8 +56,8 @@ const extraSchemas = [{
     <div class="conteneur hero__grille">
       <div class="hero__texte">
         <p class="hero__badge"><span class="hero__point" aria-hidden="true"></span> {d.badge}</p>
-        <h1>{d.h1}</h1>
-        <p class="hero__accroche">{d.accroche}</p>
+        <h1>{d.h1}<span class="h1__nom">{nomH1}</span></h1>
+        <p class="hero__accroche" set:html={d.accroche} />
         <ul>
           {d.bullets.map((b) => (
             <li><strong>{b.t}</strong> {b.r}</li>
@@ -48,10 +65,10 @@ const extraSchemas = [{
         </ul>
         <div class="hero__actions">
           <a href="tel:0683961518" class="btn btn--cuivre">
-            <svg class="icone" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 1H8C6.34 1 5 2.34 5 4v16c0 1.66 1.34 3 3 3h8c1.66 0 3-1.34 3-3V4c0-1.66-1.34-3-3-3zm-2 20h-4v-1h4v1zm3.25-3H6.75V4h10.5v14z"/></svg>
+            <svg class="icone-tel" viewBox="0 0 24 24" aria-hidden="true"><g class="icone-tel__corps"><path fill="currentColor" d="M14 1H6C4.9 1 4 1.9 4 3v18c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-4 21c-.8 0-1.5-.7-1.5-1.5S9.2 19 10 19s1.5.7 1.5 1.5S10.8 22 10 22zm4-4H6V4h8v14z"/></g><path class="icone-tel__onde" d="M18.5 8.5a4 4 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="icone-tel__onde icone-tel__onde--2" d="M21 6a7.5 7.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
             06 83 96 15 18
           </a>
-          <a href="/devis-gratuit/" class="btn btn--bleu">Devis Gratuit &rarr;</a>
+          <a href="/devis-gratuit/" class="btn btn--bleu">Devis gratuit <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
         </div>
       </div>
       <div class="hero__media">
@@ -60,6 +77,14 @@ const extraSchemas = [{
           <p><strong>Garantie Décennale</strong><br />Pour tous travaux de couverture</p>
           <img src="/images/logo-allianz.png" alt="Garantie décennale assurée par Allianz" width="92" height="58" loading="lazy" decoding="async" />
         </div>
+        {!d.adresse && km && (
+          <div class="carte hero__garantie">
+            <svg class="icone" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:1.8rem;height:1.8rem;flex-shrink:0;color:var(--cuivre);"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"/></svg>
+            {km <= 5
+              ? <p><strong>{d.nom} : à {km} km de mon bureau</strong><br />Je travaille depuis la Grande Rue, comme <a href="/couvreur-etrechy/">{ancreEtrechy}</a> et dans les villages voisins.</p>
+              : <p><strong>Mon bureau : 42 Grande Rue, Étréchy</strong><br />À {km} km {deVille}.</p>}
+          </div>
+        )}
         {d.adresse && (
           <div class="carte hero__garantie">
             <svg class="icone" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:1.8rem;height:1.8rem;flex-shrink:0;color:var(--cuivre);"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"/></svg>
@@ -73,7 +98,6 @@ const extraSchemas = [{
   <!-- Avis clients -->
   <section class="section section--gris">
     <div class="conteneur">
-      <span class="surtitre">Avis clients</span>
       <h2>{d.avisTitre}</h2>
       <div class="avis-grille">
         {d.avis.map((a) => (
@@ -97,7 +121,6 @@ const extraSchemas = [{
   <!-- Services -->
   <section class="section">
     <div class="conteneur">
-      <span class="surtitre">Mes prestations</span>
       <h2>{d.servicesTitre}</h2>
       <p class="section__intro">{d.servicesIntro}</p>
       <div class="grille-services">
@@ -115,6 +138,48 @@ const extraSchemas = [{
     </div>
   </section>
 
+  <CartesRealisations slugs={chantiers} titre={titreChantiers} fond="gris" />
+
+  {d.editorial && (
+    <section class="section">
+      <div class="conteneur ville-editorial">
+        <div class="prose">
+          <h2>{d.editorial.h2}</h2>
+          <Fragment set:html={d.editorial.html} />
+        </div>
+        {d.mairie && (
+          <aside class="mairie" aria-label={d.mairie.nom}>
+            <p class="mairie__titre">{d.mairie.nom}</p>
+            <p>{d.mairie.adresse}</p>
+            <p>
+              <svg class="icone" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.36 11.36 0 003.58.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1.02l-2.2 2.2z"/></svg>
+              {d.mairie.tel}
+            </p>
+            <p><a href={d.mairie.site} target="_blank" rel="noopener">Site officiel de la mairie</a></p>
+          </aside>
+        )}
+      </div>
+    </section>
+  )}
+
+  {d.showroom && (
+    <section class="section section--gris">
+      <div class="conteneur duo">
+        <img src="/images/robert-daniel-artisan-couvreur-etrechy.jpg" alt="Robert Daniel devant son bureau et showroom d'artisan couvreur, 42 Grande Rue à Étréchy" width="900" height="1200" loading="lazy" decoding="async" class="showroom__photo" />
+        <div class="prose">
+          <h2>Mon bureau et showroom, 42 Grande Rue</h2>
+          <p>
+            Au cœur d'Étréchy, mon bureau vous accueille pour parler de votre toiture, de vos gouttières
+            ou de votre projet de rénovation. Vous y trouvez les réponses à vos questions et vous repartez
+            avec un conseil clair, avant même le devis.
+          </p>
+          <p><strong>42 Grande Rue, 91580 Étréchy</strong><br />Du lundi au samedi, de 8 h à 20 h</p>
+          <p><a href="https://maps.app.goo.gl/rYpVbKYbBB64Uk2y6" target="_blank" rel="noopener" class="btn btn--bleu">Voir l'itinéraire <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></p>
+        </div>
+      </div>
+    </section>
+  )}
+
   <!-- CTA ville -->
   <section class="section section--bleu cta-final">
     <div class="conteneur" style="text-align:center;">
@@ -122,10 +187,10 @@ const extraSchemas = [{
       <p style="max-width:62ch;margin:0.8rem auto 1.6rem;">{d.ctaTexte}</p>
       <div class="hero__actions" style="justify-content:center;">
         <a href="tel:0683961518" class="btn btn--cuivre">
-          <svg class="icone" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 1H8C6.34 1 5 2.34 5 4v16c0 1.66 1.34 3 3 3h8c1.66 0 3-1.34 3-3V4c0-1.66-1.34-3-3-3zm-2 20h-4v-1h4v1zm3.25-3H6.75V4h10.5v14z"/></svg>
+          <svg class="icone-tel" viewBox="0 0 24 24" aria-hidden="true"><g class="icone-tel__corps"><path fill="currentColor" d="M14 1H6C4.9 1 4 1.9 4 3v18c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-4 21c-.8 0-1.5-.7-1.5-1.5S9.2 19 10 19s1.5.7 1.5 1.5S10.8 22 10 22zm4-4H6V4h8v14z"/></g><path class="icone-tel__onde" d="M18.5 8.5a4 4 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="icone-tel__onde icone-tel__onde--2" d="M21 6a7.5 7.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           06 83 96 15 18
         </a>
-        <a href="/devis-gratuit/" class="btn btn--bleu">Devis Gratuit &rarr;</a>
+        <a href="/devis-gratuit/" class="btn btn--bleu">Devis gratuit <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
       </div>
     </div>
   </section>
@@ -144,6 +209,14 @@ const extraSchemas = [{
 </BaseLayout>
 
 <style>
+  .h1__nom { display: block; margin-top: 0.15em; color: var(--cuivre); font-size: 0.82em; }
+  .ville-editorial { display: grid; gap: 2.5rem; align-items: start; }
+  @media (min-width: 900px) { .ville-editorial { grid-template-columns: minmax(0, 1fr) 300px; gap: 4rem; } }
+  .ville-editorial .prose h2 { margin-top: 0; }
+  .mairie { background: var(--gris-50); border: 1px solid var(--gris-200); border-radius: var(--rayon); padding: 1.5rem 1.6rem; }
+  .mairie p { margin: 0.35rem 0; color: var(--gris-700); }
+  .mairie__titre { font-family: var(--font-titres); font-weight: 700; color: var(--bleu) !important; font-size: 1.1rem; }
+  .showroom__photo { max-height: 560px; object-position: center 40%; }
   .section__intro { max-width: 70ch; margin: 0.4rem 0 0.5rem; color: var(--gris-700); }
   .avis-grille {
     display: grid;

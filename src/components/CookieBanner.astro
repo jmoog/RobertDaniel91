@@ -1,90 +1,244 @@
 ---
-// Bandeau de consentement cookies
+// Bandeau cookies — inspiré de celui d'entrepot-du-matelas.fr, version sobre :
+// un petit artisan couvreur français (casquette, barbe, veste bleue, drapeau
+// tricolore) se promène sur le haut du bandeau. Il saute de joie si on accepte,
+// baisse la tête si on refuse.
+// Consentement : cookie « rd_consent » (6 mois) + Google Consent Mode v2
+// (statut par défaut « refusé » posé dans BaseLayout, avant gtag config).
+// Bandeau et pastille disparaissent après 800 px de défilement.
+// Le lien « Gérer les cookies » du pied de page (data-ck-open) rouvre le bandeau.
+
+const artisan = `
+<svg class="ck-svg" viewBox="0 0 112 120" aria-hidden="true" focusable="false">
+  <g class="ck-jambe" style="transform-origin:45px 84px">
+    <path d="M45 84v19" stroke="#1c2b3a" stroke-width="7" stroke-linecap="round"/>
+    <ellipse cx="48" cy="106" rx="7.5" ry="4" fill="#1c2b3a"/>
+  </g>
+  <g class="ck-jambe ck-jambe--2" style="transform-origin:56px 84px">
+    <path d="M56 84v19" stroke="#24384d" stroke-width="7" stroke-linecap="round"/>
+    <ellipse cx="59" cy="106" rx="7.5" ry="4" fill="#24384d"/>
+  </g>
+  <g class="ck-corps" style="transform-origin:50px 70px">
+    <path d="M37 62l-8 15" stroke="#005a96" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="28" cy="79" r="4" fill="#f0c49c"/>
+    <rect x="34" y="55" width="33" height="33" rx="12" fill="#006cb4"/>
+    <path d="M50 57v29" stroke="#005a96" stroke-width="2"/>
+    <circle cx="58" cy="66" r="2.6" fill="#e2231a"/>
+    <path d="M65 63l13-12" stroke="#005a96" stroke-width="7" stroke-linecap="round"/>
+    <path d="M81 64V14" stroke="#7a5230" stroke-width="3" stroke-linecap="round"/>
+    <g class="ck-drapeau">
+      <rect x="82" y="15" width="9" height="19" fill="#0055a4"/>
+      <rect x="91" y="15" width="9" height="19" fill="#fff"/>
+      <rect x="100" y="15" width="9" height="19" fill="#ef4135"/>
+    </g>
+    <circle cx="80" cy="50" r="4" fill="#f0c49c"/>
+    <circle cx="50" cy="38" r="17" fill="#f0c49c"/>
+    <path d="M34 40c2 13 8 19 16 19s14-6 16-19c-3 6-8 8-16 8s-13-2-16-8z" fill="#6b4a2e"/>
+    <g class="ck-yeux" fill="#2a160c">
+      <ellipse cx="44" cy="37" rx="2.3" ry="2.9"/>
+      <ellipse cx="56" cy="37" rx="2.3" ry="2.9"/>
+    </g>
+    <path class="ck-sourire" d="M45 46q5 4 10 0" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+    <path class="ck-sourire-ouvert" d="M44 45q6 8 12 0z" fill="#fff"/>
+    <path class="ck-triste" d="M45 49q5-4 10 0" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M32 33c2-15 34-15 36 0z" fill="#00497b"/>
+    <path d="M60 32c8-1 14 1 16 4-7 2-13 1-17-1z" fill="#002f50"/>
+    <circle cx="48" cy="25" r="2.4" fill="#e2231a"/>
+  </g>
+</svg>`;
 ---
-<div class="cookies" role="dialog" aria-live="polite" aria-label="Gestion des cookies" hidden>
-  <svg class="cookies__icone" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-    <path d="M21.95 10.99c-1.79-.03-3.34-1.18-3.91-2.87a1 1 0 0 0-1.17-.66c-1.85.37-3.66-.66-4.32-2.42a1 1 0 0 0-1.13-.63A9 9 0 1 0 22 12.66a1 1 0 0 0-.05-1.67ZM12 20a8 8 0 0 1-1.51-15.86 5.94 5.94 0 0 0 5.51 3.1 5.97 5.97 0 0 0 4 3.71A8 8 0 0 1 12 20Z"/>
-    <circle cx="8.5" cy="9.5" r="1.25"/>
-    <circle cx="10" cy="14.5" r="1.25"/>
-    <circle cx="14.5" cy="13" r="1.25"/>
-    <circle cx="13" cy="17.5" r="1"/>
-  </svg>
-  <div class="cookies__texte">
-    <strong>Vos cookies</strong>
-    <p>
-      Nous utilisons une mesure d'audience anonyme pour ameliorer ce site.
-      Aucun cookie publicitaire. Vous pouvez accepter ou refuser librement.
-      <a href="/mentions-legales/">Mentions legales</a>
-    </p>
+<div class="ck" id="ck" role="dialog" aria-modal="false" aria-labelledby="ck-titre" aria-describedby="ck-texte" hidden>
+  <div class="ck-promenade" aria-hidden="true">
+    <div class="ck-marcheur"><span class="ck-retourne" set:html={artisan} /></div>
   </div>
-  <div class="cookies__actions">
-    <button type="button" class="btn btn--bleu cookies__refuser">Refuser</button>
-    <button type="button" class="btn btn--cuivre cookies__accepter">Accepter</button>
+  <p class="ck-titre" id="ck-titre">Des cookies <span>posés dans les règles de l'art&nbsp;?</span></p>
+  <p class="ck-texte" id="ck-texte">
+    Avec votre accord, je mesure simplement la fréquentation du site avec Google Analytics, sans aucune publicité.
+    Vous pouvez changer d'avis à tout moment. <a href="/mentions-legales/">En savoir plus</a>
+  </p>
+  <div class="ck-actions">
+    <button type="button" class="ck-btn" data-ck="refuse">Tout refuser</button>
+    <button type="button" class="ck-btn" data-ck="accept">Tout accepter</button>
   </div>
 </div>
+<button type="button" class="ck-pastille" id="ck-pastille" aria-label="Gérer mes cookies" title="Gérer mes cookies" hidden set:html={artisan} />
 
-<style>
-  .cookies {
-    position: fixed;
-    inset-inline: 1rem;
-    bottom: 1rem;
-    z-index: 80;
-    max-width: 680px;
-    margin-inline: auto;
-    display: flex;
-    align-items: center;
-    gap: 1.1rem;
-    background: var(--blanc);
-    border: 1px solid var(--gris-200);
-    border-radius: var(--rayon);
-    box-shadow: var(--ombre-forte);
-    padding: 1.1rem 1.4rem;
-    transform: translateY(calc(100% + 2rem));
-    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-    will-change: transform;
+<style is:global>
+  .ck {
+    position: fixed; left: 24px; bottom: 24px; z-index: 90;
+    width: min(420px, calc(100vw - 32px)); box-sizing: border-box;
+    background: #fff; color: var(--gris-700);
+    border: 1px solid var(--gris-200); border-radius: 16px;
+    box-shadow: 0 18px 50px rgb(0 42 69 / .25);
+    padding: 20px 22px 18px; font-size: 15px; line-height: 1.55; text-align: left;
+    transition: transform .5s cubic-bezier(.2, .9, .3, 1.2), opacity .4s ease;
   }
-  .cookies--visible { transform: translateY(0); }
-  .cookies[hidden] { display: none !important; }
-  .cookies__icone {
-    width: 44px;
-    height: 44px;
-    color: var(--cuivre);
-    flex-shrink: 0;
+  .ck[hidden], .ck-pastille[hidden] { display: none; }
+  .ck.is-entree { transform: translateY(40px); opacity: 0; }
+  .ck.is-sortie { transform: translateY(40px) scale(.96); opacity: 0; }
+  .ck-titre {
+    margin: 0 0 8px; font-family: var(--font-titres); font-weight: 700; font-size: 18px; line-height: 1.3;
+    color: var(--bleu-fonce); text-wrap: balance;
   }
-  .cookies__texte strong { color: var(--bleu); }
-  .cookies__texte p { margin: 0.2rem 0 0; font-size: 0.88rem; color: var(--gris-700); }
-  .cookies__actions { display: flex; gap: 0.6rem; flex-shrink: 0; }
-  .cookies__actions .btn { font-size: 0.88rem; padding: 0.55em 1.1em; }
+  .ck-titre span { color: var(--cuivre); }
+  .ck-texte { margin: 0 0 14px; }
+  .ck-texte a { color: var(--bleu-fonce); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+  .ck-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+  .ck-btn {
+    appearance: none; border: 0; cursor: pointer; width: auto;
+    font-family: var(--font-titres); font-weight: 700; font-size: 15px; line-height: 1;
+    padding: 13px 20px; border-radius: 999px; background: var(--bleu-fonce); color: #fff;
+    transition: background-color .2s ease, transform .2s ease;
+  }
+  .ck-btn:hover { background: var(--bleu); transform: translateY(-1px); }
+  .ck-btn:focus-visible, .ck-pastille:focus-visible { outline: 3px solid var(--cuivre); outline-offset: 2px; }
 
-  @media (max-width: 700px) {
-    .cookies {
-      flex-direction: column;
-      text-align: center;
-      align-items: center;
-      gap: 0.8rem;
-      bottom: calc(64px + env(safe-area-inset-bottom));
+  /* L'artisan se promène sur le haut du bandeau */
+  .ck-promenade { position: absolute; left: 14px; right: 14px; bottom: 100%; height: 78px; margin-bottom: -7px; pointer-events: none; }
+  .ck-marcheur { position: absolute; left: 0; bottom: 0; width: 72px; height: 78px; animation: ck-marche 18s linear infinite; }
+  .ck-retourne { display: block; width: 100%; height: 100%; animation: ck-retourne 18s step-end infinite; }
+  .ck-svg { display: block; width: 100%; height: 100%; overflow: visible; }
+  .ck-marcheur .ck-jambe, .ck-pastille:hover .ck-jambe { animation: ck-pas .45s ease-in-out infinite alternate; }
+  .ck-marcheur .ck-jambe--2, .ck-pastille:hover .ck-jambe--2 { animation-delay: -.45s; }
+  .ck-marcheur .ck-corps, .ck-pastille:hover .ck-corps { animation: ck-balance .225s ease-in-out infinite alternate; }
+  .ck-svg .ck-yeux { transform-box: fill-box; transform-origin: center; animation: ck-cligne 4.5s infinite; }
+  .ck-svg .ck-drapeau { transform-box: fill-box; transform-origin: 0 50%; animation: ck-flotte 1.1s ease-in-out infinite alternate; }
+  .ck-svg .ck-sourire-ouvert, .ck-svg .ck-triste { opacity: 0; }
+  .ck.is-content .ck-marcheur, .ck.is-content .ck-retourne,
+  .ck.is-decu .ck-marcheur, .ck.is-decu .ck-retourne { animation-play-state: paused; }
+  .ck.is-content .ck-svg { animation: ck-saut .6s ease-out; }
+  .ck.is-content .ck-drapeau { animation-duration: .35s; }
+  .ck.is-content .ck-sourire { opacity: 0; }
+  .ck.is-content .ck-sourire-ouvert { opacity: 1; }
+  .ck.is-decu .ck-jambe, .ck.is-decu .ck-corps { animation: none; }
+  .ck.is-decu .ck-corps { transform: translateY(3px); }
+  .ck.is-decu .ck-sourire { opacity: 0; }
+  .ck.is-decu .ck-triste { opacity: 1; }
+  .ck.is-decu .ck-drapeau { animation: none; transform: rotate(-20deg) skewY(8deg); }
+
+  /* Pastille pour rouvrir le bandeau */
+  .ck-pastille {
+    position: fixed; left: 16px; bottom: 16px; z-index: 89;
+    width: 58px; height: 58px; padding: 8px 6px 4px;
+    border: 1px solid var(--gris-200); border-radius: 50%; background: #fff;
+    box-shadow: 0 4px 16px rgb(0 42 69 / .18); cursor: pointer; transition: transform .25s ease;
+  }
+  .ck-pastille:hover { transform: scale(1.08); }
+
+  @keyframes ck-marche { 0% { left: 0; } 47% { left: calc(100% - 72px); } 50% { left: calc(100% - 72px); } 97% { left: 0; } 100% { left: 0; } }
+  @keyframes ck-retourne { 0% { transform: scaleX(1); } 48.5% { transform: scaleX(-1); } 98.5% { transform: scaleX(1); } }
+  @keyframes ck-pas { from { transform: rotate(-22deg); } to { transform: rotate(22deg); } }
+  @keyframes ck-balance { from { transform: translateY(0) rotate(1deg); } to { transform: translateY(-2px) rotate(3deg); } }
+  @keyframes ck-cligne { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.1); } }
+  @keyframes ck-flotte { from { transform: skewY(-6deg) scaleX(.94); } to { transform: skewY(5deg) scaleX(1); } }
+  @keyframes ck-saut { 0% { transform: translateY(0); } 30% { transform: translateY(-16px) rotate(-5deg); } 55% { transform: translateY(0); } 75% { transform: translateY(-8px) rotate(4deg); } 100% { transform: translateY(0); } }
+
+  /* Mobile : au-dessus de la barre « Appeler / Devis gratuit » */
+  @media (max-width: 800px) {
+    .ck {
+      left: 12px; right: 12px; width: auto; bottom: calc(68px + env(safe-area-inset-bottom));
+      padding: 14px 16px; font-size: 14px; line-height: 1.5;
     }
-    .cookies__texte p { text-align: center; }
-    .cookies__actions { width: 100%; }
-    .cookies__actions .btn { flex: 1; }
+    .ck-titre { font-size: 16px; margin-bottom: 6px; }
+    .ck-texte { margin-bottom: 12px; }
+    .ck-btn { min-height: 46px; padding: 0 18px; }
+    .ck-promenade { height: 62px; margin-bottom: -6px; }
+    .ck-marcheur { width: 58px; height: 62px; animation-name: ck-marche-m; }
+    .ck-pastille { bottom: calc(72px + env(safe-area-inset-bottom)); width: 52px; height: 52px; }
+    @keyframes ck-marche-m { 0% { left: 0; } 47% { left: calc(100% - 58px); } 50% { left: calc(100% - 58px); } 97% { left: 0; } 100% { left: 0; } }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ck, .ck *, .ck-pastille, .ck-pastille * { animation: none !important; transition: none !important; }
   }
 </style>
 
 <script>
-  const CLE = 'rd-consent';
-  const bandeau = document.querySelector('.cookies');
+  const NOM = 'rd_consent';
+  const DUREE = 15552000; // 6 mois
+  const OUVRIR = '[data-ck-open], a[href$="#cookies"]';
+  const SEUIL = 800;
+  const w = window as any;
 
-  const choix = localStorage.getItem(CLE);
-  if (!choix && bandeau) {
-    bandeau.removeAttribute('hidden');
-    setTimeout(() => bandeau.classList.add('cookies--visible'), 900);
+  const lire = () => {
+    const m = document.cookie.match(/(?:^|;\s*)rd_consent=([^;]*)/);
+    if (!m) return null;
+    try { return JSON.parse(decodeURIComponent(m[1])); } catch { return null; }
+  };
+  const ecrire = (ok: boolean) => {
+    const v = encodeURIComponent(JSON.stringify({ v: 1, analytics: ok ? 1 : 0, date: new Date().toISOString() }));
+    document.cookie = `${NOM}=${v};path=/;max-age=${DUREE};SameSite=Lax${location.protocol === 'https:' ? ';Secure' : ''}`;
+  };
+  const appliquer = (ok: boolean) => {
+    if (typeof w.gtag === 'function') w.gtag('consent', 'update', { analytics_storage: ok ? 'granted' : 'denied' });
+  };
+  const effacerGA = () => {
+    const hote = location.hostname;
+    const domaines = ['', hote, '.' + hote];
+    const morceaux = hote.split('.');
+    if (morceaux.length > 2) domaines.push('.' + morceaux.slice(-2).join('.'));
+    document.cookie.split(';').forEach((c) => {
+      const n = c.split('=')[0].trim();
+      if (/^(_ga|_ga_.*|_gid|_gat.*)$/.test(n)) domaines.forEach((d) => { document.cookie = `${n}=;path=/;max-age=0${d ? ';domain=' + d : ''}`; });
+    });
+  };
 
-    const fermer = (valeur: string) => {
-      localStorage.setItem(CLE, valeur);
-      bandeau.classList.remove('cookies--visible');
-      setTimeout(() => bandeau.setAttribute('hidden', ''), 700);
+  const boite = document.getElementById('ck') as HTMLElement | null;
+  const pastille = document.getElementById('ck-pastille') as HTMLElement | null;
+  if (boite && pastille) {
+    const reduit = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let force = false, enCours = false, attente = false;
+    const audela = () => (window.scrollY || document.documentElement.scrollTop || 0) >= SEUIL;
+
+    const montrer = (parUtilisateur: boolean) => {
+      boite.classList.remove('is-content', 'is-decu', 'is-sortie');
+      boite.classList.add('is-entree');
+      boite.hidden = false; pastille.hidden = true;
+      requestAnimationFrame(() => requestAnimationFrame(() => boite.classList.remove('is-entree')));
+      if (parUtilisateur) (boite.querySelector('[data-ck="refuse"]') as HTMLElement | null)?.focus({ preventScroll: true });
     };
-    bandeau.querySelector('.cookies__accepter')?.addEventListener('click', () => fermer('granted'));
-    bandeau.querySelector('.cookies__refuser')?.addEventListener('click', () => fermer('denied'));
+    const cacher = () => {
+      boite.classList.add('is-sortie');
+      setTimeout(() => { boite.hidden = true; boite.classList.remove('is-sortie'); pastille.hidden = audela(); }, reduit ? 0 : 400);
+    };
+    const decider = (ok: boolean) => {
+      const avant = lire();
+      ecrire(ok); appliquer(ok);
+      if (ok) boite.classList.add('is-content');
+      else {
+        effacerGA(); boite.classList.add('is-decu');
+        if (avant && avant.analytics) { setTimeout(() => location.reload(), reduit ? 0 : 800); return; }
+      }
+      setTimeout(cacher, reduit ? 0 : 800);
+    };
+
+    boite.addEventListener('click', (e) => {
+      const b = (e.target as HTMLElement).closest('[data-ck]');
+      if (b) decider(b.getAttribute('data-ck') === 'accept');
+    });
+    pastille.addEventListener('click', () => { force = true; montrer(true); });
+    document.addEventListener('click', (e) => {
+      const l = (e.target as HTMLElement).closest(OUVRIR);
+      if (l) { e.preventDefault(); force = true; montrer(true); }
+    });
+
+    // Bandeau et pastille disparaissent après 800 px de défilement
+    window.addEventListener('scroll', () => {
+      if (audela()) {
+        if (!boite.hidden) {
+          if (force || enCours) return;
+          enCours = true; cacher();
+          setTimeout(() => { enCours = false; pastille.hidden = true; }, reduit ? 10 : 450);
+        } else { force = false; if (!enCours && !attente) pastille.hidden = true; }
+      } else if (!enCours && !attente && boite.hidden) {
+        pastille.hidden = false;
+      }
+    }, { passive: true });
+
+    if (!lire()) {
+      attente = true;
+      setTimeout(() => { attente = false; if (audela()) pastille.hidden = true; else montrer(false); }, 600);
+    } else {
+      pastille.hidden = audela();
+    }
   }
 </script>

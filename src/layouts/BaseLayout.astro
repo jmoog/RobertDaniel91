@@ -34,14 +34,22 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).toStri
     <!-- Google Search Console -->
     <meta name="google-site-verification" content="RZ91L_09GryLedIG7CbNh3i1aDNpvRKLSQLN3C7A_44" />
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V457V2WS4D" is:inline></script>
+    <!-- Google tag (gtag.js) + Consent Mode v2 : mesure d'audience refusée par défaut,
+         accordée seulement si le visiteur a accepté (cookie rd_consent posé par le bandeau). -->
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', functionality_storage: 'granted', security_storage: 'granted', wait_for_update: 500 });
+      gtag('set', 'ads_data_redaction', true);
+      (function () {
+        var m = document.cookie.match(/(?:^|;\s*)rd_consent=([^;]*)/);
+        if (!m) return;
+        try { var c = JSON.parse(decodeURIComponent(m[1])); if (c && c.analytics) gtag('consent', 'update', { analytics_storage: 'granted' }); } catch (e) {}
+      })();
       gtag('js', new Date());
       gtag('config', 'G-V457V2WS4D');
     </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V457V2WS4D" is:inline></script>
 
     <link rel="icon" href="/favicon.ico?v=5" sizes="48x48" />
     <link rel="icon" href="/favicon.svg?v=5" type="image/svg+xml" />

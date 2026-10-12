@@ -1,151 +1,255 @@
 ---
-// Bandeau cookies — inspiré de celui d'entrepot-du-matelas.fr, version sobre :
-// un petit artisan couvreur français (casquette, barbe, veste bleue, drapeau
-// tricolore) se promène sur le haut du bandeau. Il saute de joie si on accepte,
-// baisse la tête si on refuse.
+// Bandeau cookies façon Axeptio : carte en bas à gauche, en-tête illustré où
+// un petit artisan couvreur français et son copain cookie se promènent,
+// « C'est nous, les cookies ! », boutons Non merci / Je choisis / OK pour moi,
+// écran « Je choisis » avec interrupteur par finalité, pastille pour rouvrir.
 // Consentement : cookie « rd_consent » (6 mois) + Google Consent Mode v2
 // (statut par défaut « refusé » posé dans BaseLayout, avant gtag config).
 // Bandeau et pastille disparaissent après 800 px de défilement.
 // Le lien « Gérer les cookies » du pied de page (data-ck-open) rouvre le bandeau.
 
 const artisan = `
-<svg class="ck-svg" viewBox="0 0 112 120" aria-hidden="true" focusable="false">
-  <g class="ck-jambe" style="transform-origin:45px 84px">
-    <path d="M45 84v19" stroke="#1c2b3a" stroke-width="7" stroke-linecap="round"/>
-    <ellipse cx="48" cy="106" rx="7.5" ry="4" fill="#1c2b3a"/>
+<svg class="ck-svg" viewBox="-40 0 160 124" aria-hidden="true" focusable="false">
+  <g class="ck-copain">
+    <g class="ck-jambe" style="transform-origin:-22px 100px">
+      <path d="M-22 100v8" stroke="#5a3518" stroke-width="4" stroke-linecap="round"/>
+      <ellipse cx="-20" cy="110" rx="5" ry="3" fill="#e2231a"/>
+    </g>
+    <g class="ck-jambe ck-jambe--2" style="transform-origin:-10px 100px">
+      <path d="M-10 100v8" stroke="#5a3518" stroke-width="4" stroke-linecap="round"/>
+      <ellipse cx="-8" cy="110" rx="5" ry="3" fill="#e2231a"/>
+    </g>
+    <g class="ck-corps" style="transform-origin:-16px 88px">
+      <circle cx="-16" cy="86" r="17" fill="#b06a2c"/>
+      <circle cx="-16" cy="85" r="15.5" fill="#d99a52"/>
+      <circle cx="-16" cy="84" r="13" fill="#e8b46e" opacity=".55"/>
+      <g fill="#4a2a16"><path d="M-27 80c1.5-1.5 4-1 4 1s-1.5 3.5-3.5 3-2-2.5-.5-4z"/><path d="M-6 92c2-1 4.5 0 4 2s-2.5 3-4.5 2.5-1.5-3.5.5-4.5z"/><path d="M-20 96c1.5-1 3.5 0 3.5 1.5s-2 2.5-3.5 2-1.5-2.5 0-3.5z"/><path d="M-4 77c1.5-1 3 0 3 1.5s-1.5 2.5-3 2-1-2.5 0-3.5z"/></g>
+      <circle cx="-25" cy="89" r="2.8" fill="#ef7f5f" opacity=".5"/>
+      <circle cx="-7" cy="89" r="2.8" fill="#ef7f5f" opacity=".5"/>
+      <g class="ck-yeux">
+        <ellipse cx="-20.5" cy="83" rx="3" ry="3.6" fill="#fff"/><ellipse cx="-11.5" cy="83" rx="3" ry="3.6" fill="#fff"/>
+        <circle cx="-20" cy="83.6" r="1.8" fill="#2a160c"/><circle cx="-11" cy="83.6" r="1.8" fill="#2a160c"/>
+      </g>
+      <path class="ck-sourire" d="M-19 90q3 3 6 0" fill="none" stroke="#3a2214" stroke-width="1.8" stroke-linecap="round"/>
+      <path class="ck-sourire-ouvert" d="M-20 89q4 6 8 0z" fill="#3a2214"/>
+      <path class="ck-triste" d="M-19 93q3-2.5 6 0" fill="none" stroke="#3a2214" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M-27 72c3-9 19-9 22 0z" fill="#00497b"/><path d="M-9 71c5-1 9 0 10 3-4 1-8 0-11-1z" fill="#002f50"/>
+    </g>
   </g>
-  <g class="ck-jambe ck-jambe--2" style="transform-origin:56px 84px">
-    <path d="M56 84v19" stroke="#24384d" stroke-width="7" stroke-linecap="round"/>
-    <ellipse cx="59" cy="106" rx="7.5" ry="4" fill="#24384d"/>
+  <g class="ck-jambe" style="transform-origin:52px 92px">
+    <path d="M52 92v13" stroke="#1c2b3a" stroke-width="8" stroke-linecap="round"/>
+    <ellipse cx="55" cy="108" rx="8" ry="4.5" fill="#6b4a2e"/>
   </g>
-  <g class="ck-corps" style="transform-origin:50px 70px">
-    <path d="M37 62l-8 15" stroke="#005a96" stroke-width="7" stroke-linecap="round"/>
-    <circle cx="28" cy="79" r="4" fill="#f0c49c"/>
-    <rect x="34" y="55" width="33" height="33" rx="12" fill="#006cb4"/>
-    <path d="M50 57v29" stroke="#005a96" stroke-width="2"/>
-    <circle cx="58" cy="66" r="2.6" fill="#e2231a"/>
-    <path d="M65 63l13-12" stroke="#005a96" stroke-width="7" stroke-linecap="round"/>
-    <path d="M81 64V14" stroke="#7a5230" stroke-width="3" stroke-linecap="round"/>
+  <g class="ck-jambe ck-jambe--2" style="transform-origin:65px 92px">
+    <path d="M65 92v13" stroke="#24384d" stroke-width="8" stroke-linecap="round"/>
+    <ellipse cx="68" cy="108" rx="8" ry="4.5" fill="#6b4a2e"/>
+  </g>
+  <g class="ck-corps" style="transform-origin:58px 80px">
+    <path d="M43 77l-6 11" stroke="#005a96" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="36" cy="91" r="4.4" fill="#f6cfa8"/>
+    <rect x="40" y="68" width="37" height="28" rx="13" fill="#006cb4"/>
+    <path d="M47 70v24M70 70v24" stroke="#005a96" stroke-width="2.5"/>
+    <rect x="52" y="78" width="13" height="9" rx="3" fill="#005a96"/>
+    <circle cx="58.5" cy="82.5" r="2.4" fill="#e2231a"/>
+    <path d="M74 76l12-13" stroke="#005a96" stroke-width="8" stroke-linecap="round"/>
+    <path d="M89 76V18" stroke="#7a5230" stroke-width="3.2" stroke-linecap="round"/>
+    <circle cx="89" cy="16" r="2.6" fill="#f2c14e"/>
     <g class="ck-drapeau">
-      <rect x="82" y="15" width="9" height="19" fill="#0055a4"/>
-      <rect x="91" y="15" width="9" height="19" fill="#fff"/>
-      <rect x="100" y="15" width="9" height="19" fill="#ef4135"/>
+      <rect x="90" y="19" width="8.5" height="19" fill="#0055a4"/>
+      <rect x="98.5" y="19" width="8.5" height="19" fill="#fff"/>
+      <rect x="107" y="19" width="8.5" height="19" fill="#ef4135"/>
     </g>
-    <circle cx="80" cy="50" r="4" fill="#f0c49c"/>
-    <circle cx="50" cy="38" r="17" fill="#f0c49c"/>
-    <path d="M34 40c2 13 8 19 16 19s14-6 16-19c-3 6-8 8-16 8s-13-2-16-8z" fill="#6b4a2e"/>
-    <g class="ck-yeux" fill="#2a160c">
-      <ellipse cx="44" cy="37" rx="2.3" ry="2.9"/>
-      <ellipse cx="56" cy="37" rx="2.3" ry="2.9"/>
+    <circle cx="88" cy="61" r="4.6" fill="#f6cfa8"/>
+    <circle cx="35" cy="49" r="4.5" fill="#efbf93"/>
+    <circle cx="81" cy="49" r="4.5" fill="#efbf93"/>
+    <circle cx="58" cy="46" r="24" fill="#f6cfa8"/>
+    <path d="M35 49c2 15 11 23 23 23s21-8 23-23c-5 8-12 11-23 11s-18-3-23-11z" fill="#7a5536"/>
+    <circle cx="44" cy="54" r="4.2" fill="#f28b82" opacity=".55"/>
+    <circle cx="72" cy="54" r="4.2" fill="#f28b82" opacity=".55"/>
+    <path d="M45 36q5-3 9 0M62 36q5-3 9 0" fill="none" stroke="#6b4a2e" stroke-width="2.2" stroke-linecap="round"/>
+    <g class="ck-yeux">
+      <ellipse cx="50" cy="44" rx="5" ry="6" fill="#fff"/>
+      <ellipse cx="66" cy="44" rx="5" ry="6" fill="#fff"/>
+      <circle cx="51" cy="45" r="3.2" fill="#2a160c"/>
+      <circle cx="67" cy="45" r="3.2" fill="#2a160c"/>
+      <circle cx="52.3" cy="43.6" r="1.2" fill="#fff"/>
+      <circle cx="68.3" cy="43.6" r="1.2" fill="#fff"/>
     </g>
-    <path class="ck-sourire" d="M45 46q5 4 10 0" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
-    <path class="ck-sourire-ouvert" d="M44 45q6 8 12 0z" fill="#fff"/>
-    <path class="ck-triste" d="M45 49q5-4 10 0" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
-    <path d="M32 33c2-15 34-15 36 0z" fill="#00497b"/>
-    <path d="M60 32c8-1 14 1 16 4-7 2-13 1-17-1z" fill="#002f50"/>
-    <circle cx="48" cy="25" r="2.4" fill="#e2231a"/>
+    <path class="ck-sourire" d="M52 58q6 5 12 0" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/>
+    <path class="ck-sourire-ouvert" d="M51 57q7 11 14 0z" fill="#7a2418" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/>
+    <path class="ck-triste" d="M52 62q6-4 12 0" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M33 40c2-25 48-25 50 0z" fill="#00497b"/>
+    <path d="M33 39h50" stroke="#003a62" stroke-width="3"/>
+    <path d="M70 38c11-2 19 1 21 5-8 3-16 1-22-2z" fill="#002f50"/>
+    <circle cx="58" cy="25" r="3.2" fill="#e2231a"/>
+    <g class="ck-coeurs" fill="#e2231a">
+      <path d="M40 10c0-3 4-4 5-1 1-3 5-2 5 1 0 3-5 6-5 6s-5-3-5-6z"/>
+      <path d="M68 4c0-2.4 3.2-3.2 4-.8.8-2.4 4-1.6 4 .8 0 2.4-4 4.8-4 4.8s-4-2.4-4-4.8z"/>
+    </g>
   </g>
 </svg>`;
+const copain = artisan.replace('viewBox="-40 0 160 124"', 'viewBox="-38 60 44 54"');
 ---
 <div class="ck" id="ck" role="dialog" aria-modal="false" aria-labelledby="ck-titre" aria-describedby="ck-texte" hidden>
-  <div class="ck-promenade" aria-hidden="true">
+  <div class="ck-entete" aria-hidden="true">
+    <div class="ck-miettes"><i style="left:0%;width:2px;height:2px;animation-duration:8s;animation-delay:-0.0s"></i><i style="left:37%;width:3px;height:3px;animation-duration:11s;animation-delay:-1.3s"></i><i style="left:74%;width:4px;height:4px;animation-duration:8s;animation-delay:-2.6s"></i><i style="left:11%;width:2px;height:2px;animation-duration:11s;animation-delay:-3.9s"></i><i style="left:48%;width:3px;height:3px;animation-duration:8s;animation-delay:-5.2s"></i><i style="left:85%;width:4px;height:4px;animation-duration:11s;animation-delay:-6.5s"></i><i style="left:22%;width:2px;height:2px;animation-duration:8s;animation-delay:-7.8s"></i><i style="left:59%;width:3px;height:3px;animation-duration:11s;animation-delay:-1.1s"></i><i style="left:96%;width:4px;height:4px;animation-duration:8s;animation-delay:-2.4s"></i><i style="left:33%;width:2px;height:2px;animation-duration:11s;animation-delay:-3.7s"></i></div>
+    <div class="ck-sol"></div>
     <div class="ck-marcheur"><span class="ck-retourne" set:html={artisan} /></div>
   </div>
-  <p class="ck-titre" id="ck-titre">Des cookies <span>posés dans les règles de l'art&nbsp;?</span></p>
-  <p class="ck-texte" id="ck-texte">
-    Avec votre accord, je mesure simplement la fréquentation du site avec Google Analytics, sans aucune publicité.
-    Vous pouvez changer d'avis à tout moment. <a href="/mentions-legales/">En savoir plus</a>
-  </p>
-  <div class="ck-actions">
-    <button type="button" class="ck-btn" data-ck="refuse">Tout refuser</button>
-    <button type="button" class="ck-btn" data-ck="accept">Tout accepter</button>
+
+  <div class="ck-etape" data-etape="accueil">
+    <p class="ck-titre" id="ck-titre">C'est nous, <span>les cookies&nbsp;!</span></p>
+    <p class="ck-texte" id="ck-texte">
+      Faits maison, promis&nbsp;! Avec votre accord, on mesure simplement la fréquentation du site
+      avec Google Analytics, sans aucune publicité. Vous pouvez changer d'avis à tout moment.
+      <a href="/mentions-legales/">En savoir plus</a>
+    </p>
+    <div class="ck-actions">
+      <button type="button" class="ck-btn" data-ck="refuse">Non merci</button>
+      <button type="button" class="ck-btn ck-btn--clair" data-ck="choisir">Je choisis</button>
+      <button type="button" class="ck-btn" data-ck="accept">OK pour moi</button>
+    </div>
   </div>
+
+  <div class="ck-etape" data-etape="choix" hidden>
+    <p class="ck-titre">Vous <span>choisissez</span></p>
+    <ul class="ck-finalites">
+      <li>
+        <div>
+          <strong>Fonctionnement du site</strong>
+          <span>Mémorise votre choix sur les cookies. Toujours actif.</span>
+        </div>
+        <span class="ck-interrupteur is-on is-fixe" aria-hidden="true"><i></i></span>
+      </li>
+      <li>
+        <div>
+          <strong id="ck-lab-mesure">Mesure d'audience</strong>
+          <span>Google Analytics&nbsp;: nombre de visites et pages consultées, sans publicité.</span>
+        </div>
+        <button type="button" class="ck-interrupteur" role="switch" aria-checked="false" aria-labelledby="ck-lab-mesure" data-ck="bascule"><i></i></button>
+      </li>
+    </ul>
+    <div class="ck-actions">
+      <button type="button" class="ck-btn ck-btn--clair" data-ck="retour">Retour</button>
+      <button type="button" class="ck-btn" data-ck="valider">Valider mes choix</button>
+    </div>
+  </div>
+  <p class="ck-pied">Vos choix sont conservés 6 mois.</p>
 </div>
-<button type="button" class="ck-pastille" id="ck-pastille" aria-label="Gérer mes cookies" title="Gérer mes cookies" hidden set:html={artisan} />
+<button type="button" class="ck-pastille" id="ck-pastille" aria-label="Gérer mes cookies" title="Gérer mes cookies" hidden set:html={copain} />
 
 <style is:global>
   .ck {
     position: fixed; left: 24px; bottom: 24px; z-index: 90;
-    width: min(420px, calc(100vw - 32px)); box-sizing: border-box;
+    width: min(400px, calc(100vw - 32px)); box-sizing: border-box; overflow: hidden;
     background: #fff; color: var(--gris-700);
-    border: 1px solid var(--gris-200); border-radius: 16px;
-    box-shadow: 0 18px 50px rgb(0 42 69 / .25);
-    padding: 20px 22px 18px; font-size: 15px; line-height: 1.55; text-align: left;
+    border-radius: 20px; box-shadow: 0 18px 50px rgb(0 42 69 / .28);
+    font-size: 15px; line-height: 1.55; text-align: left;
     transition: transform .5s cubic-bezier(.2, .9, .3, 1.2), opacity .4s ease;
   }
-  .ck[hidden], .ck-pastille[hidden] { display: none; }
+  .ck[hidden], .ck-pastille[hidden], .ck-etape[hidden] { display: none; }
   .ck.is-entree { transform: translateY(40px); opacity: 0; }
   .ck.is-sortie { transform: translateY(40px) scale(.96); opacity: 0; }
+
+  /* En-tête illustré */
+  .ck-entete { position: relative; height: 112px; overflow: hidden; background: linear-gradient(180deg, #e5f1f9 0%, #d3e7f5 100%); }
+  .ck-sol { position: absolute; left: 0; right: 0; bottom: 0; height: 14px; background: #c3dcef; }
+  .ck-miettes { position: absolute; inset: 0; pointer-events: none; }
+  .ck-miettes i { position: absolute; top: -10px; display: block; border-radius: 40%; background: #d99a52; opacity: .45; animation: ck-miette linear infinite; }
+  .ck-marcheur { position: absolute; left: 12px; bottom: 6px; width: 119px; height: 92px; animation: ck-marche 18s linear infinite; }
+  .ck-retourne { display: block; width: 100%; height: 100%; animation: ck-retourne 18s step-end infinite; }
+  .ck-svg { display: block; width: 100%; height: 100%; overflow: visible; }
+
+  .ck-etape { padding: 18px 22px 4px; }
   .ck-titre {
-    margin: 0 0 8px; font-family: var(--font-titres); font-weight: 700; font-size: 18px; line-height: 1.3;
+    margin: 0 0 8px; font-family: var(--font-titres); font-weight: 700; font-size: 21px; line-height: 1.25;
     color: var(--bleu-fonce); text-wrap: balance;
   }
   .ck-titre span { color: var(--cuivre); }
-  .ck-texte { margin: 0 0 14px; }
+  .ck-texte { margin: 0 0 16px; }
   .ck-texte a { color: var(--bleu-fonce); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
-  .ck-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+  .ck-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
   .ck-btn {
     appearance: none; border: 0; cursor: pointer; width: auto;
-    font-family: var(--font-titres); font-weight: 700; font-size: 15px; line-height: 1;
-    padding: 13px 20px; border-radius: 999px; background: var(--bleu-fonce); color: #fff;
+    font-family: var(--font-titres); font-weight: 700; font-size: 14.5px; line-height: 1;
+    padding: 12px 16px; border-radius: 999px; background: var(--bleu-fonce); color: #fff;
     transition: background-color .2s ease, transform .2s ease;
   }
   .ck-btn:hover { background: var(--bleu); transform: translateY(-1px); }
-  .ck-btn:focus-visible, .ck-pastille:focus-visible { outline: 3px solid var(--cuivre); outline-offset: 2px; }
+  .ck-btn--clair { background: var(--gris-100); color: var(--bleu-fonce); }
+  .ck-btn--clair:hover { background: var(--gris-200); color: var(--bleu-fonce); }
+  .ck-btn:focus-visible, .ck-pastille:focus-visible, .ck-interrupteur:focus-visible { outline: 3px solid var(--cuivre); outline-offset: 2px; }
+  .ck-pied { margin: 10px 0 0; padding: 8px 22px 12px; font-size: 12px; color: var(--gris-500); text-align: center; border-top: 1px solid var(--gris-100); }
 
-  /* L'artisan se promène sur le haut du bandeau */
-  .ck-promenade { position: absolute; left: 14px; right: 14px; bottom: 100%; height: 78px; margin-bottom: -7px; pointer-events: none; }
-  .ck-marcheur { position: absolute; left: 0; bottom: 0; width: 72px; height: 78px; animation: ck-marche 18s linear infinite; }
-  .ck-retourne { display: block; width: 100%; height: 100%; animation: ck-retourne 18s step-end infinite; }
-  .ck-svg { display: block; width: 100%; height: 100%; overflow: visible; }
+  /* Écran « Je choisis » */
+  .ck-finalites { list-style: none; margin: 0 0 16px; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .ck-finalites li { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 12px 14px; background: var(--gris-50); border-radius: 12px; }
+  .ck-finalites strong { display: block; color: var(--bleu-fonce); font-size: 15px; }
+  .ck-finalites span { display: block; font-size: 13px; line-height: 1.45; }
+  .ck-interrupteur {
+    appearance: none; border: 0; padding: 0; cursor: pointer; flex-shrink: 0;
+    position: relative; width: 46px; height: 26px; border-radius: 999px; background: var(--gris-200);
+    transition: background-color .2s ease;
+  }
+  .ck-interrupteur i { position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgb(0 0 0 / .2); transition: transform .2s ease; }
+  .ck-interrupteur.is-on, .ck-interrupteur[aria-checked="true"] { background: var(--bleu); }
+  .ck-interrupteur.is-on i, .ck-interrupteur[aria-checked="true"] i { transform: translateX(20px); }
+  .ck-interrupteur.is-fixe { cursor: default; opacity: .6; }
+
+  /* Animations des personnages */
   .ck-marcheur .ck-jambe, .ck-pastille:hover .ck-jambe { animation: ck-pas .45s ease-in-out infinite alternate; }
   .ck-marcheur .ck-jambe--2, .ck-pastille:hover .ck-jambe--2 { animation-delay: -.45s; }
   .ck-marcheur .ck-corps, .ck-pastille:hover .ck-corps { animation: ck-balance .225s ease-in-out infinite alternate; }
   .ck-svg .ck-yeux { transform-box: fill-box; transform-origin: center; animation: ck-cligne 4.5s infinite; }
   .ck-svg .ck-drapeau { transform-box: fill-box; transform-origin: 0 50%; animation: ck-flotte 1.1s ease-in-out infinite alternate; }
-  .ck-svg .ck-sourire-ouvert, .ck-svg .ck-triste { opacity: 0; }
+  .ck-svg .ck-sourire-ouvert, .ck-svg .ck-triste, .ck-svg .ck-coeurs { opacity: 0; }
+  .ck-svg .ck-coeurs { transform-box: fill-box; transform-origin: center; }
   .ck.is-content .ck-marcheur, .ck.is-content .ck-retourne,
   .ck.is-decu .ck-marcheur, .ck.is-decu .ck-retourne { animation-play-state: paused; }
   .ck.is-content .ck-svg { animation: ck-saut .6s ease-out; }
   .ck.is-content .ck-drapeau { animation-duration: .35s; }
   .ck.is-content .ck-sourire { opacity: 0; }
   .ck.is-content .ck-sourire-ouvert { opacity: 1; }
+  .ck.is-content .ck-coeurs { animation: ck-coeurs 1s ease-out forwards; }
   .ck.is-decu .ck-jambe, .ck.is-decu .ck-corps { animation: none; }
   .ck.is-decu .ck-corps { transform: translateY(3px); }
   .ck.is-decu .ck-sourire { opacity: 0; }
   .ck.is-decu .ck-triste { opacity: 1; }
   .ck.is-decu .ck-drapeau { animation: none; transform: rotate(-20deg) skewY(8deg); }
 
-  /* Pastille pour rouvrir le bandeau */
+  /* Pastille (copain cookie seul) pour rouvrir le bandeau */
   .ck-pastille {
     position: fixed; left: 16px; bottom: 16px; z-index: 89;
-    width: 58px; height: 58px; padding: 8px 6px 4px;
-    border: 1px solid var(--gris-200); border-radius: 50%; background: #fff;
-    box-shadow: 0 4px 16px rgb(0 42 69 / .18); cursor: pointer; transition: transform .25s ease;
+    width: 58px; height: 58px; padding: 6px;
+    border: 0; border-radius: 50%; background: #e5f1f9;
+    box-shadow: 0 4px 16px rgb(0 42 69 / .22); cursor: pointer; transition: transform .25s ease;
   }
-  .ck-pastille:hover { transform: scale(1.08); }
+  .ck-pastille .ck-svg { overflow: hidden; }
+  .ck-pastille:hover { transform: scale(1.08) rotate(-6deg); }
 
-  @keyframes ck-marche { 0% { left: 0; } 47% { left: calc(100% - 72px); } 50% { left: calc(100% - 72px); } 97% { left: 0; } 100% { left: 0; } }
+  @keyframes ck-marche { 0% { left: 12px; } 47% { left: calc(100% - 131px); } 50% { left: calc(100% - 131px); } 97% { left: 12px; } 100% { left: 12px; } }
   @keyframes ck-retourne { 0% { transform: scaleX(1); } 48.5% { transform: scaleX(-1); } 98.5% { transform: scaleX(1); } }
   @keyframes ck-pas { from { transform: rotate(-22deg); } to { transform: rotate(22deg); } }
   @keyframes ck-balance { from { transform: translateY(0) rotate(1deg); } to { transform: translateY(-2px) rotate(3deg); } }
   @keyframes ck-cligne { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.1); } }
   @keyframes ck-flotte { from { transform: skewY(-6deg) scaleX(.94); } to { transform: skewY(5deg) scaleX(1); } }
-  @keyframes ck-saut { 0% { transform: translateY(0); } 30% { transform: translateY(-16px) rotate(-5deg); } 55% { transform: translateY(0); } 75% { transform: translateY(-8px) rotate(4deg); } 100% { transform: translateY(0); } }
+  @keyframes ck-saut { 0% { transform: translateY(0); } 30% { transform: translateY(-14px) rotate(-5deg); } 55% { transform: translateY(0); } 75% { transform: translateY(-7px) rotate(4deg); } 100% { transform: translateY(0); } }
+  @keyframes ck-miette { 0% { transform: translate(0, 0) rotate(0); } 50% { transform: translate(6px, 60px) rotate(120deg); } 100% { transform: translate(-4px, 125px) rotate(240deg); } }
+  @keyframes ck-coeurs { 0% { opacity: 0; transform: translateY(6px) scale(.6); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateY(-14px) scale(1.15); } }
 
   /* Mobile : au-dessus de la barre « Appeler / Devis gratuit » */
   @media (max-width: 800px) {
-    .ck {
-      left: 12px; right: 12px; width: auto; bottom: calc(68px + env(safe-area-inset-bottom));
-      padding: 14px 16px; font-size: 14px; line-height: 1.5;
-    }
-    .ck-titre { font-size: 16px; margin-bottom: 6px; }
+    .ck { left: 12px; right: 12px; width: auto; bottom: calc(68px + env(safe-area-inset-bottom)); font-size: 14px; line-height: 1.5; }
+    .ck-entete { height: 88px; }
+    .ck-marcheur { width: 93px; height: 72px; animation-name: ck-marche-m; }
+    .ck-etape { padding: 14px 16px 2px; }
+    .ck-titre { font-size: 18px; }
     .ck-texte { margin-bottom: 12px; }
-    .ck-btn { min-height: 46px; padding: 0 18px; }
-    .ck-promenade { height: 62px; margin-bottom: -6px; }
-    .ck-marcheur { width: 58px; height: 62px; animation-name: ck-marche-m; }
+    .ck-actions { gap: 6px; }
+    .ck-btn { min-height: 44px; padding: 0 12px; font-size: 13.5px; }
+    .ck-pied { padding: 6px 16px 10px; margin-top: 8px; }
     .ck-pastille { bottom: calc(72px + env(safe-area-inset-bottom)); width: 52px; height: 52px; }
-    @keyframes ck-marche-m { 0% { left: 0; } 47% { left: calc(100% - 58px); } 50% { left: calc(100% - 58px); } 97% { left: 0; } 100% { left: 0; } }
+    @keyframes ck-marche-m { 0% { left: 12px; } 47% { left: calc(100% - 105px); } 50% { left: calc(100% - 105px); } 97% { left: 12px; } 100% { left: 12px; } }
   }
   @media (prefers-reduced-motion: reduce) {
     .ck, .ck *, .ck-pastille, .ck-pastille * { animation: none !important; transition: none !important; }
@@ -190,6 +294,7 @@ const artisan = `
     const audela = () => (window.scrollY || document.documentElement.scrollTop || 0) >= SEUIL;
 
     const montrer = (parUtilisateur: boolean) => {
+      boite.querySelectorAll<HTMLElement>('.ck-etape').forEach((e) => { e.hidden = e.dataset.etape !== 'accueil'; });
       boite.classList.remove('is-content', 'is-decu', 'is-sortie');
       boite.classList.add('is-entree');
       boite.hidden = false; pastille.hidden = true;
@@ -211,9 +316,26 @@ const artisan = `
       setTimeout(cacher, reduit ? 0 : 800);
     };
 
+    const etapes = boite.querySelectorAll<HTMLElement>('.ck-etape');
+    const bascule = boite.querySelector<HTMLElement>('[data-ck="bascule"]');
+    const allerA = (nom: string) => {
+      etapes.forEach((e) => { e.hidden = e.dataset.etape !== nom; });
+      if (nom === 'choix' && bascule) {
+        const c = lire();
+        bascule.setAttribute('aria-checked', c && c.analytics ? 'true' : 'false');
+        bascule.focus({ preventScroll: true });
+      }
+    };
     boite.addEventListener('click', (e) => {
       const b = (e.target as HTMLElement).closest('[data-ck]');
-      if (b) decider(b.getAttribute('data-ck') === 'accept');
+      if (!b) return;
+      const action = b.getAttribute('data-ck');
+      if (action === 'accept') decider(true);
+      else if (action === 'refuse') decider(false);
+      else if (action === 'choisir') allerA('choix');
+      else if (action === 'retour') allerA('accueil');
+      else if (action === 'bascule') b.setAttribute('aria-checked', b.getAttribute('aria-checked') === 'true' ? 'false' : 'true');
+      else if (action === 'valider') decider(bascule?.getAttribute('aria-checked') === 'true');
     });
     pastille.addEventListener('click', () => { force = true; montrer(true); });
     document.addEventListener('click', (e) => {

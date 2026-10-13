@@ -1,88 +1,115 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import FilAriane from '../../components/FilAriane.astro';
-import CtaDevis from '../../components/CtaDevis.astro';
-import villes from '../../data/villes.json';
+// Sous-page du cocon zinguerie — rédigée oct. 2026 (gabarit PageService).
+import PageService from '../../components/PageService.astro';
+import ZinguerieLiees from '../../components/ZinguerieLiees.astro';
 
-const title = "Gouttieres PVC dans l'Essonne (91) - Robert Daniel Couverture";
-const description = "Pose et remplacement de gouttieres PVC à Étréchy et dans l'Essonne. Solution economique et durable. Devis gratuit.";
+const url = 'https://robert-daniel-couverture.fr/zinguerie/gouttieres-pvc/';
+const title = "Gouttières en PVC dans l'Essonne (91) – Robert Daniel";
+const description = "Pose et remplacement de gouttières en PVC dans l'Essonne (91) : une solution légère et économique pour les petites toitures et les annexes. Robert Daniel.";
 
 const extraSchemas = [{
   '@context': 'https://schema.org',
   '@type': 'Service',
-  name: 'Gouttieres PVC',
-  serviceType: 'Zinguerie',
+  '@id': `${url}#service`,
+  name: 'Gouttières en PVC',
+  serviceType: 'Pose et remplacement de gouttières en PVC',
   provider: { '@id': 'https://robert-daniel-couverture.fr/#localbusiness' },
+  isRelatedTo: { '@id': 'https://robert-daniel-couverture.fr/zinguerie/#service' },
   areaServed: { '@type': 'AdministrativeArea', name: 'Essonne (91)' },
-  url: 'https://robert-daniel-couverture.fr/zinguerie/gouttieres-pvc/',
+  url,
+  image: 'https://robert-daniel-couverture.fr/images/zinguerie-toiture-tuiles-essonne.jpg',
   description,
 }];
 ---
-<BaseLayout title={title} description={description} extraSchemas={extraSchemas}>
-  <section class="hero">
+<PageService
+  title={title}
+  description={description}
+  extraSchemas={extraSchemas}
+  ariane={[{ label: 'Accueil', href: '/' }, { label: 'Zinguerie', href: '/zinguerie/' }, { label: 'Gouttières en PVC' }]}
+  h1="Gouttières PVC 91 –"
+  hero={{ src: '/images/zinguerie-toiture-tuiles-essonne.webp', alt: "Maison de l'Essonne avec sa toiture en tuiles et ses gouttières", width: 1100, height: 825 }}
+  lead="La <strong>pose de gouttières en PVC dans l'Essonne</strong> : une solution légère et économique, posée dans les règles par un couvreur."
+  coches={['Solution économique', 'Pose rapide et propre', 'Devis gratuit et sans engagement']}
+  bande={['Petites toitures', 'Garages et abris', 'Extensions', 'Remplacement']}
+  artisan={{
+    titre: 'Un conseil honnête sur le bon matériau',
+    html: `<p>Depuis plus de 15 ans, je pose des gouttières sur les maisons de l'Essonne. Le PVC a toute sa place sur un garage, un abri ou une petite extension, et je vous le propose quand il répond vraiment à votre besoin.</p>
+<p>Quand votre maison mérite un matériau plus durable, je vous le dis aussi, et je vous présente les deux solutions avec leur prix pour que vous choisissiez en connaissance de cause.</p>`,
+  }}
+  avis={{ titre: 'Les avis de mes clients', ids: ['a-charpentier', 'stephane-boulay', 'catherine-francois'] }}
+  cta={{ titre: "Faites poser vos gouttières en PVC dans l'Essonne" }}
+>
+
+  <!-- ══ LE PVC ══ -->
+  <section class="dr-section">
     <div class="conteneur">
-      <FilAriane items={[{ label: 'Accueil', href: '/' }, { label: 'Zinguerie', href: '/zinguerie/' }, { label: 'Gouttieres PVC' }]} />
-    </div>
-    <div class="conteneur hero__grille">
-      <div class="hero__texte">
-        <h1>Gouttieres PVC dans l'Essonne</h1>
-        <p class="hero__accroche">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <ul>
-          <li><strong>Lorem ipsum</strong> dolor sit amet.</li>
-          <li><strong>Consectetur</strong> adipiscing elit.</li>
-          <li><strong>Garantie décennale</strong> sur tous nos travaux.</li>
-        </ul>
-        <div class="hero__actions">
-          <a href="tel:0683961518" class="btn btn--cuivre">
-            <svg class="icone-tel" viewBox="0 0 24 24" aria-hidden="true"><g class="icone-tel__corps"><path fill="currentColor" d="M14 1H6C4.9 1 4 1.9 4 3v18c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-4 21c-.8 0-1.5-.7-1.5-1.5S9.2 19 10 19s1.5.7 1.5 1.5S10.8 22 10 22zm4-4H6V4h8v14z"/></g><path class="icone-tel__onde" d="M18.5 8.5a4 4 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="icone-tel__onde icone-tel__onde--2" d="M21 6a7.5 7.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            06 83 96 15 18
-          </a>
-          <a href="/devis-gratuit/" class="btn btn--bleu">Devis gratuit <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <div class="dr-duo dr-duo--seul" data-anim="up">
+        <figure class="dr-duo__media">
+          <img src="/images/realisations/entretien-gouttieres-janville-sur-juine/entretien-gouttieres-janville-sur-juine-03.webp" alt="Gouttière dégagée et contrôlée en bas de pente d'une toiture" width="900" height="1200" loading="lazy" decoding="async" />
+        </figure>
+        <div class="dr-duo__texte">
+          <h2 class="dr-h2">Le PVC, une solution légère et économique</h2>
+          <p>La gouttière en PVC est la plus abordable des gouttières. Légère, elle se pose rapidement et se raccorde par emboîtement et collage. Elle ne rouille pas et ne demande pas de peinture.</p>
+          <p>Elle convient bien aux petites toitures : un garage, un abri de jardin, un auvent ou une extension. Sur ces ouvrages, le PVC offre un très bon rapport qualité-prix.</p>
+          <p>Comme tous les ouvrages de <a href="/zinguerie/">zinguerie</a>, une gouttière en PVC doit être posée avec une pente juste et des fixations solides pour évacuer l'eau sans déborder.</p>
         </div>
       </div>
-      <div class="hero__media">
-        <div class="placeholder-img hero__photo">Photo Gouttieres PVC</div>
-      </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="conteneur duo">
-      <div class="placeholder-img">Photo Gouttieres PVC detail</div>
-      <div class="prose">
-        <h2>Lorem ipsum dolor sit amet</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--bleute">
-    <div class="conteneur duo duo--inverse">
-      <div class="placeholder-img">Photo Gouttieres PVC chantier</div>
-      <div class="prose">
-        <h2>Lorem ipsum dolor sit amet consectetur</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nemo enim ipsam voluptatem quia voluptas sit aspernatur.</p>
-        <ul>
-          <li>Lorem ipsum dolor sit amet.</li>
-          <li>Consectetur adipiscing elit.</li>
-          <li>Sed do eiusmod tempor.</li>
-        </ul>
-        <a href="/zinguerie/" class="btn btn--bleu">Tous nos services zinguerie <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-      </div>
-    </div>
-  </section>
-
-  <CtaDevis />
-
-  <section class="section section--gris">
+  <!-- ══ DILATATION (carte bleu nuit) ══ -->
+  <section class="dr-section dr-section--serre">
     <div class="conteneur">
-      <h2>Gouttieres PVC — nos communes</h2>
-      <ul class="nuage-villes">
-        {villes.map((v) => (
-          <li><a href={`/${v.slug}/`}>{v.nom}</a></li>
-        ))}
-      </ul>
+      <article class="dr-regle" data-anim="up">
+        <div class="dr-regle__corps">
+          <h2>Une pose qui tient compte de la dilatation</h2>
+          <p>Le PVC se dilate fortement à la chaleur. Une gouttière collée bout à bout sans précaution se déforme au soleil, puis se fend ou se décroche. Je prévois des jonctions de dilatation et des crochets rapprochés qui laissent la gouttière travailler.</p>
+          <p>Je veille aussi à la pente vers les descentes et l'étanchéité des naissances : ce sont elles qui font qu'une gouttière en PVC fonctionne bien pendant des années.</p>
+          <a href="/devis-gratuit/" class="dr-btn dr-btn--rouge">
+            Demander mon devis
+            <span class="dr-btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+        </div>
+        <div class="dr-regle__certif">
+          <h3>Pour une gouttière PVC durable</h3>
+          <ul class="dr-coches dr-coches--sombre">
+            <li>Jonctions de dilatation</li>
+            <li>Crochets rapprochés et bien fixés</li>
+            <li>Pente régulière vers les descentes</li>
+            <li>Naissances étanches</li>
+          </ul>
+        </div>
+      </article>
     </div>
   </section>
-</BaseLayout>
+
+  <!-- ══ QUEL MATÉRIAU ══ -->
+  <section class="dr-section dr-section--gris">
+    <div class="conteneur">
+      <div class="dr-entete" data-anim="up">
+        <h2 class="dr-h2">PVC, aluminium ou zinc ?</h2>
+        <p>Le PVC n'est pas le bon choix pour toutes les maisons.</p>
+      </div>
+      <div class="dr-conseils">
+        <article class="dr-conseil" data-anim="up">
+          <h3>Quand choisir le PVC</h3>
+          <ul class="dr-puces">
+            <li>Pour un garage, un abri de jardin ou une petite extension.</li>
+            <li>Pour un budget serré, sur une façade peu exposée.</li>
+            <li>Pour remplacer à l'identique une gouttière en PVC existante.</li>
+          </ul>
+        </article>
+        <article class="dr-conseil" data-anim="up">
+          <h3>Quand préférer un autre matériau</h3>
+          <ul class="dr-puces">
+            <li>Sur une façade très exposée au soleil, où le PVC se déforme et se décolore.</li>
+            <li>Sur une grande longueur, où des <a href="/zinguerie/gouttieres-aluminium/">gouttières en aluminium</a> sans raccord sont plus fiables.</li>
+            <li>Sur une maison de caractère, où le zinc s'accorde mieux à la toiture.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <ZinguerieLiees slugs={['gouttieres-zinc', 'gouttieres-aluminium', 'descentes-eaux-pluviales']} />
+</PageService>

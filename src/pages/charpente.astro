@@ -1,203 +1,155 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import FilAriane from '../components/FilAriane.astro';
-import CtaDevis from '../components/CtaDevis.astro';
-import villes from '../data/villes.json';
+// Page pilier « Charpente » — refonte oct. 2026 au design de la page Ramonage
+// (gabarit PageService). Centrée sur l'Essonne.
+import PageService from '../components/PageService.astro';
 
-import AvisGoogle from '../components/AvisGoogle.astro';
-import NoteGoogle from '../components/NoteGoogle.astro';
-const title = "Charpente bois dans l'Essonne (91) — M. Robert couvreur";
-const description = "Charpente bois à Étréchy et dans l'Essonne : traitement, réparation, remplacement de pièces et création. M. Robert Daniel, couvreur charpentier. Devis gratuit.";
+const url = 'https://robert-daniel-couverture.fr/charpente/';
+const title = "Travaux de charpente dans l'Essonne (91) – Robert Daniel";
+const description = "Charpente dans l'Essonne (91) : traitement contre insectes et champignons, remplacement de pièces, charpente neuve. Robert Daniel, couvreur charpentier.";
 
 const extraSchemas = [{
   '@context': 'https://schema.org',
   '@type': 'Service',
-  name: 'Charpente bois',
-  serviceType: 'Travaux de charpente bois',
+  '@id': `${url}#service`,
+  name: 'Travaux de charpente',
+  serviceType: 'Traitement, réparation et création de charpente bois',
   provider: { '@id': 'https://robert-daniel-couverture.fr/#localbusiness' },
   areaServed: { '@type': 'AdministrativeArea', name: 'Essonne (91)' },
-  url: 'https://robert-daniel-couverture.fr/charpente/',
+  url,
+  image: 'https://robert-daniel-couverture.fr/images/charpente-bois-fermes-essonne.jpg',
   description,
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Prestations de charpente',
+    itemListElement: [
+      'Traitement de charpente contre les insectes et les champignons',
+      'Remplacement de chevrons, pannes et pièces de charpente',
+      'Renforcement des assemblages',
+      'Création de charpente bois neuve',
+    ].map((n) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: n } })),
+  },
 }];
+
+const interventions = [
+  { titre: 'Traitement curatif et préventif', texte: "Bûchage des parties mortes, puis traitement par pulvérisation et injection au cœur du bois contre les insectes et les champignons." },
+  { titre: 'Remplacement de pièces', texte: "Chevron, panne, arbalétrier ou entrait trop atteints : je les remplace à l'identique pour garder l'aspect d'origine de la charpente." },
+  { titre: 'Renforcement', texte: "Reprise des assemblages affaiblis et doublage des pièces qui fléchissent, pour redonner sa rigidité à l'ossature." },
+  { titre: 'Charpente neuve', texte: "Extension, surélévation ou toiture entièrement refaite : je dimensionne et je monte une charpente bois adaptée à la couverture prévue." },
+];
+
+const etapes = [
+  { titre: "L'examen de l'ossature", texte: "Depuis les combles, je contrôle les pannes, les chevrons, les fermes et les assemblages pour repérer les bois atteints." },
+  { titre: 'La cause du désordre', texte: "Je cherche ce qui abîme le bois : une fuite, une ventilation insuffisante ou une attaque d'insectes ancienne." },
+  { titre: 'Les travaux', texte: "Je traite le bois qui peut être conservé, je remplace les pièces trop dégradées et je renforce l'ensemble." },
+  { titre: 'La toiture protégée', texte: "Une charpente saine accueille ensuite la couverture et l'<a href=\"/isolation-toiture/\">isolation des combles</a> sans reprise." },
+];
 ---
-<BaseLayout title={title} description={description} extraSchemas={extraSchemas}>
-  <section class="hero">
+<PageService
+  title={title}
+  description={description}
+  extraSchemas={extraSchemas}
+  ariane={[{ label: 'Accueil', href: '/' }, { label: 'Charpente' }]}
+  h1="Charpente bois 91 –"
+  hero={{ src: '/images/charpente-bois-fermes-essonne.webp', alt: "Fermes de charpente bois neuves levées à la grue sur une maison de l'Essonne", width: 1200, height: 900 }}
+  lead="Le <strong>traitement et la rénovation de votre charpente bois dans l'Essonne</strong> par un couvreur charpentier, qui travaille aussi la couverture."
+  coches={['Traitement insectes et champignons', 'Remplacement des pièces atteintes', 'Devis gratuit et sans engagement']}
+  bande={['Traitement de charpente', 'Remplacement de pièces', 'Renforcement', 'Charpente neuve']}
+  artisan={{
+    titre: 'Un couvreur charpentier pour votre toiture',
+    html: `<p>Depuis plus de 15 ans, je travaille le bois de charpente et la couverture dans l'Essonne. Confier les deux au même artisan évite les zones de doute entre deux corps de métier : je traite la cause d'une charpente humide et le bois qu'elle a abîmé.</p>
+<p>Je vous montre les pièces atteintes, je vous explique ce qui peut être conservé et ce qui doit être remplacé, puis je vous remets un devis qui détaille chaque intervention.</p>`,
+  }}
+  avis={{ titre: 'Ce que mes clients disent de mon travail', ids: ['guytounet-breizh', 'marc-viandon', 'july'] }}
+  cta={{ titre: "Faites contrôler votre charpente dans l'Essonne" }}
+>
+
+  <!-- ══ L'OSSATURE ══ -->
+  <section class="dr-section">
     <div class="conteneur">
-      <FilAriane items={[{ label: 'Accueil', href: '/' }, { label: 'Charpente' }]} />
+      <div class="dr-duo dr-duo--seul" data-anim="up">
+        <figure class="dr-duo__media">
+          <img src="/images/charpente-chevrons-renovation-essonne.webp" alt="Chevrons neufs posés sur une charpente en rénovation dans l'Essonne" width="1200" height="900" loading="lazy" decoding="async" />
+        </figure>
+        <div class="dr-duo__texte">
+          <h2 class="dr-h2">La charpente, l'ossature de votre toiture</h2>
+          <p>La charpente porte la couverture, l'isolant et le poids de la neige. Une charpente saine garde sa forme pendant des décennies, mais le bois peut souffrir : une infiltration le fait pourrir, des insectes le creusent, un champignon le ramollit.</p>
+          <p>Quand une pièce faiblit, toute la toiture s'en ressent. Les tuiles bougent, le faîtage ondule et les fuites apparaissent. Un contrôle à temps évite que le désordre ne gagne l'ensemble de l'ossature.</p>
+          <p>Comme <a href="/">couvreur 91</a>, je contrôle la charpente à chaque intervention importante sur une toiture : c'est la garantie d'une couverture qui reste droite et étanche.</p>
+        </div>
+      </div>
     </div>
-    <div class="conteneur hero__grille">
-      <div class="hero__texte">
-        <p class="hero__badge"><span class="hero__point" aria-hidden="true"></span> Traitement et rénovation</p>
-        <h1>Charpente bois dans l'Essonne</h1>
-        <p class="hero__accroche">
-          Charpente attaquée par les insectes, pièce affaiblie, projet de charpente neuve ? Je
-          traite, répare et crée des charpentes bois dans l'Essonne pour soutenir durablement
-          votre toiture.
-        </p>
-        <ul>
-          <li><strong>Traitement</strong> contre insectes et champignons.</li>
-          <li><strong>Réparation</strong> et remplacement de pièces.</li>
-          <li><strong>Devis gratuit</strong> et sans engagement.</li>
-        </ul>
-        <div class="hero__actions">
-          <a href="tel:0683961518" class="btn btn--cuivre">
-            <svg class="icone-tel" viewBox="0 0 24 24" aria-hidden="true"><g class="icone-tel__corps"><path fill="currentColor" d="M14 1H6C4.9 1 4 1.9 4 3v18c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-4 21c-.8 0-1.5-.7-1.5-1.5S9.2 19 10 19s1.5.7 1.5 1.5S10.8 22 10 22zm4-4H6V4h8v14z"/></g><path class="icone-tel__onde" d="M18.5 8.5a4 4 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="icone-tel__onde icone-tel__onde--2" d="M21 6a7.5 7.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            06 83 96 15 18
+  </section>
+
+  <!-- ══ TRAITEMENT (carte bleu nuit) ══ -->
+  <section class="dr-section dr-section--serre">
+    <div class="conteneur">
+      <article class="dr-regle" data-anim="up">
+        <div class="dr-regle__corps">
+          <h2>Traitement de charpente : insectes et champignons</h2>
+          <p>Capricornes, vrillettes, mérule ou pourriture : j'identifie d'abord ce qui attaque le bois, car le traitement n'est pas le même. Les parties mortes sont bûchées, puis le bois est traité en surface et en profondeur.</p>
+          <p>Un traitement n'a de sens que si le bois reste sec. Pour une charpente humide, je commence par la <a href="/reparation-toiture/">réparation de la couverture</a> qui laisse passer l'eau, puis je traite. Appliqué dans les règles, un traitement protège le bois pendant une dizaine d'années.</p>
+          <a href="/devis-gratuit/" class="dr-btn dr-btn--rouge">
+            Faire contrôler ma charpente
+            <span class="dr-btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
           </a>
-          <a href="/devis-gratuit/" class="btn btn--bleu">Devis gratuit <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
         </div>
-        <NoteGoogle />
-      </div>
-      <div class="hero__media">
-        <img class="hero__photo" src="/images/services/charpente.webp" alt="Charpente bois rénovée par Robert Daniel Couverture dans l'Essonne" width="900" height="600" fetchpriority="high" decoding="async" />
-        <div class="carte hero__garantie">
-          <p><strong>Garantie Décennale</strong><br />Pour tous travaux de couverture</p>
-          <img src="/images/logo-allianz.png" alt="Garantie décennale assurée par Allianz" width="92" height="58" loading="lazy" decoding="async" />
+        <div class="dr-regle__certif">
+          <h3>Les signes qui doivent alerter</h3>
+          <ul class="dr-coches dr-coches--sombre">
+            <li>De la sciure fine au pied des bois</li>
+            <li>Des trous ou des galeries en surface</li>
+            <li>Un bois sombre, ramolli ou qui sent l'humidité</li>
+            <li>Un toit qui ondule ou une panne qui se courbe</li>
+          </ul>
         </div>
-      </div>
+      </article>
     </div>
   </section>
 
-  <section class="section">
+  <!-- ══ INTERVENTIONS ══ -->
+  <section class="dr-section dr-section--gris">
     <div class="conteneur">
-      <div class="encadre">
-        <h2>Ce que vous devez savoir</h2>
-        <p>
-          Couvreur charpentier à Étréchy, je travaille le bois de charpente dans l'Essonne
-          depuis plus de quinze ans. La charpente porte toute la couverture : dès qu'une pièce
-          fléchit, est rongée par les insectes ou gagnée par un champignon, c'est la toiture
-          entière qui s'en ressent. J'examine l'ossature, je traite le bois quand il peut être
-          conservé et je remplace les pièces trop atteintes, en gardant l'aspect d'origine de la
-          charpente. Je réalise aussi des charpentes neuves dans le cadre d'une extension ou
-          d'une réfection. Mes devis sont gratuits et sans engagement.
-        </p>
+      <div class="dr-entete" data-anim="up">
+        <h2 class="dr-h2">Mes interventions sur charpente</h2>
+        <p>Tout le bois n'est pas à changer : je conserve ce qui est sain et je remplace ce qui ne l'est plus.</p>
       </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="conteneur duo">
-      <img src="/images/charpente-bois-essonne-1.webp" alt="Charpente bois traditionnelle rénovée dans l'Essonne par Robert Daniel Couverture" width="1100" height="825" loading="lazy" decoding="async" />
-      <div class="prose">
-        <h2>La charpente, l'ossature de votre toiture</h2>
-        <p>
-          La charpente est le squelette qui supporte la couverture, l'isolant et le poids de la
-          neige. Une charpente saine garde sa forme pendant des décennies. Mais le bois peut
-          souffrir : infiltration qui le fait pourrir, insectes qui le creusent, champignon qui
-          le ramollit. Quand une pièce faiblit, la toiture se déforme, les tuiles bougent et les
-          fuites apparaissent.
-        </p>
-        <p>
-          Quelques signes doivent alerter : un plafond qui s'affaisse, une panne qui se courbe,
-          de la sciure au pied des bois, des galeries en surface ou un toit qui ondule. Devant
-          l'un de ces signaux, un contrôle s'impose avant que le problème ne gagne du terrain.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--bleute">
-    <div class="conteneur prose prose--large">
-      <h2>Traitement de charpente : insectes et champignons</h2>
-      <p>
-        Le bois de charpente attire des parasites qui le dégradent de l'intérieur. Le
-        <strong>traitement de charpente</strong> consiste à les éliminer et à protéger le bois
-        contre leur retour. J'identifie d'abord ce qui attaque l'ossature :
-      </p>
-      <table>
-        <thead>
-          <tr><th>Attaque</th><th>Ce qu'on observe</th><th>Mon intervention</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Insectes à larves (capricornes, vrillettes)</td><td>Galeries, trous, sciure fine</td><td>Bûchage des parties mortes puis traitement par pulvérisation et injection</td></tr>
-          <tr><td>Champignons (mérule, pourriture)</td><td>Bois ramolli, filaments, odeur d'humidité</td><td>Assèchement de la cause, retrait des bois atteints, traitement fongicide</td></tr>
-          <tr><td>Humidité de la couverture</td><td>Taches, bois sombre près des fuites</td><td>Reprise de la toiture qui laisse passer l'eau, puis traitement du bois</td></tr>
-        </tbody>
-      </table>
-      <p>
-        Un traitement n'a de sens que si la cause est réglée. Pour une charpente humide, je
-        reprends d'abord la <a href="/reparation-toiture/">réparation de la couverture</a> ou la <a href="/zinguerie/">zinguerie</a> en défaut, puis je traite le bois. C'est
-        l'avantage de confier l'ensemble à un couvreur charpentier plutôt qu'à deux corps de
-        métier séparés.
-      </p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="conteneur duo duo--inverse">
-      <img src="/images/charpente-bois-essonne-2.webp" alt="Remplacement d'une pièce de charpente bois dans l'Essonne" width="825" height="1100" loading="lazy" decoding="async" />
-      <div class="prose">
-        <h2>Réparation, remplacement et charpente neuve</h2>
-        <p>
-          Tout le bois n'est pas à changer. Quand une pièce reste saine, je la traite et je la
-          conserve. Quand elle est trop atteinte, je la remplace à l'identique : chevron, panne,
-          arbalétrier ou entrait. Je renforce aussi les assemblages affaiblis pour redonner sa
-          rigidité à l'ensemble.
-        </p>
-        <p>
-          Pour une extension, une surélévation ou une <a href="/renovation-toiture/">toiture entièrement refaite</a>, je réalise des
-          <strong>charpentes neuves</strong> en bois. Je dimensionne l'ossature selon la portée
-          et la couverture prévue, puis je la monte sur place. Une charpente bien conçue
-          accueille ensuite l'<a href="/isolation-toiture/">isolation de la toiture</a> et la couverture sans reprise.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--bleute">
-    <div class="conteneur prose prose--large">
-      <h2>Comment se déroule une intervention sur charpente</h2>
-      <p>
-        Je commence par examiner l'ensemble de l'ossature, depuis les combles, pour repérer les
-        bois atteints et comprendre l'origine du désordre. Je vous remets ensuite un devis qui
-        détaille ce qui est traité, renforcé ou remplacé.
-      </p>
-      <ul>
-        <li>Contrôle des pannes, chevrons, fermes et assemblages.</li>
-        <li>Bûchage des parties mortes et dépoussiérage du bois.</li>
-        <li>Traitement par pulvérisation et injection en profondeur.</li>
-        <li>Remplacement des pièces trop dégradées.</li>
-        <li>Reprise de la couverture si elle est à l'origine de l'humidité.</li>
-      </ul>
-      <p>
-        Installé à Étréchy, j'interviens sur les charpentes des communes voisines. Tous mes
-        travaux sont couverts par la garantie décennale, assurée chez Allianz. Pour un doute sur
-        l'état de votre charpente ou un projet de charpente neuve, demandez votre devis gratuit :
-        je me déplace, j'inspecte l'ossature et je vous dis ce qu'elle demande.
-      </p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="conteneur prose prose--large">
-      <h2>Combien de temps protège un traitement de charpente ?</h2>
-      <p>
-        Un traitement curatif et préventif appliqué dans les règles protège le bois pendant une
-        dizaine d'années, parfois davantage selon le produit et l'exposition des pièces. Il
-        pénètre le bois par pulvérisation en surface et par injection au cœur des éléments les
-        plus exposés, ce qui crée une barrière durable contre les insectes.
-      </p>
-      <p>
-        Pour qu'il tienne ses promesses, le bois doit rester sec : traiter une charpente encore
-        humide ne sert à rien si la fuite n'est pas d'abord réglée. C'est pourquoi je traite
-        toujours la cause avant le symptôme. Un contrôle de l'ossature tous les quelques années
-        permet ensuite de vérifier que rien ne reprend.
-      </p>
-    </div>
-  </section>
-
-  <AvisGoogle titre="Ce que mes clients disent de mon travail" ids={['guytounet-breizh', 'micheline-bazin', 'michael-guillaume']} fond="gris" />
-
-  <CtaDevis />
-
-  <section class="section section--gris">
-    <div class="conteneur">
-      <h2>Les communes dans lesquelles j'interviens</h2>
-      <ul class="nuage-villes">
-        {villes.map((v) => (
-          <li><a href={`/${v.slug}/`}>{v.nom}</a></li>
+      <ul class="dr-equip">
+        {interventions.map((i) => (
+          <li class="dr-equip__carte" data-anim="up">
+            <h3>{i.titre}</h3>
+            <p>{i.texte}</p>
+          </li>
         ))}
       </ul>
+
+      <div class="dr-duo dr-duo--inverse dr-methode" data-anim="up">
+        <figure class="dr-duo__media">
+          <img src="/images/charpente-robert-daniel-chevrons-essonne.webp" alt="Robert Daniel, couvreur charpentier, devant des chevrons neufs dans l'Essonne" width="1200" height="900" loading="lazy" decoding="async" />
+        </figure>
+        <div class="dr-duo__texte">
+          <h3 class="dr-h3">Une charpente neuve pour une toiture refaite</h3>
+          <p>Lors d'une <a href="/renovation-toiture/">réfection complète de la toiture</a>, la couverture déposée laisse la charpente à nu : c'est le meilleur moment pour la contrôler, remplacer les chevrons fatigués ou la reprendre entièrement.</p>
+          <p>Pour une extension ou une surélévation, je dimensionne la nouvelle charpente selon la portée et le poids de la couverture prévue, puis je la monte en m'assurant de son aplomb et de sa ventilation.</p>
+        </div>
+      </div>
     </div>
   </section>
-</BaseLayout>
+
+  <!-- ══ ÉTAPES ══ -->
+  <section class="dr-section">
+    <div class="conteneur">
+      <div class="dr-entete" data-anim="up">
+        <h2 class="dr-h2">Comment se déroule une intervention</h2>
+        <p>Je traite toujours la cause avant le symptôme.</p>
+      </div>
+      <ol class="dr-etapes">
+        {etapes.map((e) => (
+          <li class="dr-etape" data-anim="up">
+            <h3>{e.titre}</h3>
+            <p set:html={e.texte} />
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+</PageService>

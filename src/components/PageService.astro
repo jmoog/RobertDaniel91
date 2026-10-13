@@ -1,0 +1,188 @@
+---
+// ════════════════════════════════════════════════════════════════════
+// Gabarit des pages services (oct. 2026), repris de la page Ramonage
+// refondue le 13/10/2026 : hero bleu nuit (H1 « [Service] 91 » + nom en
+// rouge), bandeau rouge, contenu propre à la page (slot), bloc artisan,
+// avis Google, communes, CTA camion. Pages centrées sur l'Essonne :
+// aucune mention d'Étréchy (page /couvreur-etrechy/ non concurrencée).
+// ════════════════════════════════════════════════════════════════════
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FilAriane from './FilAriane.astro';
+import AvisGoogle from './AvisGoogle.astro';
+import NoteGoogle from './NoteGoogle.astro';
+import villes from '../data/villes.json';
+import '../styles/page-service.css';
+
+interface Img { src: string; alt: string; width: number; height: number; position?: string }
+interface Props {
+  title: string;
+  description: string;
+  extraSchemas?: object[];
+  ogImage?: string;
+  ariane: Array<{ label: string; href?: string }>;
+  /** 1re ligne du H1 (ex. « Réparation de toiture 91 »), la 2e est le nom en rouge */
+  h1: string;
+  h1Long?: boolean;
+  hero: Img;
+  heroVideo?: { src: string; poster: string };
+  /** Accroche sous le H1 (HTML : un seul <strong> sur le groupe nominal du mot-clé) */
+  lead: string;
+  coches: string[];
+  bande: string[];
+  artisan: { titre: string; html: string; img?: Img };
+  avis: { titre: string; ids: string[] };
+  cta: { titre: string; img?: Img };
+}
+const { title, description, extraSchemas = [], ogImage, ariane, h1, h1Long = true, hero, heroVideo, lead, coches, bande, artisan, avis, cta } = Astro.props;
+
+const portrait: Img = artisan.img ?? {
+  src: '/images/robert-daniel-artisan-couvreur-portrait.webp',
+  alt: "Robert Daniel, artisan couvreur dans l'Essonne, sur une toiture en tuiles",
+  width: 600, height: 600,
+};
+const camion: Img = cta.img ?? {
+  src: '/images/vehicules-robert-daniel-couverture-essonne.webp',
+  alt: "Les camions de Robert Daniel Couverture, entreprise de couverture dans l'Essonne",
+  width: 900, height: 600,
+};
+// Taille du H1 calculée selon la longueur de la 1re ligne : toujours 2 lignes,
+// jamais de débordement (Lexend gras ≈ 0,52 em par caractère, marge comprise : 0,55).
+const nbCar = Math.max(h1.length, 18);
+const h1Style = `--h1-n:${nbCar}`;
+const fleche = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+---
+<BaseLayout title={title} description={description} extraSchemas={extraSchemas} ogImage={ogImage ?? hero.src.replace('.webp', '.jpg')}>
+
+  <!-- ══ HERO ══ -->
+  <section class="dr-hero">
+    <div class="conteneur dr-hero__ariane">
+      <FilAriane items={ariane} />
+    </div>
+    <div class="conteneur dr-hero__grille">
+      <h1 class:list={['dr-hero__titre', { 'dr-hero__titre--auto': h1Long }]} style={h1Long ? h1Style : undefined}>
+        <span class="dr-ligne">{h1}</span>
+        <span class="dr-ligne dr-hero__nom">M. ROBERT Daniel</span>
+      </h1>
+
+      <figure class="dr-hero__media">
+        {heroVideo ? (
+          <video autoplay muted loop playsinline preload="metadata" poster={heroVideo.poster} aria-label={hero.alt}>
+            <source src={heroVideo.src} type="video/mp4" />
+          </video>
+        ) : (
+          <img src={hero.src} alt={hero.alt} width={hero.width} height={hero.height} fetchpriority="high" decoding="async" style={hero.position ? `object-position:${hero.position}` : undefined} />
+        )}
+      </figure>
+
+      <div class="dr-hero__texte">
+        <p class="dr-hero__lead" set:html={lead} />
+        <ul class="dr-coches">
+          {coches.map((c) => <li>{c}</li>)}
+        </ul>
+        <div class="dr-actions">
+          <a href="/devis-gratuit/" class="dr-btn dr-btn--rouge">
+            Devis gratuit
+            <span class="dr-btn__fleche" aria-hidden="true" set:html={fleche} />
+          </a>
+          <a href="tel:0683961518" class="dr-btn dr-btn--blanc">
+            <svg class="dr-tel" viewBox="0 0 24 24" aria-hidden="true">
+              <g class="dr-tel__corps"><path fill="currentColor" d="M14 1H6C4.9 1 4 1.9 4 3v18c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-4 21c-.8 0-1.5-.7-1.5-1.5S9.2 19 10 19s1.5.7 1.5 1.5S10.8 22 10 22zm4-4H6V4h8v14z"/></g>
+              <path class="dr-tel__onde" d="M18.5 8.5a4 4 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path class="dr-tel__onde dr-tel__onde--2" d="M21 6a7.5 7.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            06 83 96 15 18
+          </a>
+        </div>
+        <NoteGoogle variante="sombre" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ BANDEAU (rouge) ══ -->
+  <div class="dr-bande">
+    <ul class="conteneur dr-bande__liste">
+      {bande.map((b) => <li>{b}</li>)}
+    </ul>
+  </div>
+
+  <!-- ══ CONTENU PROPRE À LA PAGE ══ -->
+  <slot />
+
+  <!-- ══ L'ARTISAN ══ -->
+  <section class="dr-section dr-section--gris">
+    <div class="conteneur dr-artisan">
+      <div class="dr-artisan__media" data-anim="fade">
+        <img class="dr-artisan__img" src={portrait.src} alt={portrait.alt} width={portrait.width} height={portrait.height} loading="lazy" decoding="async" />
+      </div>
+      <div class="dr-artisan__texte" data-anim="up">
+        <h2 class="dr-h2">{artisan.titre}</h2>
+        <Fragment set:html={artisan.html} />
+        <div class="dr-garantie">
+          <img src="/images/logo-allianz.png" alt="Allianz" width="96" height="60" loading="lazy" decoding="async" />
+          <p><strong>Garantie décennale</strong> sur mes travaux de couverture, assurée par Allianz.</p>
+        </div>
+        <a href="/a-propos/" class="dr-btn dr-btn--bleu">
+          En savoir plus
+          <span class="dr-btn__fleche dr-btn__fleche--bleue" aria-hidden="true" set:html={fleche} />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ AVIS ══ -->
+  <AvisGoogle titre={avis.titre} ids={avis.ids} fond="blanc" />
+
+  <!-- ══ ZONE D'INTERVENTION ══ -->
+  <section class="dr-section dr-section--gris">
+    <div class="conteneur">
+      <h2 class="dr-h2 dr-centre" data-anim="up">Les communes dans lesquelles j'interviens</h2>
+      <ul class="dr-villes" data-anim="up">
+        {villes.map((v) => (<li><a href={`/${v.slug}/`}>{v.nom}</a></li>))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══ CTA FINAL (photo des camions) ══ -->
+  <section class="dr-section dr-section--cta">
+    <div class="conteneur">
+      <div class="dr-cta" data-anim="up">
+        <figure class="dr-cta__media">
+          <img src={camion.src} alt={camion.alt} width={camion.width} height={camion.height} loading="lazy" decoding="async" />
+        </figure>
+        <div class="dr-cta__corps">
+          <h2>{cta.titre}</h2>
+          <p>Le devis est gratuit et sans engagement.</p>
+          <div class="dr-actions">
+            <a href="/devis-gratuit/" class="dr-btn dr-btn--rouge">
+              Devis gratuit
+              <span class="dr-btn__fleche" aria-hidden="true" set:html={fleche} />
+            </a>
+            <a href="tel:0683961518" class="dr-btn dr-btn--blanc">
+              <svg class="dr-tel" viewBox="0 0 24 24" aria-hidden="true">
+                <g class="dr-tel__corps"><path fill="currentColor" d="M14 1H6C4.9 1 4 1.9 4 3v18c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-4 21c-.8 0-1.5-.7-1.5-1.5S9.2 19 10 19s1.5.7 1.5 1.5S10.8 22 10 22zm4-4H6V4h8v14z"/></g>
+                <path class="dr-tel__onde" d="M18.5 8.5a4 4 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path class="dr-tel__onde dr-tel__onde--2" d="M21 6a7.5 7.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              06 83 96 15 18
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // Animations d'apparition (désactivées si l'utilisateur réduit les animations)
+  const els = document.querySelectorAll('[data-anim]');
+  if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    els.forEach((el) => el.classList.add('is-visible'));
+  } else {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    els.forEach((el) => io.observe(el));
+  }
+</script>

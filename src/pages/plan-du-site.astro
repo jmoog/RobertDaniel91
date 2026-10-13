@@ -4,19 +4,12 @@ import FilAriane from '../components/FilAriane.astro';
 import services from '../data/services.json';
 import villes from '../data/villes.json';
 import realisations from '../data/realisations.json';
+import { sousPagesZinguerie } from '../data/zinguerie';
 
 const title = 'Plan du site - Robert Daniel Couverture';
-const description = "Plan du site robert-daniel-couverture.fr. Retrouvez toutes les pages de notre site : services, villes d'intervention, informations.";
+const description = "Plan du site robert-daniel-couverture.fr. Toutes les pages du site : prestations de couverture, communes dans lesquelles j'interviens, réalisations et informations.";
 
-const zingueriePages = [
-  { slug: 'gouttieres-zinc', label: 'Gouttieres zinc' },
-  { slug: 'gouttieres-aluminium', label: 'Gouttieres aluminium' },
-  { slug: 'gouttieres-pvc', label: 'Gouttieres PVC' },
-  { slug: 'descentes-eaux-pluviales', label: 'Descentes eaux pluviales' },
-  { slug: 'noues-aretiers', label: 'Noues et aretiers' },
-  { slug: 'solins-raccords', label: 'Solins et raccords' },
-  { slug: 'couvertines', label: 'Couvertines' },
-];
+const zingueriePages = sousPagesZinguerie;
 ---
 <BaseLayout title={title} description={description}>
   <section class="section">

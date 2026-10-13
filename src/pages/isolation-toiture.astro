@@ -1,198 +1,152 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import FilAriane from '../components/FilAriane.astro';
-import CtaDevis from '../components/CtaDevis.astro';
-import villes from '../data/villes.json';
+// Page pilier « Isolation de toiture » — refonte oct. 2026 au design de la
+// page Ramonage (gabarit PageService). Centrée sur l'Essonne.
+import PageService from '../components/PageService.astro';
 
-import AvisGoogle from '../components/AvisGoogle.astro';
-import NoteGoogle from '../components/NoteGoogle.astro';
-const title = "Isolation de toiture dans l'Essonne (91) — M. Robert";
-const description = "Isolation de toiture et de combles à Étréchy et dans l'Essonne : isolation par l'intérieur ou par l'extérieur (sarking). M. Robert Daniel. Devis gratuit.";
+const url = 'https://robert-daniel-couverture.fr/isolation-toiture/';
+const title = "Isolation de toiture dans l'Essonne (91) – Robert Daniel";
+const description = "Isolation de toiture et des combles dans l'Essonne (91) : combles perdus, combles aménagés, isolation par l'extérieur (sarking). Robert Daniel, couvreur.";
 
 const extraSchemas = [{
   '@context': 'https://schema.org',
   '@type': 'Service',
+  '@id': `${url}#service`,
   name: 'Isolation de toiture',
-  serviceType: 'Isolation de toiture et de combles',
+  serviceType: 'Isolation de toiture et des combles',
   provider: { '@id': 'https://robert-daniel-couverture.fr/#localbusiness' },
   areaServed: { '@type': 'AdministrativeArea', name: 'Essonne (91)' },
-  url: 'https://robert-daniel-couverture.fr/isolation-toiture/',
+  url,
+  image: 'https://robert-daniel-couverture.fr/images/isolation-toiture-ecran-sous-toiture-essonne.jpg',
   description,
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: "Prestations d'isolation de toiture",
+    itemListElement: [
+      'Isolation des combles perdus',
+      'Isolation des combles aménagés',
+      "Isolation de toiture par l'extérieur (sarking)",
+      'Pose d\'écran sous-toiture',
+    ].map((n) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: n } })),
+  },
 }];
+
+const etapes = [
+  { titre: "L'état des lieux", texte: "Je contrôle l'isolant en place, la ventilation, la couverture et l'état de la <a href=\"/charpente/\">charpente bois</a>." },
+  { titre: 'Le devis précis', texte: "Le devis indique le matériau, l'épaisseur posée et la mise en œuvre : des éléments utiles pour un dossier d'aide." },
+  { titre: 'La pose', texte: "Je pose l'isolant sans tassement ni vide, en traitant chaque jonction pour éviter les pertes de chaleur." },
+  { titre: 'La ventilation', texte: "Je laisse à la couverture la lame d'air dont elle a besoin : le bois respire et l'humidité ne s'installe pas." },
+];
 ---
-<BaseLayout title={title} description={description} extraSchemas={extraSchemas}>
-  <section class="hero">
+<PageService
+  title={title}
+  description={description}
+  extraSchemas={extraSchemas}
+  ariane={[{ label: 'Accueil', href: '/' }, { label: 'Isolation de toiture' }]}
+  h1="Isolation de toiture 91 –"
+  hero={{ src: '/images/isolation-toiture-ecran-sous-toiture-essonne.webp', alt: "Écran sous-toiture posé sur la charpente avant l'isolation et la couverture dans l'Essonne", width: 1200, height: 900 }}
+  lead="L'<strong>isolation de votre toiture dans l'Essonne</strong>, par l'intérieur ou par l'extérieur, réalisée par un couvreur qui connaît votre toit."
+  coches={['Combles perdus ou aménagés', "Isolation par l'extérieur (sarking)", 'Devis gratuit et détaillé']}
+  bande={['Combles perdus', 'Combles aménagés', 'Sarking', 'Écran sous-toiture']}
+  artisan={{
+    titre: "Une isolation pensée avec la toiture",
+    html: `<p>Depuis plus de 15 ans, j'interviens sur les toitures de l'Essonne, de la charpente à la dernière tuile. Isoler un toit, c'est d'abord connaître la couverture qui protège l'isolant : un couvreur maîtrise les raccords entre l'isolant, l'écran sous-toiture et les tuiles.</p>
+<p>Je vous oriente vers la solution réellement adaptée à votre maison et à l'usage de vos combles, puis je vous remets un devis qui précise le matériau et l'épaisseur posée.</p>`,
+  }}
+  avis={{ titre: 'Les avis de mes clients', ids: ['anais-renaudin', 'mathieu-ponson', 'olivier-loret'] }}
+  cta={{ titre: "Faites isoler votre toiture dans l'Essonne" }}
+>
+
+  <!-- ══ CHALEUR PERDUE ══ -->
+  <section class="dr-section">
     <div class="conteneur">
-      <FilAriane items={[{ label: 'Accueil', href: '/' }, { label: 'Isolation de toiture' }]} />
+      <div class="dr-duo dr-duo--seul" data-anim="up">
+        <figure class="dr-duo__media">
+          <img src="/images/isolation-toiture-liteaux-ecran-essonne.webp" alt="Contre-liteaux et liteaux posés sur l'écran sous-toiture lors d'une rénovation dans l'Essonne" width="1200" height="900" loading="lazy" decoding="async" />
+        </figure>
+        <div class="dr-duo__texte">
+          <h2 class="dr-h2">Une toiture mal isolée, c'est de la chaleur perdue</h2>
+          <p>Le toit est la première surface par laquelle une maison perd sa chaleur. Quand l'isolant est ancien, tassé ou absent, le chauffage tourne en continu, les combles restent froids l'hiver et étouffants l'été.</p>
+          <p>Une isolation bien posée inverse la tendance : la maison garde sa chaleur, les pièces sous les toits deviennent agréables à vivre et les factures de chauffage baissent dès la première saison.</p>
+          <p>Avant de proposer une solution, j'examine votre couverture : l'isolation se réfléchit avec le toit qui la protège. C'est l'avantage de confier ces travaux à un <a href="/">couvreur dans le 91</a>.</p>
+        </div>
+      </div>
     </div>
-    <div class="conteneur hero__grille">
-      <div class="hero__texte">
-        <p class="hero__badge"><span class="hero__point" aria-hidden="true"></span> Combles et sous-toiture</p>
-        <h1>Isolation de toiture dans l'Essonne</h1>
-        <p class="hero__accroche">
-          Combles difficiles à chauffer, factures qui grimpent ? J'isole les toitures et les
-          combles dans l'Essonne, par l'intérieur ou par l'extérieur, pour gagner en confort et
-          réduire les déperditions.
-        </p>
-        <ul>
-          <li><strong>Isolation des combles</strong> perdus ou aménagés.</li>
-          <li><strong>Isolation par l'extérieur</strong> lors d'une rénovation.</li>
-          <li><strong>Devis gratuit</strong> et sans engagement.</li>
-        </ul>
-        <div class="hero__actions">
-          <a href="tel:0683961518" class="btn btn--cuivre">
-            <svg class="icone-tel" viewBox="0 0 24 24" aria-hidden="true"><g class="icone-tel__corps"><path fill="currentColor" d="M14 1H6C4.9 1 4 1.9 4 3v18c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-4 21c-.8 0-1.5-.7-1.5-1.5S9.2 19 10 19s1.5.7 1.5 1.5S10.8 22 10 22zm4-4H6V4h8v14z"/></g><path class="icone-tel__onde" d="M18.5 8.5a4 4 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="icone-tel__onde icone-tel__onde--2" d="M21 6a7.5 7.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            06 83 96 15 18
+  </section>
+
+  <!-- ══ PENDANT UNE RÉNOVATION (carte bleu nuit) ══ -->
+  <section class="dr-section dr-section--serre">
+    <div class="conteneur">
+      <article class="dr-regle" data-anim="up">
+        <div class="dr-regle__corps">
+          <h2>Isoler pendant une rénovation de toiture</h2>
+          <p>Le meilleur moment pour isoler par l'extérieur, c'est quand la couverture est déposée. Si vous prévoyez la <a href="/renovation-toiture/">rénovation de votre toiture</a>, je pose l'isolant sur les chevrons, sous la nouvelle couverture : c'est le sarking.</p>
+          <p>Vous économisez un chantier, et la toiture ressort à la fois neuve et performante. Les raccords entre l'isolant, l'écran sous-toiture et la couverture sont réalisés par la même équipe, sans point faible.</p>
+          <a href="/devis-gratuit/" class="dr-btn dr-btn--rouge">
+            Demander mon devis
+            <span class="dr-btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
           </a>
-          <a href="/devis-gratuit/" class="btn btn--bleu">Devis gratuit <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
         </div>
-        <NoteGoogle />
+        <div class="dr-regle__certif">
+          <h3>Les avantages du sarking</h3>
+          <ul class="dr-coches dr-coches--sombre">
+            <li>Tout le volume des combles est conservé</li>
+            <li>Les ponts thermiques sont supprimés</li>
+            <li>Couverture et isolation posées ensemble</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ══ SOLUTIONS ══ -->
+  <section class="dr-section dr-section--gris">
+    <div class="conteneur">
+      <div class="dr-entete" data-anim="up">
+        <h2 class="dr-h2">Isolation par l'intérieur ou par l'extérieur</h2>
+        <p>Le choix dépend de l'usage de vos combles, de l'état du toit et de votre projet.</p>
       </div>
-      <div class="hero__media">
-        <img class="hero__photo" src="/images/services/isolation-toiture.webp" alt="Isolation de toiture et de combles par Robert Daniel Couverture dans l'Essonne" width="900" height="600" fetchpriority="high" decoding="async" />
-        <div class="carte hero__garantie">
-          <p><strong>Garantie Décennale</strong><br />Pour tous travaux de couverture</p>
-          <img src="/images/logo-allianz.png" alt="Garantie décennale assurée par Allianz" width="92" height="58" loading="lazy" decoding="async" />
+      <div class="dr-tableau-wrap" data-anim="up">
+        <table class="dr-tableau">
+          <thead><tr><th scope="col">Solution</th><th scope="col">Bien adaptée à</th><th scope="col">Principe</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Combles perdus</th><td data-label="Bien adaptée à">Greniers non habités</td><td data-label="Principe">Isolant soufflé ou déroulé sur le plancher des combles</td></tr>
+            <tr><th scope="row">Combles aménagés</th><td data-label="Bien adaptée à">Pièces habitées sous la pente</td><td data-label="Principe">Isolant posé entre et sous les chevrons</td></tr>
+            <tr><th scope="row">Sarking</th><td data-label="Bien adaptée à">Toiture déposée pour rénovation</td><td data-label="Principe">Isolant posé sur la charpente, sous la couverture neuve</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="dr-duo dr-duo--inverse dr-methode" data-anim="up">
+        <figure class="dr-duo__media">
+          <img src="/images/renovation-toiture-liteaux-essonne.webp" alt="Liteaux et écran sous-toiture posés sur une toiture vue de dessus dans l'Essonne" width="1200" height="900" loading="lazy" decoding="async" />
+        </figure>
+        <div class="dr-duo__texte">
+          <h3 class="dr-h3">Des combles aménagés lumineux et confortables</h3>
+          <p>L'isolation par l'intérieur se met en œuvre sur une toiture existante, sans toucher à la couverture. Elle convient aux combles aménagés comme aux greniers que l'on souhaite habiter.</p>
+          <p>Une pièce sous les toits bien isolée gagne encore à être éclairée. La pose d'une <a href="/fenetre-de-toit-velux/">fenêtre de toit Velux</a> s'organise en même temps que l'isolation, avec une jonction étanche entre le châssis et l'isolant.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section">
+  <!-- ══ ÉTAPES ══ -->
+  <section class="dr-section">
     <div class="conteneur">
-      <div class="encadre">
-        <h2>Ce que vous devez savoir</h2>
-        <p>
-          Couvreur à Étréchy, j'isole les toitures de l'Essonne depuis plus de quinze ans. Une
-          grande partie de la chaleur d'une maison s'échappe par le toit : isoler la toiture est
-          le poste qui change le plus le confort pour l'argent investi. Selon votre projet,
-          j'isole par l'intérieur, côté combles, ou par l'extérieur quand la couverture est
-          déposée pour une rénovation. Je vérifie aussi la ventilation, car une bonne isolation
-          doit laisser le bois respirer. Mes devis sont gratuits et sans engagement.
-        </p>
+      <div class="dr-entete" data-anim="up">
+        <h2 class="dr-h2">Comment je procède</h2>
+        <p>Une isolation efficace se prépare avant de se poser.</p>
       </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="conteneur duo">
-      <img src="/images/services/isolation-toiture.webp" alt="Pose d'isolant sous la toiture d'une maison dans l'Essonne" width="900" height="600" loading="lazy" decoding="async" />
-      <div class="prose">
-        <h2>Une toiture mal isolée, c'est de la chaleur perdue</h2>
-        <p>
-          Le toit est la première surface par laquelle une maison perd de l'énergie. Quand
-          l'isolant est ancien, tassé ou absent, la chaleur produite à l'intérieur file vers
-          l'extérieur, le chauffage tourne en continu et les combles restent inconfortables.
-          Une isolation efficace inverse la tendance : la maison garde sa chaleur et les pièces
-          sous toit deviennent agréables à vivre — souvent l'occasion d'y gagner aussi en clarté
-          avec une <a href="/fenetre-de-toit-velux/">fenêtre de toit</a>.
-        </p>
-        <p>
-          Isoler la toiture, c'est aussi valoriser votre bien et alléger durablement vos
-          factures de chauffage. Le gain se ressent dès la première saison et se prolonge année
-          après année. Avant de poser quoi que ce soit, je regarde l'état de votre couverture et
-          de votre <a href="/charpente/">charpente</a>, car l'isolation se réfléchit avec le toit qui la protège.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--bleute">
-    <div class="conteneur prose prose--large">
-      <h2>Isolation par l'intérieur ou par l'extérieur</h2>
-      <p>
-        Deux grandes approches existent. Le choix dépend de l'usage des combles, de l'état du toit
-        et de votre projet. Voici comment je les distingue :
-      </p>
-      <table>
-        <thead>
-          <tr><th>Solution</th><th>Bien adaptée à</th><th>Principe</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Combles perdus</td><td>Greniers non habités</td><td>Isolant soufflé ou déroulé sur le plancher des combles</td></tr>
-          <tr><td>Combles aménagés</td><td>Pièces sous pente habitées</td><td>Isolant posé entre et sous les chevrons</td></tr>
-          <tr><td>Sarking (par l'extérieur)</td><td>Toiture déposée pour rénovation</td><td>Isolant posé sur la charpente, sous la couverture neuve</td></tr>
-        </tbody>
-      </table>
-      <p>
-        L'<strong>isolation par l'extérieur</strong> garde tout le volume des combles et supprime
-        les ponts thermiques, mais elle se fait quand la couverture est ouverte. L'<strong>isolation
-        par l'intérieur</strong> est plus simple à mettre en œuvre sur une toiture existante. Je
-        vous oriente vers la solution réellement adaptée à votre maison.
-      </p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="conteneur duo duo--inverse">
-      <img src="/images/chantier-renovation-toiture-etrechy-2.webp" alt="Isolation de la sous-toiture pendant une rénovation dans l'Essonne" width="900" height="1200" loading="lazy" decoding="async" />
-      <div class="prose">
-        <h2>Isoler pendant une rénovation de toiture</h2>
-        <p>
-          Le meilleur moment pour isoler par l'extérieur, c'est quand la couverture est déjà
-          déposée. Si vous prévoyez une <a href="/renovation-toiture/">rénovation de votre toiture</a>, je vous propose de poser l'isolant
-          dans la foulée, sous la nouvelle couverture. Vous gagnez un chantier, et la toiture
-          ressort à la fois neuve et performante.
-        </p>
-        <p>
-          Couvreur et isolation traités ensemble, c'est un seul interlocuteur, des raccords
-          maîtrisés entre l'isolant, l'écran de sous-toiture et la couverture, et une
-          ventilation pensée dès le départ. Je coordonne l'ensemble pour qu'aucun point faible
-          ne subsiste entre les corps d'état.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--bleute">
-    <div class="conteneur prose prose--large">
-      <h2>Comment je procède</h2>
-      <p>
-        Je commence par un état des lieux : isolant en place, ventilation, état de la charpente
-        et de la couverture. Je vous remets un devis qui précise le matériau, l'épaisseur visée
-        et la mise en œuvre. Sur place, je pose l'isolant, je soigne les jonctions pour éviter
-        les pertes et je laisse à la sous-toiture la lame d'air dont elle a besoin.
-      </p>
-      <p>
-        Installé à Étréchy, j'isole les toitures des communes voisines, en neuf comme en
-        rénovation. Tous mes travaux sont couverts par la garantie décennale, assurée chez
-        Allianz. Pour estimer le gain sur votre maison, demandez votre devis gratuit : je passe
-        évaluer vos combles et je vous propose la solution la plus utile.
-      </p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="conteneur prose prose--large">
-      <h2>Isolation de toiture et économies d'énergie</h2>
-      <p>
-        Le toit représente une large part des pertes de chaleur d'une maison mal isolée. En
-        reprenant cette isolation, vous réduisez les besoins de chauffage et vous gagnez en
-        confort dans les pièces sous combles. Le retour sur investissement se mesure sur la
-        facture, année après année.
-      </p>
-      <p>
-        Des aides publiques existent pour les travaux d'isolation, sous conditions de ressources
-        et de performance. Leurs montants et leurs critères évoluent régulièrement : vérifiez
-        votre éligibilité auprès des organismes officiels avant de lancer le projet. De mon côté,
-        je vous remets un devis détaillé qui précise le matériau et l'épaisseur posée, éléments
-        souvent demandés pour constituer un dossier d'aide.
-      </p>
-    </div>
-  </section>
-
-  <AvisGoogle titre="Ce que mes clients disent de mon travail" ids={['clayton-bemba', 'megg-geuffroy', 'catherine-esquerre']} fond="gris" />
-
-  <CtaDevis />
-
-  <section class="section section--gris">
-    <div class="conteneur">
-      <h2>Les communes dans lesquelles j'interviens</h2>
-      <ul class="nuage-villes">
-        {villes.map((v) => (
-          <li><a href={`/${v.slug}/`}>{v.nom}</a></li>
+      <ol class="dr-etapes">
+        {etapes.map((e) => (
+          <li class="dr-etape" data-anim="up">
+            <h3>{e.titre}</h3>
+            <p set:html={e.texte} />
+          </li>
         ))}
-      </ul>
+      </ol>
+      <div class="dr-texte dr-apres" data-anim="up">
+        <p>Des aides publiques existent pour les travaux d'isolation, sous conditions de ressources et de performance. Leurs montants et leurs critères évoluent régulièrement : vérifiez votre éligibilité auprès des organismes officiels avant de lancer vos travaux.</p>
+      </div>
     </div>
   </section>
-</BaseLayout>
+</PageService>

@@ -1,219 +1,194 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import FilAriane from '../components/FilAriane.astro';
-import CtaDevis from '../components/CtaDevis.astro';
-import villes from '../data/villes.json';
+// Page pilier « Nettoyage de toiture » — refonte oct. 2026 au design de la
+// page Ramonage (gabarit PageService). Centrée sur l'Essonne.
+import PageService from '../components/PageService.astro';
 
-import AvisGoogle from '../components/AvisGoogle.astro';
-import NoteGoogle from '../components/NoteGoogle.astro';
-const title = "Nettoyage de toiture dans l'Essonne (91) — M. Robert";
-const description = "Nettoyage et démoussage de toiture à Étréchy et dans l'Essonne : démoussage, traitement, hydrofuge, gouttières. M. Robert Daniel, devis gratuit.";
+const url = 'https://robert-daniel-couverture.fr/nettoyage-toiture/';
+const title = "Nettoyage de toiture dans l'Essonne (91) – Robert Daniel";
+const description = "Nettoyage et démoussage de toiture dans l'Essonne (91) : mousses retirées, traitement anti-mousse et hydrofuge, gouttières vidées. Robert Daniel, couvreur.";
 
 const extraSchemas = [{
   '@context': 'https://schema.org',
   '@type': 'Service',
+  '@id': `${url}#service`,
   name: 'Nettoyage de toiture',
   serviceType: 'Nettoyage et démoussage de toiture',
   provider: { '@id': 'https://robert-daniel-couverture.fr/#localbusiness' },
   areaServed: { '@type': 'AdministrativeArea', name: 'Essonne (91)' },
-  url: 'https://robert-daniel-couverture.fr/nettoyage-toiture/',
+  url,
+  image: 'https://robert-daniel-couverture.fr/images/nettoyage-toiture-couvreur-essonne-hd.jpg',
   description,
+  subjectOf: {
+    '@type': 'VideoObject',
+    name: "Démoussage d'une toiture en tuiles dans l'Essonne",
+    description: "Démoussage d'une toiture en tuiles par Robert Daniel, artisan couvreur dans l'Essonne.",
+    thumbnailUrl: 'https://robert-daniel-couverture.fr/videos/demoussage-toiture-essonne-poster.jpg',
+    contentUrl: 'https://robert-daniel-couverture.fr/videos/demoussage-toiture-essonne.mp4',
+    uploadDate: '2026-06-18',
+  },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Prestations de nettoyage de toiture',
+    itemListElement: [
+      'Démoussage de toiture',
+      'Traitement anti-mousse',
+      'Application d\'un hydrofuge',
+      'Nettoyage des gouttières',
+    ].map((n) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: n } })),
+  },
 }];
+
+const etapes = [
+  { titre: 'Le repérage', texte: "Je repère le matériau, la pente et les zones les plus envahies pour adapter la méthode à votre couverture." },
+  { titre: 'Le démoussage', texte: "Je retire les mousses et les lichens, puis je nettoie la couverture en dosant la pression pour ne pas fragiliser les tuiles." },
+  { titre: 'Les gouttières', texte: "Je vide les gouttières et je contrôle les <a href=\"/zinguerie/descentes-eaux-pluviales/\">descentes d'eaux pluviales</a>, pour que l'eau s'évacue sans déborder." },
+  { titre: 'Le traitement', texte: "J'applique le traitement anti-mousse, puis l'hydrofuge si votre couverture en a besoin, et je ramasse les débris au sol." },
+];
 ---
-<BaseLayout title={title} description={description} extraSchemas={extraSchemas}>
-  <section class="hero">
+<PageService
+  title={title}
+  description={description}
+  extraSchemas={extraSchemas}
+  ariane={[{ label: 'Accueil', href: '/' }, { label: 'Nettoyage de toiture' }]}
+  h1="Nettoyage de toiture 91 –"
+  hero={{ src: '/images/nettoyage-toiture-couvreur-essonne-hd.webp', alt: "Robert Daniel, couvreur, pendant le nettoyage d'une toiture en tuiles dans l'Essonne", width: 900, height: 1125, position: 'center 25%' }}
+  lead="Le <strong>nettoyage et le démoussage de votre toiture dans l'Essonne</strong> par un couvreur, qui contrôle votre couverture dans le même passage."
+  coches={['Démoussage complet de la couverture', 'Traitement anti-mousse et hydrofuge', 'Devis gratuit et sans engagement']}
+  bande={['Démoussage', 'Traitement anti-mousse', 'Hydrofuge', 'Nettoyage des gouttières']}
+  artisan={{
+    titre: 'Le démoussage par un professionnel de la toiture',
+    html: `<p>Depuis plus de 15 ans, j'entretiens les toitures de l'Essonne. Tuile plate, tuile mécanique ou ardoise : je choisis pour chaque toit la méthode et les produits qui nettoient sans abîmer.</p>
+<p>Avant de commencer, je vous explique ce dont votre toit a réellement besoin. Le traitement et l'hydrofuge ne sont jamais systématiques : je vous les propose seulement quand votre couverture en tire un vrai bénéfice.</p>`,
+  }}
+  avis={{ titre: "Les avis de mes clients sur l'entretien de leur toit", ids: ['caro-dvx', 'didier-nara', 'megg-geuffroy'] }}
+  cta={{ titre: "Faites nettoyer votre toiture dans l'Essonne" }}
+>
+
+  <!-- ══ POURQUOI NETTOYER ══ -->
+  <section class="dr-section">
     <div class="conteneur">
-      <FilAriane items={[{ label: 'Accueil', href: '/' }, { label: 'Nettoyage de toiture' }]} />
+      <div class="dr-duo dr-duo--seul" data-anim="up">
+        <figure class="dr-duo__media">
+          <img src="/images/demoussage-toiture-essonne.webp" alt="Démoussage d'une toiture en tuiles à l'échelle dans l'Essonne" width="825" height="1100" loading="lazy" decoding="async" />
+        </figure>
+        <div class="dr-duo__texte">
+          <h2 class="dr-h2">Pourquoi nettoyer et démousser sa toiture</h2>
+          <p>La mousse et le lichen ne sont pas qu'une question d'aspect. En s'installant entre les tuiles, ils retiennent l'eau, gênent son écoulement et accélèrent l'usure de la couverture. Avec le gel, l'eau retenue fait éclater les tuiles poreuses.</p>
+          <p>Les débris finissent aussi dans les gouttières, qui débordent et laissent l'eau ruisseler le long des murs. Un toit propre, au contraire, laisse filer la pluie et garde des tuiles saines bien plus longtemps.</p>
+          <p>Faire nettoyer sa toiture par un <a href="/">artisan couvreur 91</a>, c'est un entretien simple au regard de tout ce qu'il préserve : la couverture, la charpente et l'isolation.</p>
+        </div>
+      </div>
     </div>
-    <div class="conteneur hero__grille">
-      <div class="hero__texte">
-        <p class="hero__badge"><span class="hero__point" aria-hidden="true"></span> Démoussage et traitement</p>
-        <h1>Nettoyage de toiture dans l'Essonne</h1>
-        <p class="hero__accroche">
-          Votre toit se couvre de mousse et de noir ? Je nettoie et démousse les toitures dans
-          l'Essonne pour leur rendre leur aspect et prolonger leur tenue dans le temps.
-        </p>
-        <ul>
-          <li><strong>Démoussage</strong> complet de la couverture.</li>
-          <li><strong>Traitement hydrofuge</strong> pour ralentir le retour des mousses.</li>
-          <li><strong>Devis gratuit</strong> et sans engagement.</li>
-        </ul>
-        <div class="hero__actions">
-          <a href="tel:0683961518" class="btn btn--cuivre">
-            <svg class="icone-tel" viewBox="0 0 24 24" aria-hidden="true"><g class="icone-tel__corps"><path fill="currentColor" d="M14 1H6C4.9 1 4 1.9 4 3v18c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-4 21c-.8 0-1.5-.7-1.5-1.5S9.2 19 10 19s1.5.7 1.5 1.5S10.8 22 10 22zm4-4H6V4h8v14z"/></g><path class="icone-tel__onde" d="M18.5 8.5a4 4 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="icone-tel__onde icone-tel__onde--2" d="M21 6a7.5 7.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            06 83 96 15 18
+  </section>
+
+  <!-- ══ UN COUVREUR (carte bleu nuit) ══ -->
+  <section class="dr-section dr-section--serre">
+    <div class="conteneur">
+      <article class="dr-regle" data-anim="up">
+        <div class="dr-regle__corps">
+          <h2>Un nettoyage confié à un couvreur</h2>
+          <p>Intervenir sur une couverture ne s'improvise pas : une tuile cassée ou mal remise laisse passer l'eau dès la première pluie. Un couvreur connaît la résistance de chaque matériau et sait remettre chaque tuile en place.</p>
+          <p>Pendant le nettoyage, je repère aussi les défauts qu'on ne voit pas du sol. Si une tuile est fêlée ou un solin fatigué, je vous le signale et je vous propose la <a href="/reparation-toiture/">réparation de la toiture</a> dans le même passage.</p>
+          <a href="/devis-gratuit/" class="dr-btn dr-btn--rouge">
+            Demander mon devis
+            <span class="dr-btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
           </a>
-          <a href="/devis-gratuit/" class="btn btn--bleu">Devis gratuit <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
         </div>
-        <NoteGoogle />
-      </div>
-      <div class="hero__media">
-        <img class="hero__photo" src="/images/services/nettoyage-toiture.webp" alt="Nettoyage et démoussage de toiture par Robert Daniel Couverture dans l'Essonne" width="900" height="600" fetchpriority="high" decoding="async" />
-        <div class="carte hero__garantie">
-          <p><strong>Garantie Décennale</strong><br />Pour tous travaux de couverture</p>
-          <img src="/images/logo-allianz.png" alt="Garantie décennale assurée par Allianz" width="92" height="58" loading="lazy" decoding="async" />
+        <div class="dr-regle__certif">
+          <h3>Pendant le nettoyage, je contrôle</h3>
+          <ul class="dr-coches dr-coches--sombre">
+            <li>Les tuiles fêlées ou déplacées</li>
+            <li>Le faîtage et les rives</li>
+            <li>Les solins de cheminée</li>
+            <li>Les gouttières et les descentes</li>
+          </ul>
         </div>
-      </div>
+      </article>
     </div>
   </section>
 
-  <section class="section">
+  <!-- ══ PRESTATIONS ══ -->
+  <section class="dr-section dr-section--gris">
     <div class="conteneur">
-      <div class="encadre">
-        <h2>Ce que vous devez savoir</h2>
-        <p>
-          Couvreur à Étréchy, je nettoie et démousse les toitures de l'Essonne depuis plus de
-          quinze ans. Un bon nettoyage ne se résume pas à enlever le vert : je retire les
-          mousses et lichens, je dégage les gouttières, puis j'applique si besoin un traitement
-          qui ralentit leur retour. J'adapte la pression et les produits au matériau pour ne pas
-          fragiliser tuiles ou ardoises. Et profitant d'être sur le toit, je repère les tuiles
-          fêlées ou les solins fatigués avant qu'ils ne causent une fuite. Mes devis sont
-          gratuits et sans engagement.
-        </p>
+      <div class="dr-entete" data-anim="up">
+        <h2 class="dr-h2">Démoussage, traitement et hydrofuge</h2>
+        <p>Le nettoyage d'une toiture se fait en plusieurs temps, que j'adapte à l'état du toit et au matériau.</p>
+      </div>
+      <div class="dr-tableau-wrap" data-anim="up">
+        <table class="dr-tableau">
+          <thead><tr><th scope="col">Prestation</th><th scope="col">Ce que je fais</th><th scope="col">Le résultat</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Démoussage</th><td data-label="Ce que je fais">Retrait des mousses et lichens, brossage et nettoyage des tuiles</td><td data-label="Le résultat">Couverture dégagée, écoulement rétabli</td></tr>
+            <tr><th scope="row">Gouttières</th><td data-label="Ce que je fais">Retrait des feuilles et des dépôts, contrôle des descentes</td><td data-label="Le résultat">L'eau s'évacue sans déborder</td></tr>
+            <tr><th scope="row">Anti-mousse</th><td data-label="Ce que je fais">Application d'un produit qui détruit les racines</td><td data-label="Le résultat">Retour des mousses ralenti</td></tr>
+            <tr><th scope="row">Hydrofuge</th><td data-label="Ce que je fais">Protection qui fait perler l'eau sur la tuile</td><td data-label="Le résultat">Tuiles moins poreuses, salissures freinées</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="conteneur duo">
-      <img src="/images/demoussage-toiture-essonne.webp" alt="Robert Daniel, couvreur, démousse une toiture à l'échelle dans l'Essonne" width="825" height="1100" loading="lazy" decoding="async" />
-      <div class="prose">
-        <h2>Pourquoi nettoyer et démousser sa toiture</h2>
-        <p>
-          La mousse et le lichen ne sont pas qu'une question d'aspect. En s'installant entre les
-          tuiles, ils retiennent l'eau, gênent l'écoulement et accélèrent l'usure de la
-          couverture. Les tuiles deviennent poreuses, les gouttières se bouchent et l'eau finit
-          par stagner là où elle ne devrait pas.
-        </p>
-        <p>
-          Nettoyer régulièrement une toiture, c'est lui éviter un vieillissement prématuré et
-          repousser une <a href="/renovation-toiture/">rénovation de toiture</a> coûteuse. Un toit propre laisse l'eau filer comme elle le
-          doit, et vous gardez une couverture saine plus longtemps. C'est un entretien simple
-          au regard de ce qu'il préserve.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--bleute">
-    <div class="conteneur prose prose--large">
-      <h2>Démoussage, traitement et hydrofuge</h2>
-      <p>
-        Le nettoyage d'une toiture se fait en plusieurs temps, que j'adapte à l'état du toit et
-        au matériau. Voici les prestations que je propose :
-      </p>
-      <table>
-        <thead>
-          <tr><th>Prestation</th><th>Ce que je fais</th><th>Pour quel résultat</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Démoussage</td><td>Retrait des mousses et lichens, brossage des tuiles</td><td>Couverture dégagée, écoulement rétabli</td></tr>
-          <tr><td>Nettoyage des gouttières</td><td>Dégagement des feuilles et dépôts, contrôle des descentes</td><td>Évacuation de l'eau sans débordement</td></tr>
-          <tr><td>Traitement anti-mousse</td><td>Application d'un produit qui détruit les racines</td><td>Retour des mousses ralenti</td></tr>
-          <tr><td>Hydrofuge</td><td>Protection qui fait perler l'eau sur la tuile</td><td>Tuiles moins poreuses, salissures freinées</td></tr>
-        </tbody>
-      </table>
-      <p>
-        Le traitement et l'hydrofuge ne sont pas systématiques : je vous conseille selon l'état
-        réel de votre couverture, sans vous vendre une prestation dont votre toit n'a pas
-        besoin.
-      </p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="conteneur duo duo--inverse">
-      <img src="/images/nettoyage-toiture-couvreur-essonne.webp" alt="Robert Daniel, couvreur, nettoie une toiture en tuiles au nettoyeur dans l'Essonne" width="619" height="740" loading="lazy" decoding="async" />
-      <div class="prose">
-        <h2>Comment je nettoie une toiture</h2>
-        <p>
-          Je commence par un repérage de l'état du toit : matériau, pente, zones les plus
-          envahies. Je retire ensuite les mousses et lichens, puis je nettoie la couverture en
-          dosant la pression pour décrasser sans casser les tuiles ni chasser l'eau sous la
-          couverture.
-        </p>
-        <p>
-          Je dégage les <a href="/zinguerie/">gouttières et les descentes</a>, je contrôle le faîtage et les solins, et
-          j'applique le traitement choisi quand il est utile. Le chantier se termine par le
-          ramassage des débris au sol. Si je repère une tuile fêlée ou un point faible, je vous
-          le signale et je vous propose la <a href="/reparation-toiture/">réparation de la toiture</a> dans le même passage.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--gris">
-    <div class="conteneur" style="text-align:center;">
-      <h2>Le nettoyage de toiture en vidéo</h2>
-      <p style="max-width:60ch;margin:0.6rem auto 1.6rem;">Un démoussage en cours sur une toiture en tuiles dans l'Essonne.</p>
-      <video
-        controls
-        muted
-        loop
-        playsinline
-        preload="none"
-        poster="/videos/demoussage-toiture-essonne-poster.jpg"
-        width="720"
-        height="960"
-        style="width:100%;max-width:340px;border-radius:var(--rayon);box-shadow:var(--ombre-forte);display:block;margin:0 auto;background:var(--gris-100);"
-      >
-        <source src="/videos/demoussage-toiture-essonne.mp4" type="video/mp4" />
-        Votre navigateur ne peut pas lire cette vidéo.
-      </video>
-    </div>
-  </section>
-
-  <section class="section section--bleute">
-    <div class="conteneur prose prose--large">
-      <h2>Un entretien confié à un couvreur, pas à un simple nettoyeur</h2>
-      <p>
-        Marcher sur un toit ne s'improvise pas, et une tuile mal remise laisse passer l'eau dès
-        la première pluie. En confiant le nettoyage à un couvreur, vous avez un professionnel
-        qui circule correctement sur la couverture, repère les défauts et sait les réparer dans
-        la foulée. Tous mes travaux sont couverts par la garantie décennale, assurée chez
-        Allianz.
-      </p>
-      <p>
-        Installé à Étréchy, je nettoie les toitures des communes voisines au fil de l'année.
-        Pour un démoussage, un traitement ou un simple contrôle, demandez votre devis gratuit :
-        je passe voir votre toit et je vous dis ce dont il a réellement besoin.
-      </p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="conteneur prose prose--large">
-      <h2>À quelle fréquence nettoyer sa toiture ?</h2>
-      <p>
-        La bonne fréquence dépend de l'environnement de votre maison et du matériau de la
-        couverture. Un toit entouré d'arbres se salit plus vite qu'un toit dégagé, et une tuile
-        poreuse retient les mousses bien plus qu'une ardoise. En règle générale, un démoussage
-        tous les trois à cinq ans suffit à garder une couverture saine, avec un coup d'œil aux
-        gouttières une à deux fois par an. Et si vous chauffez au bois, pensez aussi au <a href="/ramonage-cheminee/">ramonage
-        de la cheminée</a>, obligatoire chaque année.
-      </p>
-      <p>
-        Plutôt qu'un calendrier fixe, surveillez quelques signes : des plaques de mousse qui
-        s'étendent, des gouttières qui débordent, des traces noires sur les tuiles. Dès que la
-        mousse s'installe vraiment, mieux vaut intervenir avant qu'elle n'abîme la couverture.
-        Lors de mon passage, je vous indique l'intervalle adapté à votre toit, sans vous pousser
-        à un entretien plus fréquent que nécessaire.
-      </p>
-    </div>
-  </section>
-
-  <AvisGoogle titre="Les avis de mes clients sur l'entretien de leur toit" ids={['caro-dvx', 'regina-guiguen', 'didier-nara']} fond="gris" />
-
-  <CtaDevis />
-
-  <section class="section section--gris">
+  <!-- ══ VIDÉO ══ -->
+  <section class="dr-section">
     <div class="conteneur">
-      <h2>Les communes dans lesquelles j'interviens</h2>
-      <ul class="nuage-villes">
-        {villes.map((v) => (
-          <li><a href={`/${v.slug}/`}>{v.nom}</a></li>
+      <div class="dr-entete" data-anim="up">
+        <h2 class="dr-h2">Un démoussage de toiture en vidéo</h2>
+        <p>Une toiture en tuiles en cours de démoussage dans l'Essonne.</p>
+      </div>
+      <div class="dr-video dr-video--portrait" data-anim="up">
+        <video controls muted loop playsinline preload="none" poster="/videos/demoussage-toiture-essonne-poster.jpg" width="720" height="960">
+          <source src="/videos/demoussage-toiture-essonne.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ ÉTAPES ══ -->
+  <section class="dr-section dr-section--gris">
+    <div class="conteneur">
+      <div class="dr-entete" data-anim="up">
+        <h2 class="dr-h2">Comment je nettoie une toiture</h2>
+        <p>Quatre étapes, du repérage au ramassage des débris.</p>
+      </div>
+      <ol class="dr-etapes">
+        {etapes.map((e) => (
+          <li class="dr-etape" data-anim="up">
+            <h3>{e.titre}</h3>
+            <p set:html={e.texte} />
+          </li>
         ))}
-      </ul>
+      </ol>
     </div>
   </section>
-</BaseLayout>
+
+  <!-- ══ FRÉQUENCE ══ -->
+  <section class="dr-section">
+    <div class="conteneur">
+      <div class="dr-entete" data-anim="up">
+        <h2 class="dr-h2">À quelle fréquence nettoyer sa toiture ?</h2>
+        <p>La bonne fréquence dépend de l'environnement de votre maison et du matériau de votre couverture.</p>
+      </div>
+      <div class="dr-conseils">
+        <article class="dr-conseil" data-anim="up">
+          <h3>Le bon rythme</h3>
+          <ul class="dr-puces">
+            <li>Un démoussage tous les trois à cinq ans suffit en général à garder une couverture saine.</li>
+            <li>Un toit entouré d'arbres se salit plus vite qu'un toit dégagé.</li>
+            <li>Les gouttières se vérifient une à deux fois par an, surtout après la chute des feuilles.</li>
+          </ul>
+        </article>
+        <article class="dr-conseil" data-anim="up">
+          <h3>Les signes à surveiller</h3>
+          <ul class="dr-puces">
+            <li>Des plaques de mousse qui s'étendent d'une saison à l'autre.</li>
+            <li>Des gouttières qui débordent par temps de pluie.</li>
+            <li>Des traces noires ou des tuiles qui s'effritent : la couverture souffre et un contrôle s'impose.</li>
+          </ul>
+        </article>
+      </div>
+      <div class="dr-texte dr-apres" data-anim="up">
+        <p>Quand les tuiles sont devenues poreuses sur l'ensemble du toit, un nettoyage ne suffit plus à les protéger. Je vous le dis franchement et nous regardons ensemble si une <a href="/renovation-toiture/">rénovation de toiture</a> devient préférable.</p>
+      </div>
+    </div>
+  </section>
+</PageService>

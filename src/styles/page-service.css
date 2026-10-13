@@ -1,0 +1,408 @@
+/* ════════════════════════════════════════════════════════════════════
+   Design des pages services (oct. 2026) — repris de la page Ramonage
+   refondue le 13/10/2026 (hero bleu nuit, bandeau rouge, cartes, carte
+   bleu nuit, bloc artisan, CTA camion). Partagé par toutes les pages
+   services et le cocon zinguerie via src/components/PageService.astro.
+   Classes préfixées dr- ; ne pas importer avec design-accueil.css.
+   ════════════════════════════════════════════════════════════════════ */
+
+  /* ── Jetons locaux (mêmes valeurs que la page d'accueil) ── */
+  .dr-hero, .dr-section, .dr-bande {
+    --nuit: #062a45;
+    --rouge-clair: #ff4d42;
+    --ombre-carte: 0 6px 20px rgb(0 73 123 / .07);
+    --ombre-carte-hover: 0 16px 34px rgb(0 73 123 / .15);
+    --ligne: #e2e6ea;
+  }
+
+  /* ── Apparitions ── */
+  [data-anim] { opacity: 0; transition: opacity .7s ease, transform .7s ease; }
+  [data-anim="up"] { transform: translate3d(0, 28px, 0); }
+  [data-anim].is-visible { opacity: 1; transform: none; }
+
+  /* ── Sections ── */
+  .dr-section { padding-block: 88px; }
+  .dr-section--gris { background: var(--gris-50); }
+  .dr-section--serre { padding-top: 0; }
+  @media (max-width: 1023px) { .dr-section { padding-block: 64px; } .dr-section--serre { padding-top: 0; } }
+  @media (max-width: 767px)  { .dr-section { padding-block: 52px; } .dr-section--serre { padding-top: 0; } }
+  .dr-centre { text-align: center; }
+  .dr-h2 {
+    font-family: var(--font-titres); font-weight: 700; color: var(--bleu-fonce);
+    font-size: clamp(19px, .6rem + 2.6vw, 36px); line-height: 1.2; text-wrap: balance; margin: 0;
+  }
+  .dr-h3 {
+    font-family: var(--font-titres); font-weight: 700; color: var(--bleu-fonce);
+    font-size: clamp(19px, .85rem + .6vw, 23px); line-height: 1.3; margin: 0; text-wrap: balance;
+  }
+  .dr-entete { display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; margin-bottom: 40px; }
+  .dr-entete p { margin: 0; max-width: 640px; color: var(--gris-700); font-size: 17px; line-height: 1.6; }
+
+  /* ── Boutons (pilule, jamais pleine largeur) ── */
+  .dr-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+  .dr-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+    width: auto; max-width: max-content; min-height: 50px; padding: 14px 26px;
+    border-radius: 999px; font-family: var(--font-titres); font-weight: 700; font-size: 16px;
+    line-height: 1.2; text-decoration: none; white-space: nowrap;
+    box-shadow: 0 4px 12px rgb(0 42 69 / .12);
+    transition: background-color .25s ease, color .25s ease, transform .25s ease, box-shadow .25s ease;
+  }
+  .dr-btn:hover { transform: translate3d(0, -2px, 0); box-shadow: 0 10px 22px rgb(0 42 69 / .2); }
+  .dr-btn--rouge { background: var(--cuivre); color: #fff; }
+  .dr-btn--rouge:hover { background: var(--cuivre-fonce); color: #fff; }
+  .dr-btn--bleu { background: var(--bleu); color: #fff; }
+  .dr-btn--bleu:hover { background: var(--bleu-fonce); color: #fff; }
+  .dr-btn--blanc { background: #fff; color: var(--bleu-fonce); }
+  .dr-btn--blanc:hover { background: var(--gris-100); color: var(--bleu-fonce); }
+  .dr-btn__fleche {
+    display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+    width: 26px; height: 26px; border-radius: 50%; background: #fff; color: var(--cuivre); overflow: hidden;
+  }
+  .dr-btn__fleche--bleue { color: var(--bleu); }
+  .dr-btn__fleche svg { width: 14px; height: 14px; transition: transform .3s ease; }
+  .dr-btn:hover .dr-btn__fleche svg { transform: translate3d(3px, 0, 0); }
+  @media (max-width: 767px) {
+    .dr-btn { min-height: 46px; padding: 12px 18px; font-size: 15px; gap: 10px; }
+  }
+
+  /* Smartphone qui sonne */
+  .dr-tel { width: 20px; height: 20px; flex-shrink: 0; overflow: visible; }
+  .dr-tel__corps { transform-origin: 40% 50%; animation: dr-sonne 2.4s ease-in-out infinite; }
+  .dr-tel__onde { opacity: 0; animation: dr-onde 2.4s ease-out infinite; }
+  .dr-tel__onde--2 { animation-delay: .25s; }
+  @keyframes dr-sonne {
+    0%, 70%, 100% { transform: rotate(0); }
+    75% { transform: rotate(-12deg); } 80% { transform: rotate(10deg); }
+    85% { transform: rotate(-8deg); } 90% { transform: rotate(6deg); }
+  }
+  @keyframes dr-onde { 0%, 60% { opacity: 0; } 75% { opacity: 1; } 100% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) {
+    .dr-tel__corps, .dr-tel__onde { animation: none; }
+    .dr-tel__onde { opacity: 1; }
+    [data-anim] { opacity: 1; transform: none; transition: none; }
+  }
+
+  /* ── Coches (pastille rouge + coche blanche) ── */
+  .dr-coches { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .dr-coches li { position: relative; padding-left: 34px; color: #fff; font-weight: 600; font-size: 17px; line-height: 1.45; }
+  .dr-coches li::before {
+    content: ""; position: absolute; left: 0; top: 1px; width: 22px; height: 22px; border-radius: 50%;
+    background: var(--cuivre) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / 14px no-repeat;
+  }
+  .dr-coches--sombre li { color: var(--bleu-fonce); }
+
+  /* ── Hero ── */
+  .dr-hero { background: var(--nuit); padding-block: 28px 56px; overflow: hidden; }
+  .dr-hero__ariane { margin-bottom: 18px; }
+  .dr-hero__ariane .fil-ariane { margin: 0; color: #9fb6c9; }
+  .dr-hero__ariane .fil-ariane a { color: #9fb6c9; }
+  .dr-hero__ariane .fil-ariane a:hover { color: #fff; }
+  .dr-hero__ariane .fil-ariane [aria-current] { color: #fff; }
+  .dr-hero__grille {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas: "titre media" "texte media"; align-items: center; gap: 22px 52px;
+  }
+  .dr-hero__titre {
+    grid-area: titre; align-self: end; margin: 0; color: #fff;
+    font-family: var(--font-titres); font-weight: 700;
+    font-size: clamp(28px, 3.4vw, 44px); line-height: 1.15;
+  }
+  .dr-ligne { display: block; white-space: nowrap; }
+  .dr-hero__nom { color: var(--rouge-clair); }
+  .dr-hero__media {
+    grid-area: media; margin: 0; border-radius: 16px; overflow: hidden;
+    box-shadow: 0 20px 50px rgb(0 0 0 / .3); aspect-ratio: 1 / 1; max-height: 520px;
+  }
+  .dr-hero__media img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 35%; }
+  .dr-hero__texte { grid-area: texte; align-self: start; display: flex; flex-direction: column; gap: 22px; }
+  .dr-hero__lead { margin: 0; color: #d6e2ee; font-size: 19px; line-height: 1.6; }
+  .dr-hero__lead strong { color: #fff; }
+  @media (max-width: 1023px) {
+    .dr-hero { padding-block: 22px 44px; }
+    .dr-hero__grille { grid-template-columns: minmax(0, 1fr); grid-template-areas: "titre" "media" "texte"; gap: 22px; }
+    .dr-hero__titre { text-align: center; font-size: clamp(26px, 7.4vw, 44px); }
+    .dr-hero__media { aspect-ratio: 16 / 9; max-height: none; }
+    .dr-hero__media img { object-position: center 22%; }
+    .dr-hero__texte .dr-actions { justify-content: center; }
+  }
+  @media (max-width: 479px) { .dr-hero__lead { font-size: 17px; } }
+
+  /* ── Bandeau rouge ── */
+  .dr-bande { background: var(--cuivre); color: #fff; padding-block: 16px; }
+  .dr-bande__liste {
+    list-style: none; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 40px;
+  }
+  .dr-bande__liste li { font-family: var(--font-titres); font-weight: 600; font-size: 16px; }
+  @media (max-width: 767px) { .dr-bande__liste { gap: 6px 22px; } .dr-bande__liste li { font-size: 14px; } }
+
+  /* ── Bloc photo + texte ── */
+  .dr-duo {
+    display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: center; gap: 56px; margin-top: 44px;
+  }
+  .dr-duo--inverse { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+  .dr-duo--inverse .dr-duo__media { order: 2; }
+  .dr-duo__media { margin: 0; }
+  .dr-duo__media img {
+    display: block; width: 100%; aspect-ratio: 4 / 5; max-height: 560px; object-fit: cover;
+    border-radius: 16px; box-shadow: 0 20px 50px rgb(0 42 69 / .16);
+  }
+  .dr-duo__texte { display: flex; flex-direction: column; gap: 18px; }
+  .dr-duo__texte p { margin: 0; font-size: 17px; line-height: 1.7; color: var(--gris-700); text-align: left; }
+  .dr-duo__texte a { color: var(--bleu); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+  .dr-duo__texte a:hover { color: var(--cuivre); }
+  .dr-methode { margin-top: 64px; }
+  .dr-methode .dr-duo__media img { aspect-ratio: 4 / 3; }
+  @media (max-width: 899px) {
+    .dr-duo, .dr-duo--inverse { grid-template-columns: minmax(0, 1fr); gap: 28px; margin-top: 28px; }
+    .dr-duo--inverse .dr-duo__media { order: -1; }
+    .dr-duo__media img { aspect-ratio: 16 / 10; max-height: none; object-position: center 30%; }
+    .dr-duo__texte p { font-size: 16px; }
+    .dr-methode { margin-top: 48px; }
+  }
+
+  /* ── Réglementation : carte bleu nuit + certificat ── */
+  .dr-regle {
+    display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); align-items: center; gap: 40px;
+    background: var(--nuit); border-radius: 18px; padding: 48px 46px; box-shadow: 0 20px 50px rgb(0 42 69 / .22);
+  }
+  .dr-regle__corps { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+  .dr-regle h2 {
+    margin: 0; color: #fff; font-family: var(--font-titres); font-weight: 700;
+    font-size: clamp(19px, .6rem + 2.1vw, 32px); line-height: 1.2; text-wrap: balance;
+  }
+  .dr-regle__corps p { margin: 0; color: #d6e2ee; font-size: 17px; line-height: 1.65; text-align: left; }
+  .dr-regle .dr-btn { margin-top: 6px; }
+  .dr-regle__certif {
+    display: flex; flex-direction: column; gap: 20px; padding: 32px 30px; background: #fff; border-radius: 14px;
+  }
+  .dr-regle__certif h3 {
+    margin: 0; font-family: var(--font-titres); font-weight: 700; font-size: 21px; line-height: 1.3; color: var(--bleu-fonce);
+  }
+  .dr-regle__certif .dr-coches li { font-size: 16px; }
+  @media (min-width: 900px) and (max-width: 1099px) {
+    .dr-regle { padding: 36px 32px; gap: 28px; }
+    .dr-regle h2 { font-size: 25px; }
+    .dr-regle__corps p { font-size: 16px; }
+  }
+  @media (max-width: 899px) {
+    .dr-regle { grid-template-columns: minmax(0, 1fr); padding: 30px 22px 32px; gap: 26px; }
+    .dr-regle h2 { text-align: center; align-self: stretch; }
+    .dr-regle__corps p { font-size: 16px; }
+    .dr-regle .dr-btn { align-self: center; }
+    .dr-regle__certif { padding: 24px 20px; }
+  }
+
+  /* ── Équipements : cartes texte ── */
+  .dr-equip {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 24px;
+  }
+  .dr-equip__carte {
+    flex: 0 1 calc((100% - 48px) / 3); display: flex; flex-direction: column; gap: 10px;
+    padding: 26px 24px; background: #fff; border-radius: 14px; box-shadow: var(--ombre-carte);
+    transition: transform .25s ease, box-shadow .25s ease, opacity .7s ease;
+  }
+  .dr-equip__carte.is-visible:hover { transform: translate3d(0, -4px, 0); box-shadow: var(--ombre-carte-hover); }
+  .dr-equip__carte h3 {
+    margin: 0; font-family: var(--font-titres); font-weight: 700; font-size: 19px; line-height: 1.25; color: var(--bleu-fonce);
+  }
+  .dr-equip__carte p { margin: 0; color: var(--gris-700); font-size: 15.5px; line-height: 1.6; }
+  @media (max-width: 899px) { .dr-equip { gap: 18px; } .dr-equip__carte { flex-basis: calc((100% - 18px) / 2); } }
+  @media (max-width: 599px) { .dr-equip__carte { flex-basis: 100%; padding: 20px 20px; } }
+
+  /* ── Conseils d'entretien ── */
+  .dr-conseils { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+  .dr-conseil {
+    display: flex; flex-direction: column; gap: 18px; padding: 32px 30px;
+    background: var(--gris-50); border-radius: 16px;
+  }
+  .dr-conseil h3 {
+    margin: 0; font-family: var(--font-titres); font-weight: 700; font-size: 22px; line-height: 1.25; color: var(--bleu-fonce);
+  }
+  .dr-puces { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+  .dr-puces li { position: relative; padding-left: 30px; color: var(--gris-700); font-size: 16px; line-height: 1.6; }
+  .dr-puces li::before {
+    content: ""; position: absolute; left: 0; top: 3px; width: 20px; height: 20px; border-radius: 50%;
+    background: var(--bleu) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / 12px no-repeat;
+  }
+  @media (max-width: 899px) { .dr-conseils { grid-template-columns: minmax(0, 1fr); gap: 18px; } .dr-conseil { padding: 24px 20px; } }
+
+  /* ── Artisan ── */
+  .dr-artisan { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 64px; }
+  .dr-artisan__media { margin: 0; }
+  .dr-artisan__img {
+    display: block; width: 100%; max-width: 520px; margin-inline: auto; aspect-ratio: 1 / 1; object-fit: cover;
+    border-radius: 16px; box-shadow: 0 20px 50px rgb(0 42 69 / .16);
+  }
+  .dr-artisan__texte { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
+  .dr-artisan__texte p { margin: 0; font-size: 17px; line-height: 1.7; color: var(--gris-700); }
+  .dr-artisan__texte p a { color: var(--bleu); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+  .dr-artisan__texte p a:hover { color: var(--cuivre); }
+  .dr-garantie {
+    display: flex; align-items: center; gap: 16px; padding: 14px 18px; background: #fff; border-radius: var(--rayon);
+    box-shadow: var(--ombre-carte);
+  }
+  .dr-garantie img { width: 72px; height: auto; flex-shrink: 0; }
+  .dr-garantie p { font-size: 16px !important; color: var(--bleu-fonce) !important; }
+  @media (min-width: 1024px) and (max-width: 1199px) { .dr-artisan__texte .dr-h2 { font-size: 27px; } }
+  @media (max-width: 1023px) { .dr-artisan { grid-template-columns: minmax(0, 1fr); gap: 36px; } .dr-artisan__img { max-width: 420px; } }
+  @media (max-width: 767px)  { .dr-artisan__texte .dr-h2 { text-align: center; align-self: stretch; } .dr-artisan__texte .dr-btn { align-self: center; } .dr-artisan__texte p { font-size: 16px; } }
+
+  /* ── Avis ── */
+  .dr-note { margin: 0; color: var(--gris-700); }
+  .dr-etoiles { color: #f5b301; letter-spacing: 2px; }
+  .dr-avis { list-style: none; margin: 0 0 36px; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+  .dr-avis__carte {
+    display: flex; flex-direction: column; gap: 12px; padding: 26px 24px; background: var(--gris-50);
+    border-radius: 14px;
+  }
+  .dr-avis__carte blockquote { margin: 0; color: var(--gris-700); font-size: 16px; line-height: 1.65; }
+  .dr-avis__nom { margin: auto 0 0; font-family: var(--font-titres); font-weight: 700; color: var(--bleu-fonce); }
+  @media (max-width: 1023px) { .dr-avis { grid-template-columns: minmax(0, 1fr); gap: 16px; } }
+
+  /* ── Communes ── */
+  .dr-villes { list-style: none; margin: 36px 0 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+  .dr-villes a {
+    display: inline-block; padding: 9px 16px; border-radius: 999px; background: #fff; color: var(--bleu-fonce);
+    font-weight: 600; text-decoration: none; box-shadow: var(--ombre-carte); transition: background-color .2s ease, color .2s ease;
+  }
+  .dr-villes a:hover { background: var(--bleu); color: #fff; }
+
+  /* ── CTA final : carte bleu nuit + photo du camion ── */
+  .dr-section--cta { padding-top: 0; background: var(--gris-50); }
+  .dr-cta {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); overflow: hidden;
+    background: var(--nuit); border-radius: 18px; box-shadow: 0 20px 50px rgb(0 42 69 / .22);
+  }
+  .dr-cta__media { margin: 0; }
+  .dr-cta__media img { display: block; width: 100%; height: 100%; min-height: 320px; object-fit: cover; }
+  .dr-cta__corps {
+    display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 18px;
+    padding: 48px 46px;
+  }
+  .dr-cta h2 {
+    margin: 0; color: #fff; font-family: var(--font-titres); font-weight: 700;
+    font-size: clamp(19px, .6rem + 2.2vw, 34px); line-height: 1.2; text-wrap: balance;
+  }
+  .dr-cta p { margin: 0; color: #d6e2ee; font-size: 18px; }
+  .dr-cta .dr-actions { margin-top: 6px; }
+  @media (min-width: 900px) and (max-width: 1099px) {
+    .dr-cta h2 { font-size: 25px; }
+    .dr-cta__corps { padding: 36px 32px; }
+  }
+  @media (max-width: 899px) {
+    .dr-cta { grid-template-columns: minmax(0, 1fr); }
+    .dr-cta__media img { min-height: 0; aspect-ratio: 16 / 9; }
+    .dr-cta__corps { align-items: center; text-align: center; padding: 30px 22px 34px; }
+    .dr-cta__corps p { text-align: center; }
+    .dr-cta .dr-actions { justify-content: center; }
+  }
+
+/* ════════ Compléments pages services ════════ */
+
+/* H1 à taille automatique (« Réparation de toiture 91 – ») : la 1re ligne tient
+   toujours sur une ligne, sans débordement (--h1-n = nombre de caractères) */
+.dr-hero__titre--auto { font-size: min(42px, calc((50vw - 64px) / (var(--h1-n) * .55)), calc(560px / (var(--h1-n) * .55))); }
+@media (max-width: 1023px) {
+  .dr-hero__titre--auto { font-size: min(40px, calc((100vw - 44px) / (var(--h1-n) * .55))); }
+}
+
+/* Vidéo dans le hero ou dans un bloc */
+.dr-hero__media video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.dr-video {
+  margin: 0 auto; max-width: 960px; border-radius: 16px; overflow: hidden;
+  box-shadow: 0 20px 50px rgb(0 42 69 / .16); background: #000;
+}
+.dr-video video { display: block; width: 100%; height: auto; }
+.dr-video--portrait { max-width: 420px; }
+
+/* Texte courant (sections longues), aligné à gauche */
+.dr-texte { max-width: 820px; margin-inline: auto; display: flex; flex-direction: column; gap: 18px; }
+.dr-texte p { margin: 0; font-size: 17px; line-height: 1.7; color: var(--gris-700); text-align: left; }
+.dr-texte a, .dr-equip__carte a, .dr-etape a, .dr-conseil a {
+  color: var(--bleu); font-weight: 700; text-decoration: underline; text-underline-offset: 3px;
+}
+.dr-texte a:hover, .dr-equip__carte a:hover, .dr-etape a:hover, .dr-conseil a:hover { color: var(--cuivre); }
+.dr-regle__corps a { color: #fff; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.dr-regle__corps a:hover { color: var(--rouge-clair); }
+@media (max-width: 767px) { .dr-texte p { font-size: 16px; } }
+
+/* Étapes numérotées */
+.dr-etapes {
+  list-style: none; margin: 0; padding: 0; counter-reset: etape;
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px;
+}
+.dr-etapes--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.dr-etape {
+  counter-increment: etape; position: relative; display: flex; flex-direction: column; gap: 10px;
+  padding: 28px 24px 26px; background: #fff; border-radius: 14px; box-shadow: var(--ombre-carte);
+}
+.dr-section--gris .dr-etape { background: #fff; }
+.dr-section:not(.dr-section--gris) .dr-etape { background: var(--gris-50); box-shadow: none; }
+.dr-etape::before {
+  content: counter(etape); display: inline-flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px; border-radius: 50%; background: var(--bleu); color: #fff;
+  font-family: var(--font-titres); font-weight: 700; font-size: 18px;
+}
+.dr-etape h3 { margin: 4px 0 0; font-family: var(--font-titres); font-weight: 700; font-size: 19px; line-height: 1.25; color: var(--bleu-fonce); }
+.dr-etape p { margin: 0; color: var(--gris-700); font-size: 15.5px; line-height: 1.6; }
+@media (max-width: 1023px) { .dr-etapes, .dr-etapes--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; } }
+@media (max-width: 599px)  { .dr-etapes, .dr-etapes--3 { grid-template-columns: minmax(0, 1fr); } .dr-etape { padding: 22px 20px; } }
+
+/* Tableau comparatif */
+.dr-tableau-wrap { max-width: 960px; margin: 0 auto; overflow-x: auto; border-radius: 14px; box-shadow: var(--ombre-carte); background: #fff; }
+.dr-tableau { width: 100%; border-collapse: collapse; font-size: 16px; line-height: 1.5; }
+.dr-tableau th, .dr-tableau td { padding: 16px 18px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--ligne); }
+.dr-tableau thead th { background: var(--bleu-fonce); color: #fff; font-family: var(--font-titres); font-weight: 700; font-size: 15px; }
+.dr-tableau tbody th { font-family: var(--font-titres); font-weight: 700; color: var(--bleu-fonce); white-space: nowrap; }
+.dr-tableau td { color: var(--gris-700); }
+.dr-tableau tbody tr:last-child th, .dr-tableau tbody tr:last-child td { border-bottom: 0; }
+@media (max-width: 767px) {
+  .dr-tableau { font-size: 15px; }
+  .dr-tableau thead { display: none; }
+  .dr-tableau, .dr-tableau tbody, .dr-tableau tr, .dr-tableau th, .dr-tableau td { display: block; width: 100%; }
+  .dr-tableau tr { padding: 16px 18px; border-bottom: 1px solid var(--ligne); }
+  .dr-tableau tbody tr:last-child { border-bottom: 0; }
+  .dr-tableau th, .dr-tableau td { padding: 2px 0; border: 0; white-space: normal; }
+  .dr-tableau td[data-label]::before { content: attr(data-label) " : "; font-weight: 700; color: var(--bleu-fonce); }
+}
+
+/* Galerie de photos (3 ou 4) */
+.dr-galerie { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.dr-galerie--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.dr-galerie figure { margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.dr-galerie img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 14px; box-shadow: 0 12px 30px rgb(0 42 69 / .12); }
+.dr-galerie figcaption { font-size: 15px; line-height: 1.45; color: var(--gris-700); text-align: center; }
+@media (max-width: 899px) { .dr-galerie, .dr-galerie--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; } }
+
+/* Cartes de sous-pages (lien sur le H3, carte cliquable via ::after) */
+.dr-sous { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; }
+.dr-sous__carte {
+  position: relative; flex: 0 1 calc((100% - 48px) / 3); display: flex; flex-direction: column;
+  background: #fff; border-radius: 14px; overflow: hidden; box-shadow: var(--ombre-carte);
+  transition: transform .25s ease, box-shadow .25s ease, opacity .7s ease;
+}
+.dr-sous__carte.is-visible:hover { transform: translate3d(0, -4px, 0); box-shadow: var(--ombre-carte-hover); }
+.dr-sous__carte img { display: block; width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+.dr-sous__corps { display: flex; flex-direction: column; gap: 8px; padding: 22px 22px 24px; }
+.dr-sous__carte h3 { margin: 0; font-family: var(--font-titres); font-weight: 700; font-size: 19px; line-height: 1.25; }
+.dr-sous__carte h3 a { color: var(--bleu-fonce); text-decoration: none; }
+.dr-sous__carte h3 a::after { content: ""; position: absolute; inset: 0; }
+.dr-sous__carte:hover h3 a { color: var(--bleu); }
+.dr-sous__carte p { margin: 0; color: var(--gris-700); font-size: 15.5px; line-height: 1.6; }
+@media (max-width: 899px) { .dr-sous { gap: 18px; } .dr-sous__carte { flex-basis: calc((100% - 18px) / 2); } }
+@media (max-width: 599px) { .dr-sous__carte { flex-basis: 100%; } }
+
+/* Cartes et conseils selon le fond de la section */
+.dr-section--gris .dr-conseil { background: #fff; box-shadow: var(--ombre-carte); }
+.dr-section:not(.dr-section--gris) .dr-equip__carte { background: var(--gris-50); box-shadow: none; }
+.dr-section:not(.dr-section--gris) .dr-equip__carte.is-visible:hover { box-shadow: var(--ombre-carte); }
+
+/* Texte après un bloc (tableau, cartes, étapes) */
+.dr-apres { margin-top: 36px; }
+
+/* Bloc photo + texte autonome (H2 dans la colonne texte) */
+.dr-duo--seul { margin-top: 0; }
+.dr-duo__texte .dr-h2 { margin-bottom: 4px; }
+@media (max-width: 899px) { .dr-duo--seul { margin-top: 0; } .dr-duo--seul .dr-duo__texte .dr-h2 { text-align: center; } }

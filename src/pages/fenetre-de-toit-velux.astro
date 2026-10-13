@@ -1,225 +1,181 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import FilAriane from '../components/FilAriane.astro';
+// Page pilier « Fenêtre de toit Velux » — refonte oct. 2026 au design de la
+// page Ramonage (gabarit PageService). Centrée sur l'Essonne.
+import PageService from '../components/PageService.astro';
 import CartesRealisations from '../components/CartesRealisations.astro';
-import CtaDevis from '../components/CtaDevis.astro';
-import villes from '../data/villes.json';
 
-import AvisGoogle from '../components/AvisGoogle.astro';
-import NoteGoogle from '../components/NoteGoogle.astro';
-const title = "Fenêtre de toit Velux dans l'Essonne (91) — M. Robert";
-const description = "Pose et remplacement de fenêtre de toit Velux à Étréchy et dans l'Essonne : raccord étanche, plus de lumière. M. Robert Daniel, couvreur. Devis gratuit.";
+const url = 'https://robert-daniel-couverture.fr/fenetre-de-toit-velux/';
+const title = "Fenêtre de toit Velux dans l'Essonne (91) – Robert Daniel";
+const description = "Pose et remplacement de fenêtres de toit Velux dans l'Essonne (91), raccord d'étanchéité adapté à vos tuiles ou ardoises. Robert Daniel, artisan couvreur.";
 
 const extraSchemas = [{
   '@context': 'https://schema.org',
   '@type': 'Service',
+  '@id': `${url}#service`,
   name: 'Pose de fenêtre de toit Velux',
-  serviceType: 'Pose et remplacement de fenêtre de toit',
+  serviceType: 'Pose et remplacement de fenêtres de toit',
   provider: { '@id': 'https://robert-daniel-couverture.fr/#localbusiness' },
   areaServed: { '@type': 'AdministrativeArea', name: 'Essonne (91)' },
-  url: 'https://robert-daniel-couverture.fr/fenetre-de-toit-velux/',
+  url,
+  image: 'https://robert-daniel-couverture.fr/images/fenetre-de-toit-velux-couvreur-essonne.jpg',
   description,
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Prestations fenêtres de toit',
+    itemListElement: [
+      'Pose de fenêtre de toit neuve',
+      'Remplacement de fenêtre de toit',
+      "Réfection du raccord d'étanchéité d'une fenêtre de toit",
+    ].map((n) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: n } })),
+  },
 }];
+
+const prestations = [
+  { titre: 'Pose neuve', texte: "Je crée l'ouverture dans la couverture, je pose le chevêtre qui renforce la <a href=\"/charpente/\">charpente</a> autour du cadre, puis j'installe la fenêtre et son raccord." },
+  { titre: 'Remplacement', texte: "Je dépose l'ancien modèle et je pose la nouvelle fenêtre, souvent à la même dimension, pour limiter les reprises de couverture." },
+  { titre: 'Fenêtre qui fuit', texte: "Une fuite vient presque toujours d'un raccord vieilli ou d'un joint usé : je refais le raccord plutôt que de poser un mastic qui ne tiendra pas." },
+];
 ---
-<BaseLayout title={title} description={description} extraSchemas={extraSchemas}>
-  <section class="hero">
+<PageService
+  title={title}
+  description={description}
+  extraSchemas={extraSchemas}
+  ariane={[{ label: 'Accueil', href: '/' }, { label: 'Fenêtre de toit Velux' }]}
+  h1="Fenêtre de toit Velux 91 –"
+  hero={{ src: '/images/fenetre-de-toit-velux-couvreur-essonne.webp', alt: "Robert Daniel, artisan couvreur, devant une fenêtre de toit posée dans une couverture en tuiles", width: 1100, height: 825 }}
+  lead="La <strong>pose de fenêtres de toit Velux dans l'Essonne</strong>, avec un raccord étanche à votre couverture réalisé par un couvreur."
+  coches={['Pose neuve et remplacement', "Raccord d'étanchéité adapté à vos tuiles", 'Devis gratuit et sans engagement']}
+  bande={['Pose neuve', 'Remplacement', "Raccord d'étanchéité", 'Combles aménagés']}
+  artisan={{
+    titre: 'La pose par un couvreur, pas par un menuisier',
+    html: `<p>Depuis plus de 15 ans, je pose des fenêtres de toit dans les toitures de l'Essonne, en tuile plate, en tuile mécanique et en ardoise. Je connais chaque raccord d'étanchéité et la façon de reprendre la couverture autour du cadre.</p>
+<p>Une fenêtre de toit posée par un couvreur s'intègre à la toiture comme un élément de couverture. C'est ce qui fait la différence entre une pose qui dure et une infiltration au premier orage. Comme <a href="/">entreprise de couverture 91</a>, je garantis la toiture autour de la fenêtre.</p>`,
+  }}
+  avis={{ titre: 'Ils ont fait poser leurs fenêtres de toit', ids: ['levy-sabas', 'peysi-sabas', 'louise-b'] }}
+  cta={{ titre: "Faites poser votre fenêtre de toit dans l'Essonne" }}
+>
+
+  <!-- ══ LUMIÈRE ══ -->
+  <section class="dr-section">
     <div class="conteneur">
-      <FilAriane items={[{ label: 'Accueil', href: '/' }, { label: 'Fenêtre de toit Velux' }]} />
+      <div class="dr-duo dr-duo--seul" data-anim="up">
+        <figure class="dr-duo__media">
+          <img src="/images/fenetre-de-toit-velux-pose-chevetre-essonne.webp" alt="Ouverture créée dans la couverture et chevêtre posé avant l'installation d'une fenêtre de toit" width="825" height="1100" loading="lazy" decoding="async" />
+        </figure>
+        <div class="dr-duo__texte">
+          <h2 class="dr-h2">Plus de lumière sous votre toit</h2>
+          <p>Une fenêtre de toit apporte bien plus de lumière qu'une fenêtre verticale de même taille. Elle rend un grenier habitable, éclaire un couloir aveugle ou ventile une salle de bains sous la pente.</p>
+          <p>Encore faut-il choisir le bon emplacement et la bonne dimension. Je vous conseille selon la pente du toit, l'orientation de la pièce et son usage, pour une fenêtre qui éclaire sans surchauffer la pièce l'été.</p>
+          <p>Si vos combles ne sont pas encore aménagés, nous prévoyons ensemble l'<a href="/isolation-toiture/">isolation des combles</a>, pour que la nouvelle pièce soit aussi confortable que lumineuse.</p>
+        </div>
+      </div>
     </div>
-    <div class="conteneur hero__grille">
-      <div class="hero__texte">
-        <p class="hero__badge"><span class="hero__point" aria-hidden="true"></span> Pose et remplacement</p>
-        <h1>Fenêtre de toit Velux dans l'Essonne</h1>
-        <p class="hero__accroche">
-          Envie de lumière dans des combles sombres, ou une fenêtre de toit qui fuit ? Je pose et
-          remplace les fenêtres de toit dans l'Essonne, avec un raccord à la couverture qui ne
-          laisse pas passer l'eau.
-        </p>
-        <ul>
-          <li><strong>Pose de fenêtre de toit</strong> sur combles aménagés.</li>
-          <li><strong>Remplacement</strong> d'un ancien modèle qui fuit.</li>
-          <li><strong>Devis gratuit</strong> et sans engagement.</li>
-        </ul>
-        <div class="hero__actions">
-          <a href="tel:0683961518" class="btn btn--cuivre">
-            <svg class="icone-tel" viewBox="0 0 24 24" aria-hidden="true"><g class="icone-tel__corps"><path fill="currentColor" d="M14 1H6C4.9 1 4 1.9 4 3v18c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-4 21c-.8 0-1.5-.7-1.5-1.5S9.2 19 10 19s1.5.7 1.5 1.5S10.8 22 10 22zm4-4H6V4h8v14z"/></g><path class="icone-tel__onde" d="M18.5 8.5a4 4 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="icone-tel__onde icone-tel__onde--2" d="M21 6a7.5 7.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            06 83 96 15 18
+  </section>
+
+  <!-- ══ RACCORD (carte bleu nuit) ══ -->
+  <section class="dr-section dr-section--serre">
+    <div class="conteneur">
+      <article class="dr-regle" data-anim="up">
+        <div class="dr-regle__corps">
+          <h2>Un raccord étanche, le vrai enjeu de la pose</h2>
+          <p>La fenêtre elle-même est rarement en cause dans une fuite. Le point sensible, c'est la jonction entre le châssis et la couverture : c'est là que l'eau s'infiltre quand la pose est mal faite.</p>
+          <p>J'utilise le raccord prévu pour votre matériau de couverture, je reprends les tuiles ou les ardoises tout autour et je raccorde l'écran sous-toiture au cadre. L'eau qui descend le toit contourne la fenêtre sans jamais trouver de passage.</p>
+          <a href="/devis-gratuit/" class="dr-btn dr-btn--rouge">
+            Demander mon devis
+            <span class="dr-btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
           </a>
-          <a href="/devis-gratuit/" class="btn btn--bleu">Devis gratuit <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
         </div>
-        <NoteGoogle />
-      </div>
-      <div class="hero__media">
-        <img class="hero__photo" src="/images/services/velux.webp" alt="Pose de fenêtre de toit Velux par Robert Daniel Couverture dans l'Essonne" width="900" height="600" fetchpriority="high" decoding="async" />
-        <div class="carte hero__garantie">
-          <p><strong>Garantie Décennale</strong><br />Pour tous travaux de couverture</p>
-          <img src="/images/logo-allianz.png" alt="Garantie décennale assurée par Allianz" width="92" height="58" loading="lazy" decoding="async" />
+        <div class="dr-regle__certif">
+          <h3>Une pose dans les règles</h3>
+          <ul class="dr-coches dr-coches--sombre">
+            <li>Raccord adapté à la tuile ou à l'ardoise</li>
+            <li>Couverture reprise autour du cadre</li>
+            <li>Écran sous-toiture raccordé</li>
+            <li>Toiture refermée le jour même</li>
+          </ul>
         </div>
-      </div>
+      </article>
     </div>
   </section>
 
-  <section class="section">
+  <!-- ══ PRESTATIONS ══ -->
+  <section class="dr-section dr-section--gris">
     <div class="conteneur">
-      <div class="encadre">
-        <h2>Ce que vous devez savoir</h2>
-        <p>
-          Couvreur à Étréchy, je pose des fenêtres de toit dans l'Essonne depuis plus de quinze
-          ans. Une fenêtre de toit transforme une pièce sous combles, mais tout se joue sur le
-          raccord avec la couverture : c'est là que l'eau s'infiltre quand la pose est bâclée.
-          J'intègre le châssis dans la toiture avec son raccord d'étanchéité, je reprends les
-          tuiles ou les ardoises autour et je traite l'écran de sous-toiture comme il faut. Pose
-          neuve, remplacement d'un modèle fatigué ou fenêtre qui fuit : je règle l'ensemble. Mes
-          devis sont gratuits et sans engagement.
-        </p>
+      <div class="dr-entete" data-anim="up">
+        <h2 class="dr-h2">Pose, remplacement et réparation</h2>
+        <p>Pour une pièce à éclairer ou une fenêtre fatiguée, je règle l'ensemble, de la charpente à la couverture.</p>
       </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="conteneur duo">
-      <img src="/images/fenetre-de-toit-velux-pose-essonne.webp" alt="Fenêtre de toit posée avec son raccord en zinc sur une couverture en tuiles dans l'Essonne" width="825" height="1100" loading="lazy" decoding="async" />
-      <div class="prose">
-        <h2>Plus de lumière sous votre toit</h2>
-        <p>
-          Une fenêtre de toit apporte deux fois plus de lumière qu'une fenêtre verticale de même
-          taille. Elle rend habitable un grenier, éclaire un couloir aveugle, ventile une salle
-          de bains sous pente. Pour des <a href="/isolation-toiture/">combles aménagés</a>, c'est souvent le geste qui change tout
-          le confort de la pièce.
-        </p>
-        <p>
-          Encore faut-il choisir le bon emplacement et la bonne dimension. Je vous conseille
-          selon la pente du toit, l'orientation de la pièce et l'usage prévu, puis je détermine
-          l'ouverture à créer dans la couverture. Une fenêtre bien placée éclaire sans surchauffer
-          la pièce.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--bleute">
-    <div class="conteneur duo duo--inverse">
-      <img src="/images/fenetre-de-toit-velux-pose-chevetre-essonne.webp" alt="Création de l'ouverture et pose du chevêtre d'une fenêtre de toit en cours dans l'Essonne" width="825" height="1100" loading="lazy" decoding="async" />
-      <div class="prose">
-        <h2>Pose et remplacement de fenêtre de toit</h2>
-        <p>
-          Pour une <strong>pose neuve</strong>, je crée l'ouverture dans la couverture, j'adapte
-          le chevêtre dans la <a href="/charpente/">charpente</a> si nécessaire, puis j'installe le châssis avec son raccord
-          d'étanchéité. Les tuiles ou ardoises sont reprises autour pour un rendu net et un toit
-          qui reste étanche, comme lors de la <a href="/realisations/fenetre-de-toit-etrechy/">pose d'une fenêtre de toit à Étréchy</a>
-          dans une couverture en tuiles plates.
-        </p>
-        <p>
-          Pour un <strong>remplacement</strong>, je dépose l'ancien modèle et j'installe la
-          nouvelle fenêtre, souvent à la même dimension pour limiter les reprises. Une fenêtre de
-          toit qui fuit vient presque toujours d'un raccord vieilli ou d'un joint mort : je
-          refais le raccord plutôt que de poser une rustine qui ne tiendra pas.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="conteneur prose prose--large">
-      <h2>Un raccord étanche, le vrai enjeu</h2>
-      <p>
-        La fenêtre elle-même est rarement en cause dans une fuite. Le point sensible, c'est la
-        jonction entre le châssis et la couverture. Une pose réussie traite plusieurs éléments
-        ensemble :
-      </p>
-      <ul>
-        <li>Le <strong>raccord d'étanchéité</strong> adapté au matériau de la toiture.</li>
-        <li>La reprise des tuiles ou ardoises autour du cadre.</li>
-        <li>Le raccordement de l'écran de sous-toiture sur le pourtour.</li>
-        <li>La gestion de l'eau au-dessus de la fenêtre, pour qu'elle contourne le châssis.</li>
-        <li>Les finitions intérieures de l'habillage, sur demande.</li>
-      </ul>
-      <p>
-        Confier la pose à un couvreur, c'est s'assurer que la fenêtre s'intègre dans la toiture
-        comme un élément de couverture, pas comme un simple cadre vissé dans le toit. C'est ce
-        qui fait la différence entre une pose qui dure et une fuite annoncée.
-      </p>
-    </div>
-  </section>
-
-  <section class="section section--bleute">
-    <div class="conteneur prose prose--large">
-      <h2>Comment se passe la pose</h2>
-      <p>
-        Je viens voir la pièce et la toiture, je vous conseille le modèle et l'emplacement, puis
-        je vous remets un devis détaillé. Le jour de la pose, je travaille proprement, je protège
-        l'intérieur et je referme la couverture le jour même pour laisser la maison hors d'eau.
-      </p>
-      <p>
-        Installé à Étréchy, je pose et remplace les fenêtres de toit des communes voisines. Tous
-        mes travaux sont couverts par la garantie décennale, assurée chez Allianz. Pour gagner en
-        lumière ou régler une fenêtre qui fuit, demandez votre devis gratuit : je me déplace et je
-        vous propose la solution adaptée à votre toit.
-      </p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="conteneur prose prose--large">
-      <h2>Quel entretien pour une fenêtre de toit ?</h2>
-      <p>
-        Une fenêtre de toit demande peu d'entretien, mais quelques gestes prolongent sa tenue.
-        Un nettoyage régulier de la vitre et du joint d'étanchéité évite l'encrassement, et un
-        dégagement des feuilles autour du cadre empêche l'eau de stagner. Sur les modèles équipés
-        d'un filtre, un dépoussiérage de temps en temps maintient une bonne ventilation.
-      </p>
-      <p>
-        Avec les années, le raccord et les joints finissent par vieillir. Si vous constatez une
-        infiltration, une condensation anormale ou une manœuvre devenue difficile, faites
-        contrôler la fenêtre. Souvent, une reprise du raccord ou un remplacement du joint suffit
-        à régler le problème, sans changer toute la fenêtre. Je vous dis ce qui se répare et ce
-        qui mérite un remplacement.
-      </p>
-    </div>
-  </section>
-
-  <section class="section chantier">
-    <div class="conteneur">
-      <div class="section__entete">
-        <span class="surtitre">En images</span>
-        <h2>La pose de fenêtres de toit en images</h2>
-        <p>Quelques fenêtres de toit posées sur des couvertures en tuiles dans l'Essonne.</p>
-      </div>
-      <div class="galerie">
-        <figure>
-          <img src="/images/fenetre-de-toit-velux-tuiles-essonne.webp" alt="Fenêtre de toit anthracite posée sur une couverture en tuiles neuves dans l'Essonne" width="825" height="1100" loading="lazy" decoding="async" />
-          <figcaption>Fenêtre intégrée à la couverture</figcaption>
-        </figure>
-        <figure>
-          <img src="/images/fenetre-de-toit-velux-ecran-essonne.webp" alt="Pose d'une fenêtre de toit Velux avec écran de sous-toiture et raccord en zinc dans l'Essonne" width="825" height="1100" loading="lazy" decoding="async" />
-          <figcaption>Raccord et écran de sous-toiture</figcaption>
-        </figure>
-        <figure>
-          <img src="/images/fenetre-de-toit-velux-couvreur-essonne.webp" alt="Robert Daniel, couvreur, devant une fenêtre de toit qu'il vient de poser dans l'Essonne" width="1100" height="825" loading="lazy" decoding="async" />
-          <figcaption>Fenêtre de toit terminée</figcaption>
-        </figure>
-        <figure>
-          <img src="/images/fenetre-de-toit-velux-chantier-essonne.webp" alt="Chantier de pose de fenêtre de toit par Robert Daniel Couverture dans l'Essonne" width="1100" height="825" loading="lazy" decoding="async" />
-          <figcaption>Sur le chantier dans l'Essonne</figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <CartesRealisations slugs={['fenetre-de-toit-etrechy', 'renovation-toiture-auvers-saint-georges']} titre="Mes poses de fenêtres de toit" fond="gris" />
-
-  <AvisGoogle titre="Les avis de mes clients sur leurs fenêtres de toit" ids={['levy-sabas', 'peysi-sabas', 'louise-b']} fond="blanc" />
-
-  <CtaDevis />
-
-  <section class="section section--gris">
-    <div class="conteneur">
-      <h2>Les communes dans lesquelles j'interviens</h2>
-      <ul class="nuage-villes">
-        {villes.map((v) => (
-          <li><a href={`/${v.slug}/`}>{v.nom}</a></li>
+      <ul class="dr-equip">
+        {prestations.map((p) => (
+          <li class="dr-equip__carte" data-anim="up">
+            <h3>{p.titre}</h3>
+            <p set:html={p.texte} />
+          </li>
         ))}
       </ul>
+
+      <div class="dr-duo dr-duo--inverse dr-methode" data-anim="up">
+        <figure class="dr-duo__media">
+          <img src="/images/fenetre-de-toit-velux-ecran-essonne.webp" alt="Fenêtre de toit installée avec son raccord et l'écran sous-toiture avant la reprise des tuiles" width="825" height="1100" loading="lazy" decoding="async" />
+        </figure>
+        <div class="dr-duo__texte">
+          <h3 class="dr-h3">Comment se passe la pose</h3>
+          <p>Je viens voir la pièce et la toiture, je vous conseille le modèle et l'emplacement, puis je vous remets un devis détaillé.</p>
+          <p>Le jour de la pose, je protège l'intérieur, je crée l'ouverture, j'installe la fenêtre et son raccord, puis je reprends la couverture. La maison est hors d'eau le soir même. Les finitions intérieures de l'habillage sont réalisées sur demande.</p>
+        </div>
+      </div>
     </div>
   </section>
-</BaseLayout>
+
+  <!-- ══ GALERIE ══ -->
+  <section class="dr-section">
+    <div class="conteneur">
+      <div class="dr-entete" data-anim="up">
+        <h2 class="dr-h2">Des fenêtres de toit posées dans l'Essonne</h2>
+        <p>Dans des couvertures en tuiles plates comme en tuiles mécaniques.</p>
+      </div>
+      <ul class="dr-galerie" data-anim="up">
+        <li><figure><img src="/images/fenetre-de-toit-velux-tuiles-essonne.webp" alt="Fenêtre de toit intégrée à une couverture en tuiles mécaniques" width="825" height="1100" loading="lazy" decoding="async" /><figcaption>Fenêtre intégrée à la couverture</figcaption></figure></li>
+        <li><figure><img src="/images/fenetre-de-toit-velux-pose-essonne.webp" alt="Fenêtre de toit posée dans une couverture en tuiles plates" width="825" height="1100" loading="lazy" decoding="async" /><figcaption>Pose dans des tuiles plates</figcaption></figure></li>
+        <li><figure><img src="/images/fenetre-de-toit-velux-essonne-2.webp" alt="Fenêtre de toit terminée avec sa couverture reprise autour du cadre" width="825" height="1100" loading="lazy" decoding="async" /><figcaption>Fenêtre de toit terminée</figcaption></figure></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══ CONSEILS ══ -->
+  <section class="dr-section dr-section--gris">
+    <div class="conteneur">
+      <div class="dr-entete" data-anim="up">
+        <h2 class="dr-h2">Bon à savoir avant de vous lancer</h2>
+      </div>
+      <div class="dr-conseils">
+        <article class="dr-conseil" data-anim="up">
+          <h3>Les démarches en mairie</h3>
+          <ul class="dr-puces">
+            <li>La création d'une fenêtre de toit modifie l'aspect extérieur de la maison.</li>
+            <li>Une déclaration préalable de travaux est en général demandée.</li>
+            <li>Le service urbanisme de votre mairie vous indique les règles du plan local d'urbanisme.</li>
+          </ul>
+        </article>
+        <article class="dr-conseil" data-anim="up">
+          <h3>L'entretien de la fenêtre</h3>
+          <ul class="dr-puces">
+            <li>Nettoyez régulièrement la vitre et le joint d'étanchéité.</li>
+            <li>Dégagez les feuilles autour du cadre pour que l'eau ne stagne pas.</li>
+            <li>En cas de condensation anormale ou de manœuvre difficile, faites contrôler la fenêtre.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ RÉALISATION ══ -->
+  <CartesRealisations
+    slugs={['fenetre-de-toit-etrechy']}
+    titre="Une pose de fenêtre de toit en images"
+    intro="Une fenêtre de toit posée dans une couverture en tuiles plates, de l'ouverture à la finition."
+    fond="blanc"
+    centre
+    lienTout={false}
+  />
+</PageService>

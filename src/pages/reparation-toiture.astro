@@ -1,223 +1,171 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import FilAriane from '../components/FilAriane.astro';
+// Page pilier « Réparation de toiture » — refonte oct. 2026 au design de la
+// page Ramonage (gabarit PageService). Centrée sur l'Essonne.
+import PageService from '../components/PageService.astro';
 import CartesRealisations from '../components/CartesRealisations.astro';
-import CtaDevis from '../components/CtaDevis.astro';
-import villes from '../data/villes.json';
 
-import AvisGoogle from '../components/AvisGoogle.astro';
-import NoteGoogle from '../components/NoteGoogle.astro';
-const title = "Réparation de toiture dans l'Essonne (91) — M. Robert";
-const description = "Réparation de toiture à Étréchy et dans l'Essonne : recherche de fuite, tuiles cassées, infiltrations. M. Robert Daniel, couvreur. Devis gratuit.";
+const url = 'https://robert-daniel-couverture.fr/reparation-toiture/';
+const title = "Réparation de toiture dans l'Essonne (91) – Robert Daniel";
+const description = "Fuite, tuile cassée, faîtage descellé : réparation de toiture dans l'Essonne (91) par un couvreur. Garantie décennale, devis gratuit. Robert Daniel.";
 
 const extraSchemas = [{
   '@context': 'https://schema.org',
   '@type': 'Service',
+  '@id': `${url}#service`,
   name: 'Réparation de toiture',
-  serviceType: 'Réparation de toiture',
+  serviceType: 'Réparation de toiture et recherche de fuite',
   provider: { '@id': 'https://robert-daniel-couverture.fr/#localbusiness' },
   areaServed: { '@type': 'AdministrativeArea', name: 'Essonne (91)' },
-  url: 'https://robert-daniel-couverture.fr/reparation-toiture/',
+  url,
+  image: 'https://robert-daniel-couverture.fr/images/reparation-toiture-faitage-essonne.jpg',
   description,
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Prestations de réparation de toiture',
+    itemListElement: [
+      'Recherche de fuite',
+      'Remplacement de tuiles et d\'ardoises',
+      'Réfection de faîtage et d\'arêtiers',
+      'Reprise des rives',
+      'Réfection de solins et de noues',
+    ].map((n) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: n } })),
+  },
 }];
+
+const reparations = [
+  { titre: 'Tuiles et ardoises', texte: "Remplacement des tuiles fendues, poreuses ou glissées, et des ardoises cassées, avec des modèles identiques à votre couverture." },
+  { titre: 'Faîtage et arêtiers', texte: "Dépose des faîtières descellées, pose d'un closoir neuf et repose du faîtage, sur la ligne la plus exposée du toit." },
+  { titre: 'Rives', texte: "Reprise des tuiles de rive et de leurs fixations, souvent arrachées par le vent sur les pignons." },
+  { titre: 'Solins et souches', texte: "Réfection de l'étanchéité autour des cheminées et contre les murs, là où naissent beaucoup d'infiltrations." },
+  { titre: 'Noues', texte: "Nettoyage et réfection des noues, ces angles rentrants qui reçoivent l'eau de deux pans de toiture." },
+  { titre: 'Écran sous-toiture', texte: "Remplacement de l'écran abîmé sur la zone de la fuite, pour retrouver une protection continue." },
+];
 ---
-<BaseLayout title={title} description={description} extraSchemas={extraSchemas}>
-  <section class="hero">
+<PageService
+  title={title}
+  description={description}
+  extraSchemas={extraSchemas}
+  ariane={[{ label: 'Accueil', href: '/' }, { label: 'Réparation de toiture' }]}
+  h1="Réparation de toiture 91 –"
+  hero={{ src: '/images/reparation-toiture-faitage-essonne.webp', alt: "Faîtage refait sur une toiture en tuiles dans l'Essonne", width: 1000, height: 750 }}
+  lead="Une fuite, une tuile cassée, une tache au plafond ? La <strong>réparation de votre toiture dans l'Essonne</strong> commence par trouver l'origine du problème."
+  coches={['Recherche de fuite précise', 'Intervention rapide en cas de fuite', 'Devis gratuit et sans engagement']}
+  bande={['Recherche de fuite', 'Tuiles et ardoises', 'Faîtage et rives', 'Solins et noues']}
+  artisan={{
+    titre: 'Un couvreur expérimenté pour réparer votre toit',
+    html: `<p>Depuis plus de 15 ans, je répare les toitures de l'Essonne : tuile plate, tuile mécanique, ardoise et zinc. Cette expérience me permet de reconnaître vite un faîtage fatigué, un solin mal raccordé ou une noue encrassée, et de choisir la réparation qui dure.</p>
+<p>Si vous êtes victime d'une fuite, appelez-moi directement sur mon portable : j'interviens rapidement pour mettre votre toiture hors d'eau, puis je vous remets un devis pour la réparation définitive.</p>`,
+  }}
+  avis={{ titre: 'Les avis de mes clients après une réparation', ids: ['fanfan-crepin', 'zoro-aaron', 'emmeline-renelus'] }}
+  cta={{ titre: "Faites réparer votre toiture dans l'Essonne", img: { src: '/images/vehicule-robert-daniel-reparation-toiture-essonne.webp', alt: "Véhicule de Robert Daniel Couverture devant une maison pour une réparation de toiture dans l'Essonne", width: 1000, height: 750 } }}
+>
+
+  <!-- ══ UNE FUITE ══ -->
+  <section class="dr-section">
     <div class="conteneur">
-      <FilAriane items={[{ label: 'Accueil', href: '/' }, { label: 'Réparation de toiture' }]} />
+      <div class="dr-duo dr-duo--seul" data-anim="up">
+        <figure class="dr-duo__media">
+          <img src="/images/reparation-toiture-couverture-abimee-essonne.webp" alt="Couverture en tuiles abîmée et envahie par la mousse avant réparation" width="1200" height="900" loading="lazy" decoding="async" />
+        </figure>
+        <div class="dr-duo__texte">
+          <h2 class="dr-h2">Une fuite ne s'arrange jamais seule</h2>
+          <p>L'eau qui passe par une tuile déplacée ou un solin fissuré ne reste pas sur la couverture. Elle s'infiltre dans la charpente, mouille l'isolant et finit par marquer les plafonds. Plus on attend, plus la réparation devient lourde.</p>
+          <p>Dès les premières traces d'humidité, mieux vaut faire intervenir un <a href="/">couvreur dans l'Essonne</a>. Une tuile remplacée à temps évite de refaire un plafond, de changer un isolant gorgé d'eau ou de traiter des bois qui ont commencé à pourrir.</p>
+          <p>Je vous explique ce qui est urgent et ce qui peut attendre : vous gardez la main sur les travaux et sur votre budget.</p>
+        </div>
+      </div>
     </div>
-    <div class="conteneur hero__grille">
-      <div class="hero__texte">
-        <p class="hero__badge"><span class="hero__point" aria-hidden="true"></span> Fuites, tuiles, infiltrations</p>
-        <h1>Réparation de toiture dans l'Essonne</h1>
-        <p class="hero__accroche">
-          Une fuite, une tuile cassée, une trace d'humidité au plafond ? Je répare les toitures
-          dans l'Essonne et je trouve l'origine du problème avant qu'il ne s'aggrave.
-        </p>
-        <ul>
-          <li><strong>Intervention en urgence</strong> pour stopper une fuite.</li>
-          <li><strong>Recherche de fuite</strong> au sol ou au drone.</li>
-          <li><strong>Devis gratuit</strong> et sans engagement.</li>
-        </ul>
-        <div class="hero__actions">
-          <a href="tel:0683961518" class="btn btn--cuivre">
-            <svg class="icone-tel" viewBox="0 0 24 24" aria-hidden="true"><g class="icone-tel__corps"><path fill="currentColor" d="M14 1H6C4.9 1 4 1.9 4 3v18c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-4 21c-.8 0-1.5-.7-1.5-1.5S9.2 19 10 19s1.5.7 1.5 1.5S10.8 22 10 22zm4-4H6V4h8v14z"/></g><path class="icone-tel__onde" d="M18.5 8.5a4 4 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="icone-tel__onde icone-tel__onde--2" d="M21 6a7.5 7.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            06 83 96 15 18
+  </section>
+
+  <!-- ══ RECHERCHE DE FUITE (carte bleu nuit) ══ -->
+  <section class="dr-section dr-section--serre">
+    <div class="conteneur">
+      <article class="dr-regle" data-anim="up">
+        <div class="dr-regle__corps">
+          <h2 id="recherche-de-fuite">Recherche de fuite : trouver l'origine</h2>
+          <p>Le point d'entrée de l'eau est rarement à l'aplomb de la tache au plafond. L'eau suit les chevrons et l'écran sous-toiture avant de goutter plus loin. Je remonte donc le chemin de l'eau, pan par pan, pour trouver le vrai défaut.</p>
+          <p>Sur une toiture fragile ou difficile d'accès, je commence par une <a href="/inspection-toiture-drone/">inspection de toiture par drone</a>. Les images montrent la zone défaillante sans abîmer la couverture, et vous voyez vous-même ce qui doit être repris.</p>
+          <a href="/devis-gratuit/" class="dr-btn dr-btn--rouge">
+            Signaler ma fuite
+            <span class="dr-btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
           </a>
-          <a href="/devis-gratuit/" class="btn btn--bleu">Devis gratuit <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
         </div>
-        <NoteGoogle />
-      </div>
-      <div class="hero__media">
-        <img class="hero__photo" src="/images/reparation-toiture-vue-drone-essonne.webp" alt="Vue par drone d'une toiture en tuiles avec faîtage et arêtiers à reprendre dans l'Essonne" width="825" height="1100" fetchpriority="high" decoding="async" />
-        <div class="carte hero__garantie">
-          <p><strong>Garantie Décennale</strong><br />Pour tous travaux de couverture</p>
-          <img src="/images/logo-allianz.png" alt="Garantie décennale assurée par Allianz" width="92" height="58" loading="lazy" decoding="async" />
+        <div class="dr-regle__certif">
+          <h3>Les origines les plus fréquentes</h3>
+          <ul class="dr-coches dr-coches--sombre">
+            <li>Tuile fêlée, poreuse ou glissée</li>
+            <li>Faîtage ou rive descellés</li>
+            <li>Solin de cheminée fissuré</li>
+            <li>Noue encrassée ou percée</li>
+          </ul>
         </div>
-      </div>
+      </article>
     </div>
   </section>
 
-  <section class="section">
+  <!-- ══ RÉPARATIONS ══ -->
+  <section class="dr-section dr-section--gris">
     <div class="conteneur">
-      <div class="encadre">
-        <h2>Ce que vous devez savoir</h2>
-        <p>
-          Couvreur à Étréchy, je répare les toitures de l'Essonne depuis plus de quinze ans.
-          Une réparation réussie commence par un bon diagnostic : avant de remplacer quoi que ce
-          soit, je remonte à l'origine de la fuite, car le point d'entrée de l'eau est rarement
-          à l'aplomb de la tache au plafond. Je reprends ensuite ce qui doit l'être — tuiles,
-          ardoises, faîtage, solins ou zinguerie — et je vous dis franchement si une simple
-          reprise suffit ou si la toiture demande des travaux plus larges. Mes devis sont
-          gratuits et sans engagement.
-        </p>
+      <div class="dr-entete" data-anim="up">
+        <h2 class="dr-h2">Les réparations de toiture que je réalise</h2>
+        <p>La plupart des fuites se règlent par une intervention ciblée, sans refaire tout le toit.</p>
       </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="conteneur duo">
-      <img src="/images/reparation-toiture-pavillon-essonne.webp" alt="Pavillon avec toiture en tuiles dans l'Essonne, réparation par Robert Daniel Couverture" width="1000" height="750" loading="lazy" decoding="async" />
-      <div class="prose">
-        <h2>Une fuite sur votre toit ? J'interviens vite</h2>
-        <p>
-          Une infiltration ne s'arrange jamais seule. L'eau qui passe par une tuile déplacée ou
-          un solin fissuré s'infiltre dans la charpente, gorge l'isolant et finit par marquer
-          les plafonds. Plus on attend, plus la réparation devient lourde. Dès les premières
-          traces, mieux vaut faire intervenir un couvreur.
-        </p>
-        <p>
-          Pour une fuite active, je me déplace rapidement afin de mettre la toiture hors d'eau
-          et d'éviter que les dégâts ne gagnent l'intérieur. Une fois la situation stabilisée,
-          j'établis un devis pour la réparation définitive. Vous gardez la main : je vous
-          explique ce qui est urgent et ce qui peut attendre.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--bleute">
-    <div class="conteneur duo duo--inverse">
-      <img src="/images/vehicule-robert-daniel-reparation-toiture-essonne.webp" alt="Véhicule de Robert Daniel Couverture devant une maison pour une réparation de toiture dans l'Essonne" width="1000" height="750" loading="lazy" decoding="async" />
-      <div class="prose">
-        <h2 id="recherche-de-fuite">Recherche de fuite et diagnostic</h2>
-        <p>
-          Trouver d'où vient l'eau est la partie la plus utile de la réparation. Une fuite peut
-          venir d'une tuile poreuse, d'un faîtage descellé, d'une noue encrassée, d'un solin de
-          cheminée fissuré ou d'une gouttière qui déborde. J'examine la couverture pan par pan
-          pour identifier le vrai point d'entrée.
-        </p>
-        <p>
-          Quand l'accès est difficile ou le toit pentu, je passe par une <a href="/inspection-toiture-drone/">inspection de toiture par drone</a>. Les
-          images permettent de repérer précisément la zone défaillante sans abîmer la
-          couverture en circulant dessus, et de vous montrer concrètement ce qui doit être
-          repris. Le diagnostic posé, je cible la réparation là où elle est nécessaire.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="conteneur prose prose--large">
-      <h2>Les réparations de toiture que je réalise</h2>
-      <p>
-        La plupart des fuites se règlent par une intervention ciblée, sans refaire l'ensemble du
-        toit. Voici les réparations que je traite le plus souvent dans l'Essonne :
-      </p>
-      <ul>
-        <li><strong>Remplacement de tuiles ou d'ardoises</strong> cassées, fendues ou glissées.</li>
-        <li>Reprise du <strong>faîtage</strong> et des rives descellés, comme lors de cette <a href="/realisations/refection-faitage-etrechy/">réfection de faîtage à Étréchy</a>.</li>
-        <li>Réfection des <strong>solins</strong> autour des cheminées et des murs.</li>
-        <li>Nettoyage et réparation des <strong>noues</strong> et des <a href="/zinguerie/">raccords de zinguerie</a>.</li>
-        <li>Reprise des <strong>gouttières et descentes</strong> percées ou désaxées.</li>
-        <li>Remplacement de l'écran de sous-toiture sur la zone abîmée.</li>
-      </ul>
-      <p>
-        Si l'examen révèle une couverture usée sur l'ensemble du toit, je vous le dis sans
-        détour : une succession de réparations finit par coûter plus cher qu'une réfection. Dans
-        ce cas, je vous oriente vers la <a href="/renovation-toiture/">rénovation complète de la toiture</a>, devis à l'appui, pour que vous choisissiez en
-        connaissance de cause.
-      </p>
-    </div>
-  </section>
-
-  <section class="section section--bleute">
-    <div class="conteneur duo">
-      <img src="/images/chantier-robert-daniel-couverture-essonne.webp" alt="Chantier de réparation de toiture mené par Robert Daniel Couverture dans l'Essonne" width="900" height="600" loading="lazy" decoding="async" />
-      <div class="prose">
-        <h2>Comment se passe une réparation</h2>
-        <p>
-          Je commence par localiser la fuite et évaluer son étendue. Je vous remets un devis
-          clair, qui distingue la mise hors d'eau immédiate, si elle est nécessaire, et la
-          réparation définitive. Vous savez ce qui est fait et pourquoi.
-        </p>
-        <p>
-          Sur place, je remplace les éléments défaillants, je reprends les raccords et je
-          contrôle les zones voisines pour éviter qu'une autre faiblesse ne se réveille juste
-          après. Le chantier se termine par la vérification de l'écoulement de l'eau et le
-          nettoyage des abords. Pour une réparation comme pour une rénovation, vous avez un seul
-          interlocuteur du début à la fin.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="conteneur prose prose--large">
-      <h2>Un couvreur de proximité pour vos réparations</h2>
-      <p>
-        Installé à Étréchy, je répare les toitures des communes voisines au quotidien. Cette
-        proximité fait la différence quand une fuite se déclare : je me déplace vite, je connais
-        les toitures de la région et je reviens facilement si besoin. Tous mes travaux sont
-        couverts par la garantie décennale, assurée chez Allianz.
-      </p>
-      <p>
-        Plutôt que d'attendre que la prochaine averse ravive le problème, faites établir un
-        diagnostic. Un toit réparé à temps protège la charpente, l'isolation et vos plafonds, et
-        un <a href="/nettoyage-toiture/">nettoyage et démoussage réguliers</a> de la couverture ralentissent son usure.
-        Appelez-moi ou demandez votre devis gratuit, je vous réponds rapidement.
-      </p>
-    </div>
-  </section>
-
-  <section class="section chantier">
-    <div class="conteneur">
-      <div class="section__entete">
-        <span class="surtitre">En images</span>
-        <h2>Quelques réparations récentes dans l'Essonne</h2>
-        <p>Souche, faîtage, arêtier : des points sensibles repris pour garder une toiture étanche.</p>
-      </div>
-      <div class="chantier__triptyque">
-        <figure class="chantier__etape">
-          <img src="/images/reparation-toiture-souche-cheminee-essonne.webp" alt="Souche de cheminée reprise et solin refait sur une toiture dans l'Essonne" width="750" height="1000" loading="lazy" decoding="async" />
-          <figcaption>Souche de cheminée et solin repris</figcaption>
-        </figure>
-        <figure class="chantier__etape">
-          <img src="/images/reparation-toiture-faitage-essonne.webp" alt="Faîtage rénové sur une toiture en tuiles dans l'Essonne" width="1000" height="750" loading="lazy" decoding="async" />
-          <figcaption>Faîtage rénové sur toiture en tuiles</figcaption>
-        </figure>
-        <figure class="chantier__etape">
-          <img src="/images/reparation-toiture-aretier-essonne.webp" alt="Arêtier et tuiles faîtières remis à neuf sur une toiture dans l'Essonne" width="750" height="1000" loading="lazy" decoding="async" />
-          <figcaption>Arêtier et tuiles faîtières remis à neuf</figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <CartesRealisations slugs={['refection-faitage-etrechy', 'renovation-toiture-etrechy']} titre="Une réparation de toiture en images" fond="gris" />
-
-  <AvisGoogle titre="Les avis de mes clients après une réparation" ids={['fanfan-crepin', 'zoro-aaron', 'emmeline-renelus']} fond="blanc" />
-
-  <CtaDevis />
-
-  <section class="section section--gris">
-    <div class="conteneur">
-      <h2>Les communes dans lesquelles j'interviens</h2>
-      <ul class="nuage-villes">
-        {villes.map((v) => (
-          <li><a href={`/${v.slug}/`}>{v.nom}</a></li>
+      <ul class="dr-equip">
+        {reparations.map((r) => (
+          <li class="dr-equip__carte" data-anim="up">
+            <h3>{r.titre}</h3>
+            <p>{r.texte}</p>
+          </li>
         ))}
       </ul>
+
+      <div class="dr-duo dr-duo--inverse dr-methode" data-anim="up">
+        <figure class="dr-duo__media">
+          <img src="/images/reparation-toiture-souche-cheminee-essonne.webp" alt="Souche de cheminée reprise et solin refait sur une toiture en tuiles" width="750" height="1000" loading="lazy" decoding="async" />
+        </figure>
+        <div class="dr-duo__texte">
+          <h3 class="dr-h3">Une réparation durable, pas une rustine</h3>
+          <p>Je remplace les éléments défaillants par des matériaux identiques à votre couverture, puis je contrôle les zones voisines pour éviter qu'une autre faiblesse ne se réveille à la pluie suivante.</p>
+          <p>Autour d'une cheminée, je refais le <a href="/zinguerie/solins-raccords/">solin en zinc</a> plutôt qu'un simple joint de mortier, qui se fissure dès le premier hiver. Le chantier se termine par la vérification de l'écoulement de l'eau et le nettoyage des abords.</p>
+        </div>
+      </div>
     </div>
   </section>
-</BaseLayout>
+
+  <!-- ══ GALERIE ══ -->
+  <section class="dr-section">
+    <div class="conteneur">
+      <div class="dr-entete" data-anim="up">
+        <h2 class="dr-h2">Quelques réparations récentes dans l'Essonne</h2>
+        <p>Souche, faîtage, arêtier : les points sensibles d'une toiture, repris pour qu'elle reste étanche.</p>
+      </div>
+      <ul class="dr-galerie" data-anim="up">
+        <li><figure><img src="/images/reparation-toiture-souche-cheminee-essonne.webp" alt="Souche de cheminée et solin repris sur une toiture dans l'Essonne" width="750" height="1000" loading="lazy" decoding="async" /><figcaption>Souche de cheminée et solin repris</figcaption></figure></li>
+        <li><figure><img src="/images/reparation-toiture-faitage-essonne.webp" alt="Faîtage rénové sur une toiture en tuiles dans l'Essonne" width="1000" height="750" loading="lazy" decoding="async" /><figcaption>Faîtage refait sur une toiture en tuiles</figcaption></figure></li>
+        <li><figure><img src="/images/reparation-toiture-aretier-essonne.webp" alt="Arêtier et tuiles faîtières remis à neuf dans l'Essonne" width="750" height="1000" loading="lazy" decoding="async" /><figcaption>Arêtier et tuiles faîtières remis à neuf</figcaption></figure></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══ RÉPARER OU RÉNOVER ══ -->
+  <section class="dr-section dr-section--gris">
+    <div class="conteneur">
+      <h2 class="dr-h2 dr-centre" data-anim="up">Réparer ou rénover : un avis honnête</h2>
+      <div class="dr-texte dr-apres" data-anim="up">
+        <p>Une réparation a du sens tant que la couverture reste saine dans son ensemble. Quand les tuiles sont poreuses sur tout le toit, que les fuites reviennent d'une saison à l'autre ou que l'écran sous-toiture a vécu, une succession de réparations finit par coûter plus cher qu'une réfection.</p>
+        <p>Dans ce cas, je vous le dis sans détour et je vous présente, devis à l'appui, ce que représenterait une <a href="/renovation-toiture/">rénovation complète de la toiture</a>. Vous comparez les deux solutions et vous choisissez en connaissance de cause.</p>
+        <p>Pour ralentir l'usure d'une couverture encore saine, un démoussage tous les quelques années et des gouttières dégagées restent les meilleurs entretiens.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ RÉALISATION ══ -->
+  <CartesRealisations
+    slugs={['refection-faitage-etrechy']}
+    titre="Une réparation de toiture en images"
+    intro="Faîtières déposées, closoir neuf et faîtage reposé : le chantier, étape par étape."
+    fond="blanc"
+    centre
+    lienTout={false}
+  />
+</PageService>

@@ -1,88 +1,114 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import FilAriane from '../../components/FilAriane.astro';
-import CtaDevis from '../../components/CtaDevis.astro';
-import villes from '../../data/villes.json';
+// Sous-page du cocon zinguerie — rédigée oct. 2026 (gabarit PageService).
+import PageService from '../../components/PageService.astro';
+import ZinguerieLiees from '../../components/ZinguerieLiees.astro';
 
-const title = "Solins et raccords dans l'Essonne (91) - Robert Daniel Couverture";
-const description = "Pose et reparation de solins et raccords de toiture à Étréchy et dans l'Essonne. Etancheite cheminees et murs. Devis gratuit.";
+const url = 'https://robert-daniel-couverture.fr/zinguerie/solins-raccords/';
+const title = "Solins de cheminée et raccords (91) – Robert Daniel";
+const description = "Réfection de solins de cheminée et de raccords de toiture contre les murs dans l'Essonne (91) : abergements en zinc, bandes à rabat. Robert Daniel.";
 
 const extraSchemas = [{
   '@context': 'https://schema.org',
   '@type': 'Service',
-  name: 'Solins et raccords',
-  serviceType: 'Zinguerie',
+  '@id': `${url}#service`,
+  name: 'Solins et raccords de toiture',
+  serviceType: 'Réfection de solins de cheminée et de raccords contre les murs',
   provider: { '@id': 'https://robert-daniel-couverture.fr/#localbusiness' },
+  isRelatedTo: { '@id': 'https://robert-daniel-couverture.fr/zinguerie/#service' },
   areaServed: { '@type': 'AdministrativeArea', name: 'Essonne (91)' },
-  url: 'https://robert-daniel-couverture.fr/zinguerie/solins-raccords/',
+  url,
+  image: 'https://robert-daniel-couverture.fr/images/cheminee-solin-essonne.jpg',
   description,
 }];
+
+const ouvrages = [
+  { titre: 'Solin de cheminée', texte: "Abergement en zinc tout autour de la souche, avec une bande engravée dans la maçonnerie qui recouvre le raccord." },
+  { titre: 'Raccord contre un mur', texte: "Là où la toiture s'appuie sur un mur plus haut, une bande de zinc relevée et protégée par une bande à rabat assure l'étanchéité." },
+  { titre: 'Souche de cheminée', texte: "Joints refaits, enduit repris et chapeau posé : une souche saine protège le conduit et le solin qui l'entoure." },
+];
 ---
-<BaseLayout title={title} description={description} extraSchemas={extraSchemas}>
-  <section class="hero">
+<PageService
+  title={title}
+  description={description}
+  extraSchemas={extraSchemas}
+  ariane={[{ label: 'Accueil', href: '/' }, { label: 'Zinguerie', href: '/zinguerie/' }, { label: 'Solins et raccords' }]}
+  h1="Solins et raccords 91 –"
+  hero={{ src: '/images/cheminee-solin-essonne.webp', alt: "Solin en zinc autour d'une souche de cheminée sur une toiture en tuiles", width: 825, height: 1100, position: 'center 40%' }}
+  lead="La <strong>réfection des solins de cheminée dans l'Essonne</strong> et des raccords contre les murs, là où naissent beaucoup d'infiltrations."
+  coches={['Solins en zinc façonnés', 'Raccords contre les murs', 'Devis gratuit et sans engagement']}
+  bande={['Solins de cheminée', 'Abergements', 'Raccords contre mur', 'Souches']}
+  artisan={{
+    titre: 'Un couvreur zingueur pour vos solins',
+    html: `<p>Depuis plus de 15 ans, je refais les solins des toitures de l'Essonne. Un solin réussi, c'est du zinc plié au millimètre autour de la souche et un raccord à la maçonnerie qui ne laisse aucun passage à l'eau.</p>
+<p>Je vous explique d'où vient l'infiltration, ce que je propose de reprendre et pourquoi, avant de vous remettre un devis détaillé.</p>`,
+  }}
+  avis={{ titre: 'Les avis de mes clients', ids: ['didier-nara', 'emilie-ventura', 'delphine-lejeune'] }}
+  cta={{ titre: "Faites refaire le solin de votre cheminée" }}
+>
+
+  <!-- ══ POINT SENSIBLE ══ -->
+  <section class="dr-section">
     <div class="conteneur">
-      <FilAriane items={[{ label: 'Accueil', href: '/' }, { label: 'Zinguerie', href: '/zinguerie/' }, { label: 'Solins et raccords' }]} />
-    </div>
-    <div class="conteneur hero__grille">
-      <div class="hero__texte">
-        <h1>Solins et raccords dans l'Essonne</h1>
-        <p class="hero__accroche">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <ul>
-          <li><strong>Lorem ipsum</strong> dolor sit amet.</li>
-          <li><strong>Consectetur</strong> adipiscing elit.</li>
-          <li><strong>Garantie décennale</strong> sur tous nos travaux.</li>
-        </ul>
-        <div class="hero__actions">
-          <a href="tel:0683961518" class="btn btn--cuivre">
-            <svg class="icone-tel" viewBox="0 0 24 24" aria-hidden="true"><g class="icone-tel__corps"><path fill="currentColor" d="M14 1H6C4.9 1 4 1.9 4 3v18c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-4 21c-.8 0-1.5-.7-1.5-1.5S9.2 19 10 19s1.5.7 1.5 1.5S10.8 22 10 22zm4-4H6V4h8v14z"/></g><path class="icone-tel__onde" d="M18.5 8.5a4 4 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="icone-tel__onde icone-tel__onde--2" d="M21 6a7.5 7.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            06 83 96 15 18
-          </a>
-          <a href="/devis-gratuit/" class="btn btn--bleu">Devis gratuit <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <div class="dr-duo dr-duo--seul" data-anim="up">
+        <figure class="dr-duo__media">
+          <img src="/images/solin-souche-cheminee-essonne.webp" alt="Souche de cheminée et son raccord à la couverture en tuiles" width="900" height="1200" loading="lazy" decoding="async" />
+        </figure>
+        <div class="dr-duo__texte">
+          <h2 class="dr-h2">Le solin, un point sensible de la toiture</h2>
+          <p>Le solin assure l'étanchéité entre la couverture et tout ce qui la traverse ou la borde : une souche de cheminée, un mur mitoyen, une lucarne. Les tuiles ne peuvent pas venir au contact de la maçonnerie : c'est le solin qui fait la jonction.</p>
+          <p>Quand il se fissure ou se décolle, l'eau coule le long du conduit ou du mur et réapparaît à l'intérieur, souvent loin de son point d'entrée : auréoles au plafond, papier peint qui se décolle, odeur d'humidité près de la cheminée.</p>
+          <p>Les solins font partie de la <a href="/zinguerie/">zinguerie</a> que je réalise sur mesure, au même titre que les noues et les gouttières.</p>
         </div>
       </div>
-      <div class="hero__media">
-        <div class="placeholder-img hero__photo">Photo Solins et raccords</div>
-      </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="conteneur duo">
-      <div class="placeholder-img">Photo Solins et raccords detail</div>
-      <div class="prose">
-        <h2>Lorem ipsum dolor sit amet</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--bleute">
-    <div class="conteneur duo duo--inverse">
-      <div class="placeholder-img">Photo Solins et raccords chantier</div>
-      <div class="prose">
-        <h2>Lorem ipsum dolor sit amet consectetur</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nemo enim ipsam voluptatem quia voluptas sit aspernatur.</p>
-        <ul>
-          <li>Lorem ipsum dolor sit amet.</li>
-          <li>Consectetur adipiscing elit.</li>
-          <li>Sed do eiusmod tempor.</li>
-        </ul>
-        <a href="/zinguerie/" class="btn btn--bleu">Tous nos services zinguerie <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-      </div>
-    </div>
-  </section>
-
-  <CtaDevis />
-
-  <section class="section section--gris">
+  <!-- ══ ZINC PLUTÔT QUE MORTIER (carte bleu nuit) ══ -->
+  <section class="dr-section dr-section--serre">
     <div class="conteneur">
-      <h2>Solins et raccords — nos communes</h2>
-      <ul class="nuage-villes">
-        {villes.map((v) => (
-          <li><a href={`/${v.slug}/`}>{v.nom}</a></li>
+      <article class="dr-regle" data-anim="up">
+        <div class="dr-regle__corps">
+          <h2>Un solin en zinc plutôt qu'au mortier</h2>
+          <p>Beaucoup de solins anciens sont de simples bourrelets de mortier. Avec le gel et les mouvements de la toiture, ils se fissurent en quelques hivers. Je les remplace par un abergement en zinc, façonné autour de la souche et glissé sous les tuiles.</p>
+          <p>En partie haute, une bande de zinc engravée dans la maçonnerie, ou une bande à rabat fixée au mur, recouvre le raccord. L'eau ruisselle sur le zinc et rejoint la couverture sans jamais atteindre la charpente.</p>
+          <a href="/devis-gratuit/" class="dr-btn dr-btn--rouge">
+            Demander mon devis
+            <span class="dr-btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+        </div>
+        <div class="dr-regle__certif">
+          <h3>Les signes d'un solin fatigué</h3>
+          <ul class="dr-coches dr-coches--sombre">
+            <li>Mortier fissuré ou décollé</li>
+            <li>Traces d'humidité le long du conduit</li>
+            <li>Auréoles au plafond près de la cheminée</li>
+            <li>Mousse au pied de la souche</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ══ OUVRAGES ══ -->
+  <section class="dr-section dr-section--gris">
+    <div class="conteneur">
+      <div class="dr-entete" data-anim="up">
+        <h2 class="dr-h2">Les solins et raccords que je réalise</h2>
+        <p>Chaque raccord est façonné à la main, à la forme exacte de votre toiture.</p>
+      </div>
+      <ul class="dr-equip">
+        {ouvrages.map((o) => (
+          <li class="dr-equip__carte" data-anim="up">
+            <h3>{o.titre}</h3>
+            <p>{o.texte}</p>
+          </li>
         ))}
       </ul>
+      <div class="dr-texte dr-apres" data-anim="up">
+        <p>Couvreur et ramoneur, je contrôle la souche et le solin à chaque <a href="/ramonage-cheminee/">ramonage de cheminée</a>. Vous traitez le conduit et son raccord à la toiture avec le même artisan, dans la même intervention.</p>
+      </div>
     </div>
   </section>
-</BaseLayout>
+
+  <ZinguerieLiees slugs={['noues-aretiers', 'couvertines', 'gouttieres-zinc']} />
+</PageService>

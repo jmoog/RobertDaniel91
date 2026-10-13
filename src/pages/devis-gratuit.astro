@@ -21,16 +21,14 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
     </div>
     <div class="conteneur devis-hero__grille">
       <div class="devis-hero__texte">
-        <span class="surtitre">Devis gratuit &amp; sans engagement</span>
         <h1>Demandez votre devis gratuit</h1>
         <p class="hero__accroche">
-          Un projet de toiture, une fuite, un entretien ? Décrivez-moi votre besoin :
-          je vous réponds rapidement et je me déplace gratuitement à Étréchy et dans toute l'Essonne.
-          Je suis <a href="/">votre couvreur 91</a> de proximité.
+          Une fuite à réparer, une toiture à nettoyer ou à refaire ? Décrivez-moi votre besoin :
+          je vous réponds rapidement. Je suis <a href="/">votre couvreur 91</a>, dans toute l'Essonne.
         </p>
         <ul class="devis-points">
-          <li>Réponse sous 24h, devis détaillé et gratuit.</li>
-          <li>Déplacement et vérification de toiture offerts.</li>
+          <li>Réponse rapide, devis détaillé et gratuit.</li>
+          <li>Devis sans engagement.</li>
           <li>Garantie décennale Allianz sur tous mes travaux.</li>
         </ul>
         <NoteGoogle />
@@ -102,11 +100,10 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
     <div class="conteneur duo">
       <img src="/images/ramonage-cheminee-essonne.webp" alt="Robert Daniel ramonant une cheminée sur un toit en tuiles dans l'Essonne" width="800" height="837" loading="lazy" decoding="async" />
       <div class="prose">
-        <span class="surtitre">Ramonage de cheminée</span>
         <h2>Je ramone votre cheminée en toute sécurité</h2>
         <p>Le ramonage régulier de votre conduit est obligatoire et indispensable : il évite les risques d'incendie et d'intoxication au monoxyde de carbone, et il est exigé par votre assurance. J'interviens sur cheminées, inserts et poêles, par le toit ou par l'intérieur.</p>
         <p>Je vous remets un certificat de ramonage après chaque intervention. Profitez-en pour me demander un devis ramonage + entretien de toiture en une seule visite.</p>
-        <a href="/ramonage-cheminee/" class="btn btn--bleu">En savoir plus sur le ramonage <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        <a href="/ramonage-cheminee/" class="btn btn--bleu">Le ramonage de cheminée <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
       </div>
     </div>
   </section>
@@ -116,11 +113,10 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
     <div class="conteneur duo duo--inverse">
       <img src="/images/services/velux.webp" alt="Fenêtre de toit Velux posée sur une toiture en tuiles dans l'Essonne" width="700" height="438" loading="lazy" decoding="async" />
       <div class="prose">
-        <span class="surtitre">Fenêtre de toit Velux</span>
         <h2>Pose et remplacement de fenêtres Velux</h2>
-        <p>Vous manquez de lumière sous les combles ? Je pose et remplace vos fenêtres de toit Velux pour apporter clarté et confort, avec une étanchéité parfaite et des finitions soignées. Pose neuve, remplacement à l'identique ou agrandissement : je vous conseille la meilleure solution.</p>
-        <p>Demandez votre devis Velux gratuit — je me déplace pour prendre les mesures et étudier votre toiture.</p>
-        <a href="/fenetre-de-toit-velux/" class="btn btn--bleu">En savoir plus sur le Velux <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        <p>Vous manquez de lumière sous les combles ? Je pose et remplace vos fenêtres de toit Velux pour apporter clarté et confort, avec un raccord d'étanchéité adapté à votre couverture. Pose neuve, remplacement à l'identique ou agrandissement : je vous conseille la meilleure solution.</p>
+        <p>Demandez votre devis gratuit : je prends les mesures et je vous conseille le modèle et l'emplacement adaptés à votre pièce.</p>
+        <a href="/fenetre-de-toit-velux/" class="btn btn--bleu">La pose de fenêtres de toit Velux <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
       </div>
     </div>
   </section>
@@ -131,7 +127,9 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 
 <style>
   .devis-hero { background: var(--blanc); padding-block: clamp(2rem, 4vw, 3.5rem); }
-  .devis-hero__grille { display: grid; gap: 2.5rem; align-items: start; }
+  .devis-hero__grille { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.5rem; align-items: start; }
+  .devis-hero__grille > * { min-width: 0; }
+  .contact-infos a { overflow-wrap: anywhere; }
   @media (min-width: 940px) {
     .devis-hero__grille { grid-template-columns: 1fr 1fr; gap: 3.5rem; }
   }

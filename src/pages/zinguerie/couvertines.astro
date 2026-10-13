@@ -1,88 +1,109 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import FilAriane from '../../components/FilAriane.astro';
-import CtaDevis from '../../components/CtaDevis.astro';
-import villes from '../../data/villes.json';
+// Sous-page du cocon zinguerie — rédigée oct. 2026 (gabarit PageService).
+import PageService from '../../components/PageService.astro';
+import ZinguerieLiees from '../../components/ZinguerieLiees.astro';
 
-const title = "Couvertines dans l'Essonne (91) - Robert Daniel Couverture";
-const description = "Pose et remplacement de couvertines à Étréchy et dans l'Essonne. Protection des acroteres et murets. Devis gratuit.";
+const url = 'https://robert-daniel-couverture.fr/zinguerie/couvertines/';
+const title = "Couvertines de murs et d'acrotères (91) – Robert Daniel";
+const description = "Pose de couvertines en zinc ou en aluminium dans l'Essonne (91) pour protéger le haut des murs, murets et acrotères de toits plats. Robert Daniel.";
 
 const extraSchemas = [{
   '@context': 'https://schema.org',
   '@type': 'Service',
+  '@id': `${url}#service`,
   name: 'Couvertines',
-  serviceType: 'Zinguerie',
+  serviceType: "Pose de couvertines de murs et d'acrotères",
   provider: { '@id': 'https://robert-daniel-couverture.fr/#localbusiness' },
+  isRelatedTo: { '@id': 'https://robert-daniel-couverture.fr/zinguerie/#service' },
   areaServed: { '@type': 'AdministrativeArea', name: 'Essonne (91)' },
-  url: 'https://robert-daniel-couverture.fr/zinguerie/couvertines/',
+  url,
+  image: 'https://robert-daniel-couverture.fr/images/zinguerie-habillage-zinc-facade-essonne.jpg',
   description,
 }];
 ---
-<BaseLayout title={title} description={description} extraSchemas={extraSchemas}>
-  <section class="hero">
+<PageService
+  title={title}
+  description={description}
+  extraSchemas={extraSchemas}
+  ariane={[{ label: 'Accueil', href: '/' }, { label: 'Zinguerie', href: '/zinguerie/' }, { label: 'Couvertines' }]}
+  h1="Couvertines 91 –"
+  hero={{ src: '/images/zinguerie-habillage-zinc-facade-essonne.webp', alt: "Couvertine et habillage métallique en tête de mur sur une maison de l'Essonne", width: 825, height: 1100, position: 'center 30%' }}
+  lead="La <strong>pose de couvertines dans l'Essonne</strong> pour protéger le haut de vos murs, murets et acrotères de la pluie."
+  coches={['Zinc ou aluminium laqué', 'Pente et goutte d\'eau', 'Devis gratuit et sans engagement']}
+  bande={['Acrotères', 'Murets', 'Murs de clôture', 'Toits plats']}
+  artisan={{
+    titre: 'Des couvertines posées par un zingueur',
+    html: `<p>Depuis plus de 15 ans, je façonne et je pose la zinguerie des maisons de l'Essonne, couvertines comprises. Je prends les mesures de chaque mur, je prépare les angles et les raccords, et je pose l'ensemble avec la pente qui convient.</p>
+<p>Je vous conseille le matériau et la teinte adaptés à votre façade, puis je vous remets un devis au mètre linéaire.</p>`,
+  }}
+  avis={{ titre: 'Les avis de mes clients', ids: ['david-lorrain', 'mohamed-soultana', 'jean-claude-l'] }}
+  cta={{ titre: "Faites poser vos couvertines dans l'Essonne" }}
+>
+
+  <!-- ══ PROTÉGER LES MURS ══ -->
+  <section class="dr-section">
     <div class="conteneur">
-      <FilAriane items={[{ label: 'Accueil', href: '/' }, { label: 'Zinguerie', href: '/zinguerie/' }, { label: 'Couvertines' }]} />
-    </div>
-    <div class="conteneur hero__grille">
-      <div class="hero__texte">
-        <h1>Couvertines dans l'Essonne</h1>
-        <p class="hero__accroche">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <ul>
-          <li><strong>Lorem ipsum</strong> dolor sit amet.</li>
-          <li><strong>Consectetur</strong> adipiscing elit.</li>
-          <li><strong>Garantie décennale</strong> sur tous nos travaux.</li>
-        </ul>
-        <div class="hero__actions">
-          <a href="tel:0683961518" class="btn btn--cuivre">
-            <svg class="icone-tel" viewBox="0 0 24 24" aria-hidden="true"><g class="icone-tel__corps"><path fill="currentColor" d="M14 1H6C4.9 1 4 1.9 4 3v18c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-4 21c-.8 0-1.5-.7-1.5-1.5S9.2 19 10 19s1.5.7 1.5 1.5S10.8 22 10 22zm4-4H6V4h8v14z"/></g><path class="icone-tel__onde" d="M18.5 8.5a4 4 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="icone-tel__onde icone-tel__onde--2" d="M21 6a7.5 7.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            06 83 96 15 18
-          </a>
-          <a href="/devis-gratuit/" class="btn btn--bleu">Devis gratuit <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <div class="dr-duo dr-duo--seul" data-anim="up">
+        <figure class="dr-duo__media">
+          <img src="/images/couvertine-acrotere-toit-plat-essonne.webp" alt="Couvertine posée sur l'acrotère d'un toit plat dans l'Essonne" width="667" height="1200" loading="lazy" decoding="async" />
+        </figure>
+        <div class="dr-duo__texte">
+          <h2 class="dr-h2">Protéger le haut des murs</h2>
+          <p>Le dessus d'un mur reçoit la pluie de plein fouet. Sans protection, l'eau pénètre dans la maçonnerie, fait cloquer l'enduit et, avec le gel, fissure les pierres et les joints. Les mousses s'installent et la façade se tache.</p>
+          <p>La couvertine coiffe le mur d'un profil métallique qui rejette l'eau de part et d'autre. Elle protège les acrotères des toits plats, les murets, les murs de clôture et les rebords de terrasse.</p>
+          <p>C'est un ouvrage de <a href="/zinguerie/">zinguerie</a> discret, mais qui prolonge de nombreuses années la vie de vos murs.</p>
         </div>
       </div>
-      <div class="hero__media">
-        <div class="placeholder-img hero__photo">Photo Couvertines</div>
-      </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="conteneur duo">
-      <div class="placeholder-img">Photo Couvertines detail</div>
-      <div class="prose">
-        <h2>Lorem ipsum dolor sit amet</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--bleute">
-    <div class="conteneur duo duo--inverse">
-      <div class="placeholder-img">Photo Couvertines chantier</div>
-      <div class="prose">
-        <h2>Lorem ipsum dolor sit amet consectetur</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nemo enim ipsam voluptatem quia voluptas sit aspernatur.</p>
-        <ul>
-          <li>Lorem ipsum dolor sit amet.</li>
-          <li>Consectetur adipiscing elit.</li>
-          <li>Sed do eiusmod tempor.</li>
-        </ul>
-        <a href="/zinguerie/" class="btn btn--bleu">Tous nos services zinguerie <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-      </div>
-    </div>
-  </section>
-
-  <CtaDevis />
-
-  <section class="section section--gris">
+  <!-- ══ BIEN POSÉE (carte bleu nuit) ══ -->
+  <section class="dr-section dr-section--serre">
     <div class="conteneur">
-      <h2>Couvertines — nos communes</h2>
-      <ul class="nuage-villes">
-        {villes.map((v) => (
-          <li><a href={`/${v.slug}/`}>{v.nom}</a></li>
-        ))}
-      </ul>
+      <article class="dr-regle" data-anim="up">
+        <div class="dr-regle__corps">
+          <h2>Une couvertine bien posée</h2>
+          <p>Une couvertine efficace présente une légère pente, pour que l'eau ne stagne pas sur le dessus. Ses bords débordent du mur et se terminent par une goutte d'eau : l'eau tombe au lieu de couler sur la façade.</p>
+          <p>Les éléments sont reliés par des éclisses qui laissent le métal se dilater, et fixés sur des pattes qui ne percent pas le dessus de la couvertine. Les angles et les abouts sont façonnés sur mesure.</p>
+          <a href="/devis-gratuit/" class="dr-btn dr-btn--rouge">
+            Demander mon devis
+            <span class="dr-btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+        </div>
+        <div class="dr-regle__certif">
+          <h3>Ce que je vérifie</h3>
+          <ul class="dr-coches dr-coches--sombre">
+            <li>Une pente qui évacue l'eau</li>
+            <li>Un débord avec goutte d'eau</li>
+            <li>Des jonctions qui laissent le métal travailler</li>
+            <li>Des angles façonnés sur mesure</li>
+          </ul>
+        </div>
+      </article>
     </div>
   </section>
-</BaseLayout>
+
+  <!-- ══ MATÉRIAUX ══ -->
+  <section class="dr-section dr-section--gris">
+    <div class="conteneur">
+      <div class="dr-entete" data-anim="up">
+        <h2 class="dr-h2">Zinc ou aluminium laqué ?</h2>
+        <p>Deux matériaux durables, au rendu différent.</p>
+      </div>
+      <div class="dr-tableau-wrap" data-anim="up">
+        <table class="dr-tableau">
+          <thead><tr><th scope="col">Matériau</th><th scope="col">Points forts</th><th scope="col">Bien adapté à</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Zinc</th><td data-label="Points forts">Façonné sur mesure, patine naturelle, grande longévité</td><td data-label="Bien adapté à">Murs anciens, maisons traditionnelles</td></tr>
+            <tr><th scope="row">Aluminium laqué</th><td data-label="Points forts">Léger, nombreux coloris, ne rouille pas</td><td data-label="Bien adapté à">Acrotères de toits plats, façades contemporaines</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="dr-texte dr-apres" data-anim="up">
+        <p>Là où un toit s'appuie contre un mur plus haut, la couvertine ne suffit pas : la jonction entre la couverture et la maçonnerie demande un <a href="/zinguerie/solins-raccords/">raccord en zinc contre le mur</a>, que je réalise dans la même intervention.</p>
+      </div>
+    </div>
+  </section>
+
+  <ZinguerieLiees slugs={['solins-raccords', 'noues-aretiers', 'gouttieres-aluminium']} />
+</PageService>

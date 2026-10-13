@@ -1,0 +1,25 @@
+---
+// Cartes « autres prestations de zinguerie » en bas des sous-pages du cocon.
+// Le lien porte sur le H3 (ancre = nom de la prestation), carte cliquable en CSS.
+import { sousPage } from '../data/zinguerie';
+
+interface Props { slugs: string[]; titre?: string; fond?: 'blanc' | 'gris' }
+const { slugs, titre = 'Mes autres prestations de zinguerie', fond = 'blanc' } = Astro.props;
+const items = slugs.map(sousPage);
+---
+<section class:list={['dr-section', { 'dr-section--gris': fond === 'gris' }]}>
+  <div class="conteneur">
+    <h2 class="dr-h2 dr-centre" data-anim="up" style="margin-bottom:40px">{titre}</h2>
+    <ul class="dr-sous">
+      {items.map((sp) => (
+        <li class="dr-sous__carte" data-anim="up">
+          <img src={sp.image} alt={sp.alt} width="600" height="400" loading="lazy" decoding="async" />
+          <div class="dr-sous__corps">
+            <h3><a href={`/zinguerie/${sp.slug}/`}>{sp.label}</a></h3>
+            <p>{sp.desc}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

@@ -1,88 +1,104 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import FilAriane from '../../components/FilAriane.astro';
-import CtaDevis from '../../components/CtaDevis.astro';
-import villes from '../../data/villes.json';
+// Sous-page du cocon zinguerie — rédigée oct. 2026 (gabarit PageService).
+import PageService from '../../components/PageService.astro';
+import ZinguerieLiees from '../../components/ZinguerieLiees.astro';
 
-const title = "Noues et aretiers dans l'Essonne (91) - Robert Daniel Couverture";
-const description = "Pose et reparation de noues et aretiers en zinc à Étréchy et dans l'Essonne. Etancheite garantie. Devis gratuit.";
+const url = 'https://robert-daniel-couverture.fr/zinguerie/noues-aretiers/';
+const title = "Noues et arêtiers dans l'Essonne (91) – Robert Daniel";
+const description = "Réfection de noues et d'arêtiers dans l'Essonne (91) : noue en zinc, arêtier avec closoir ventilé, étanchéité des jonctions du toit. Robert Daniel.";
 
 const extraSchemas = [{
   '@context': 'https://schema.org',
   '@type': 'Service',
-  name: 'Noues et aretiers',
-  serviceType: 'Zinguerie',
+  '@id': `${url}#service`,
+  name: 'Noues et arêtiers',
+  serviceType: "Réfection de noues et d'arêtiers de toiture",
   provider: { '@id': 'https://robert-daniel-couverture.fr/#localbusiness' },
+  isRelatedTo: { '@id': 'https://robert-daniel-couverture.fr/zinguerie/#service' },
   areaServed: { '@type': 'AdministrativeArea', name: 'Essonne (91)' },
-  url: 'https://robert-daniel-couverture.fr/zinguerie/noues-aretiers/',
+  url,
+  image: 'https://robert-daniel-couverture.fr/images/noue-zinc-toiture-essonne.jpg',
   description,
 }];
 ---
-<BaseLayout title={title} description={description} extraSchemas={extraSchemas}>
-  <section class="hero">
+<PageService
+  title={title}
+  description={description}
+  extraSchemas={extraSchemas}
+  ariane={[{ label: 'Accueil', href: '/' }, { label: 'Zinguerie', href: '/zinguerie/' }, { label: 'Noues et arêtiers' }]}
+  h1="Noues et arêtiers 91 –"
+  hero={{ src: '/images/noue-zinc-toiture-essonne.webp', alt: "Noue en zinc entre deux pans d'une toiture en tuiles dans l'Essonne", width: 900, height: 1200, position: 'center 45%' }}
+  lead="La <strong>réfection des noues et des arêtiers dans l'Essonne</strong>, ces jonctions de votre toiture où l'eau et le vent sont les plus forts."
+  coches={['Noues en zinc façonnées', 'Arêtiers avec closoir ventilé', 'Devis gratuit et sans engagement']}
+  bande={['Noues en zinc', 'Noues encastrées', 'Arêtiers', 'Closoirs ventilés']}
+  artisan={{
+    titre: 'Des jonctions de toiture faites pour durer',
+    html: `<p>Depuis plus de 15 ans, je réalise et je répare les noues et les arêtiers des toitures de l'Essonne. Ce sont des ouvrages de précision : chaque tuile est taillée, chaque bande de zinc est pliée pour épouser l'angle du toit.</p>
+<p>Je vous montre l'état de vos jonctions, je vous explique ce qui doit être repris et je vous remets un devis détaillé.</p>`,
+  }}
+  avis={{ titre: 'Les avis de mes clients', ids: ['marc-viandon', 'jef', 'pascal-guillarme'] }}
+  cta={{ titre: "Faites refaire vos noues et arêtiers dans l'Essonne" }}
+>
+
+  <!-- ══ DÉFINITIONS ══ -->
+  <section class="dr-section">
     <div class="conteneur">
-      <FilAriane items={[{ label: 'Accueil', href: '/' }, { label: 'Zinguerie', href: '/zinguerie/' }, { label: 'Noues et aretiers' }]} />
-    </div>
-    <div class="conteneur hero__grille">
-      <div class="hero__texte">
-        <h1>Noues et aretiers dans l'Essonne</h1>
-        <p class="hero__accroche">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <ul>
-          <li><strong>Lorem ipsum</strong> dolor sit amet.</li>
-          <li><strong>Consectetur</strong> adipiscing elit.</li>
-          <li><strong>Garantie décennale</strong> sur tous nos travaux.</li>
-        </ul>
-        <div class="hero__actions">
-          <a href="tel:0683961518" class="btn btn--cuivre">
-            <svg class="icone-tel" viewBox="0 0 24 24" aria-hidden="true"><g class="icone-tel__corps"><path fill="currentColor" d="M14 1H6C4.9 1 4 1.9 4 3v18c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-4 21c-.8 0-1.5-.7-1.5-1.5S9.2 19 10 19s1.5.7 1.5 1.5S10.8 22 10 22zm4-4H6V4h8v14z"/></g><path class="icone-tel__onde" d="M18.5 8.5a4 4 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="icone-tel__onde icone-tel__onde--2" d="M21 6a7.5 7.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            06 83 96 15 18
-          </a>
-          <a href="/devis-gratuit/" class="btn btn--bleu">Devis gratuit <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <div class="dr-duo dr-duo--seul" data-anim="up">
+        <figure class="dr-duo__media">
+          <img src="/images/aretier-closoir-toiture-essonne.webp" alt="Arêtier en cours de réfection avec closoir sur une toiture en tuiles" width="1034" height="1200" loading="lazy" decoding="async" />
+        </figure>
+        <div class="dr-duo__texte">
+          <h2 class="dr-h2">Deux lignes clés de votre toiture</h2>
+          <p>La noue est l'angle rentrant formé par la rencontre de deux pans de toiture. Elle reçoit l'eau des deux versants et la conduit jusqu'à la gouttière. L'arêtier, à l'inverse, est l'angle saillant qui sépare deux pans, comme le faîtage au sommet du toit.</p>
+          <p>Ces deux lignes concentrent les contraintes : l'eau se rassemble dans la noue, le vent attaque l'arêtier. Ce sont aussi les premiers endroits où une toiture commence à fuir.</p>
+          <p>Avec les gouttières et les solins, elles font partie des <a href="/zinguerie/">ouvrages de zinguerie</a> qui assurent l'étanchéité de votre toit.</p>
         </div>
       </div>
-      <div class="hero__media">
-        <div class="placeholder-img hero__photo">Photo Noues et aretiers</div>
-      </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="conteneur duo">
-      <div class="placeholder-img">Photo Noues et aretiers detail</div>
-      <div class="prose">
-        <h2>Lorem ipsum dolor sit amet</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--bleute">
-    <div class="conteneur duo duo--inverse">
-      <div class="placeholder-img">Photo Noues et aretiers chantier</div>
-      <div class="prose">
-        <h2>Lorem ipsum dolor sit amet consectetur</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nemo enim ipsam voluptatem quia voluptas sit aspernatur.</p>
-        <ul>
-          <li>Lorem ipsum dolor sit amet.</li>
-          <li>Consectetur adipiscing elit.</li>
-          <li>Sed do eiusmod tempor.</li>
-        </ul>
-        <a href="/zinguerie/" class="btn btn--bleu">Tous nos services zinguerie <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-      </div>
-    </div>
-  </section>
-
-  <CtaDevis />
-
-  <section class="section section--gris">
+  <!-- ══ LA NOUE (carte bleu nuit) ══ -->
+  <section class="dr-section dr-section--serre">
     <div class="conteneur">
-      <h2>Noues et aretiers — nos communes</h2>
-      <ul class="nuage-villes">
-        {villes.map((v) => (
-          <li><a href={`/${v.slug}/`}>{v.nom}</a></li>
-        ))}
-      </ul>
+      <article class="dr-regle" data-anim="up">
+        <div class="dr-regle__corps">
+          <h2>La noue, là où l'eau se concentre</h2>
+          <p>La noue en zinc est façonnée en une bande aux bords relevés, glissée sous les tuiles des deux pans. Elle évacue de grandes quantités d'eau et se nettoie facilement. La noue encastrée, réalisée en tuiles taillées, est plus discrète mais demande une pose minutieuse.</p>
+          <p>Les feuilles et les mousses s'y accumulent et finissent par faire déborder l'eau sous les tuiles. Quand le zinc est percé ou que les tuiles ont bougé, je refais la noue, avec la <a href="/reparation-toiture/">réparation de la toiture</a> qui l'entoure si l'eau a déjà abîmé le support.</p>
+          <a href="/devis-gratuit/" class="dr-btn dr-btn--rouge">
+            Demander mon devis
+            <span class="dr-btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+        </div>
+        <div class="dr-regle__certif">
+          <h3>Les signes d'une noue fatiguée</h3>
+          <ul class="dr-coches dr-coches--sombre">
+            <li>Feuilles et mousses accumulées</li>
+            <li>Zinc percé ou corrodé</li>
+            <li>Humidité dans l'angle des combles</li>
+            <li>Tuiles déplacées le long de la noue</li>
+          </ul>
+        </div>
+      </article>
     </div>
   </section>
-</BaseLayout>
+
+  <!-- ══ L'ARÊTIER ══ -->
+  <section class="dr-section dr-section--gris">
+    <div class="conteneur">
+      <h2 class="dr-h2 dr-centre" data-anim="up">L'arêtier, posé à sec plutôt qu'au mortier</h2>
+      <div class="dr-duo dr-duo--inverse" data-anim="up">
+        <figure class="dr-duo__media">
+          <img src="/images/reparation-toiture-aretier-essonne.webp" alt="Arêtier et tuiles faîtières remis à neuf sur une toiture dans l'Essonne" width="750" height="1000" loading="lazy" decoding="async" />
+        </figure>
+        <div class="dr-duo__texte">
+          <p>Autrefois, les tuiles d'arêtier étaient scellées au mortier. Avec le gel et les mouvements de la charpente, le mortier se fissure, les tuiles se descellent et l'eau s'infiltre au point le plus exposé du toit.</p>
+          <p>Aujourd'hui, je pose les arêtiers à sec, sur un closoir ventilé : une bande souple qui épouse la forme des tuiles, assure l'étanchéité et laisse la toiture respirer. Chaque tuile d'arêtier est fixée mécaniquement, pour une ligne droite et solide.</p>
+          <p>Les mêmes principes s'appliquent au faîtage, et aux <a href="/zinguerie/solins-raccords/">solins et raccords</a> qui relient la toiture aux cheminées et aux murs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ZinguerieLiees slugs={['solins-raccords', 'couvertines', 'gouttieres-zinc']} />
+</PageService>

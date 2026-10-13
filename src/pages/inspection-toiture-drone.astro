@@ -5,6 +5,8 @@ import CartesRealisations from '../components/CartesRealisations.astro';
 import CtaDevis from '../components/CtaDevis.astro';
 import villes from '../data/villes.json';
 
+import AvisGoogle from '../components/AvisGoogle.astro';
+import NoteGoogle from '../components/NoteGoogle.astro';
 const title = "Inspection de toiture par drone — Essonne (91) M. Robert";
 const description = "Inspection de toiture par drone à Étréchy et dans l'Essonne : état du toit sans monter dessus, images à l'appui. M. Robert Daniel. Devis gratuit.";
 
@@ -45,6 +47,7 @@ const extraSchemas = [{
           </a>
           <a href="/devis-gratuit/" class="btn btn--bleu">Devis gratuit <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
         </div>
+        <NoteGoogle />
       </div>
       <div class="hero__media">
         <video
@@ -190,6 +193,8 @@ const extraSchemas = [{
   </section>
 
   <CartesRealisations slugs={['renovation-toiture-auvers-saint-georges']} titre="Une toiture refaite, contrôlée au drone" fond="gris" />
+
+  <AvisGoogle titre="Ce que mes clients disent de mon travail" ids={['david-lorrain', 'stephane-boulay', 'delphine-lejeune']} fond="blanc" />
 
   <CtaDevis />
 

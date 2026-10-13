@@ -5,6 +5,8 @@ import CartesRealisations from '../../components/CartesRealisations.astro';
 import CtaDevis from '../../components/CtaDevis.astro';
 import villes from '../../data/villes.json';
 
+import AvisGoogle from '../../components/AvisGoogle.astro';
+import NoteGoogle from '../../components/NoteGoogle.astro';
 const title = "Zinguerie dans l'Essonne (91) — M. Robert couvreur zingueur";
 const description = "Zinguerie à Étréchy et dans l'Essonne : gouttières zinc, aluminium et PVC, descentes, noues, solins, couvertines. M. Robert Daniel, couvreur zingueur. Devis gratuit.";
 
@@ -55,6 +57,7 @@ const extraSchemas = [{
           </a>
           <a href="/devis-gratuit/" class="btn btn--bleu">Devis gratuit <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
         </div>
+        <NoteGoogle />
       </div>
       <div class="hero__media">
         <img class="hero__photo" src="/images/zinguerie-chien-assis-zinc-essonne.webp" alt="Chiens-assis avec joues en zinc sur une toiture en tuiles dans l'Essonne" width="1200" height="900" fetchpriority="high" decoding="async" />
@@ -242,6 +245,8 @@ const extraSchemas = [{
   </section>
 
   <CartesRealisations slugs={['entretien-gouttieres-janville-sur-juine', 'renovation-toiture-auvers-saint-georges']} titre="Mes chantiers de zinguerie" fond="gris" />
+
+  <AvisGoogle titre="Les avis de mes clients sur leurs gouttières" ids={['eric-jabaud', 'michelle-francois', 'sylvain-perrey', 'a-charpentier', 'theyoyo91000', 'loic-bouzon']} fond="blanc" />
 
   <CtaDevis />
 

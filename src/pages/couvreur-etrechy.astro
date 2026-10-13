@@ -12,6 +12,8 @@ import FilAriane from '../components/FilAriane.astro';
 import CartesRealisations from '../components/CartesRealisations.astro';
 import realisations from '../data/realisations.json';
 
+import AvisGoogle from '../components/AvisGoogle.astro';
+import NoteGoogle from '../components/NoteGoogle.astro';
 const title = "Artisan couvreur à Étréchy - Devis gratuit - Robert Daniel";
 const description = "✓ Tous travaux de couverture à Étréchy : remplacement de toiture ancienne, recherche de fuite, interventions en urgence. Robert Daniel, tél. 06 83 96 15 18";
 
@@ -54,13 +56,6 @@ const prestations = [
   },
 ];
 
-// Avis Google : les deux premiers concernent des chantiers à Étréchy
-const avis = [
-  { nom: 'Nadège Fernandez', texte: "Intervention pour travaux toiture ce jour à Étréchy, il n'y a rien à redire : excellent travail, équipe au top, gentille, chantier terminé, nettoyé. Des vrais professionnels. Nous les recommandons vivement." },
-  { nom: 'Michel S.', texte: "Merci à M. Robert et à son équipe pour le travail de qualité de la rénovation de notre toiture à Étréchy." },
-  { nom: 'Zazounette', texte: "Expérience avec l'entreprise Robert plus que satisfaisante. Rapidité d'intervention, conseils avisés, prix corrects, très bon professionnel. Je recommande vivement." },
-];
-const lienGoogle = 'https://maps.app.goo.gl/rYpVbKYbBB64Uk2y6';
 const lienWaze = 'https://waze.com/ul?ll=48.4929035%2C2.1912066&navigate=yes';
 const lienMaps = 'https://maps.google.com/?cid=15045529930066125536';
 
@@ -151,6 +146,7 @@ const extraSchemas = [webPage, {
             06 83 96 15 18
           </a>
         </div>
+        <NoteGoogle variante="sombre" />
       </div>
     </div>
   </section>
@@ -241,26 +237,7 @@ const extraSchemas = [webPage, {
   </section>
 
   <!-- ══ AVIS ══ -->
-  <section class="dr-section">
-    <div class="conteneur">
-      <div class="dr-entete" data-anim="up">
-        <h2 class="dr-h2">Les avis de mes clients</h2>
-        <p class="dr-note"><span class="dr-etoiles" aria-hidden="true">★★★★★</span> <strong>5,0 / 5</strong> sur Google</p>
-      </div>
-      <ul class="dr-avis">
-        {avis.map((a) => (
-          <li class="dr-avis__carte" data-anim="up">
-            <span class="dr-etoiles" aria-label="5 étoiles sur 5">★★★★★</span>
-            <blockquote>« {a.texte} »</blockquote>
-            <p class="dr-avis__nom">{a.nom}</p>
-          </li>
-        ))}
-      </ul>
-      <p class="dr-centre"><a href={lienGoogle} class="dr-btn dr-btn--bleu" target="_blank" rel="noopener">Tous les avis Google
-        <span class="dr-btn__fleche dr-btn__fleche--bleue" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a></p>
-    </div>
-  </section>
+  <AvisGoogle titre="Les avis de mes clients" ids={['nadege-fernandez', 'michel-s', 'zazounette', 'roselyne', 'lindsay-cochin', 'olivier-loret']} fond="blanc" />
 
   <!-- ══ VÉRIFICATION DE TOITURE PAR DRONE ══ -->
   <section class="dr-section dr-section--drone">

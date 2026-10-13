@@ -1,0 +1,44 @@
+---
+// Badge « note Google » pour les héros : étoiles + moyenne + nombre d'avis,
+// lien vers la fiche. Données : src/data/avis-google.json.
+import data from '../data/avis-google.json';
+
+interface Props { variante?: 'clair' | 'sombre'; }
+const { variante = 'clair' } = Astro.props;
+const etoile = 'M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z';
+---
+<a class:list={['note-google', `note-google--${variante}`]} href={data.lien} target="_blank" rel="noopener"
+   aria-label={`Note moyenne de ${data.moyenneAffichee} sur 5 sur ${data.total} avis Google : voir les avis`}>
+  <span class="note-google__etoiles" aria-hidden="true">
+    {Array(5).fill(0).map(() => <svg viewBox="0 0 24 24"><path d={etoile} /></svg>)}
+  </span>
+  <span class="note-google__texte" aria-hidden="true"><strong>{data.moyenneAffichee}/5</strong> · {data.total} avis Google</span>
+</a>
+
+<style>
+  .note-google {
+    display: inline-flex; align-items: center; gap: 10px; width: fit-content; margin-top: 1.1rem;
+    padding: 9px 16px; border-radius: 999px; text-decoration: none; font-size: 15px; line-height: 1.2;
+    transition: transform .25s ease, background-color .25s ease;
+  }
+  .note-google:hover { transform: translate3d(0, -2px, 0); }
+  .note-google__etoiles { display: inline-flex; gap: 1px; }
+  .note-google__etoiles svg { width: 17px; height: 17px; fill: #fbbc04; }
+  .note-google--clair { background: var(--gris-50); color: var(--gris-700); }
+  .note-google--clair:hover { background: var(--gris-100); color: var(--gris-700); }
+  .note-google--clair strong { color: var(--bleu-fonce); }
+  .note-google--sombre { margin-top: 0; background: rgb(255 255 255 / .1); color: #dbe6ef; }
+  .note-google--sombre:hover { background: rgb(255 255 255 / .16); color: #fff; }
+  .note-google--sombre strong { color: #fff; }
+
+  /* Hero des pages services / communes : placé après les boutons sur mobile */
+  @media (max-width: 979px) {
+    :global(.hero__texte) > .note-google { order: 8; margin-inline: auto; display: flex; }
+  }
+  @media (max-width: 800px) {
+    .note-google { margin-inline: auto; }
+  }
+  @media (max-width: 1023px) {
+    :global(.dr-hero__texte) > .note-google { align-self: center; }
+  }
+</style>

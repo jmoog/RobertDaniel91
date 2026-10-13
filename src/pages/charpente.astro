@@ -4,6 +4,8 @@ import FilAriane from '../components/FilAriane.astro';
 import CtaDevis from '../components/CtaDevis.astro';
 import villes from '../data/villes.json';
 
+import AvisGoogle from '../components/AvisGoogle.astro';
+import NoteGoogle from '../components/NoteGoogle.astro';
 const title = "Charpente bois dans l'Essonne (91) — M. Robert couvreur";
 const description = "Charpente bois à Étréchy et dans l'Essonne : traitement, réparation, remplacement de pièces et création. M. Robert Daniel, couvreur charpentier. Devis gratuit.";
 
@@ -44,6 +46,7 @@ const extraSchemas = [{
           </a>
           <a href="/devis-gratuit/" class="btn btn--bleu">Devis gratuit <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
         </div>
+        <NoteGoogle />
       </div>
       <div class="hero__media">
         <img class="hero__photo" src="/images/services/charpente.webp" alt="Charpente bois rénovée par Robert Daniel Couverture dans l'Essonne" width="900" height="600" fetchpriority="high" decoding="async" />
@@ -182,6 +185,8 @@ const extraSchemas = [{
       </p>
     </div>
   </section>
+
+  <AvisGoogle titre="Ce que mes clients disent de mon travail" ids={['guytounet-breizh', 'micheline-bazin', 'michael-guillaume']} fond="gris" />
 
   <CtaDevis />
 

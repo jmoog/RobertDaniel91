@@ -27,26 +27,17 @@
         "r": "sur les toitures de l'Essonne."
       }
     ],
-    "avisTitre": "Ce que disent de moi mes clients d'Étréchy",
-    "avis": [
-      {
-        "nom": "Nadege Fernandez",
-        "texte": "Intervention pour travaux toiture ce jour à Étréchy, il n'y a rien à redire : excellent travail, équipe au top, gentille, chantier terminé, nettoyé. Des vrais professionnels. Nous les recommandons vivement."
-      },
-      {
-        "nom": "Zazounette",
-        "texte": "Expérience avec l'entreprise Robert plus que satisfaisante. Rapidité d'intervention, conseils avisés , prix corrects, très bon professionnel je recommande vivement"
-      },
-      {
-        "nom": "Yanis Benoit",
-        "texte": "Agréable pro et rapide"
-      }
-    ],
+    "avisTitre": "Les avis de mes clients dans l'Essonne",
     "servicesTitre": "Les prestations de votre couvreur à Étréchy",
     "servicesIntro": "À Étréchy, je traite votre toiture de A à Z : de la réparation d'une fuite au remplacement complet de la couverture, sans oublier la charpente, la zinguerie et l'entretien. Voici le détail de mes prestations.",
     "ctaTitre": "Contactez votre couvreur à Étréchy",
     "ctaTexte": "Une fuite, des tuiles qui ont bougé, une toiture à refaire ou simplement une question : appelez-moi ou passez au bureau, 42 Grande Rue. Le devis est gratuit et sans engagement.",
-    "adresse": "42 Grande Rue, 91580 Étréchy"
+    "adresse": "42 Grande Rue, 91580 Étréchy",
+    "avisIds": [
+      "nadege-fernandez",
+      "zazounette",
+      "yanis-benoit"
+    ]
   },
   "couvreur-etampes": {
     "nom": "Étampes",
@@ -76,25 +67,16 @@
         "r": "basé à Étréchy, dans l'Essonne."
       }
     ],
-    "avisTitre": "Les avis de mes clients satisfaits à Étampes",
-    "avis": [
-      {
-        "nom": "Michel Curan",
-        "texte": "Travaux plus rapide que prévu résultats impeccable communication top prend le temps qu'il faut pour expliquer équipe sympa merci la prestation je recommande Mimi"
-      },
-      {
-        "nom": "Catherine Cheronneau",
-        "texte": "Bon travail esthétique et très rapide"
-      },
-      {
-        "nom": "Lucie Fleury",
-        "texte": "J’ai fait appel à l’entreprise Robert pour des travaux des toiture, travaux soigner et personnel à l’écoute, je veux le recommande"
-      }
-    ],
+    "avisTitre": "Ce que mes clients disent de mon travail",
     "servicesTitre": "Mon savoir-faire d'artisan couvreur à Étampes",
     "servicesIntro": "À Étampes, je prends en charge l'ensemble des travaux de couverture : rénovation, réparation, nettoyage, charpente et zinguerie. Découvrez le détail de mes services.",
     "ctaTitre": "Faites appel à votre couvreur à Étampes",
-    "ctaTexte": "Besoin d'un couvreur à Étampes pour une fuite, une toiture à refaire ou un entretien ? Contactez-moi : je me déplace, j'examine votre toit et je vous remets un devis gratuit et sans engagement."
+    "ctaTexte": "Besoin d'un couvreur à Étampes pour une fuite, une toiture à refaire ou un entretien ? Contactez-moi : je me déplace, j'examine votre toit et je vous remets un devis gratuit et sans engagement.",
+    "avisIds": [
+      "michel-curan",
+      "catherine-cheronneau",
+      "lucie-fleury"
+    ]
   },
   "couvreur-orsay": {
     "nom": "Orsay",
@@ -124,25 +106,16 @@
         "r": "pour mettre votre toit hors d'eau."
       }
     ],
-    "avisTitre": "Mes clients d'Orsay qui m'ont laissé un avis",
-    "avis": [
-      {
-        "nom": "Fanfan Crepin",
-        "texte": "J' ai fait refaire le toit responsable d une infiltration. Travail soigné et très pro, je recommande"
-      },
-      {
-        "nom": "marc viandon",
-        "texte": "Réalisation faite avec professionnalisme Couverture et lucarne chien assis Conseil avisé sur choix des tuiles les plus adaptées .travail propre et réalisé dans les temps"
-      },
-      {
-        "nom": "Michelle FRANCOIS",
-        "texte": "Très bon travail, Monsieur ROBERT et son équipe sont très sérieux et de bons conseils. Le chantier (dépose de gouttières en zinc et pose de gouttières en alu) s'est déroulé en une matinée et le chantier a été nettoyé. Donc je suis très satisfaite de son travail."
-      }
-    ],
+    "avisTitre": "Les derniers avis laissés sur ma fiche Google",
     "servicesTitre": "Mes services d'artisan couvreur zingueur à Orsay",
     "servicesIntro": "À Orsay, je réalise tous les travaux de toiture : réparation de fuite, rénovation, démoussage, charpente, gouttières et zinguerie. Voici ce que je propose.",
     "ctaTitre": "Faites intervenir un couvreur à Orsay",
-    "ctaTexte": "Vous cherchez un couvreur à Orsay ? Que ce soit pour réparer une toiture qui fuit ou en refaire une à neuf, contactez-moi : mes devis sont gratuits et sans engagement."
+    "ctaTexte": "Vous cherchez un couvreur à Orsay ? Que ce soit pour réparer une toiture qui fuit ou en refaire une à neuf, contactez-moi : mes devis sont gratuits et sans engagement.",
+    "avisIds": [
+      "fanfan-crepin",
+      "marc-viandon",
+      "michelle-francois"
+    ]
   },
   "couvreur-chamarande": {
     "nom": "Chamarande",
@@ -172,25 +145,16 @@
         "r": "sur tous mes travaux de couverture."
       }
     ],
-    "avisTitre": "Les derniers avis de mes clients à Chamarande",
-    "avis": [
-      {
-        "nom": "Nadege Fernandez",
-        "texte": "intervention pour travaux toiture ce jour à etrechy il n y a rien à redire , excellent travail, équipe au top, gentille, chantier terminé, nettoyé des vrais professionnels"
-      },
-      {
-        "nom": "Line Lameth",
-        "texte": "J'ai fait appel à Mr Robert pour une réfection complète de ma toiture. Toute l'équipe a été très professionnelle, efficace et très sympathique. Travail de qualité aux tarifs abordables. Je recommande cet artisan pour son sérieux et son savoir-faire"
-      },
-      {
-        "nom": "Ponson mathieu",
-        "texte": "Mr Robert a su parfaitement répondre à mes besoins dans les délais. Chantier impeccable belle expérience client je recommande les yeux fermés"
-      }
-    ],
+    "avisTitre": "Mes clients de l'Essonne me recommandent",
     "servicesTitre": "Mes services de couvreur à Chamarande",
     "servicesIntro": "À Chamarande, je traite toute la toiture : réparation, rénovation, nettoyage, charpente et zinguerie. Voici le détail de mes prestations.",
     "ctaTitre": "Contactez votre couvreur à Chamarande",
-    "ctaTexte": "Besoin d'un couvreur à Chamarande, à deux pas d'Étréchy ? Contactez-moi pour une réparation, une rénovation ou un entretien : devis gratuit, détaillé et sans engagement."
+    "ctaTexte": "Besoin d'un couvreur à Chamarande, à deux pas d'Étréchy ? Contactez-moi pour une réparation, une rénovation ou un entretien : devis gratuit, détaillé et sans engagement.",
+    "avisIds": [
+      "morgane-duval-yoan-palumbo",
+      "line-lameth",
+      "mathieu-ponson"
+    ]
   },
   "couvreur-auvers-saint-georges": {
     "nom": "Auvers-Saint-Georges",
@@ -220,25 +184,16 @@
         "r": "pour une fuite ou une tuile envolée."
       }
     ],
-    "avisTitre": "Ce que disent de moi mes clients d'Auvers-Saint-Georges",
-    "avis": [
-      {
-        "nom": "gamer gamer",
-        "texte": "Devis obtenu très rapidement, intervention efficace et professionnelle. Ma toiture est impeccable et le chantier a été laissé parfaitement propre. Je recommande cette entreprise sans hésiter !"
-      },
-      {
-        "nom": "Marine POMMEREAU",
-        "texte": "Ramonage fait dans des délais super rapides et une fois sur site super efficaces. Merci !"
-      },
-      {
-        "nom": "Caroline DAVID",
-        "texte": "Suite à une nouvelle intervention de Mr Robert, je recommande fortement ses services. C'est un artisan très professionnel, aimable qui tient ses engagements. Merci."
-      }
-    ],
+    "avisTitre": "Les avis de mes clients dans l'Essonne",
     "servicesTitre": "Les prestations de votre couvreur à Auvers-Saint-Georges",
     "servicesIntro": "À Auvers-Saint-Georges, je m'occupe de l'ensemble de votre toiture : de la fuite à reprendre au toit à refaire, en passant par la charpente, la zinguerie et l'entretien.",
     "ctaTitre": "Faites appel à votre couvreur à Auvers-Saint-Georges",
-    "ctaTexte": "Vous habitez Auvers-Saint-Georges et votre toiture a besoin d'un professionnel ? Contactez-moi : je passe constater, et je vous remets un devis gratuit et sans engagement."
+    "ctaTexte": "Vous habitez Auvers-Saint-Georges et votre toiture a besoin d'un professionnel ? Contactez-moi : je passe constater, et je vous remets un devis gratuit et sans engagement.",
+    "avisIds": [
+      "levy-sabas",
+      "marine-pommereau",
+      "caroline-david"
+    ]
   },
   "couvreur-morigny-champigny": {
     "nom": "Morigny-Champigny",
@@ -268,25 +223,16 @@
         "r": "détaillé et sans engagement."
       }
     ],
-    "avisTitre": "Les avis de mes clients satisfaits à Morigny-Champigny",
-    "avis": [
-      {
-        "nom": "arnaud fauché",
-        "texte": "Travail de ramonage soigné et professionnel."
-      },
-      {
-        "nom": "Michel S",
-        "texte": "Merci à M. ROBERT et à son équipe pour le travail de qualité de la rénovation de notre toiture à Etréchy.... Voir l'avis complet"
-      },
-      {
-        "nom": "Tekin Sobe",
-        "texte": "Trés bon accueil .Travail sérieux .A recommander"
-      }
-    ],
+    "avisTitre": "Ce que mes clients disent de mon travail",
     "servicesTitre": "Mon savoir-faire d'artisan couvreur à Morigny-Champigny",
     "servicesIntro": "À Morigny-Champigny, je réalise tous les travaux de couverture : réparation, rénovation, nettoyage, charpente, gouttières et zinguerie.",
     "ctaTitre": "Faites intervenir un couvreur à Morigny-Champigny",
-    "ctaTexte": "Besoin d'un couvreur à Morigny-Champigny ? Pour une fuite, une rénovation ou un entretien de toiture, contactez-moi : mes devis sont gratuits et sans engagement."
+    "ctaTexte": "Besoin d'un couvreur à Morigny-Champigny ? Pour une fuite, une rénovation ou un entretien de toiture, contactez-moi : mes devis sont gratuits et sans engagement.",
+    "avisIds": [
+      "arnaud-fauche",
+      "jef",
+      "tekin-sobe"
+    ]
   },
   "couvreur-saint-sulpice-de-favieres": {
     "nom": "Saint-Sulpice-de-Favières",
@@ -316,25 +262,16 @@
         "r": "détaillé et sans engagement."
       }
     ],
-    "avisTitre": "Mes clients de Saint-Sulpice-de-Favières qui m'ont laissé un avis",
-    "avis": [
-      {
-        "nom": "Megg Geuffroy",
-        "texte": "Nous avons fait appel à la société de Mr Robert pour l’entretien de notre toiture. Les travaux réalisés se sont... Voir l'avis complet"
-      },
-      {
-        "nom": "Clayton Bemba",
-        "texte": "Pour la rénovation de notre toiture, nous avons fait appel à la société de Mr Robert et nous en sommes très contents. Le chantier a été réalisé en peu de temps et avec professionnalisme. Nous nous sommes sentis écoutés face à nos besoins. Nous recommandons !"
-      },
-      {
-        "nom": "Sylvain Courivaud",
-        "texte": "Très bonne entreprise. Travail sérieux. A recommander"
-      }
-    ],
+    "avisTitre": "Les derniers avis laissés sur ma fiche Google",
     "servicesTitre": "Mes services d'artisan couvreur zingueur à Saint-Sulpice-de-Favières",
     "servicesIntro": "À Saint-Sulpice-de-Favières, je prends en charge toute la toiture : réparation, rénovation, démoussage, charpente et zinguerie.",
     "ctaTitre": "Contactez votre couvreur à Saint-Sulpice-de-Favières",
-    "ctaTexte": "Vous cherchez un couvreur à Saint-Sulpice-de-Favières ? Contactez-moi pour résoudre un problème de toiture ou préparer un projet : devis gratuit et sans engagement."
+    "ctaTexte": "Vous cherchez un couvreur à Saint-Sulpice-de-Favières ? Contactez-moi pour résoudre un problème de toiture ou préparer un projet : devis gratuit et sans engagement.",
+    "avisIds": [
+      "megg-geuffroy",
+      "clayton-bemba",
+      "sylvain-courivaud"
+    ]
   },
   "couvreur-mauchamps": {
     "nom": "Mauchamps",
@@ -364,25 +301,16 @@
         "r": "pour une fuite ou une tuile envolée."
       }
     ],
-    "avisTitre": "Les derniers avis de mes clients à Mauchamps",
-    "avis": [
-      {
-        "nom": "A Charpentier",
-        "texte": "Artisan très sérieux, disponible et aimable. Est intervenu rapidement pour un problème de gouttière lorsque je l'ai appelé. Dévisage rapide, conseil sérieux.. Je recommande."
-      },
-      {
-        "nom": "Laurence Dujardin",
-        "texte": "Travail très sérieux, chantier parfait je recommande"
-      },
-      {
-        "nom": "Régina Guiguen",
-        "texte": "Trouver le bon artisan n'est pas une mince affaire, après plusieurs devis j'ai trouvé Mr Robert et son frère une équipe très professionnelle sur laquelle on peut compter, entreprise sérieuse, travail propre et soigné. Je recommande vivement.(début mars )"
-      }
-    ],
+    "avisTitre": "Mes clients de l'Essonne me recommandent",
     "servicesTitre": "Mes services de couvreur à Mauchamps",
     "servicesIntro": "À Mauchamps, je traite votre toiture du faîtage à la gouttière : réparation, rénovation, nettoyage, charpente et zinguerie.",
     "ctaTitre": "Faites appel à votre couvreur à Mauchamps",
-    "ctaTexte": "Besoin d'un couvreur à Mauchamps, tout près d'Étréchy ? Contactez-moi : je viens voir votre toiture et je vous remets un devis gratuit et sans engagement."
+    "ctaTexte": "Besoin d'un couvreur à Mauchamps, tout près d'Étréchy ? Contactez-moi : je viens voir votre toiture et je vous remets un devis gratuit et sans engagement.",
+    "avisIds": [
+      "a-charpentier",
+      "laurence-dujardin",
+      "regina-guiguen"
+    ]
   },
   "couvreur-boissy-sous-saint-yon": {
     "nom": "Boissy-sous-Saint-Yon",
@@ -412,25 +340,16 @@
         "r": "tuile, ardoise et zinc."
       }
     ],
-    "avisTitre": "Ce que disent de moi mes clients de Boissy-sous-Saint-Yon",
-    "avis": [
-      {
-        "nom": "Catherine François",
-        "texte": "Travaux effectués rapidement dans les délais. très réactifs et travail bien fait. Nous sommes satisfaits."
-      },
-      {
-        "nom": "Caro Dvx",
-        "texte": "Travaux réalisés ces jours ci pour un nettoyage de toiture! Résultats d’ici quelques mois mais explications très claires et précises! Bonne relation client, je recommande!"
-      },
-      {
-        "nom": "stephane boulay",
-        "texte": "Professionnel, à l'écoute et bon conseil. Travail propre. Je recommande."
-      }
-    ],
+    "avisTitre": "Les avis de mes clients dans l'Essonne",
     "servicesTitre": "Les prestations de votre couvreur à Boissy-sous-Saint-Yon",
     "servicesIntro": "À Boissy-sous-Saint-Yon, je réalise l'ensemble des travaux de couverture : réparation de fuite, rénovation, démoussage, charpente et zinguerie.",
     "ctaTitre": "Faites intervenir un couvreur à Boissy-sous-Saint-Yon",
-    "ctaTexte": "Vous habitez Boissy-sous-Saint-Yon et votre toit a besoin d'un couvreur ? Contactez-moi : mes devis sont gratuits, détaillés et sans engagement."
+    "ctaTexte": "Vous habitez Boissy-sous-Saint-Yon et votre toit a besoin d'un couvreur ? Contactez-moi : mes devis sont gratuits, détaillés et sans engagement.",
+    "avisIds": [
+      "catherine-francois",
+      "caro-dvx",
+      "stephane-boulay"
+    ]
   },
   "couvreur-chauffour-les-etrechy": {
     "nom": "Chauffour-lès-Étréchy",
@@ -460,25 +379,16 @@
         "r": "basé à Étréchy, dans l'Essonne."
       }
     ],
-    "avisTitre": "Les avis de mes clients satisfaits à Chauffour-lès-Étréchy",
-    "avis": [
-      {
-        "nom": "dominique jammet",
-        "texte": "Parfait Très bien travail soigné et rendu chantier Propre"
-      },
-      {
-        "nom": "Nora Mercier",
-        "texte": "Nous avons refait entièrement notre toiture par la société de Mr ROBERT Daniel. Le travail a été réalisé avec un réel professionnalisme et des ouvriers au top ! Mr ROBERT a été présent et disponible durant toute la durée du chantier et les délais ont été respectés. Je recommande vivement cet société."
-      },
-      {
-        "nom": "Michael Guillaume",
-        "texte": "Entreprise très sérieuse. Travail soigneusement réalisé. Délai respecté malgré les intempéries. Mr robert à été present... Voir l'avis complet"
-      }
-    ],
+    "avisTitre": "Ce que mes clients disent de mon travail",
     "servicesTitre": "Mon savoir-faire d'artisan couvreur à Chauffour-lès-Étréchy",
     "servicesIntro": "À Chauffour-lès-Étréchy, je m'occupe de toute la toiture : réparation, rénovation, nettoyage, charpente et zinguerie.",
     "ctaTitre": "Contactez votre couvreur à Chauffour-lès-Étréchy",
-    "ctaTexte": "Besoin d'un couvreur à Chauffour-lès-Étréchy, à deux minutes d'Étréchy ? Contactez-moi : je me déplace vite et mes devis sont gratuits et sans engagement."
+    "ctaTexte": "Besoin d'un couvreur à Chauffour-lès-Étréchy, à deux minutes d'Étréchy ? Contactez-moi : je me déplace vite et mes devis sont gratuits et sans engagement.",
+    "avisIds": [
+      "dominique-jammet",
+      "nora-mercier",
+      "michael-guillaume"
+    ]
   },
   "couvreur-souzy-la-briche": {
     "nom": "Souzy-la-Briche",
@@ -508,25 +418,16 @@
         "r": "pour mettre votre toit hors d'eau."
       }
     ],
-    "avisTitre": "Mes clients de Souzy-la-Briche qui m'ont laissé un avis",
-    "avis": [
-      {
-        "nom": "Pascal Guillarme",
-        "texte": "Entreprise sérieuse, très professionnel. Intervention sur ma toiture réalisée avec soin Pour un prix très correct."
-      },
-      {
-        "nom": "July",
-        "texte": "Très pédagogue et très réactif"
-      },
-      {
-        "nom": "Emilie Ventura",
-        "texte": "Monsieur Robert est un artisan très professionnel et à l'écoute. Le travail est impeccable. Un grand merci et à bientôt pour la suite de la toiture ! 🙂"
-      }
-    ],
+    "avisTitre": "Les derniers avis laissés sur ma fiche Google",
     "servicesTitre": "Mes services d'artisan couvreur zingueur à Souzy-la-Briche",
     "servicesIntro": "À Souzy-la-Briche, je traite votre toiture de A à Z : réparation, rénovation, nettoyage, charpente et zinguerie.",
     "ctaTitre": "Faites appel à votre couvreur à Souzy-la-Briche",
-    "ctaTexte": "Vous cherchez un couvreur à Souzy-la-Briche ? Pour une fuite, une rénovation ou un entretien, contactez-moi : devis gratuit et sans engagement."
+    "ctaTexte": "Vous cherchez un couvreur à Souzy-la-Briche ? Pour une fuite, une rénovation ou un entretien, contactez-moi : devis gratuit et sans engagement.",
+    "avisIds": [
+      "pascal-guillarme",
+      "july",
+      "emilie-ventura"
+    ]
   },
   "couvreur-villeconin": {
     "nom": "Villeconin",
@@ -556,25 +457,16 @@
         "r": "sur tous mes travaux de couverture."
       }
     ],
-    "avisTitre": "Les derniers avis de mes clients à Villeconin",
-    "avis": [
-      {
-        "nom": "Laure Fantini",
-        "texte": "Entreprise sérieuse travail soigné je recommande"
-      },
-      {
-        "nom": "TheYoyo91000",
-        "texte": "Appel suite a problème d'évacuation d'eau sur mon balcon, artisan sérieux, minutieux et consciencieux, excellent travail, je recommande a 100%, je n'ai plus aucun problème maintenant l'eau s'écoule parfaitement"
-      },
-      {
-        "nom": "Catherine Esquerre",
-        "texte": "Artisan sérieux et compétent. A recommander sans problème."
-      }
-    ],
+    "avisTitre": "Mes clients de l'Essonne me recommandent",
     "servicesTitre": "Mes services de couvreur à Villeconin",
     "servicesIntro": "À Villeconin, je prends en charge toute la toiture : réparation, rénovation, démoussage, charpente et zinguerie.",
     "ctaTitre": "Faites intervenir un couvreur à Villeconin",
-    "ctaTexte": "Besoin d'un couvreur à Villeconin ? Contactez-moi pour réparer ou refaire votre toiture : mes devis sont gratuits, détaillés et sans engagement."
+    "ctaTexte": "Besoin d'un couvreur à Villeconin ? Contactez-moi pour réparer ou refaire votre toiture : mes devis sont gratuits, détaillés et sans engagement.",
+    "avisIds": [
+      "laure-fantini",
+      "theyoyo91000",
+      "catherine-esquerre"
+    ]
   },
   "couvreur-lardy": {
     "nom": "Lardy",
@@ -604,25 +496,16 @@
         "r": "pour une fuite ou une tuile envolée."
       }
     ],
-    "avisTitre": "Ce que disent de moi mes clients de Lardy",
-    "avis": [
-      {
-        "nom": "M Dussolier",
-        "texte": "Travail très propre et de bonne qualité."
-      },
-      {
-        "nom": "Franco Zagaroli",
-        "texte": "travail bien fait personnel sympa je recommande mr robert daniel . Chantier laissé propre les ouvriers et monsieur Robert sont de bons travailleurs, sympas."
-      },
-      {
-        "nom": "clement froger",
-        "texte": "Artisan professionnel. Sympa et on sent le travail de qualité ."
-      }
-    ],
+    "avisTitre": "Les avis de mes clients dans l'Essonne",
     "servicesTitre": "Les prestations de votre couvreur à Lardy",
     "servicesIntro": "À Lardy, je réalise tous les travaux de couverture : réparation, rénovation, nettoyage, charpente, gouttières et zinguerie.",
     "ctaTitre": "Contactez votre couvreur à Lardy",
-    "ctaTexte": "Vous cherchez un couvreur à Lardy ? Pour une toiture qui fuit ou un toit à refaire, contactez-moi : devis gratuit et sans engagement."
+    "ctaTexte": "Vous cherchez un couvreur à Lardy ? Pour une toiture qui fuit ou un toit à refaire, contactez-moi : devis gratuit et sans engagement.",
+    "avisIds": [
+      "m-dussolier",
+      "franco-zagaroli",
+      "clement-froger"
+    ]
   },
   "couvreur-torfou": {
     "nom": "Torfou",
@@ -652,25 +535,16 @@
         "r": "détaillé et sans engagement."
       }
     ],
-    "avisTitre": "Les avis de mes clients satisfaits à Torfou",
-    "avis": [
-      {
-        "nom": "Olivier Loret",
-        "texte": "Travail fait dans les temps, équipe très professionnelle et sympathique, un travail très soigné. Monsieur Robert à l'écoute de ses clients. Je recommande vivement cette entreprise"
-      },
-      {
-        "nom": "fred azerty",
-        "texte": "Excellent travail,effectué rapidement, pour un toit 4 pentes."
-      },
-      {
-        "nom": "Zoro Aaron",
-        "texte": "Intervention d urgence dans l'heure, très professionnel un grand merci."
-      }
-    ],
+    "avisTitre": "Ce que mes clients disent de mon travail",
     "servicesTitre": "Mon savoir-faire d'artisan couvreur à Torfou",
     "servicesIntro": "À Torfou, je traite toute la toiture : réparation, rénovation, nettoyage, charpente et zinguerie.",
     "ctaTitre": "Faites appel à votre couvreur à Torfou",
-    "ctaTexte": "Besoin d'un couvreur à Torfou ? Contactez-moi : je viens voir votre toiture et je vous remets un devis gratuit et sans engagement."
+    "ctaTexte": "Besoin d'un couvreur à Torfou ? Contactez-moi : je viens voir votre toiture et je vous remets un devis gratuit et sans engagement.",
+    "avisIds": [
+      "olivier-loret",
+      "fred-azerty",
+      "zoro-aaron"
+    ]
   },
   "couvreur-janville-sur-juine": {
     "nom": "Janville-sur-Juine",
@@ -700,25 +574,16 @@
         "r": "détaillé et sans engagement."
       }
     ],
-    "avisTitre": "Mes clients de Janville-sur-Juine qui m'ont laissé un avis",
-    "avis": [
-      {
-        "nom": "Anne-laure Renard",
-        "texte": "Professionnel à l’écoute de ses clients."
-      },
-      {
-        "nom": "Didier Nara",
-        "texte": "Entreprise efficace, a répondu à nos besoins. Le toit a été réparé, nettoyé et application d'une peinture hydrofuge. Le toit est comme neuf."
-      },
-      {
-        "nom": "Linda Houali",
-        "texte": "J'ai profité de la présence de l'entreprise dans ma rue, qui en est à la 3ème rénovation de toitures! Pour demander un ramonage du conduit de mon poêle à bois, si tôt appelé, si tôt fait. Travail rapide et propre. Mr Robert est très réactif et disponible. A renouveler Positif Réactivité"
-      }
-    ],
+    "avisTitre": "Les derniers avis laissés sur ma fiche Google",
     "servicesTitre": "Mes services d'artisan couvreur zingueur à Janville-sur-Juine",
     "servicesIntro": "À Janville-sur-Juine, je m'occupe de l'ensemble de votre toiture : réparation, rénovation, démoussage, charpente et zinguerie.",
     "ctaTitre": "Faites intervenir un couvreur à Janville-sur-Juine",
-    "ctaTexte": "Vous habitez Janville-sur-Juine et votre toit a besoin d'un couvreur ? Contactez-moi : mes devis sont gratuits et sans engagement."
+    "ctaTexte": "Vous habitez Janville-sur-Juine et votre toit a besoin d'un couvreur ? Contactez-moi : mes devis sont gratuits et sans engagement.",
+    "avisIds": [
+      "anne-laure-renard",
+      "didier-nara",
+      "linda-houali"
+    ]
   },
   "couvreur-bouray-sur-juine": {
     "nom": "Bouray-sur-Juine",
@@ -748,25 +613,16 @@
         "r": "pour une fuite ou une tuile envolée."
       }
     ],
-    "avisTitre": "Les derniers avis de mes clients à Bouray-sur-Juine",
-    "avis": [
-      {
-        "nom": "Reda Hannou",
-        "texte": "Positif Réactivité, Ponctualité, Qualité, Professionnalisme Services Installation de velux"
-      },
-      {
-        "nom": "Delphine Lejeune",
-        "texte": "Un ravalement et des réparations qui correspondaient enfin à nos attentes, merci pour votre réactivité et votre professionnalisme."
-      },
-      {
-        "nom": "Frédéric Lougard",
-        "texte": "Bon service entreprise sérieuse et à l’écoute Travail soigné et finition impeccable Services Nettoyage de gouttières, Réparation de gouttières, Inspection de toitures"
-      }
-    ],
+    "avisTitre": "Mes clients de l'Essonne me recommandent",
     "servicesTitre": "Mes services de couvreur à Bouray-sur-Juine",
     "servicesIntro": "À Bouray-sur-Juine, je réalise tous les travaux de toiture : réparation, rénovation, nettoyage, charpente et zinguerie.",
     "ctaTitre": "Contactez votre couvreur à Bouray-sur-Juine",
-    "ctaTexte": "Besoin d'un couvreur à Bouray-sur-Juine ? Pour une fuite, une rénovation ou un entretien, contactez-moi : devis gratuit et sans engagement."
+    "ctaTexte": "Besoin d'un couvreur à Bouray-sur-Juine ? Pour une fuite, une rénovation ou un entretien, contactez-moi : devis gratuit et sans engagement.",
+    "avisIds": [
+      "micheline-bazin",
+      "delphine-lejeune",
+      "frederic-lougard"
+    ]
   },
   "couvreur-villeneuve-sur-auvers": {
     "nom": "Villeneuve-sur-Auvers",
@@ -796,25 +652,16 @@
         "r": "tuile, ardoise et zinc."
       }
     ],
-    "avisTitre": "Ce que disent de moi mes clients de Villeneuve-sur-Auvers",
-    "avis": [
-      {
-        "nom": "frederic mazeau",
-        "texte": "Très professionnel, réactif et rigoureux Positif Professionnalisme Services Réparation de toitures"
-      },
-      {
-        "nom": "loubignac jean-claude",
-        "texte": "derniers travaux prévus effectués dans les délais .travail de qualité .mr robert est réactif aux différentes demandes supplémentaires ,artisan sur lequel on peut compter . merci à lui et à toute son équipe ."
-      },
-      {
-        "nom": "Jean claude Loubignac",
-        "texte": "Travail très soigné. Entreprise sérieuse et à l'écoute. Je recommande vivement. Positif Réactivité, Ponctualité, Qualité, Professionnalisme, Prix Services Pose de ventilations de grenier, Réparations et entretien"
-      }
-    ],
+    "avisTitre": "Les avis de mes clients dans l'Essonne",
     "servicesTitre": "Les prestations de votre couvreur à Villeneuve-sur-Auvers",
     "servicesIntro": "À Villeneuve-sur-Auvers, je traite votre toiture du faîtage à la gouttière : réparation, rénovation, nettoyage, charpente et zinguerie.",
     "ctaTitre": "Faites appel à votre couvreur à Villeneuve-sur-Auvers",
-    "ctaTexte": "Vous cherchez un couvreur à Villeneuve-sur-Auvers ? Contactez-moi : je passe constater et je vous remets un devis gratuit et sans engagement."
+    "ctaTexte": "Vous cherchez un couvreur à Villeneuve-sur-Auvers ? Contactez-moi : je passe constater et je vous remets un devis gratuit et sans engagement.",
+    "avisIds": [
+      "frederic-mazeau",
+      "sylvain-perrey",
+      "jean-claude-loubignac"
+    ]
   },
   "couvreur-cerny": {
     "nom": "Cerny",
@@ -844,25 +691,16 @@
         "r": "basé à Étréchy, dans l'Essonne."
       }
     ],
-    "avisTitre": "Les avis de mes clients satisfaits à Cerny",
-    "avis": [
-      {
-        "nom": "Emmeline RENELUS",
-        "texte": "J’ai contacté Mr Robert pour la réparation de ma toiture. M. Robert s’est montré très commercial et ses couvreurs ont été très professionnels. Je recommande. Services Réparation de toitures"
-      },
-      {
-        "nom": "Mohamed Soultana",
-        "texte": "Excellent travail. Très Pro. Le délai à été respecté. Nous travaillerons à coup sûr pour les prochains travaux. Je recommande a 1000%"
-      },
-      {
-        "nom": "Nelly Gomas",
-        "texte": "Très bon Travail, équipe très sympathique. Je recommande Robert Couverture 91 de Marcoussis Positif Réactivité, Ponctualité, Qualité, Professionnalisme Services Installation de toitures"
-      }
-    ],
+    "avisTitre": "Ce que mes clients disent de mon travail",
     "servicesTitre": "Mon savoir-faire d'artisan couvreur à Cerny",
     "servicesIntro": "À Cerny, je prends en charge toute la toiture : réparation, rénovation, démoussage, charpente et zinguerie.",
     "ctaTitre": "Faites intervenir un couvreur à Cerny",
-    "ctaTexte": "Besoin d'un couvreur à Cerny ? Pour réparer ou refaire votre toiture, contactez-moi : mes devis sont gratuits, détaillés et sans engagement."
+    "ctaTexte": "Besoin d'un couvreur à Cerny ? Pour réparer ou refaire votre toiture, contactez-moi : mes devis sont gratuits, détaillés et sans engagement.",
+    "avisIds": [
+      "emmeline-renelus",
+      "mohamed-soultana",
+      "david-lorrain"
+    ]
   },
   "couvreur-brieres-les-scelles": {
     "nom": "Brières-les-Scellés",
@@ -892,25 +730,16 @@
         "r": "pour mettre votre toit hors d'eau."
       }
     ],
-    "avisTitre": "Mes clients de Brières-les-Scellés qui m'ont laissé un avis",
-    "avis": [
-      {
-        "nom": "Warren Hug",
-        "texte": "Voir l'avis complet"
-      },
-      {
-        "nom": "Willi Gutierrez",
-        "texte": "Très satisfait du travail effectué. Changement complete de la toiture et des gouttières très bien effectué. Positif Réactivité, Ponctualité, Qualité, Professionnalisme, Prix Services Réparation de gouttières, Inspection de toitures, Installation de toitures, Réparation de toitures, Installation de velux"
-      },
-      {
-        "nom": "Zazounette",
-        "texte": "Expérience avec l'entreprise Robert plus que satisfaisante. Rapidité d'intervention, conseils avisés , prix corrects, très bon professionnel je recommande vivement"
-      }
-    ],
+    "avisTitre": "Les derniers avis laissés sur ma fiche Google",
     "servicesTitre": "Mes services d'artisan couvreur zingueur à Brières-les-Scellés",
     "servicesIntro": "À Brières-les-Scellés, je réalise tous les travaux de couverture : réparation, rénovation, nettoyage, charpente et zinguerie.",
     "ctaTitre": "Contactez votre couvreur à Brières-les-Scellés",
-    "ctaTexte": "Vous cherchez un couvreur à Brières-les-Scellés ? Contactez-moi : je me déplace, j'examine votre toiture et je vous remets un devis gratuit et sans engagement."
+    "ctaTexte": "Vous cherchez un couvreur à Brières-les-Scellés ? Contactez-moi : je me déplace, j'examine votre toiture et je vous remets un devis gratuit et sans engagement.",
+    "avisIds": [
+      "guytounet-breizh",
+      "willi-gutierrez",
+      "zazounette"
+    ]
   },
   "couvreur-egly": {
     "nom": "Égly",
@@ -940,25 +769,16 @@
         "r": "sur tous mes travaux de couverture."
       }
     ],
-    "avisTitre": "Les derniers avis de mes clients à Égly",
-    "avis": [
-      {
-        "nom": "Yanis Benoit",
-        "texte": "Agréable pro et rapide"
-      },
-      {
-        "nom": "Eric JABAUD",
-        "texte": "Remplacement d'une gouttière en zinc. Équipe très professionnelle et sympathique.. Respect du planning prévu, travail de qualité et bons conseils."
-      },
-      {
-        "nom": "Michel Curan",
-        "texte": "Travaux plus rapide que prévu résultats impeccable communication top prend le temps qu'il faut pour expliquer équipe sympa merci la prestation je recommande Mimi"
-      }
-    ],
+    "avisTitre": "Mes clients de l'Essonne me recommandent",
     "servicesTitre": "Mes services de couvreur à Égly",
     "servicesIntro": "À Égly, je m'occupe de toute la toiture : réparation, rénovation, nettoyage, charpente et zinguerie.",
     "ctaTitre": "Faites appel à votre couvreur à Égly",
-    "ctaTexte": "Besoin d'un couvreur à Égly ? Pour une fuite, une toiture à refaire ou un entretien, contactez-moi : devis gratuit et sans engagement."
+    "ctaTexte": "Besoin d'un couvreur à Égly ? Pour une fuite, une toiture à refaire ou un entretien, contactez-moi : devis gratuit et sans engagement.",
+    "avisIds": [
+      "yanis-benoit",
+      "eric-jabaud",
+      "michel-curan"
+    ]
   },
   "couvreur-breuillet": {
     "nom": "Breuillet",
@@ -988,25 +808,16 @@
         "r": "pour une fuite ou une tuile envolée."
       }
     ],
-    "avisTitre": "Ce que disent de moi mes clients de Breuillet",
-    "avis": [
-      {
-        "nom": "Catherine Cheronneau",
-        "texte": "Bon travail esthétique et très rapide"
-      },
-      {
-        "nom": "Lucie Fleury",
-        "texte": "J’ai fait appel à l’entreprise Robert pour des travaux des toiture, travaux soigner et personnel à l’écoute, je veux le recommande"
-      },
-      {
-        "nom": "Fanfan Crepin",
-        "texte": "J' ai fait refaire le toit responsable d une infiltration. Travail soigné et très pro, je recommande"
-      }
-    ],
+    "avisTitre": "Les avis de mes clients dans l'Essonne",
     "servicesTitre": "Les prestations de votre couvreur à Breuillet",
     "servicesIntro": "À Breuillet, je traite votre toiture de A à Z : réparation, rénovation, démoussage, charpente et zinguerie.",
     "ctaTitre": "Faites intervenir un couvreur à Breuillet",
-    "ctaTexte": "Vous habitez Breuillet et votre toit a besoin d'un couvreur ? Contactez-moi : mes devis sont gratuits, détaillés et sans engagement."
+    "ctaTexte": "Vous habitez Breuillet et votre toit a besoin d'un couvreur ? Contactez-moi : mes devis sont gratuits, détaillés et sans engagement.",
+    "avisIds": [
+      "catherine-cheronneau",
+      "lucie-fleury",
+      "fanfan-crepin"
+    ]
   },
   "couvreur-saint-yon": {
     "nom": "Saint-Yon",
@@ -1036,24 +847,15 @@
         "r": "détaillé et sans engagement."
       }
     ],
-    "avisTitre": "Les avis de mes clients satisfaits à Saint-Yon",
-    "avis": [
-      {
-        "nom": "marc viandon",
-        "texte": "Réalisation faite avec professionnalisme Couverture et lucarne chien assis Conseil avisé sur choix des tuiles les plus adaptées .travail propre et réalisé dans les temps"
-      },
-      {
-        "nom": "Michelle FRANCOIS",
-        "texte": "Très bon travail, Monsieur ROBERT et son équipe sont très sérieux et de bons conseils. Le chantier (dépose de gouttières en zinc et pose de gouttières en alu) s'est déroulé en une matinée et le chantier a été nettoyé. Donc je suis très satisfaite de son travail."
-      },
-      {
-        "nom": "Nadege Fernandez",
-        "texte": "intervention pour travaux toiture ce jour à etrechy il n y a rien à redire , excellent travail, équipe au top, gentille, chantier terminé, nettoyé des vrais professionnels"
-      }
-    ],
+    "avisTitre": "Ce que mes clients disent de mon travail",
     "servicesTitre": "Mon savoir-faire d'artisan couvreur à Saint-Yon",
     "servicesIntro": "À Saint-Yon, je prends en charge toute la toiture : réparation, rénovation, nettoyage, charpente et zinguerie.",
     "ctaTitre": "Contactez votre couvreur à Saint-Yon",
-    "ctaTexte": "Besoin d'un couvreur à Saint-Yon ? Contactez-moi pour réparer ou refaire votre toiture : devis gratuit, détaillé et sans engagement."
+    "ctaTexte": "Besoin d'un couvreur à Saint-Yon ? Contactez-moi pour réparer ou refaire votre toiture : devis gratuit, détaillé et sans engagement.",
+    "avisIds": [
+      "marc-viandon",
+      "michelle-francois",
+      "anais-renaudin"
+    ]
   }
 }

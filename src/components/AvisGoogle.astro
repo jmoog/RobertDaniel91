@@ -1,0 +1,217 @@
+---
+// Section « avis clients » alimentée par src/data/avis-google.json
+// (relevé de la fiche Google). Note moyenne et nombre d'avis calculés
+// depuis le fichier : une seule mise à jour suffit pour tout le site.
+// Affichage seulement : AUCUN balisage Review/AggregateRating (avis sur
+// sa propre entreprise = « self-serving », non éligible aux étoiles Google).
+import data from '../data/avis-google.json';
+
+interface Props {
+  titre: string;
+  ids: string[];
+  intro?: string;
+  fond?: 'blanc' | 'gris';
+}
+const { titre, ids, intro, fond = 'gris' } = Astro.props;
+
+const avis = ids
+  .map((id) => data.avis.find((a) => a.id === id))
+  .filter((a) => a && a.texte);
+
+const etoile = 'M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z';
+const LONG = 260; // au-delà, le texte est replié avec « Lire la suite »
+const initiale = (nom: string) => nom.trim().charAt(0).toUpperCase();
+---
+<section class:list={['avis-g', `avis-g--${fond}`]}>
+  <div class="conteneur">
+    <div class="avis-g__entete" data-avis-anim>
+      <div class="avis-g__titres">
+        <h2 class="avis-g__h2">{titre}</h2>
+        {intro && <p class="avis-g__intro">{intro}</p>}
+      </div>
+      <a class="avis-g__resume" href={data.lien} target="_blank" rel="noopener">
+        <span class="avis-g__moyenne">{data.moyenneAffichee}</span>
+        <span class="avis-g__resume-detail">
+          <span class="avis-g__etoiles" aria-hidden="true">
+            {Array(5).fill(0).map(() => <svg viewBox="0 0 24 24"><path d={etoile} /></svg>)}
+          </span>
+          <span class="avis-g__nombre">{data.total} avis Google</span>
+        </span>
+        <span class="visually-hidden">Note moyenne de {data.moyenneAffichee} sur 5 sur {data.total} avis Google : voir la fiche</span>
+      </a>
+    </div>
+
+    <ul class="avis-g__liste">
+      {avis.map((a) => (
+        <li class="avis-g__carte" data-avis-anim>
+          <div class="avis-g__note" role="img" aria-label={`Note : ${a.note} sur 5`}>
+            {Array(5).fill(0).map((_, i) => (
+              <svg viewBox="0 0 24 24" aria-hidden="true" class={i < a.note ? 'plein' : 'vide'}><path d={etoile} /></svg>
+            ))}
+          </div>
+          <blockquote class:list={['avis-g__texte', { 'avis-g__texte--long': a.texte.length > LONG }]}>
+            {a.texte.split('\n').map((ligne) => <p>{ligne}</p>)}
+          </blockquote>
+          {a.texte.length > LONG && (
+            <button type="button" class="avis-g__suite" aria-expanded="false">Lire la suite</button>
+          )}
+          <p class="avis-g__auteur">
+            <span class="avis-g__avatar" aria-hidden="true">{initiale(a.nom)}</span>
+            <span>
+              <span class="avis-g__nom">{a.nom}</span>
+              <span class="avis-g__source">Avis Google · {a.visite}</span>
+            </span>
+          </p>
+        </li>
+      ))}
+    </ul>
+
+    <p class="avis-g__cta">
+      <a href={data.lien} class="avis-g__btn" target="_blank" rel="noopener">
+        Lire les {data.total} avis sur Google
+        <span class="avis-g__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </p>
+  </div>
+</section>
+
+<script>
+  // « Lire la suite » sur les avis longs
+  document.querySelectorAll('.avis-g__suite').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const texte = btn.previousElementSibling;
+      const ouvert = texte?.classList.toggle('est-ouvert');
+      btn.setAttribute('aria-expanded', ouvert ? 'true' : 'false');
+      btn.textContent = ouvert ? 'Réduire' : 'Lire la suite';
+    });
+  });
+  // Apparition au défilement (désactivée si l'utilisateur réduit les animations)
+  const blocs = document.querySelectorAll('[data-avis-anim]');
+  if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.add('avis-anim');
+    const io = new IntersectionObserver((entrees) => {
+      entrees.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('est-visible'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    blocs.forEach((b) => io.observe(b));
+  }
+</script>
+
+<style>
+  .avis-g { padding-block: clamp(52px, 7vw, 88px); }
+  .avis-g--gris { background: var(--gris-50); }
+  .avis-g--blanc { background: var(--blanc); }
+
+  /* En-tête : titre à gauche, note moyenne à droite */
+  .avis-g__entete {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    gap: 20px 40px; margin-bottom: 36px;
+  }
+  .avis-g__titres { flex: 1 1 420px; min-width: 0; }
+  .avis-g__h2 {
+    margin: 0; text-align: left;
+    font-family: var(--font-titres); font-weight: 700; color: var(--bleu-fonce);
+    font-size: clamp(22px, .6rem + 2.4vw, 34px); line-height: 1.2; text-wrap: balance;
+  }
+  .avis-g__intro { margin: 10px 0 0; color: var(--gris-700); max-width: 60ch; }
+
+  .avis-g__resume {
+    display: inline-flex; align-items: center; gap: 14px; flex-shrink: 0;
+    padding: 14px 22px; background: var(--blanc); border-radius: 14px;
+    box-shadow: 0 6px 20px rgb(0 73 123 / .08); text-decoration: none; color: inherit;
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .avis-g--blanc .avis-g__resume { background: var(--gris-50); box-shadow: none; }
+  .avis-g__resume:hover { transform: translate3d(0, -2px, 0); box-shadow: 0 12px 26px rgb(0 73 123 / .14); }
+  .avis-g__moyenne {
+    font-family: var(--font-titres); font-weight: 700; font-size: 44px; line-height: 1; color: var(--bleu-fonce);
+  }
+  .avis-g__resume-detail { display: flex; flex-direction: column; gap: 4px; }
+  .avis-g__etoiles { display: inline-flex; gap: 2px; }
+  .avis-g__etoiles svg { width: 20px; height: 20px; fill: #fbbc04; }
+  .avis-g__nombre { font-weight: 700; color: var(--gris-700); font-size: 15px; }
+
+  /* Cartes */
+  .avis-g__liste {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; align-items: start;
+  }
+  .avis-g__carte {
+    display: flex; flex-direction: column; gap: 14px; height: 100%;
+    padding: 26px 24px; background: var(--blanc); border-radius: 14px;
+    box-shadow: 0 6px 20px rgb(0 73 123 / .07); text-align: left;
+  }
+  .avis-g--blanc .avis-g__carte { background: var(--gris-50); box-shadow: none; }
+  .avis-g__note { display: inline-flex; gap: 2px; }
+  .avis-g__note svg { width: 18px; height: 18px; }
+  .avis-g__note .plein { fill: #fbbc04; }
+  .avis-g__note .vide { fill: var(--gris-200); }
+
+  .avis-g__texte { margin: 0; color: var(--gris-700); font-size: 16px; line-height: 1.65; }
+  .avis-g__texte p { margin: 0 0 .5em; }
+  .avis-g__texte p:last-child { margin-bottom: 0; }
+  .avis-g__texte--long:not(.est-ouvert) {
+    display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 6; line-clamp: 6; overflow: hidden;
+  }
+  .avis-g__texte--long:not(.est-ouvert) p { display: inline; }
+  .avis-g__texte--long:not(.est-ouvert) p + p::before { content: ' '; }
+  .avis-g__suite {
+    align-self: flex-start; padding: 0; border: 0; background: none; cursor: pointer;
+    font: inherit; font-weight: 700; font-size: 15px; color: var(--bleu); text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .avis-g__suite:hover { color: var(--bleu-fonce); }
+
+  .avis-g__auteur { display: flex; align-items: center; gap: 12px; margin: auto 0 0; padding-top: 6px; }
+  .avis-g__avatar {
+    display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+    width: 40px; height: 40px; border-radius: 50%; background: var(--bleu); color: var(--blanc);
+    font-family: var(--font-titres); font-weight: 700; font-size: 17px;
+  }
+  .avis-g__nom { display: block; font-family: var(--font-titres); font-weight: 700; color: var(--bleu-fonce); }
+  .avis-g__source { display: block; font-size: 14px; color: var(--gris-500); }
+
+  /* Bouton (pilule, largeur du contenu, centré) */
+  .avis-g__cta { text-align: center; margin: 36px 0 0; }
+  .avis-g__btn {
+    display: inline-flex; align-items: center; gap: 12px; width: auto; max-width: max-content;
+    min-height: 50px; padding: 14px 26px; border-radius: 999px; background: var(--bleu); color: var(--blanc);
+    font-family: var(--font-titres); font-weight: 700; font-size: 16px; line-height: 1.2; text-decoration: none;
+    box-shadow: 0 4px 12px rgb(0 42 69 / .12);
+    transition: background-color .25s ease, transform .25s ease, box-shadow .25s ease;
+  }
+  .avis-g__btn:hover { background: var(--bleu-fonce); color: var(--blanc); transform: translate3d(0, -2px, 0); box-shadow: 0 10px 22px rgb(0 42 69 / .2); }
+  .avis-g__fleche {
+    display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+    width: 26px; height: 26px; border-radius: 50%; background: var(--blanc); color: var(--bleu);
+  }
+  .avis-g__fleche svg { width: 14px; height: 14px; transition: transform .3s ease; }
+  .avis-g__btn:hover .avis-g__fleche svg { transform: translate3d(3px, 0, 0); }
+
+  /* Tablette : 2 colonnes */
+  @media (max-width: 1023px) {
+    .avis-g__liste { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+  }
+  /* Mobile : défilement horizontal (pas de longue pile de textes) */
+  @media (max-width: 767px) {
+    .avis-g__entete { flex-direction: column; align-items: center; margin-bottom: 26px; }
+    .avis-g__titres { flex-basis: auto; width: 100%; }
+    .avis-g__h2 { text-align: center; }
+    .avis-g__intro { text-align: center; margin-inline: auto; }
+    .avis-g__liste {
+      display: flex; align-items: stretch; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory;
+      margin-inline: -1rem; padding: 4px 1rem 14px; scrollbar-width: none;
+    }
+    .avis-g__liste::-webkit-scrollbar { display: none; }
+    .avis-g__carte { flex: 0 0 84%; scroll-snap-align: center; height: auto; }
+    .avis-g__btn { min-height: 46px; padding: 12px 18px; font-size: 15px; gap: 10px; }
+  }
+
+  /* Apparitions */
+  :global(html.avis-anim) [data-avis-anim] { opacity: 0; transform: translate3d(0, 24px, 0); transition: opacity .7s ease, transform .7s ease; }
+  :global(html.avis-anim) [data-avis-anim].est-visible { opacity: 1; transform: none; }
+
+  .visually-hidden {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+</style>

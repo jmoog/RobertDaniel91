@@ -5,6 +5,8 @@ import CartesRealisations from '../components/CartesRealisations.astro';
 import CtaDevis from '../components/CtaDevis.astro';
 import villes from '../data/villes.json';
 
+import AvisGoogle from '../components/AvisGoogle.astro';
+import NoteGoogle from '../components/NoteGoogle.astro';
 const title = "Réparation de toiture dans l'Essonne (91) — M. Robert";
 const description = "Réparation de toiture à Étréchy et dans l'Essonne : recherche de fuite, tuiles cassées, infiltrations. M. Robert Daniel, couvreur. Devis gratuit.";
 
@@ -44,6 +46,7 @@ const extraSchemas = [{
           </a>
           <a href="/devis-gratuit/" class="btn btn--bleu">Devis gratuit <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
         </div>
+        <NoteGoogle />
       </div>
       <div class="hero__media">
         <img class="hero__photo" src="/images/reparation-toiture-vue-drone-essonne.webp" alt="Vue par drone d'une toiture en tuiles avec faîtage et arêtiers à reprendre dans l'Essonne" width="825" height="1100" fetchpriority="high" decoding="async" />
@@ -202,6 +205,8 @@ const extraSchemas = [{
   </section>
 
   <CartesRealisations slugs={['refection-faitage-etrechy', 'renovation-toiture-etrechy']} titre="Une réparation de toiture en images" fond="gris" />
+
+  <AvisGoogle titre="Les avis de mes clients après une réparation" ids={['fanfan-crepin', 'zoro-aaron', 'emmeline-renelus']} fond="blanc" />
 
   <CtaDevis />
 

@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import FilAriane from '../components/FilAriane.astro';
+import AvisGoogle from '../components/AvisGoogle.astro';
+import NoteGoogle from '../components/NoteGoogle.astro';
 
 const title = "Devis gratuit couvreur dans l'Essonne (91) — Robert Daniel Couverture";
 const description = "Demandez votre devis gratuit à Robert Daniel, couvreur zingueur à Étréchy. Rénovation, réparation, ramonage, Velux dans toute l'Essonne (91). Réponse rapide et sans engagement.";
@@ -10,12 +12,6 @@ const description = "Demandez votre devis gratuit à Robert Daniel, couvreur zin
 // L'envoi des emails passe par la route serveur /api/devis (Brevo).
 const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 
-const avis = [
-  { nom: 'Caroline David', texte: "Un artisan très professionnel, aimable, qui tient ses engagements. Je recommande fortement." },
-  { nom: 'Mathieu Ponson', texte: "Il a parfaitement répondu à mes besoins dans les délais. Chantier impeccable, je recommande les yeux fermés." },
-  { nom: 'Olivier Loret', texte: "Travail fait dans les temps, équipe professionnelle et soignée. À l'écoute. Je recommande vivement." },
-];
-const etoile = "M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z";
 ---
 <BaseLayout title={title} description={description}>
   <!-- Hero + formulaire -->
@@ -37,6 +33,7 @@ const etoile = "M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2
           <li>Déplacement et vérification de toiture offerts.</li>
           <li>Garantie décennale Allianz sur tous mes travaux.</li>
         </ul>
+        <NoteGoogle />
         <div class="contact-infos">
           <p><strong>Téléphone :</strong> <a href="tel:0683961518">06 83 96 15 18</a></p>
           <p><strong>Email :</strong> <a href="mailto:robert.entreprise@outlook.fr">robert.entreprise@outlook.fr</a></p>
@@ -129,28 +126,7 @@ const etoile = "M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2
   </section>
 
   <!-- Avis -->
-  <section class="section section--gris">
-    <div class="conteneur">
-      <div class="section__entete">
-        <span class="surtitre">Avis clients</span>
-        <h2>Ils m'ont fait confiance</h2>
-        <p>Note moyenne de 5,0 / 5 sur 69 avis Google.</p>
-      </div>
-      <div class="avis-grille">
-        {avis.map((a) => (
-          <figure class="carte avis-carte">
-            <div class="avis-etoiles" aria-label="Note : 5 sur 5">
-              {Array(5).fill(0).map(() => (
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d={etoile} /></svg>
-              ))}
-            </div>
-            <blockquote>{a.texte}</blockquote>
-            <figcaption>{a.nom} — <span>Avis Google</span></figcaption>
-          </figure>
-        ))}
-      </div>
-    </div>
-  </section>
+  <AvisGoogle titre="Ils m'ont fait confiance" ids={['line-lameth', 'marc-viandon', 'pascal-guillarme']} fond="gris" />
 </BaseLayout>
 
 <style>
@@ -197,20 +173,6 @@ const etoile = "M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2
   .form-rgpd { margin: 0; font-size: 0.82rem; color: var(--gris-500); }
   .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
-  .avis-grille {
-    display: grid;
-    gap: 1.5rem;
-    grid-template-columns: 1fr;
-    margin-top: 2rem;
-  }
-  @media (min-width: 760px) { .avis-grille { grid-template-columns: repeat(3, 1fr); } }
-  .avis-carte { padding: 1.5rem; display: flex; flex-direction: column; gap: 0.8rem; background: var(--blanc); }
-  .avis-carte:hover { transform: none; }
-  .avis-etoiles { display: inline-flex; gap: 2px; }
-  .avis-etoiles svg { width: 1.1rem; height: 1.1rem; fill: #fbbc04; }
-  .avis-carte blockquote { margin: 0; color: var(--gris-700); line-height: 1.6; flex: 1; }
-  .avis-carte figcaption { font-weight: 700; color: var(--bleu); }
-  .avis-carte figcaption span { font-weight: 400; font-size: 0.85rem; color: var(--gris-500); }
 </style>
 
 <script>

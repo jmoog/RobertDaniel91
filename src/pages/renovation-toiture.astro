@@ -5,6 +5,8 @@ import CartesRealisations from '../components/CartesRealisations.astro';
 import CtaDevis from '../components/CtaDevis.astro';
 import villes from '../data/villes.json';
 
+import AvisGoogle from '../components/AvisGoogle.astro';
+import NoteGoogle from '../components/NoteGoogle.astro';
 const title = "Rénovation de toiture dans l'Essonne (91) — M. Robert";
 const description = "Rénovation de toiture à Étréchy et dans l'Essonne : réfection partielle ou complète, écran sous-toiture, tuiles, ardoise et zinc. M. Robert Daniel, devis gratuit.";
 
@@ -45,6 +47,7 @@ const extraSchemas = [{
           </a>
           <a href="/devis-gratuit/" class="btn btn--bleu">Devis gratuit <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
         </div>
+        <NoteGoogle />
       </div>
       <div class="hero__media">
         <img class="hero__photo" src="/images/services/renovation-toiture.webp" alt="Rénovation de toiture en tuiles par Robert Daniel Couverture dans l'Essonne" width="900" height="600" fetchpriority="high" decoding="async" />
@@ -203,6 +206,8 @@ const extraSchemas = [{
   </section>
 
   <CartesRealisations slugs={['renovation-toiture-auvers-saint-georges', 'renovation-toiture-etrechy']} titre="Mes chantiers de rénovation de toiture" fond="gris" />
+
+  <AvisGoogle titre="Ils m'ont confié la rénovation de leur toiture" ids={['jef', 'nora-mercier', 'anne-marie-allombert']} fond="blanc" />
 
   <CtaDevis />
 

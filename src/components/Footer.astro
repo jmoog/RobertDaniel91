@@ -1,22 +1,53 @@
 ---
 import services from '../data/services.json';
 import villes from '../data/villes.json';
+const tel = '06 83 96 15 18';
+const email = 'robert.entreprise@outlook.fr';
+const fiche = 'https://maps.app.goo.gl/rYpVbKYbBB64Uk2y6';
 ---
 <footer class="pied">
   <div class="conteneur pied__grille">
-    <div class="pied__bloc pied__marque">
-      <div class="pied__logo-placeholder">Robert Daniel Couverture</div>
-      <p><strong>Robert Daniel Couverture</strong><br />Artisan couvreur dans l'Essonne (91)</p>
-      <p>42 Grande Rue<br />91580 Étréchy</p>
-      <p>
-        <a href="tel:0683961518">06 83 96 15 18</a><br />
-        <a href="mailto:robert.entreprise@outlook.fr">robert.entreprise@outlook.fr</a>
+    <div class="pied__marque">
+      <a href="/" class="pied__logo" aria-label="Robert Daniel Couverture — retour à l'accueil">
+        <img
+          src="/logo-robert-daniel-artisan-couvreur-91.webp"
+          alt="Robert Daniel Couverture, artisan couvreur dans l'Essonne"
+          width="200"
+          height="100"
+          loading="lazy"
+          decoding="async"
+        />
+      </a>
+      <p class="pied__nom">Robert Daniel Couverture<span>Artisan couvreur dans l'Essonne (91)</span></p>
+
+      <a class="pied__adresse" href={fiche} target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+        <span>42 Grande Rue<br />91580 Étréchy</span>
+      </a>
+
+      <div class="pied__boutons">
+        <a href="tel:0683961518" class="btn btn--blanc">
+          <svg class="icone-tel" viewBox="0 0 24 24" aria-hidden="true"><g class="icone-tel__corps"><path fill="currentColor" d="M14 1H6C4.9 1 4 1.9 4 3v18c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-4 21c-.8 0-1.5-.7-1.5-1.5S9.2 19 10 19s1.5.7 1.5 1.5S10.8 22 10 22zm4-4H6V4h8v14z"/></g><path class="icone-tel__onde" d="M18.5 8.5a4 4 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="icone-tel__onde icone-tel__onde--2" d="M21 6a7.5 7.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          {tel}
+        </a>
+        <a href="/devis-gratuit/" class="btn btn--cuivre">
+          Devis gratuit
+          <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a href={`mailto:${email}`} class="btn btn--contour pied__mail">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.9 7.9"/></svg>
+          <span>{email}</span>
+        </a>
+      </div>
+
+      <p class="pied__horaires">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <span>Du lundi au samedi<br />de 8 h à 20 h</span>
       </p>
-      <p class="pied__horaires">Lun — Sam : 08h00 — 20h00</p>
     </div>
 
-    <nav class="pied__bloc" aria-label="Nos services">
-      <h2>Nos services</h2>
+    <nav class="pied__bloc" aria-label="Prestations">
+      <h2>Mes prestations</h2>
       <ul>
         {services.map((s) => (
           <li><a href={s.slug === 'zinguerie' ? '/zinguerie/' : `/${s.slug}/`}>{s.label}</a></li>
@@ -24,30 +55,25 @@ import villes from '../data/villes.json';
       </ul>
     </nav>
 
-    <nav class="pied__bloc" aria-label="Zone d'intervention">
-      <h2>Essonne et alentours</h2>
+    <nav class="pied__bloc pied__villes" aria-label="Communes d'intervention">
+      <h2>Les communes dans lesquelles j'interviens</h2>
       <ul>
         {villes.map((v) => (
           <li><a href={`/${v.slug}/`}>{v.nom}</a></li>
         ))}
       </ul>
     </nav>
+  </div>
 
-    <nav class="pied__bloc" aria-label="Informations">
-      <h2>Informations</h2>
-      <ul>
-        <li><a href="/a-propos/">À propos</a></li>
-        <li><a href="/realisations/">Réalisations</a></li>
-        <li><a href="/devis-gratuit/">Devis gratuit</a></li>
-        <li><a href="/mentions-legales/">Mentions legales</a></li>
+  <div class="pied__bas">
+    <div class="conteneur pied__bas-int">
+      <p class="pied__legal"><span>SAS MR ROBERT — Robert Daniel Couverture</span> <span>Garantie décennale · SIRET <a href="https://annuaire-entreprises.data.gouv.fr/entreprise/mr-robert-937889236" target="_blank" rel="noopener noreferrer">937 889 236 00017</a></span></p>
+      <ul class="pied__liens-legaux">
+        <li><a href="/mentions-legales/">Mentions légales</a></li>
         <li><a href="/plan-du-site/">Plan du site</a></li>
         <li><a href="#cookies" data-ck-open>Gérer les cookies</a></li>
       </ul>
-    </nav>
-  </div>
-
-  <div class="pied__legal">
-    <p><span>SAS MR ROBERT — Robert Daniel Couverture — Artisan couvreur dans l'Essonne.</span> <span>Garantie décennale · SIRET <a href="https://annuaire-entreprises.data.gouv.fr/entreprise/mr-robert-937889236" target="_blank" rel="noopener noreferrer">937 889 236 00017</a></span></p>
+    </div>
   </div>
 </footer>
 
@@ -56,46 +82,128 @@ import villes from '../data/villes.json';
     background: var(--bleu-fonce);
     color: rgba(255, 255, 255, 0.85);
     margin-top: auto;
-    font-size: 0.93rem;
+    font-size: 0.95rem;
   }
+  .pied a { color: rgba(255, 255, 255, 0.85); text-decoration: none; }
+  .pied a:hover { color: var(--blanc); text-decoration: underline; }
+
   .pied__grille {
     display: grid;
-    gap: 2.5rem;
-    padding-block: 3rem;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: minmax(300px, 1.1fr) minmax(200px, 0.8fr) minmax(300px, 1.3fr);
+    gap: 3rem;
+    padding-block: 3.5rem 3rem;
   }
+
+  /* ── Colonne marque / contact ── */
+  .pied__marque { display: flex; flex-direction: column; align-items: flex-start; gap: 1.1rem; }
+  .pied__logo {
+    display: inline-block;
+    background: var(--blanc);
+    border-radius: 14px;
+    padding: 10px 16px;
+    box-shadow: 0 6px 18px rgb(0 0 0 / .18);
+  }
+  .pied__logo img { display: block; width: 180px; height: auto; }
+  .pied__nom {
+    margin: 0;
+    font-family: var(--font-titres);
+    font-weight: 700;
+    font-size: 1.15rem;
+    line-height: 1.3;
+    color: var(--blanc);
+  }
+  .pied__nom span {
+    display: block;
+    font-family: var(--font);
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  .pied .pied__adresse {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: var(--blanc);
+    font-weight: 600;
+    font-size: 1.02rem;
+    line-height: 1.4;
+  }
+  .pied__adresse svg, .pied__horaires svg { width: 20px; height: 20px; flex-shrink: 0; margin-top: 1px; }
+  .pied__adresse svg { color: var(--cuivre); }
+
+  .pied__boutons { display: flex; flex-direction: column; align-items: flex-start; gap: 0.7rem; margin-top: 0.3rem; }
+  .pied .btn--blanc, .pied .btn--blanc:hover { color: var(--bleu-fonce); text-decoration: none; }
+  .pied .btn--cuivre, .pied .btn--cuivre:hover,
+  .pied .btn--contour, .pied .btn--contour:hover { color: var(--blanc); text-decoration: none; }
+  .pied__mail { font-family: var(--font); font-weight: 600; }
+  .pied__mail svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+  .pied__horaires {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 0.2rem 0 0;
+    color: var(--blanc);
+    line-height: 1.4;
+  }
+
+  /* ── Colonnes de liens ── */
   .pied__bloc h2 {
     color: var(--blanc);
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin-bottom: 1rem;
+    font-size: 1.05rem;
+    line-height: 1.3;
+    margin: 0 0 1.1rem;
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   }
-  .pied__bloc ul { list-style: none; padding: 0; display: grid; gap: 0.4rem; }
-  .pied a { color: rgba(255, 255, 255, 0.85); text-decoration: none; }
-  .pied a:hover { color: var(--cuivre); text-decoration: underline; }
-  .pied__logo-placeholder {
-    font-weight: 800;
-    font-size: 1.1rem;
-    color: var(--blanc);
-    margin-bottom: 1rem;
-  }
-  .pied__marque p { margin-block: 0.5rem; }
-  .pied__horaires { font-size: 0.88rem; color: rgba(255, 255, 255, 0.7); }
-  .pied__legal {
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
-    text-align: center;
-    padding: 1.2rem 1rem;
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.6);
-  }
-  .pied__legal p { margin: 0; text-align: center; }
-  .pied__legal span { display: inline-block; }
+  .pied__bloc ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+  .pied__villes ul { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 1.5rem; }
 
-  @media (max-width: 800px) {
-    .pied__grille { text-align: center; }
-    .pied__grille p { text-align: center; }
-    .pied__bloc h2 { text-align: center; }
+  /* ── Bandeau du bas ── */
+  .pied__bas { background: rgb(0 0 0 / .18); }
+  .pied__bas-int {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.6rem 2rem;
+    padding-block: 1.1rem;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.65);
+  }
+  .pied__bas a { color: rgba(255, 255, 255, 0.75); }
+  .pied__legal { margin: 0; }
+  .pied__legal span { display: inline-block; }
+  .pied__legal span + span::before { content: '·'; margin-inline: 0.5em; }
+  .pied__liens-legaux { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem; margin: 0; padding: 0; }
+
+  /* ── Tablette : contact en haut sur toute la largeur ── */
+  @media (max-width: 1023px) {
+    .pied__grille { grid-template-columns: 1fr 1.4fr; gap: 2.5rem; }
+    .pied__marque {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      column-gap: 2.5rem;
+      row-gap: 1rem;
+      align-items: start;
+    }
+    .pied__logo, .pied__nom, .pied__adresse, .pied__horaires { grid-column: 1; }
+    .pied__boutons { grid-column: 2; grid-row: 1 / span 4; align-self: center; }
+  }
+
+  /* ── Mobile : tout centré, une colonne ── */
+  @media (max-width: 680px) {
+    .pied__grille { grid-template-columns: 1fr; gap: 2.5rem; padding-block: 2.5rem 2rem; text-align: center; }
+    .pied__marque { display: flex; flex-direction: column; align-items: center; }
+    .pied__boutons { align-items: center; }
+    .pied .pied__adresse, .pied__horaires { justify-content: center; text-align: left; }
+    .pied__mail span { white-space: normal; overflow-wrap: anywhere; }
     .pied__bloc ul { justify-items: center; }
+    .pied__villes ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.55rem 1.1rem; }
+    .pied__bas-int { flex-direction: column; justify-content: center; text-align: center; }
+    .pied__legal span + span::before { content: none; }
+    .pied__legal span { display: block; }
+    .pied__liens-legaux { justify-content: center; }
   }
 </style>

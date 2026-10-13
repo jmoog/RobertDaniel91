@@ -1,205 +1,560 @@
 ---
+// ════════════════════════════════════════════════════════════════════
+// GABARIT DES PAGES COMMUNES (refonte 13 oct. 2026) — design et structure
+// repris de la page /couvreur-etrechy/ : héro, présentation, prestations,
+// CTA, avis, drone, ramonage, démarches en mairie, réalisations.
+// Tout le contenu (balises, textes, photos, mairie) est dans
+// src/data/villes-contenu.json. Aucune mention du bureau d'Étréchy ici.
+// ════════════════════════════════════════════════════════════════════
 import BaseLayout from '../layouts/BaseLayout.astro';
-import FilAriane from '../components/FilAriane.astro';
-import villes from '../data/villes.json';
-import contenu from '../data/villes-contenu.json';
+import FilAriane from './FilAriane.astro';
 import CartesRealisations from './CartesRealisations.astro';
 import AvisGoogle from './AvisGoogle.astro';
 import NoteGoogle from './NoteGoogle.astro';
+import villes from '../data/villes.json';
+import contenu from '../data/villes-contenu.json';
 import realisations from '../data/realisations.json';
 import proches from '../data/realisations-villes.json';
-import distances from '../data/villes-distance-etrechy.json';
 
 const { slug } = Astro.props;
-const d = contenu[slug];
-const autresVilles = villes.filter((v) => v.slug !== slug);
-const chantiers = proches[slug] || [];
-const rang = villes.findIndex((v) => v.slug === slug);
-// Nom de l'artisan / de l'entreprise sous le H1, en alternance d'une commune à l'autre
-const nomH1 = rang % 2 === 0 ? 'Robert Daniel' : 'Robert Daniel Couverture';
-// Lien vers Étréchy (bureau) seulement depuis les communes voisines, ancres variées
-const ancresEtrechy = ['artisan couvreur à Étréchy', 'couvreur à Étréchy', 'couvreur zingueur à Étréchy', 'spécialiste de la toiture à Étréchy'];
-const ancreEtrechy = ancresEtrechy[rang % ancresEtrechy.length];
-const km = distances[slug];
-const deVille = /^[AEIOUYÉÈÊÂÎÔÛaeiouyéèêâîôû]/.test(d.nom) ? `d'${d.nom}` : `de ${d.nom}`;
+const d = (contenu as any)[slug];
+const SITE = 'https://robert-daniel-couverture.fr';
+const PAGE = `${SITE}/${slug}/`;
+
+// Réalisations : chantiers de la commune d'abord, sinon les plus proches
+const slugsChantiers: string[] = (proches as any)[slug] || [];
 const nbIci = realisations.filter((r) => r.pageVille === `/${slug}/`).length;
-const titreChantiers = nbIci >= chantiers.length && nbIci > 0
+const titreChantiers = nbIci >= slugsChantiers.length && nbIci > 0
   ? `Mes chantiers à ${d.nom}`
   : nbIci > 0 ? `Mes chantiers à ${d.nom} et aux alentours` : `Mes chantiers près de ${d.nom}`;
 
-const services = [
-  { href: '/renovation-toiture/', label: 'Rénovation de toiture', img: '/images/services/renovation-toiture.webp', desc: 'Réfection partielle ou complète de votre toit.' },
-  { href: '/reparation-toiture/', label: 'Réparation de toiture', img: '/images/services/reparation-toiture.webp', desc: 'Recherche de fuite et reprise des tuiles.' },
-  { href: '/nettoyage-toiture/', label: 'Nettoyage de toiture', img: '/images/services/nettoyage-toiture.webp', desc: 'Démoussage et traitement de la couverture.' },
-  { href: '/zinguerie/', label: 'Zinguerie', img: '/images/services/zinguerie.webp', desc: 'Gouttières, descentes, noues et solins.' },
-  { href: '/charpente/', label: 'Charpente', img: '/images/services/charpente.webp', desc: 'Traitement, réparation et remplacement du bois.' },
-  { href: '/isolation-toiture/', label: 'Isolation de toiture', img: '/images/services/isolation-toiture.webp', desc: 'Isolation des combles et de la sous-toiture.' },
-  { href: '/fenetre-de-toit-velux/', label: 'Fenêtre de toit Velux', img: '/images/services/velux.webp', desc: 'Pose et remplacement de fenêtres de toit.' },
-  { href: '/ramonage-cheminee/', label: 'Ramonage de cheminée', img: '/images/ramonage-cheminee-essonne.webp', desc: 'Ramonage mécanique du conduit, certificat de ramonage fourni.' },
-  { href: '/inspection-toiture-drone/', label: 'Inspection par drone', img: '/images/inspection-toiture-drone-village-essonne.webp', desc: "État de votre toiture, images à l'appui." },
-];
+const telLien = (t: string) => `tel:${t.replace(/\s/g, '')}`;
+const heroSrcset = d.hero.src800 ? `${d.hero.src800} 800w, ${d.hero.src} ${d.hero.w}w` : undefined;
+const chantiers = slugsChantiers.map((s) => realisations.find((x) => x.slug === s)).filter(Boolean) as any[];
 
 const extraSchemas = [{
   '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${PAGE}#webpage`,
+  url: PAGE,
+  name: d.title,
+  description: d.metaDescription.replace(/^✓\s*/, ''),
+  inLanguage: 'fr-FR',
+  dateModified: '2026-10-13',
+  isPartOf: { '@type': 'WebSite', '@id': `${SITE}/#website`, url: `${SITE}/`, name: 'Robert Daniel Couverture' },
+  about: { '@id': `${PAGE}#service` },
+  breadcrumb: { '@id': `${PAGE}#breadcrumb` },
+  primaryImageOfPage: { '@type': 'ImageObject', url: `${SITE}${d.hero.src}`, width: d.hero.w, height: d.hero.h },
+  ...(chantiers.length ? { relatedLink: chantiers.map((c) => `${SITE}${c.url}`) } : {}),
+}, {
+  '@context': 'https://schema.org',
   '@type': 'Service',
-  '@id': `https://robert-daniel-couverture.fr/${slug}/#service`,
+  '@id': `${PAGE}#service`,
   name: `Couvreur à ${d.nom}`,
   serviceType: 'Travaux de couverture',
-  provider: { '@id': 'https://robert-daniel-couverture.fr/#localbusiness' },
-  areaServed: { '@type': 'City', name: d.nom, address: { '@type': 'PostalAddress', postalCode: d.cp } },
-  url: `https://robert-daniel-couverture.fr/${slug}/`,
-  description: d.metaDescription,
+  url: PAGE,
+  description: d.metaDescription.replace(/^✓\s*/, ''),
+  provider: { '@id': `${SITE}/#localbusiness` },
+  areaServed: {
+    '@type': 'City', name: d.nom,
+    address: { '@type': 'PostalAddress', postalCode: d.cp, addressLocality: d.nom, addressCountry: 'FR' },
+    containedInPlace: { '@type': 'AdministrativeArea', name: 'Essonne' },
+  },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog', name: `Travaux de couverture à ${d.nom}`,
+    itemListElement: [...d.prestations.map((p: any) => p.titre), 'Vérification de toiture par drone', 'Ramonage de cheminée', 'Charpente']
+      .map((n: string) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: n, areaServed: d.nom } })),
+  },
 }];
+
+const fleche = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>`;
 ---
-<BaseLayout title={d.title} description={d.metaDescription} extraSchemas={extraSchemas}>
-  <section class="hero">
-    <div class="conteneur">
-      <FilAriane items={[{ label: 'Accueil', href: '/' }, { label: `Couvreur à ${d.nom}` }]} />
+<BaseLayout title={d.title} description={d.metaDescription} ogImage={d.hero.src} extraSchemas={extraSchemas}>
+
+  <!-- ══ HERO ══ -->
+  <section class="dr-hero">
+    <div class="conteneur et-ariane">
+      <FilAriane id={`${PAGE}#breadcrumb`} items={[{ label: 'Accueil', href: '/' }, { label: `Couvreur à ${d.nom}` }]} />
     </div>
-    <div class="conteneur hero__grille">
-      <div class="hero__texte">
-        <p class="hero__badge"><span class="hero__point" aria-hidden="true"></span> {d.badge}</p>
-        <h1>{d.h1}<span class="h1__nom">{nomH1}</span></h1>
-        <p class="hero__accroche" set:html={d.accroche} />
-        <ul>
-          {d.bullets.map((b) => (
-            <li><strong>{b.t}</strong> {b.r}</li>
-          ))}
+    <div class="conteneur dr-hero__grille">
+      <div class="dr-hero__titrebox">
+        <h1 class="dr-hero__titre" style={`--h1em:${d.h1em}`}>
+          <span class="dr-ligne">{d.h1}</span>
+          <span class="dr-ligne dr-hero__nom">{d.nomH1}</span>
+        </h1>
+      </div>
+
+      <figure class="dr-hero__media">
+        <img class="dr-media__poster" src={d.hero.src} srcset={heroSrcset} sizes="(min-width: 1024px) 50vw, 100vw" alt={d.hero.alt} width={d.hero.w} height={d.hero.h} fetchpriority="high" decoding="async" style={`object-position:${d.hero.pos}`} />
+      </figure>
+
+      <div class="dr-hero__texte">
+        <p class="dr-hero__lead" set:html={d.lead} />
+        <ul class="dr-coches">
+          {d.coches.map((c: string) => <li>{c}</li>)}
         </ul>
-        <div class="hero__actions">
-          <a href="tel:0683961518" class="btn btn--cuivre">
-            <svg class="icone-tel" viewBox="0 0 24 24" aria-hidden="true"><g class="icone-tel__corps"><path fill="currentColor" d="M14 1H6C4.9 1 4 1.9 4 3v18c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-4 21c-.8 0-1.5-.7-1.5-1.5S9.2 19 10 19s1.5.7 1.5 1.5S10.8 22 10 22zm4-4H6V4h8v14z"/></g><path class="icone-tel__onde" d="M18.5 8.5a4 4 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="icone-tel__onde icone-tel__onde--2" d="M21 6a7.5 7.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <div class="dr-actions">
+          <a href="/devis-gratuit/" class="dr-btn dr-btn--rouge">
+            Devis gratuit
+            <span class="dr-btn__fleche" aria-hidden="true" set:html={fleche} />
+          </a>
+          <a href="tel:0683961518" class="dr-btn dr-btn--blanc">
+            <svg class="dr-tel" viewBox="0 0 24 24" aria-hidden="true">
+              <g class="dr-tel__corps"><path fill="currentColor" d="M14 1H6C4.9 1 4 1.9 4 3v18c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-4 21c-.8 0-1.5-.7-1.5-1.5S9.2 19 10 19s1.5.7 1.5 1.5S10.8 22 10 22zm4-4H6V4h8v14z"/></g>
+              <path class="dr-tel__onde" d="M18.5 8.5a4 4 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path class="dr-tel__onde dr-tel__onde--2" d="M21 6a7.5 7.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
             06 83 96 15 18
           </a>
-          <a href="/devis-gratuit/" class="btn btn--bleu">Devis gratuit <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
         </div>
-        <NoteGoogle />
-      </div>
-      <div class="hero__media">
-        <img class="hero__photo" src={d.heroImg.src} alt={d.heroImg.alt} width={d.heroImg.w} height={d.heroImg.h} fetchpriority="high" decoding="async" />
-        <div class="carte hero__garantie">
-          <p><strong>Garantie Décennale</strong><br />Pour tous travaux de couverture</p>
-          <img src="/images/logo-allianz.png" alt="Garantie décennale assurée par Allianz" width="92" height="58" loading="lazy" decoding="async" />
-        </div>
-        {!d.adresse && km && (
-          <div class="carte hero__garantie">
-            <svg class="icone" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:1.8rem;height:1.8rem;flex-shrink:0;color:var(--cuivre);"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"/></svg>
-            {km <= 5
-              ? <p><strong>{d.nom} : à {km} km de mon bureau</strong><br />Je travaille depuis la Grande Rue, comme <a href="/couvreur-etrechy/">{ancreEtrechy}</a> et dans les villages voisins.</p>
-              : <p><strong>Mon bureau : 42 Grande Rue, Étréchy</strong><br />À {km} km {deVille}.</p>}
-          </div>
-        )}
-        {d.adresse && (
-          <div class="carte hero__garantie">
-            <svg class="icone" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:1.8rem;height:1.8rem;flex-shrink:0;color:var(--cuivre);"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"/></svg>
-            <p><strong>Mon showroom à Étréchy</strong><br />{d.adresse}</p>
-          </div>
-        )}
+        <NoteGoogle variante="sombre" />
       </div>
     </div>
   </section>
 
-  <!-- Avis clients -->
-  <AvisGoogle titre={d.avisTitre} ids={d.avisIds} fond="gris" />
+  <!-- ══ PRÉSENTATION : L'ARTISAN DANS LA COMMUNE ══ -->
+  <section class="dr-section">
+    <div class="conteneur pv-pres">
+      <div class="pv-pres__texte" data-anim="up">
+        <h2 class="dr-h2 pv-fit" style={`--em:${d.em.intro}`}>{d.intro.h2}</h2>
+        <ul class="et-coord">
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+            <span><strong>{d.intro.zone}</strong></span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+            <span>Du lundi au samedi, de 8 h à 20 h</span>
+          </li>
+        </ul>
+        {d.intro.paragraphes.map((p: string) => <p set:html={p} />)}
+      </div>
+      <div class="pv-pres__media" data-anim="fade">
+        <img src={d.intro.img.src} alt={d.intro.img.alt} width={d.intro.img.w} height={d.intro.img.h} loading="lazy" decoding="async" style={`object-position:${d.intro.img.pos}`} />
+      </div>
+    </div>
+  </section>
 
-  <!-- Services -->
-  <section class="section">
+  <!-- ══ PRESTATIONS ══ -->
+  <section class="dr-section dr-section--gris">
     <div class="conteneur">
-      <h2>{d.servicesTitre}</h2>
-      <p class="section__intro">{d.servicesIntro}</p>
-      <div class="grille-services">
-        {services.map((s) => (
-          <a href={s.href} class="carte carte-service">
-            <img class="carte-service__img" src={s.img} alt={`${s.label} à ${d.nom} dans l'Essonne`} width="700" height="438" loading="lazy" decoding="async" />
-            <div class="carte-service__corps">
-              <h3>{s.label}</h3>
-              <p>{s.desc}</p>
-              <span class="carte-service__lien">En savoir plus &rarr;</span>
+      <h2 class="dr-h2 dr-centre pv-fit" style={`--em:${d.em.prestations}`} data-anim="up">{d.prestationsH2}</h2>
+      <div class="dr-cartes">
+        {d.prestations.map((s: any) => (
+          <article class="dr-carte" data-anim="up">
+            <img src={s.img} alt={s.alt} width={s.w} height={s.h} loading="lazy" decoding="async" style={`object-position:${s.pos}`} />
+            <div class="dr-carte__corps">
+              <h3>{s.titre}</h3>
+              <p set:html={s.html} />
             </div>
-          </a>
+          </article>
         ))}
       </div>
     </div>
   </section>
 
-  <CartesRealisations slugs={chantiers} titre={titreChantiers} fond="gris" />
-
-  {d.editorial && (
-    <section class="section">
-      <div class="conteneur ville-editorial">
-        <div class="prose">
-          <h2>{d.editorial.h2}</h2>
-          <Fragment set:html={d.editorial.html} />
-        </div>
-        {d.mairie && (
-          <aside class="mairie" aria-label={d.mairie.nom}>
-            <p class="mairie__titre">{d.mairie.nom}</p>
-            <p>{d.mairie.adresse}</p>
-            <p>
-              <svg class="icone" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.36 11.36 0 003.58.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1.02l-2.2 2.2z"/></svg>
-              {d.mairie.tel}
-            </p>
-            <p><a href={d.mairie.site} target="_blank" rel="noopener">Site officiel de la mairie</a></p>
-          </aside>
-        )}
-      </div>
-    </section>
-  )}
-
-  {d.showroom && (
-    <section class="section section--gris">
-      <div class="conteneur duo">
-        <img src="/images/robert-daniel-artisan-couvreur-etrechy.webp" alt="Robert Daniel devant son bureau et showroom d'artisan couvreur, 42 Grande Rue à Étréchy" width="900" height="1200" loading="lazy" decoding="async" class="showroom__photo" />
-        <div class="prose">
-          <h2>Mon bureau et showroom, 42 Grande Rue</h2>
-          <p>
-            Au cœur d'Étréchy, mon bureau vous accueille pour parler de votre toiture, de vos gouttières
-            ou de votre projet de rénovation. Vous y trouvez les réponses à vos questions et vous repartez
-            avec un conseil clair, avant même le devis.
-          </p>
-          <p><strong>42 Grande Rue, 91580 Étréchy</strong><br />Du lundi au samedi, de 8 h à 20 h</p>
-          <p><a href="https://maps.app.goo.gl/rYpVbKYbBB64Uk2y6" target="_blank" rel="noopener" class="btn btn--bleu">Voir l'itinéraire <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></p>
-        </div>
-      </div>
-    </section>
-  )}
-
-  <!-- CTA ville -->
-  <section class="section section--bleu cta-final">
-    <div class="conteneur" style="text-align:center;">
-      <h2>{d.ctaTitre}</h2>
-      <p style="max-width:62ch;margin:0.8rem auto 1.6rem;">{d.ctaTexte}</p>
-      <div class="hero__actions" style="justify-content:center;">
-        <a href="tel:0683961518" class="btn btn--cuivre">
-          <svg class="icone-tel" viewBox="0 0 24 24" aria-hidden="true"><g class="icone-tel__corps"><path fill="currentColor" d="M14 1H6C4.9 1 4 1.9 4 3v18c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-4 21c-.8 0-1.5-.7-1.5-1.5S9.2 19 10 19s1.5.7 1.5 1.5S10.8 22 10 22zm4-4H6V4h8v14z"/></g><path class="icone-tel__onde" d="M18.5 8.5a4 4 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="icone-tel__onde icone-tel__onde--2" d="M21 6a7.5 7.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          06 83 96 15 18
-        </a>
-        <a href="/devis-gratuit/" class="btn btn--bleu">Devis gratuit <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Autres communes -->
-  <section class="section section--gris">
+  <!-- ══ CTA (orientation alternée d'une commune à l'autre) ══ -->
+  <section class="dr-section dr-section--cta">
     <div class="conteneur">
-      <h2>J'interviens aussi dans ces communes</h2>
-      <ul class="nuage-villes">
-        {autresVilles.map((v) => (
-          <li><a href={`/${v.slug}/`}>{v.nom}</a></li>
-        ))}
-      </ul>
+      <div class:list={['dr-cta', { 'dr-cta--inverse': d.cta.inverse }]} data-anim="up">
+        <figure class="dr-cta__media">
+          <img src={d.cta.img.src} alt={d.cta.img.alt} width={d.cta.img.w} height={d.cta.img.h} loading="lazy" decoding="async" />
+        </figure>
+        <div class="dr-cta__corps">
+          <h2 style={`--em:${d.em.cta}`}>{d.cta.h2}</h2>
+          <p>{d.cta.texte}</p>
+          <div class="dr-actions">
+            <a href="/devis-gratuit/" class="dr-btn dr-btn--rouge">
+              Devis gratuit
+              <span class="dr-btn__fleche" aria-hidden="true" set:html={fleche} />
+            </a>
+            <a href="tel:0683961518" class="dr-btn dr-btn--blanc">
+              <svg class="dr-tel" viewBox="0 0 24 24" aria-hidden="true">
+                <g class="dr-tel__corps"><path fill="currentColor" d="M14 1H6C4.9 1 4 1.9 4 3v18c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-4 21c-.8 0-1.5-.7-1.5-1.5S9.2 19 10 19s1.5.7 1.5 1.5S10.8 22 10 22zm4-4H6V4h8v14z"/></g>
+                <path class="dr-tel__onde" d="M18.5 8.5a4 4 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path class="dr-tel__onde dr-tel__onde--2" d="M21 6a7.5 7.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              06 83 96 15 18
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
+
+  <!-- ══ AVIS ══ -->
+  <AvisGoogle titre={d.avis.titre} ids={d.avis.ids} fond="blanc" />
+
+  <!-- ══ VÉRIFICATION DE TOITURE PAR DRONE ══ -->
+  <section class="dr-section dr-section--drone">
+    <div class="conteneur">
+      <article class="dr-drone" data-anim="up">
+        <figure class="dr-drone__media">
+          <img class="dr-media__poster" src={d.drone.img.src} alt={d.drone.img.alt} width={d.drone.img.w} height={d.drone.img.h} loading="lazy" decoding="async" style={`object-position:${d.drone.img.pos}`} />
+        </figure>
+        <div class="dr-drone__corps">
+          <h2 style={`--em:${d.em.drone}`}>{d.drone.h2}</h2>
+          <p>{d.drone.p1}</p>
+          <p set:html={d.drone.p2} />
+          <a href="/devis-gratuit/" class="dr-btn dr-btn--rouge">
+            {d.drone.bouton}
+            <span class="dr-btn__fleche" aria-hidden="true" set:html={fleche} />
+          </a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ══ RAMONAGE ══ -->
+  <section class="dr-section dr-section--ramonage">
+    <div class="conteneur">
+      <article class="dr-ramonage" data-anim="up">
+        <div class="dr-ramonage__corps">
+          <h2 style={`--em:${d.em.ramonage}`}>{d.ramonage.h2}</h2>
+          <p set:html={d.ramonage.p1} />
+          <p>{d.ramonage.p2}</p>
+        </div>
+        <figure class="dr-ramonage__media">
+          <img src={d.ramonage.img.src} alt={d.ramonage.img.alt} width={d.ramonage.img.w} height={d.ramonage.img.h} loading="lazy" decoding="async" style={`object-position:${d.ramonage.img.pos}`} />
+        </figure>
+      </article>
+    </div>
+  </section>
+
+  <!-- ══ DÉMARCHES EN MAIRIE ══ -->
+  <section class="dr-section dr-section--gris">
+    <div class="conteneur">
+      <h2 class="dr-h2 dr-centre pv-fit" style={`--em:${d.em.mairie}`} data-anim="up">{d.mairie.h2}</h2>
+      <div class="et-urba">
+        <div class="et-urba__texte" data-anim="up">
+          <p>{d.mairie.intro}</p>
+          <ul class="et-cas">
+            {d.mairie.cas.map((c: any) => (
+              <li class="et-cas__carte">
+                <h3>{c.titre}</h3>
+                <p>{c.texte}</p>
+              </li>
+            ))}
+          </ul>
+          <p>{d.mairie.fin}</p>
+          <p>{d.mairie.aide}</p>
+        </div>
+        <aside class="et-mairie" data-anim="up" aria-label={d.mairie.encart.nom}>
+          <p class="et-mairie__titre">{d.mairie.encart.nom}</p>
+          <p class="et-mairie__ligne">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+            <span>{d.mairie.encart.adresse1}<br />{d.mairie.encart.adresse2}</span>
+          </p>
+          {d.mairie.encart.tel && (
+            <p class="et-mairie__ligne">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.36 11.36 0 003.58.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1.02l-2.2 2.2z"/></svg>
+              <span>Accueil : <a href={telLien(d.mairie.encart.tel)}>{d.mairie.encart.tel}</a></span>
+            </p>
+          )}
+          {d.mairie.encart.telUrba && (
+            <p class="et-mairie__ligne">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.36 11.36 0 003.58.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1.02l-2.2 2.2z"/></svg>
+              <span>Urbanisme : <a href={telLien(d.mairie.encart.telUrba)}>{d.mairie.encart.telUrba}</a></span>
+            </p>
+          )}
+          <a class="dr-btn dr-btn--bleu" href={d.mairie.encart.site} target="_blank" rel="noopener">
+            Site de la mairie
+            <span class="dr-btn__fleche dr-btn__fleche--bleue" aria-hidden="true" set:html={fleche} />
+          </a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ RÉALISATIONS (fin de page) ══ -->
+  <CartesRealisations slugs={slugsChantiers} titre={d.realisationsTitre || titreChantiers} titreStyle={`--em:${d.em.realisations}`} intro={d.realisationsIntro} />
 </BaseLayout>
 
+<script>
+  // Animations d'apparition (désactivées si l'utilisateur réduit les animations)
+  const els = document.querySelectorAll('[data-anim]');
+  if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    els.forEach((el) => el.classList.add('is-visible'));
+  } else {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    els.forEach((el) => io.observe(el));
+  }
+</script>
+
 <style>
-  .h1__nom { display: block; margin-top: 0.15em; color: var(--cuivre); font-size: 0.82em; }
-  .ville-editorial { display: grid; gap: 2.5rem; align-items: start; }
-  @media (min-width: 900px) { .ville-editorial { grid-template-columns: minmax(0, 1fr) 300px; gap: 4rem; } }
-  .ville-editorial .prose h2 { margin-top: 0; }
-  .mairie { background: var(--gris-50); border: 1px solid var(--gris-200); border-radius: var(--rayon); padding: 1.5rem 1.6rem; }
-  .mairie p { margin: 0.35rem 0; color: var(--gris-700); }
-  .mairie__titre { font-family: var(--font-titres); font-weight: 700; color: var(--bleu) !important; font-size: 1.1rem; }
-  .showroom__photo { max-height: 560px; object-position: center 40%; }
-  .section__intro { max-width: 70ch; margin: 0.4rem 0 0.5rem; color: var(--gris-700); }
+  /* ════ Styles repris de la page d'accueil (préfixe dr-) ════ */
+  .dr-hero, .dr-section {
+    --nuit: #062a45;
+    --rouge-clair: #ff4d42;
+    --ombre-carte: 0 6px 20px rgb(0 73 123 / .07);
+    --ombre-carte-hover: 0 16px 34px rgb(0 73 123 / .15);
+    --ligne: #e2e6ea;
+  }
+  [data-anim] { opacity: 0; transition: opacity .7s ease, transform .7s ease; }
+  [data-anim="up"] { transform: translate3d(0, 28px, 0); }
+  [data-anim].is-visible { opacity: 1; transform: none; }
+
+  .dr-section { padding-block: 88px; }
+  .dr-section--gris { background: var(--gris-50); }
+  @media (max-width: 1023px) { .dr-section { padding-block: 64px; } }
+  @media (max-width: 767px)  { .dr-section { padding-block: 52px; } }
+  .dr-centre { text-align: center; }
+  /* Titres H2 : jamais plus de deux lignes. --em = largeur du titre mesurée en Lexend 700 ;
+     la taille est plafonnée à 2 × largeur disponible / largeur du texte (marge 15 % pour les retours à la ligne). */
+  .dr-section > .conteneur, .pv-pres__texte, .dr-cta__corps, .dr-drone__corps, .dr-ramonage__corps { container-type: inline-size; }
+  :global(.realisations-bloc > .conteneur) { container-type: inline-size; }
+  :global(.realisations-bloc h2[style]) { font-size: min(clamp(1.5rem, 3vw, 2.1rem), calc(200cqi / (var(--em, 20) * 1.25))); }
+  .dr-h2 {
+    font-family: var(--font-titres); font-weight: 700; color: var(--bleu-fonce);
+    font-size: clamp(19px, .6rem + 2.6vw, 36px); line-height: 1.2; text-wrap: balance; margin: 0;
+  }
+  .dr-h2.pv-fit { font-size: min(clamp(19px, .6rem + 2.6vw, 36px), calc(200cqi / (var(--em, 20) * 1.25))); }
+
+  /* Boutons (pilule, jamais pleine largeur) */
+  .dr-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+  .dr-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+    width: auto; max-width: max-content; min-height: 50px; padding: 14px 26px;
+    border-radius: 999px; font-family: var(--font-titres); font-weight: 700; font-size: 16px;
+    line-height: 1.2; text-decoration: none; white-space: nowrap;
+    box-shadow: 0 4px 12px rgb(0 42 69 / .12);
+    transition: background-color .25s ease, color .25s ease, transform .25s ease, box-shadow .25s ease;
+  }
+  .dr-btn:hover { transform: translate3d(0, -2px, 0); box-shadow: 0 10px 22px rgb(0 42 69 / .2); }
+  .dr-btn--rouge { background: var(--cuivre); color: #fff; }
+  .dr-btn--rouge:hover { background: var(--cuivre-fonce); color: #fff; }
+  .dr-btn--bleu { background: var(--bleu); color: #fff; }
+  .dr-btn--bleu:hover { background: var(--bleu-fonce); color: #fff; }
+  .dr-btn--blanc { background: #fff; color: var(--bleu-fonce); }
+  .dr-btn--blanc:hover { background: var(--gris-100); color: var(--bleu-fonce); }
+  .dr-btn__fleche {
+    display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+    width: 26px; height: 26px; border-radius: 50%; background: #fff; color: var(--cuivre); overflow: hidden;
+  }
+  .dr-btn__fleche--bleue { color: var(--bleu); }
+  .dr-btn__fleche svg { width: 14px; height: 14px; transition: transform .3s ease; }
+  .dr-btn:hover .dr-btn__fleche svg { transform: translate3d(3px, 0, 0); }
+  @media (max-width: 767px) {
+    .dr-btn { min-height: 46px; padding: 12px 18px; font-size: 15px; gap: 10px; }
+  }
+
+  /* Smartphone qui sonne */
+  .dr-tel { width: 20px; height: 20px; flex-shrink: 0; overflow: visible; }
+  .dr-tel__corps { transform-origin: 40% 50%; animation: dr-sonne 2.4s ease-in-out infinite; }
+  .dr-tel__onde { opacity: 0; animation: dr-onde 2.4s ease-out infinite; }
+  .dr-tel__onde--2 { animation-delay: .25s; }
+  @keyframes dr-sonne {
+    0%, 70%, 100% { transform: rotate(0); }
+    75% { transform: rotate(-12deg); } 80% { transform: rotate(10deg); }
+    85% { transform: rotate(-8deg); } 90% { transform: rotate(6deg); }
+  }
+  @keyframes dr-onde { 0%, 60% { opacity: 0; } 75% { opacity: 1; } 100% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) {
+    .dr-tel__corps, .dr-tel__onde { animation: none; }
+    .dr-tel__onde { opacity: 1; }
+    [data-anim] { opacity: 1; transform: none; transition: none; }
+  }
+
+  /* Hero */
+  .dr-hero { background: var(--nuit); padding-block: 28px 56px; overflow: hidden; }
+  .et-ariane :global(.fil-ariane) { margin-bottom: 20px; color: #9fb6ca; }
+  .et-ariane :global(.fil-ariane a) { color: #9fb6ca; }
+  .et-ariane :global(.fil-ariane a:hover) { color: #fff; }
+  .et-ariane :global(.fil-ariane [aria-current]) { color: #fff; }
+  .dr-hero__grille {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas: "titre media" "texte media"; align-items: center; gap: 22px 52px;
+  }
+  .dr-hero__titrebox { grid-area: titre; align-self: end; min-width: 0; container-type: inline-size; }
+  /* Taille calculée sur la largeur réelle de la ligne la plus longue (--h1em, mesurée en Lexend 700) :
+     chaque ligne tient toujours sur une seule ligne, sans débordement ni mot orphelin. */
+  .dr-hero__titre {
+    margin: 0; color: #fff;
+    font-family: var(--font-titres); font-weight: 700;
+    font-size: min(40px, calc(100cqi / var(--h1em, 14))); line-height: 1.15;
+  }
+  .dr-ligne { display: block; white-space: nowrap; }
+  .dr-hero__nom { color: var(--rouge-clair); }
+  .dr-hero__media {
+    grid-area: media; margin: 0; border-radius: 16px; overflow: hidden; position: relative;
+    box-shadow: 0 20px 50px rgb(0 0 0 / .3); aspect-ratio: 3 / 2;
+  }
+  .dr-media__poster { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .dr-hero__texte { grid-area: texte; align-self: start; display: flex; flex-direction: column; gap: 22px; }
+  .dr-hero__lead { margin: 0; color: #d6e2ee; font-size: 19px; line-height: 1.6; }
+  .dr-hero__lead :global(strong) { color: #fff; }
+  .dr-coches { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .dr-coches li { position: relative; padding-left: 34px; color: #fff; font-weight: 600; font-size: 17px; }
+  .dr-coches li::before {
+    content: ""; position: absolute; left: 0; top: 1px; width: 22px; height: 22px; border-radius: 50%;
+    background: var(--cuivre) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / 14px no-repeat;
+  }
+  @media (max-width: 1023px) {
+    .dr-hero { padding-block: 20px 44px; }
+    .dr-hero__grille { grid-template-columns: minmax(0, 1fr); grid-template-areas: "titre" "media" "texte"; gap: 22px; }
+    .dr-hero__titre { text-align: center; font-size: min(36px, calc(100cqi / var(--h1em, 14))); }
+    .dr-hero__media { aspect-ratio: 16 / 9; }
+    .dr-hero__texte .dr-actions { justify-content: center; }
+  }
+  @media (max-width: 479px) { .dr-hero__lead { font-size: 17px; } }
+
+  /* Présentation de l'artisan dans la commune */
+  .pv-pres { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); align-items: center; gap: 64px; }
+  .pv-pres__texte { display: flex; flex-direction: column; gap: 18px; }
+  .pv-pres__texte > p { margin: 0; font-size: 17px; line-height: 1.7; color: var(--gris-700); }
+  .pv-pres__texte > p :global(a) { color: var(--bleu); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+  .pv-pres__texte > p :global(a:hover) { color: var(--cuivre); }
+  .et-coord { list-style: none; margin: 4px 0 6px; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+  .et-coord li { display: flex; align-items: center; gap: 12px; font-size: 17px; color: var(--bleu-fonce); }
+  .et-coord svg { width: 22px; height: 22px; flex-shrink: 0; color: var(--cuivre); }
+  .et-coord a { color: var(--bleu-fonce); font-weight: 700; text-decoration: none; }
+  .et-coord a:hover { color: var(--cuivre); }
+  .pv-pres__media { display: flex; flex-direction: column; gap: 18px; }
+  .pv-pres__media img {
+    display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover;
+    border-radius: 16px; box-shadow: 0 20px 50px rgb(0 42 69 / .16);
+  }
+  @media (max-width: 1023px) { .pv-pres { grid-template-columns: minmax(0, 1fr); gap: 36px; } }
+
+  /* Cartes prestations */
+  .dr-cartes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin-top: 44px; }
+  .dr-carte {
+    display: flex; flex-direction: column; overflow: hidden; background: #fff;
+    border: 1px solid var(--ligne); border-radius: 14px; box-shadow: var(--ombre-carte);
+    transition: transform .25s ease, box-shadow .25s ease, opacity .7s ease;
+  }
+  .dr-carte.is-visible:hover { transform: translate3d(0, -4px, 0); box-shadow: var(--ombre-carte-hover); }
+  .dr-carte img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+  .dr-carte__corps { padding: 20px 20px 24px; display: flex; flex-direction: column; gap: 12px; }
+  .dr-carte h3 {
+    margin: 0; font-family: var(--font-titres); font-weight: 700; font-size: 19px; line-height: 1.25;
+    color: var(--bleu-fonce); text-wrap: balance;
+  }
+  .dr-carte p { margin: 0; color: var(--gris-700); font-size: 15.5px; line-height: 1.65; }
+  .dr-carte :global(a) { color: var(--bleu); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+  .dr-carte :global(a:hover) { color: var(--cuivre); }
+  @media (max-width: 899px) { .dr-cartes { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; } }
+  @media (max-width: 599px)  { .dr-cartes { grid-template-columns: minmax(0, 1fr); gap: 22px; margin-top: 28px; } .dr-carte__corps { padding: 18px 18px 22px; } }
+
+  /* CTA véhicules (orientation alternée) */
+  @media (min-width: 900px) { .dr-cta--inverse .dr-cta__media { order: 2; } }
+  .dr-section--cta { padding-top: 0; background: var(--gris-50); }
+  .dr-cta {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); overflow: hidden;
+    background: var(--nuit); border-radius: 18px; box-shadow: 0 20px 50px rgb(0 42 69 / .22);
+  }
+  .dr-cta__media { margin: 0; }
+  .dr-cta__media img { display: block; width: 100%; height: 100%; min-height: 320px; object-fit: cover; }
+  .dr-cta__corps { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 18px; padding: 48px 46px; }
+  .dr-cta h2 {
+    margin: 0; color: #fff; font-family: var(--font-titres); font-weight: 700;
+    font-size: min(clamp(19px, .6rem + 2.2vw, 34px), calc(200cqi / (var(--em, 20) * 1.25))); line-height: 1.2; text-wrap: balance;
+  }
+  .dr-cta p { margin: 0; color: #d6e2ee; font-size: 18px; }
+  .dr-cta .dr-actions { margin-top: 6px; }
+  @media (min-width: 900px) and (max-width: 1099px) { .dr-cta h2 { font-size: min(25px, calc(200cqi / (var(--em, 20) * 1.25))); } .dr-cta__corps { padding: 36px 32px; } }
+  @media (max-width: 899px) {
+    .dr-cta { grid-template-columns: minmax(0, 1fr); }
+    .dr-cta__media img { min-height: 0; aspect-ratio: 16 / 9; }
+    .dr-cta__corps { align-items: center; text-align: center; padding: 30px 22px 34px; }
+    .dr-cta .dr-actions { justify-content: center; }
+  }
+
+  /* Avis */
+  .dr-entete { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; margin-bottom: 40px; }
+  .dr-note { margin: 0; color: var(--gris-700); }
+  .dr-etoiles { color: #f5b301; letter-spacing: 2px; }
+  .dr-avis { list-style: none; margin: 0 0 36px; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+  .dr-avis__carte { display: flex; flex-direction: column; gap: 12px; padding: 26px 24px; background: var(--gris-50); border-radius: 14px; }
+  .dr-avis__carte blockquote { margin: 0; color: var(--gris-700); font-size: 16px; line-height: 1.65; }
+  .dr-avis__nom { margin: auto 0 0; font-family: var(--font-titres); font-weight: 700; color: var(--bleu-fonce); }
+  @media (max-width: 1023px) { .dr-avis { grid-template-columns: minmax(0, 1fr); gap: 16px; } }
+
+  /* Drone : carte bleu nuit + photo */
+  .dr-section--drone { padding-top: 0; }
+  .dr-drone {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); overflow: hidden;
+    background: var(--nuit); border-radius: 18px; box-shadow: 0 20px 50px rgb(0 42 69 / .22);
+  }
+  .dr-drone__media { margin: 0; position: relative; min-height: 380px; }
+  .dr-drone__media .dr-media__poster { position: absolute; inset: 0; object-position: center 35%; }
+  .dr-drone__corps { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 16px; padding: 46px; }
+  .dr-drone h2 {
+    margin: 0; color: #fff; font-family: var(--font-titres); font-weight: 700;
+    font-size: min(clamp(19px, .6rem + 2.1vw, 32px), calc(200cqi / (var(--em, 20) * 1.25))); line-height: 1.2; text-wrap: balance;
+  }
+  .dr-drone p { margin: 0; color: #d6e2ee; font-size: 17px; line-height: 1.65; text-align: left; }
+  .dr-drone p :global(a) { color: #fff; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+  .dr-drone p :global(a:hover) { color: var(--rouge-clair); }
+  .dr-drone .dr-btn { margin-top: 6px; }
+  @media (min-width: 900px) and (max-width: 1099px) { .dr-drone h2 { font-size: min(25px, calc(200cqi / (var(--em, 20) * 1.25))); } .dr-drone__corps { padding: 34px 32px; } .dr-drone p { font-size: 16px; } }
+  @media (max-width: 899px) {
+    .dr-drone { grid-template-columns: minmax(0, 1fr); }
+    .dr-drone__media { min-height: 0; aspect-ratio: 4 / 3; }
+    .dr-drone__corps { padding: 28px 22px 32px; }
+    .dr-drone h2 { text-align: center; align-self: stretch; }
+    .dr-drone .dr-btn { align-self: center; }
+    .dr-drone p { font-size: 16px; }
+  }
+
+  /* Ramonage : carte claire, photo à droite */
+  .dr-section--ramonage { padding-top: 0; }
+  .dr-ramonage {
+    display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); overflow: hidden;
+    background: var(--gris-50); border-radius: 18px;
+  }
+  .dr-ramonage__corps { display: flex; flex-direction: column; justify-content: center; gap: 16px; padding: 46px; }
+  .dr-ramonage h2 {
+    margin: 0; color: var(--bleu-fonce); font-family: var(--font-titres); font-weight: 700;
+    font-size: min(clamp(19px, .6rem + 2.1vw, 32px), calc(200cqi / (var(--em, 20) * 1.25))); line-height: 1.2; text-wrap: balance;
+  }
+  .dr-ramonage p { margin: 0; color: var(--gris-700); font-size: 17px; line-height: 1.7; text-align: left; }
+  .dr-ramonage p :global(a) { color: var(--bleu); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+  .dr-ramonage p :global(a:hover) { color: var(--cuivre); }
+  .dr-ramonage__media { margin: 0; }
+  .dr-ramonage__media img { display: block; width: 100%; height: 100%; min-height: 300px; max-height: 420px; object-fit: cover; object-position: center 40%; }
+  @media (min-width: 900px) and (max-width: 1099px) { .dr-ramonage h2 { font-size: min(25px, calc(200cqi / (var(--em, 20) * 1.25))); } .dr-ramonage__corps { padding: 34px 32px; } .dr-ramonage p { font-size: 16px; } }
+  @media (max-width: 899px) {
+    .dr-ramonage { grid-template-columns: minmax(0, 1fr); }
+    .dr-ramonage__media { order: -1; }
+    .dr-ramonage__media img { min-height: 0; max-height: none; aspect-ratio: 16 / 9; }
+    .dr-ramonage__corps { padding: 28px 22px 32px; }
+    .dr-ramonage h2 { text-align: center; }
+    .dr-ramonage p { font-size: 16px; }
+  }
+
+  /* Autorisations de la mairie */
+  .et-urba { display: grid; grid-template-columns: minmax(0, 1fr) 320px; align-items: start; gap: 56px; margin-top: 44px; }
+  .et-urba__texte { display: flex; flex-direction: column; gap: 18px; }
+  .et-urba__texte > p { margin: 0; font-size: 17px; line-height: 1.7; color: var(--gris-700); }
+  .et-cas { list-style: none; margin: 6px 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  .et-cas__carte { display: flex; flex-direction: column; gap: 8px; padding: 22px 20px; background: #fff; border-radius: 14px; box-shadow: var(--ombre-carte); }
+  .et-cas__carte h3 { margin: 0; font-family: var(--font-titres); font-weight: 700; font-size: 17px; line-height: 1.3; color: var(--bleu-fonce); text-wrap: balance; }
+  .et-cas__carte p { margin: 0; font-size: 15.5px; line-height: 1.6; color: var(--gris-700); }
+  .et-mairie {
+    position: sticky; top: 110px; display: flex; flex-direction: column; align-items: flex-start; gap: 14px;
+    padding: 28px 26px; background: #fff; border-radius: 16px; box-shadow: var(--ombre-carte);
+  }
+  .et-mairie__titre { margin: 0 0 4px; font-family: var(--font-titres); font-weight: 700; font-size: 20px; color: var(--bleu-fonce); }
+  .et-mairie__ligne { display: flex; align-items: flex-start; gap: 12px; margin: 0; font-size: 16px; line-height: 1.5; color: var(--gris-700); }
+  .et-mairie__ligne svg { width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px; color: var(--bleu); }
+  .et-mairie__ligne a { color: var(--bleu-fonce); font-weight: 700; text-decoration: none; white-space: nowrap; }
+  .et-mairie__ligne a:hover { color: var(--cuivre); }
+  .et-mairie .dr-btn { margin-top: 6px; }
+  @media (max-width: 1099px) { .et-cas { grid-template-columns: minmax(0, 1fr); } }
+  @media (max-width: 899px) {
+    .et-urba { grid-template-columns: minmax(0, 1fr); gap: 32px; margin-top: 28px; }
+    .et-mairie { position: static; }
+  }
+
+  /* Réalisations : titres de cartes sur 2 lignes max */
+  :global(.realisations-bloc .grille-chantiers .carte-chantier h3) { font-size: clamp(16px, .45rem + 1vw, 18.4px); text-wrap: balance; }
+  /* Titres longs (ancres avec contexte) : 3 colonnes seulement sur grand écran, sinon 2 puis 1 */
+  :global(section.realisations-bloc ul.grille-chantiers) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  @media (max-width: 1099px) { :global(section.realisations-bloc ul.grille-chantiers) { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 699px)  { :global(section.realisations-bloc ul.grille-chantiers) { grid-template-columns: minmax(0, 1fr); } }
 </style>

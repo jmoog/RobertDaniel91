@@ -15,15 +15,17 @@ export interface Props {
   perso?: Record<string, { titre?: string; texte?: string }>;
   /** Grille centrée et équilibrée quand il y a moins de 3 cartes */
   centre?: boolean;
+  /** Style en ligne du titre (ex. variable --em pour l'ajustement de taille) */
+  titreStyle?: string;
 }
-const { slugs, titre, intro, limite, lienTout = true, fond = 'blanc', perso = {}, centre = false } = Astro.props;
+const { slugs, titre, intro, limite, lienTout = true, fond = 'blanc', perso = {}, centre = false, titreStyle } = Astro.props;
 let items = slugs ? slugs.map((s) => realisations.find((r) => r.slug === s)).filter(Boolean) : realisations;
 if (limite) items = items.slice(0, limite);
 ---
 {items.length > 0 && (
   <section class={`section realisations-bloc ${fond === 'gris' ? 'section--gris' : ''} ${centre ? 'realisations-bloc--centre' : ''}`}>
     <div class="conteneur">
-      {titre && <h2>{titre}</h2>}
+      {titre && <h2 style={titreStyle}>{titre}</h2>}
       {intro && <p class="realisations-bloc__intro" set:html={intro} />}
       <ul class={`grille-chantiers ${centre && items.length < 3 ? `grille-chantiers--centre grille-chantiers--${items.length}` : ''}`}>
         {items.map((r) => {

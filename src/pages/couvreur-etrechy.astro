@@ -1,29 +1,72 @@
 ---
-// Page mère du cocon « couvreur à Étréchy » (bureau de l'artisan).
-// Page dédiée (et non le gabarit PageVille) : contenu, photos et maillage propres à Étréchy.
+// ════════════════════════════════════════════════════════════════════
+// PAGE MÈRE DU COCON « COUVREUR À ÉTRÉCHY » (refonte 13 oct. 2026,
+// brief Notion « Rédaction de la page Étréchy »). Design repris de la
+// nouvelle page d'accueil. Ancienne version archivée dans
+// _archives/couvreur-etrechy-avant-refonte-2026-10-13.astro
+// Cocon : les liens sortants restent dans le périmètre Étréchy
+// (pages services avec ancres « … à Étréchy », réalisations d'Étréchy).
+// ════════════════════════════════════════════════════════════════════
 import BaseLayout from '../layouts/BaseLayout.astro';
 import FilAriane from '../components/FilAriane.astro';
 import CartesRealisations from '../components/CartesRealisations.astro';
-import contenu from '../data/villes-contenu.json';
-import villes from '../data/villes.json';
-import distances from '../data/villes-distance-etrechy.json';
 
-const d = contenu['couvreur-etrechy'];
-const title = 'Couvreur à Étréchy (91580) – Devis gratuit - M. Robert';
-const description = "✓ Entreprise de couverture à Étréchy : réparation de fuite, démoussage et rénovation de toiture. Robert Daniel, tél. 06 83 96 15 18 – devis gratuit.";
-const voisines = villes.filter((v) => v.slug !== 'couvreur-etrechy' && distances[v.slug] <= 5)
-  .sort((a, b) => distances[a.slug] - distances[b.slug]);
+const title = "Artisan couvreur à Étréchy - Devis gratuit - Robert Daniel";
+const description = "✓ Tous travaux de couverture à Étréchy : remplacement de toiture ancienne, recherche de fuite, interventions en urgence. Robert Daniel, tél. 06 83 96 15 18";
 
 const prestations = [
-  { href: '/reparation-toiture/', titre: 'Réparation de toiture à Étréchy', img: '/images/realisations/refection-faitage-etrechy/refection-faitage-etrechy-03-800w.webp', w: 600, h: 800,
-    alt: "Faîtage en cours de réfection sur une toiture d'Étréchy",
-    texte: "Tuile cassée ou déplacée, faîtage descellé, solin fissuré, fuite autour d'une cheminée : je trouve l'origine de l'infiltration et je la répare pour de bon." },
-  { href: '/renovation-toiture/', titre: 'Rénovation et remplacement de toiture', img: '/images/realisations/renovation-toiture-etrechy/renovation-toiture-etrechy-05-800w.webp', w: 800, h: 600,
+  {
+    titre: 'Démoussage et nettoyage de toiture',
+    img: '/images/etrechy/demoussage-toiture-etrechy.webp', w: 600, h: 800, pos: 'center 25%',
+    alt: "Traitement d'une toiture après démoussage sur une maison d'Étréchy",
+    html: `Mousses, lichens et salissures retiennent l'humidité et finissent par abîmer les tuiles. Je nettoie votre couverture sans l'endommager, je dégage les gouttières, puis j'applique un traitement qui empêche les végétaux de revenir. Un <a href="/nettoyage-toiture/">démoussage de toiture</a> régulier prolonge la durée de vie de votre toit.`,
+  },
+  {
+    titre: 'Rénovation de toiture',
+    img: '/images/realisations/renovation-toiture-etrechy/renovation-toiture-etrechy-05-800w.webp', w: 800, h: 600, pos: 'center',
     alt: "Pose de tuiles neuves lors d'une rénovation de toiture à Étréchy",
-    texte: "Quand la couverture arrive en fin de vie, je dépose l'ancienne toiture, je contrôle la charpente, puis je pose écran sous-toiture, liteaux et tuiles neuves." },
-  { href: '/nettoyage-toiture/', titre: 'Démoussage et nettoyage de toiture', img: '/images/etrechy/demoussage-toiture-etrechy.webp', w: 600, h: 800,
-    alt: "Traitement d'une toiture par pulvérisation après démoussage à Étréchy",
-    texte: "Mousses et lichens abîment les tuiles et bouchent les gouttières. Je nettoie la couverture, je dégage les gouttières et j'applique un traitement adapté." },
+    html: `Votre toiture est ancienne et les réparations ne suffisent plus ? Je la remplace entièrement : dépose de l'ancienne couverture, contrôle de la charpente, pose de l'écran sous-toiture, des liteaux et des tuiles neuves. La <a href="/renovation-toiture/">rénovation de votre toiture</a> respecte le caractère de la maison, en tuiles plates, en tuiles mécaniques ou en ardoises.`,
+  },
+  {
+    titre: 'Réparation de toiture',
+    img: '/images/realisations/refection-faitage-etrechy/refection-faitage-etrechy-03-800w.webp', w: 600, h: 800, pos: 'center 45%',
+    alt: "Faîtage en cours de réfection sur une toiture en tuiles à Étréchy",
+    html: `Une tuile cassée, un faîtage descellé, un solin fissuré ou une tache au plafond ? J'interviens rapidement : je recherche l'origine de l'infiltration, puis j'effectue la <a href="/reparation-toiture/">réparation de la toiture</a> qui règle le problème durablement.`,
+  },
+  {
+    titre: 'Pose de fenêtres de toit Velux',
+    img: '/images/fenetre-de-toit-velux-pose-essonne.jpg', w: 825, h: 1100, pos: 'center 40%',
+    alt: "Fenêtre de toit Velux posée dans une couverture en ardoises",
+    html: `Vous souhaitez aménager vos combles ? Une fenêtre de toit apporte la lumière naturelle et renouvelle l'air de la pièce. J'installe vos <a href="/fenetre-de-toit-velux/">fenêtres de toit Velux</a> avec les raccords d'étanchéité adaptés à votre couverture.`,
+  },
+  {
+    titre: 'Pose et remplacement de gouttières',
+    img: '/images/zinguerie-gouttiere-zinc-anthracite-essonne.jpg', w: 1100, h: 825, pos: 'center',
+    alt: "Gouttière en zinc anthracite posée en rive de toiture par Robert Daniel",
+    html: `Gouttières, descentes, noues et solins conduisent l'eau de pluie loin de vos murs et de vos fondations. J'assure la pose et le remplacement de gouttières en zinc, en aluminium ou en PVC, ainsi que l'entretien de toute la <a href="/zinguerie/">zinguerie de votre maison</a>.`,
+  },
+  {
+    titre: 'Isolation de toiture',
+    img: '/images/services/isolation-toiture.jpg', w: 700, h: 438, pos: 'center',
+    alt: "Pose d'un isolant et d'un écran sous toiture",
+    html: `Une toiture mal isolée laisse s'échapper une grande partie de la chaleur de la maison. J'installe des isolants performants et des écrans sous toiture, par sarking ou par isolation soufflée selon votre charpente. Une <a href="/isolation-toiture/">isolation de toiture</a> bien faite réduit vos dépenses de chauffage et garde la maison fraîche en été.`,
+  },
+];
+
+// Avis Google : les deux premiers concernent des chantiers à Étréchy
+const avis = [
+  { nom: 'Nadège Fernandez', texte: "Intervention pour travaux toiture ce jour à Étréchy, il n'y a rien à redire : excellent travail, équipe au top, gentille, chantier terminé, nettoyé. Des vrais professionnels. Nous les recommandons vivement." },
+  { nom: 'Michel S.', texte: "Merci à M. Robert et à son équipe pour le travail de qualité de la rénovation de notre toiture à Étréchy." },
+  { nom: 'Zazounette', texte: "Expérience avec l'entreprise Robert plus que satisfaisante. Rapidité d'intervention, conseils avisés, prix corrects, très bon professionnel. Je recommande vivement." },
+];
+const lienGoogle = 'https://maps.app.goo.gl/rYpVbKYbBB64Uk2y6';
+const lienWaze = 'https://waze.com/ul?ll=48.4929035%2C2.1912066&navigate=yes';
+const lienMaps = 'https://maps.google.com/?cid=15045529930066125536';
+
+const autorisations = [
+  { titre: "La pose d'une fenêtre de toit", texte: "Créer une ouverture dans la couverture modifie l'aspect de votre toiture : la pose d'un Velux demande une déclaration préalable de travaux." },
+  { titre: 'La modification de la toiture', texte: "Changer la forme ou la pente du toit, créer un chien-assis ou surélever la maison : selon la surface créée, il faut une déclaration préalable ou un permis de construire." },
+  { titre: 'Le changement de couleur ou de matériau', texte: "Passer de la tuile mécanique à la tuile plate, ou changer la teinte de la couverture, demande une déclaration préalable. Le PLU peut imposer certaines teintes." },
 ];
 
 const extraSchemas = [{
@@ -33,7 +76,7 @@ const extraSchemas = [{
   name: 'Couvreur à Étréchy',
   serviceType: 'Travaux de couverture',
   url: 'https://robert-daniel-couverture.fr/couvreur-etrechy/',
-  description: "Réparation, rénovation, démoussage de toiture, zinguerie et pose de fenêtres de toit à Étréchy (91580) par Robert Daniel, artisan couvreur installé 42 Grande Rue.",
+  description: "Tous travaux de couverture, zinguerie, charpente et isolation à Étréchy (91580) par Robert Daniel, artisan couvreur installé 42 Grande Rue : démoussage, rénovation et réparation de toiture, pose de Velux, gouttières, vérification par drone et ramonage.",
   provider: { '@id': 'https://robert-daniel-couverture.fr/#localbusiness' },
   areaServed: {
     '@type': 'City', name: 'Étréchy',
@@ -43,257 +86,549 @@ const extraSchemas = [{
   },
   hasOfferCatalog: {
     '@type': 'OfferCatalog', name: 'Travaux de couverture à Étréchy',
-    itemListElement: ['Réparation de toiture', 'Rénovation et remplacement de toiture', 'Démoussage et nettoyage de toiture', 'Zinguerie et gouttières', 'Pose de fenêtres de toit', 'Isolation de toiture', 'Charpente', 'Ramonage de cheminée']
+    itemListElement: ['Démoussage et nettoyage de toiture', 'Rénovation et remplacement de toiture', 'Réparation de toiture', 'Pose de fenêtres de toit Velux', 'Pose et remplacement de gouttières', 'Isolation de toiture', 'Vérification de toiture par drone', 'Ramonage de cheminée']
       .map((n) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: n, areaServed: 'Étréchy' } })),
   },
 }];
-const tel = 'M16 1H8C6.34 1 5 2.34 5 4v16c0 1.66 1.34 3 3 3h8c1.66 0 3-1.34 3-3V4c0-1.66-1.34-3-3-3zm-2 20h-4v-1h4v1zm3.25-3H6.75V4h10.5v14z';
 ---
 <BaseLayout title={title} description={description} ogImage="/images/realisations/renovation-toiture-etrechy/renovation-toiture-etrechy-08.webp" extraSchemas={extraSchemas}>
-  <script is:inline>document.documentElement.classList.add('anim');</script>
 
-  <section class="hero">
-    <div class="conteneur">
+  <!-- ══ HERO ══ -->
+  <section class="dr-hero">
+    <div class="conteneur et-ariane">
       <FilAriane items={[{ label: 'Accueil', href: '/' }, { label: 'Couvreur à Étréchy' }]} />
     </div>
-    <div class="conteneur hero__grille">
-      <div class="hero__texte">
-        <h1 class="h1-long">Artisan couvreur à Étréchy<span class="h1__nom">Robert Daniel</span></h1>
-        <div class="artisan">
-          <img src="/images/robert-daniel-artisan-couvreur-portrait.webp" alt="Robert Daniel, artisan couvreur à Étréchy" width="600" height="600" decoding="async" />
-          <p><strong>Bureau 42 Grande Rue</strong><br />Étréchy (91580)</p>
-        </div>
-        <p class="hero__accroche">
-          Une fuite, des tuiles qui ont glissé, une toiture à nettoyer ou à refaire ?
-          <strong>Robert Daniel est votre spécialiste de la toiture à Étréchy</strong>, en tuile plate,
-          tuile mécanique, ardoise ou zinc.
-        </p>
-        <ul>
-          <li><strong>Garantie décennale</strong> sur tous mes travaux de couverture.</li>
-          <li><strong>Devis gratuit</strong>, détaillé et sans engagement.</li>
-          <li><strong>Réparation en urgence</strong> à Étréchy et dans les communes voisines.</li>
+    <div class="conteneur dr-hero__grille">
+      <h1 class="dr-hero__titre">
+        <span class="dr-ligne">Couvreur à Étréchy</span>
+        <span class="dr-ligne dr-hero__nom">Robert Daniel</span>
+      </h1>
+
+      <figure class="dr-hero__media">
+        <img class="dr-media__poster" src="/images/realisations/renovation-toiture-etrechy/renovation-toiture-etrechy-08.webp" srcset="/images/realisations/renovation-toiture-etrechy/renovation-toiture-etrechy-08-800w.webp 800w, /images/realisations/renovation-toiture-etrechy/renovation-toiture-etrechy-08.webp 1600w" sizes="(min-width: 1024px) 50vw, 100vw" alt="Pavillon d'Étréchy avec sa toiture refaite à neuf par Robert Daniel" width="1600" height="1200" fetchpriority="high" decoding="async" />
+      </figure>
+
+      <div class="dr-hero__texte">
+        <p class="dr-hero__lead">Votre <strong>artisan couvreur à Étréchy</strong> pour tous travaux de couverture, zinguerie, charpente et isolation :</p>
+        <ul class="dr-coches">
+          <li>Garantie décennale</li>
+          <li>Devis gratuit et sans engagement</li>
+          <li>15 années d'expérience</li>
+          <li>Interventions en urgence</li>
         </ul>
-        <div class="hero__actions">
-          <a href="tel:0683961518" class="btn btn--cuivre">
-            <svg class="icone-tel" viewBox="0 0 24 24" aria-hidden="true"><g class="icone-tel__corps"><path fill="currentColor" d="M14 1H6C4.9 1 4 1.9 4 3v18c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-4 21c-.8 0-1.5-.7-1.5-1.5S9.2 19 10 19s1.5.7 1.5 1.5S10.8 22 10 22zm4-4H6V4h8v14z"/></g><path class="icone-tel__onde" d="M18.5 8.5a4 4 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="icone-tel__onde icone-tel__onde--2" d="M21 6a7.5 7.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <div class="dr-actions">
+          <a href="/devis-gratuit/" class="dr-btn dr-btn--rouge">
+            Devis gratuit
+            <span class="dr-btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+          <a href="tel:0683961518" class="dr-btn dr-btn--blanc">
+            <svg class="dr-tel" viewBox="0 0 24 24" aria-hidden="true">
+              <g class="dr-tel__corps"><path fill="currentColor" d="M14 1H6C4.9 1 4 1.9 4 3v18c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-4 21c-.8 0-1.5-.7-1.5-1.5S9.2 19 10 19s1.5.7 1.5 1.5S10.8 22 10 22zm4-4H6V4h8v14z"/></g>
+              <path class="dr-tel__onde" d="M18.5 8.5a4 4 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path class="dr-tel__onde dr-tel__onde--2" d="M21 6a7.5 7.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
             06 83 96 15 18
           </a>
-          <a href="/devis-gratuit/" class="btn btn--bleu">Devis gratuit <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-        </div>
-      </div>
-      <div class="hero__media">
-        <img class="hero__photo" src="/images/realisations/renovation-toiture-etrechy/renovation-toiture-etrechy-08.webp" srcset="/images/realisations/renovation-toiture-etrechy/renovation-toiture-etrechy-08-800w.webp 800w, /images/realisations/renovation-toiture-etrechy/renovation-toiture-etrechy-08.webp 1600w" sizes="(min-width: 900px) 50vw, 100vw" alt="Pavillon d'Étréchy avec sa toiture refaite à neuf par Robert Daniel" width="1600" height="1200" fetchpriority="high" decoding="async" />
-        <div class="carte hero__garantie">
-          <p><strong>Garantie Décennale</strong><br />Pour tous travaux de couverture</p>
-          <img src="/images/logo-allianz.png" alt="Garantie décennale assurée par Allianz" width="92" height="58" loading="lazy" decoding="async" />
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section section--gris">
+  <!-- ══ LE BUREAU D'ÉTRÉCHY ══ -->
+  <section class="dr-section">
+    <div class="conteneur et-bureau">
+      <div class="et-bureau__texte" data-anim="up">
+        <h2 class="dr-h2">Votre artisan couvreur à Étréchy</h2>
+        <ul class="et-coord">
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+            <span><strong>42 Grande Rue, 91580 Étréchy</strong></span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+            <span>Du lundi au samedi, de 8 h à 20 h</span>
+          </li>
+        </ul>
+        <p>Grâce à mon sérieux, à mon professionnalisme et à mon savoir-faire, j'ai bâti une solide réputation de professionnel de la toiture à Étréchy.</p>
+        <p>Je vous accueille dans mes locaux de la Grande Rue si vous souhaitez vous renseigner sur mes services. N'hésitez pas à me contacter si vous rencontrez un problème avec votre toiture.</p>
+      </div>
+      <div class="et-bureau__media" data-anim="fade">
+        <img src="/images/enseigne-robert-daniel-couvreur-etrechy.jpg" alt="Vitrine du bureau de Robert Daniel, artisan couvreur, 42 Grande Rue à Étréchy" width="1200" height="675" loading="lazy" decoding="async" />
+        <div class="et-apps">
+          <a class="et-app" href={lienWaze} target="_blank" rel="noopener" aria-label="Itinéraire vers le bureau avec Waze">
+            <span class="et-app__icone et-app__icone--waze" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="#fff" d="M13.218 0C9.915 0 6.835 1.49 4.723 4.148c-1.515 1.913-2.31 4.272-2.31 6.706v1.739c0 .894-.62 1.738-1.862 1.813-.298.025-.547.224-.547.522-.05.82.82 2.31 2.012 3.502.82.844 1.788 1.515 2.832 2.036a3 3 0 0 0 2.955 3.528 2.966 2.966 0 0 0 2.931-2.385h2.509c.323 1.689 2.086 2.856 3.974 2.21 1.64-.546 2.36-2.409 1.763-3.924a12.84 12.84 0 0 0 1.838-1.465 10.73 10.73 0 0 0 3.18-7.65c0-2.882-1.118-5.589-3.155-7.625A10.899 10.899 0 0 0 13.218 0zm0 1.217c2.558 0 4.967.994 6.78 2.807a9.525 9.525 0 0 1 2.807 6.78A9.526 9.526 0 0 1 20 17.585a9.647 9.647 0 0 1-6.78 2.807h-2.46a3.008 3.008 0 0 0-2.93-2.41 3.03 3.03 0 0 0-2.534 1.367v.024a8.945 8.945 0 0 1-2.41-1.788c-.844-.844-1.316-1.614-1.515-2.11a2.858 2.858 0 0 0 1.441-.846 2.959 2.959 0 0 0 .795-2.036v-1.789c0-2.11.696-4.197 2.012-5.861 1.863-2.385 4.62-3.726 7.6-3.726zm-2.41 5.986a1.192 1.192 0 0 0-1.191 1.192 1.192 1.192 0 0 0 1.192 1.193A1.192 1.192 0 0 0 12 8.395a1.192 1.192 0 0 0-1.192-1.192zm7.204 0a1.192 1.192 0 0 0-1.192 1.192 1.192 1.192 0 0 0 1.192 1.193 1.192 1.192 0 0 0 1.192-1.193 1.192 1.192 0 0 0-1.192-1.192zm-7.377 4.769a.596.596 0 0 0-.546.845 4.813 4.813 0 0 0 4.346 2.757 4.77 4.77 0 0 0 4.347-2.757.596.596 0 0 0-.547-.845h-.025a.561.561 0 0 0-.521.348 3.59 3.59 0 0 1-3.254 2.061 3.591 3.591 0 0 1-3.254-2.061.64.64 0 0 0-.546-.348z"/></svg></span>
+            Waze
+          </a>
+          <a class="et-app" href={lienMaps} target="_blank" rel="noopener" aria-label="Voir le bureau sur Google Maps">
+            <span class="et-app__icone et-app__icone--maps" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="#4285F4" d="M19.527 4.799c1.212 2.608.937 5.678-.405 8.173-1.101 2.047-2.744 3.74-4.098 5.614-.619.858-1.244 1.75-1.669 2.727-.141.325-.263.658-.383.992-.121.333-.224.673-.34 1.008-.109.314-.236.684-.627.687h-.007c-.466-.001-.579-.53-.695-.887-.284-.874-.581-1.713-1.019-2.525-.51-.944-1.145-1.817-1.79-2.671L19.527 4.799z"/>
+<path fill="#34A853" d="M8.545 7.705l-3.959 4.707c.724 1.54 1.821 2.863 2.871 4.18.247.31.494.622.737.936l4.984-5.925-.029.01c-1.741.601-3.691-.291-4.392-1.987a3.377 3.377 0 0 1-.209-.716c-.063-.437-.077-.761-.004-1.198l.001-.007z"/>
+<path fill="#FBBC04" d="M5.492 3.149l-.003.004c-1.947 2.466-2.281 5.88-1.117 8.77l4.785-5.689-.058-.05-3.607-3.035z"/>
+<path fill="#EA4335" d="M14.661.436l-3.838 4.563a.295.295 0 0 1 .027-.01c1.6-.551 3.403.15 4.22 1.626.176.319.323.683.377 1.045.068.446.085.773.012 1.22l-.003.016 3.836-4.561A8.382 8.382 0 0 0 14.67.439l-.009-.003z"/>
+<path fill="#1A73E8" d="M9.466 5.868L14.162.285l-.047-.012A8.31 8.31 0 0 0 11.986 0a8.439 8.439 0 0 0-6.169 2.766l-.016.018 3.665 3.084z"/></svg></span>
+            Google Maps
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PRESTATIONS ══ -->
+  <section class="dr-section dr-section--gris">
     <div class="conteneur">
-      <h2 class="apparition">Mes prestations de couvreur à Étréchy</h2>
-      <p class="intro apparition">
-        À Étréchy, les demandes tournent presque toujours autour de trois besoins : arrêter une fuite, rendre
-        une toiture propre et saine, ou la refaire entièrement. Je connais les couvertures de la commune et les
-        matériaux qui les composent, ce qui me permet de vous proposer la solution adaptée à votre toit, sans
-        travaux inutiles.
-      </p>
-      <ul class="prestations">
-        {prestations.map((p) => (
-          <li class="carte prestation apparition">
-            <img src={p.img} alt={p.alt} width={p.w} height={p.h} loading="lazy" decoding="async" />
-            <div class="prestation__corps">
-              <h3><a href={p.href} class="prestation__lien">{p.titre}</a></h3>
-              <p>{p.texte}</p>
+      <h2 class="dr-h2 dr-centre" data-anim="up">Mes prestations de couvreur à Étréchy</h2>
+      <div class="dr-cartes">
+        {prestations.map((s) => (
+          <article class="dr-carte" data-anim="up">
+            <img src={s.img} alt={s.alt} width={s.w} height={s.h} loading="lazy" decoding="async" style={`object-position:${s.pos}`} />
+            <div class="dr-carte__corps">
+              <h3>{s.titre}</h3>
+              <p set:html={s.html} />
             </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CTA (véhicules) ══ -->
+  <section class="dr-section dr-section--cta">
+    <div class="conteneur">
+      <div class="dr-cta" data-anim="up">
+        <figure class="dr-cta__media">
+          <img src="/images/vehicules-robert-daniel-couverture-essonne.jpg" alt="Les camions de Robert Daniel, couvreur à Étréchy" width="900" height="600" loading="lazy" decoding="async" />
+        </figure>
+        <div class="dr-cta__corps">
+          <h2>Faites appel à votre couvreur à Étréchy</h2>
+          <p>Le devis est gratuit et sans engagement.</p>
+          <div class="dr-actions">
+            <a href="/devis-gratuit/" class="dr-btn dr-btn--rouge">
+              Devis gratuit
+              <span class="dr-btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            </a>
+            <a href="tel:0683961518" class="dr-btn dr-btn--blanc">
+              <svg class="dr-tel" viewBox="0 0 24 24" aria-hidden="true">
+                <g class="dr-tel__corps"><path fill="currentColor" d="M14 1H6C4.9 1 4 1.9 4 3v18c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-4 21c-.8 0-1.5-.7-1.5-1.5S9.2 19 10 19s1.5.7 1.5 1.5S10.8 22 10 22zm4-4H6V4h8v14z"/></g>
+                <path class="dr-tel__onde" d="M18.5 8.5a4 4 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path class="dr-tel__onde dr-tel__onde--2" d="M21 6a7.5 7.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              06 83 96 15 18
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ AVIS ══ -->
+  <section class="dr-section">
+    <div class="conteneur">
+      <div class="dr-entete" data-anim="up">
+        <h2 class="dr-h2">Les avis de mes clients</h2>
+        <p class="dr-note"><span class="dr-etoiles" aria-hidden="true">★★★★★</span> <strong>5,0 / 5</strong> sur Google</p>
+      </div>
+      <ul class="dr-avis">
+        {avis.map((a) => (
+          <li class="dr-avis__carte" data-anim="up">
+            <span class="dr-etoiles" aria-label="5 étoiles sur 5">★★★★★</span>
+            <blockquote>« {a.texte} »</blockquote>
+            <p class="dr-avis__nom">{a.nom}</p>
           </li>
         ))}
       </ul>
-      <p class="autres-prestations apparition">
-        Je réalise aussi la <a href="/zinguerie/">zinguerie</a> (gouttières, descentes, noues et solins), la
-        <a href="/fenetre-de-toit-velux/">pose de fenêtres de toit</a>, l'<a href="/isolation-toiture/">isolation de la toiture</a>,
-        l'entretien de la <a href="/charpente/">charpente</a> et le <a href="/ramonage-cheminee/">ramonage des cheminées</a>.
-      </p>
+      <p class="dr-centre"><a href={lienGoogle} class="dr-btn dr-btn--bleu" target="_blank" rel="noopener">Tous les avis Google
+        <span class="dr-btn__fleche dr-btn__fleche--bleue" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a></p>
     </div>
   </section>
 
+  <!-- ══ VÉRIFICATION DE TOITURE PAR DRONE ══ -->
+  <section class="dr-section dr-section--drone">
+    <div class="conteneur">
+      <article class="dr-drone" data-anim="up">
+        <figure class="dr-drone__media">
+          <img class="dr-media__poster" src="/images/robert-daniel-drone-verification-etrechy.jpg" alt="Robert Daniel avec son drone d'inspection devant son bureau d'Étréchy" width="1000" height="880" loading="lazy" decoding="async" />
+        </figure>
+        <div class="dr-drone__corps">
+          <h2>Vérification de toiture par drone à Étréchy</h2>
+          <p>Vous voulez connaître l'état de votre toiture avant l'hiver, après une tempête ou avant d'acheter une maison ? Le drone survole votre toit et filme chaque pan de la couverture : tuiles, faîtage, solins, gouttières et souche de cheminée.</p>
+          <p>Vous suivez les images en direct, et vous recevez ensuite les photos en haute définition. La <a href="/inspection-toiture-drone/">vérification de toiture par drone</a> vous indique si des travaux sont nécessaires, et lesquels.</p>
+          <a href="/devis-gratuit/" class="dr-btn dr-btn--rouge">
+            Faire vérifier ma toiture
+            <span class="dr-btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ══ RAMONAGE ══ -->
+  <section class="dr-section dr-section--ramonage">
+    <div class="conteneur">
+      <article class="dr-ramonage" data-anim="up">
+        <div class="dr-ramonage__corps">
+          <h2>Ramonage de cheminée à Étréchy</h2>
+          <p>Un conduit encrassé chauffe mal et augmente le risque de feu de cheminée et d'intoxication au monoxyde de carbone. Je réalise le <a href="/ramonage-cheminee/">ramonage des cheminées</a>, des poêles et des inserts, mécaniquement, au hérisson, puis je vous remets le certificat que votre assureur peut vous demander.</p>
+          <p>Couvreur, je vérifie en même temps l'état de la souche et du solin, là où le conduit traverse votre toiture.</p>
+        </div>
+        <figure class="dr-ramonage__media">
+          <img src="/images/ramonage-souche-cheminee-essonne.webp" alt="Souche de cheminée et son solin sur une toiture en tuiles" width="900" height="1200" loading="lazy" decoding="async" />
+        </figure>
+      </article>
+    </div>
+  </section>
+
+  <!-- ══ AUTORISATIONS DE LA MAIRIE ══ -->
+  <section class="dr-section dr-section--gris">
+    <div class="conteneur">
+      <h2 class="dr-h2 dr-centre" data-anim="up">Vos travaux de toiture et la mairie d'Étréchy</h2>
+      <div class="et-urba">
+        <div class="et-urba__texte" data-anim="up">
+          <p>Refaire votre toiture à l'identique, avec les mêmes matériaux et la même teinte, ne demande en général aucune formalité. En revanche, dès que vos travaux modifient l'aspect extérieur de la maison, ils doivent être autorisés par le service urbanisme de la mairie d'Étréchy : le plus souvent par une déclaration préalable de travaux, parfois par un permis de construire. Les règles à respecter sont fixées par le plan local d'urbanisme (PLU) de la commune.</p>
+          <ul class="et-cas">
+            {autorisations.map((c) => (
+              <li class="et-cas__carte">
+                <h3>{c.titre}</h3>
+                <p>{c.texte}</p>
+              </li>
+            ))}
+          </ul>
+          <p>Si l'échafaudage ou la benne doivent occuper le trottoir ou la chaussée, une autorisation d'occupation du domaine public, le permis de stationnement, est aussi à demander en mairie avant le début du chantier. Et si votre maison se trouve aux abords d'un monument historique, l'architecte des Bâtiments de France donne son avis sur le dossier.</p>
+          <p>Je vous fournis les références des matériaux, les teintes et les éléments techniques dont vous avez besoin pour constituer votre dossier.</p>
+        </div>
+        <aside class="et-mairie" data-anim="up" aria-label="Mairie d'Étréchy">
+          <p class="et-mairie__titre">Mairie d'Étréchy</p>
+          <p class="et-mairie__ligne">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+            <span>Place Charles-de-Gaulle<br />91580 Étréchy</span>
+          </p>
+          <p class="et-mairie__ligne">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.36 11.36 0 003.58.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1.02l-2.2 2.2z"/></svg>
+            <span>Accueil : <a href="tel:0160803377">01 60 80 33 77</a></span>
+          </p>
+          <p class="et-mairie__ligne">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.36 11.36 0 003.58.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1.02l-2.2 2.2z"/></svg>
+            <span>Urbanisme : <a href="tel:0160806748">01 60 80 67 48</a></span>
+          </p>
+          <a class="dr-btn dr-btn--bleu" href="https://www.ville-etrechy.fr/" target="_blank" rel="noopener">
+            Site de la mairie
+            <span class="dr-btn__fleche dr-btn__fleche--bleue" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ RÉALISATIONS À ÉTRÉCHY (fin de page, pas de CTA après) ══ -->
   <CartesRealisations
     slugs={['renovation-toiture-etrechy', 'fenetre-de-toit-etrechy', 'refection-faitage-etrechy']}
-    titre="Mes derniers chantiers à Étréchy"
-    intro="Ces chantiers ont été réalisés dans la commune ces derniers mois. Les photos montrent toutes les étapes, de la dépose à la finition."
+    titre="Mes chantiers à Étréchy"
+    intro="Rénovation complète, pose de fenêtre de toit, réfection de faîtage : retrouvez en photos, étape par étape, les travaux de couverture réalisés dans la commune."
     lienTout={false}
+    perso={{
+      'renovation-toiture-etrechy': {
+        titre: "Remplacement de la toiture d'un pavillon à Étréchy",
+        texte: "Ancienne couverture déposée, support contrôlé, liteaux et tuiles neuves posés rang par rang, rives et faîtage repris. Un chantier mené de l'échafaudage à la dernière tuile, avec des abords protégés et un jardin laissé propre.",
+      },
+      'fenetre-de-toit-etrechy': {
+        titre: 'Pose de Velux à Étréchy dans une toiture en tuiles plates',
+        texte: "Tuiles plates retirées une à une, ouverture préparée dans la charpente, fenêtre posée avec son raccord d'étanchéité, puis tuiles reposées tout autour. La pièce sous les toits gagne en lumière et en aération, avec une finition presque invisible depuis la rue.",
+      },
+      'refection-faitage-etrechy': {
+        titre: 'Réparation de toiture à Étréchy : réfection du faîtage',
+        texte: "Le reste de la couverture était sain : inutile de tout refaire. Faîtières déposées, lattes et closoir neufs, puis faîtières reposées et fixées une à une, au point le plus exposé du toit.",
+      },
+    }}
   />
-
-  <section class="section section--gris">
-    <div class="conteneur">
-      <h2 class="apparition">{d.avisTitre}</h2>
-      <div class="avis-grille">
-        {d.avis.map((a) => (
-          <figure class="carte avis-carte apparition">
-            <div class="avis-carte__etoiles" aria-label="Note : 5 sur 5">
-              {Array(5).fill(0).map(() => (
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              ))}
-            </div>
-            <blockquote>{a.texte}</blockquote>
-            <figcaption>
-              <span class="avis-carte__nom">{a.nom}</span>
-              <span class="avis-carte__source">Avis Google</span>
-            </figcaption>
-          </figure>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="conteneur editorial">
-      <div class="prose apparition">
-        <h2>Faites appel à une entreprise de couverture pour l'entretien de votre toiture</h2>
-        <p>
-          Mon bureau est installé au 42 Grande Rue, au centre d'Étréchy. Les habitants peuvent y passer pour me
-          montrer la photo d'une tuile qui a glissé, me décrire une fuite ou préparer la rénovation de leur toit.
-          Je travaille dans la commune toute l'année : je connais les rues, les accès et les toitures, et je reste
-          joignable une fois le chantier terminé.
-        </p>
-        <p>
-          Une toiture bien entretenue vieillit lentement. Un <a href="/nettoyage-toiture/">démoussage suivi d'un traitement de la couverture</a>
-          protège les tuiles, un faîtage repris à temps évite les infiltrations, et des
-          <a href="/zinguerie/descentes-eaux-pluviales/">gouttières et descentes dégagées</a> conduisent l'eau loin des murs.
-          Pour connaître l'état de votre toit sans attendre une fuite, je propose aussi une
-          <a href="/inspection-toiture-drone/">inspection de la toiture par drone</a> : vous voyez les photos de votre couverture, pan par pan.
-        </p>
-        <p>
-          Quand la couverture arrive en fin de vie, une réparation de plus ne règle rien. Je vous le dis franchement
-          et je vous propose alors une réfection complète : dépose, contrôle de la charpente, écran sous-toiture,
-          liteaux et tuiles neuves. C'est aussi le bon moment pour améliorer l'isolation par l'extérieur ou ajouter une
-          fenêtre de toit qui éclaire les combles. Mes devis sont gratuits, détaillés poste par poste, et tous mes
-          travaux sont couverts par la garantie décennale.
-        </p>
-        <p>
-          Avant de modifier l'aspect de votre toiture, renseignez-vous auprès du service urbanisme de la mairie.
-          Étréchy est couverte par un plan local d'urbanisme (PLU), dont la dernière version date de 2026. Le centre-ville
-          est classé site patrimonial remarquable et la commune fait partie du site inscrit de la vallée de la Juine :
-          pour un changement de matériau ou de teinte de tuiles, la pose d'une fenêtre de toit ou la réfection d'une
-          couverture visible depuis la rue, une déclaration préalable de travaux est en général nécessaire, souvent avec
-          l'avis de l'architecte des Bâtiments de France. Je vous fournis les références des matériaux et les éléments
-          techniques utiles au dossier.
-        </p>
-      </div>
-      <aside class="mairie apparition" aria-label="Mairie d'Étréchy">
-        <p class="mairie__titre">Mairie d'Étréchy</p>
-        <p>Place Charles-de-Gaulle<br />91580 Étréchy</p>
-        <p>
-          <svg class="icone" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.36 11.36 0 003.58.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1.02l-2.2 2.2z"/></svg>
-          01 60 80 67 57
-        </p>
-        <p><a href="https://www.ville-etrechy.fr/" target="_blank" rel="noopener">Site officiel de la mairie</a></p>
-      </aside>
-    </div>
-  </section>
-
-  <section class="section section--gris">
-    <div class="conteneur duo">
-      <img class="apparition" src="/images/robert-daniel-artisan-couvreur-etrechy.jpg" alt="Robert Daniel devant son bureau, 42 Grande Rue à Étréchy" width="900" height="1200" loading="lazy" decoding="async" style="max-height:560px;object-position:center 40%;" />
-      <div class="prose apparition">
-        <h2>Robert Daniel, votre artisan au 42 Grande Rue</h2>
-        <p>
-          J'ai appris le métier auprès de mon père, sur les toits de la région, avant de créer ma propre
-          entreprise de couverture à Étréchy. Mon bureau vous accueille du lundi au samedi, de 8 h à 20 h : vous y
-          trouvez un conseil clair sur votre toiture, avant même le devis.
-        </p>
-        <p><strong>42 Grande Rue, 91580 Étréchy</strong></p>
-        <p><a href="https://maps.app.goo.gl/rYpVbKYbBB64Uk2y6" target="_blank" rel="noopener" class="btn btn--bleu">Voir l'itinéraire <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--bleu cta-ville">
-    <div class="conteneur cta-ville__grille apparition">
-      <img src="/images/robert-daniel-artisan-couvreur-portrait.webp" alt="Robert Daniel, artisan couvreur à Étréchy" width="600" height="600" loading="lazy" decoding="async" />
-      <div>
-        <h2>Contactez votre couvreur à Étréchy</h2>
-        <p>
-          Une fuite à réparer, une couverture à nettoyer ou à remplacer : appelez-moi ou passez au bureau de la
-          Grande Rue. Le devis est gratuit et sans engagement.
-        </p>
-        <div class="hero__actions">
-          <a href="tel:0683961518" class="btn btn--cuivre">
-            <svg class="icone-tel" viewBox="0 0 24 24" aria-hidden="true"><g class="icone-tel__corps"><path fill="currentColor" d="M14 1H6C4.9 1 4 1.9 4 3v18c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-4 21c-.8 0-1.5-.7-1.5-1.5S9.2 19 10 19s1.5.7 1.5 1.5S10.8 22 10 22zm4-4H6V4h8v14z"/></g><path class="icone-tel__onde" d="M18.5 8.5a4 4 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="icone-tel__onde icone-tel__onde--2" d="M21 6a7.5 7.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            06 83 96 15 18
-          </a>
-          <a href="/devis-gratuit/" class="btn btn--blanc">Devis gratuit <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="conteneur">
-      <h2>J'interviens aussi autour d'Étréchy</h2>
-      <p class="intro">Depuis mon bureau, j'interviens dans les communes voisines de la vallée de la Juine :</p>
-      <ul class="nuage-villes">
-        {voisines.map((v) => <li><a href={`/${v.slug}/`}>{v.nom}</a></li>)}
-      </ul>
-    </div>
-  </section>
 </BaseLayout>
 
 <script>
-  const els = document.querySelectorAll('.apparition');
-  if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    const io = new IntersectionObserver((entries) => entries.forEach((en) => {
-      if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); }
-    }), { rootMargin: '0px 0px -8% 0px' });
+  // Animations d'apparition (désactivées si l'utilisateur réduit les animations)
+  const els = document.querySelectorAll('[data-anim]');
+  if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    els.forEach((el) => el.classList.add('is-visible'));
+  } else {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px' });
     els.forEach((el) => io.observe(el));
-  } else els.forEach((el) => el.classList.add('visible'));
+  }
 </script>
 
 <style>
-  :global(html.anim) .apparition { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
-  :global(html.anim) .apparition.visible { opacity: 1; transform: none; }
+  /* ════ Styles repris de la page d'accueil (préfixe dr-) ════ */
+  .dr-hero, .dr-section {
+    --nuit: #062a45;
+    --rouge-clair: #ff4d42;
+    --ombre-carte: 0 6px 20px rgb(0 73 123 / .07);
+    --ombre-carte-hover: 0 16px 34px rgb(0 73 123 / .15);
+    --ligne: #e2e6ea;
+  }
+  [data-anim] { opacity: 0; transition: opacity .7s ease, transform .7s ease; }
+  [data-anim="up"] { transform: translate3d(0, 28px, 0); }
+  [data-anim].is-visible { opacity: 1; transform: none; }
 
-  .h1__nom { display: block; margin-top: 0.15em; color: var(--cuivre); font-size: 0.82em; }
-  .artisan { display: flex; align-items: center; gap: 0.9rem; margin: 0.4rem 0 1rem; }
-  .artisan img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; box-shadow: var(--ombre); }
-  .artisan p { margin: 0; line-height: 1.35; color: var(--gris-700); }
-  .artisan strong { color: var(--cuivre); font-size: 1.05rem; }
-  @media (max-width: 979px) { .hero__texte > .artisan { order: 3; } }
+  .dr-section { padding-block: 88px; }
+  .dr-section--gris { background: var(--gris-50); }
+  @media (max-width: 1023px) { .dr-section { padding-block: 64px; } }
+  @media (max-width: 767px)  { .dr-section { padding-block: 52px; } }
+  .dr-centre { text-align: center; }
+  .dr-h2 {
+    font-family: var(--font-titres); font-weight: 700; color: var(--bleu-fonce);
+    font-size: clamp(19px, .6rem + 2.6vw, 36px); line-height: 1.2; text-wrap: balance; margin: 0;
+  }
 
-  .intro { max-width: 72ch; margin: 0.6rem 0 0; color: var(--gris-700); }
-  .prestations { list-style: none; padding: 0; margin: 2rem 0 0; display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
-  @media (min-width: 1000px) { .prestations { grid-template-columns: repeat(3, 1fr); } }
-  .prestation { position: relative; display: flex; flex-direction: column; }
-  .prestation img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
-  .prestation__corps { padding: 1.2rem 1.3rem 1.4rem; display: grid; gap: 0.5rem; }
-  .prestation h3 { margin: 0; font-size: 1.15rem; }
-  .prestation__lien { color: var(--bleu); text-decoration: none; }
-  .prestation__lien::after { content: ""; position: absolute; inset: 0; border-radius: var(--rayon); }
-  .prestation:hover .prestation__lien { text-decoration: underline; }
-  .prestation p { margin: 0; color: var(--gris-700); font-size: 0.97rem; }
-  .autres-prestations { max-width: 72ch; margin: 1.8rem 0 0; color: var(--gris-700); }
+  /* Boutons (pilule, jamais pleine largeur) */
+  .dr-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+  .dr-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+    width: auto; max-width: max-content; min-height: 50px; padding: 14px 26px;
+    border-radius: 999px; font-family: var(--font-titres); font-weight: 700; font-size: 16px;
+    line-height: 1.2; text-decoration: none; white-space: nowrap;
+    box-shadow: 0 4px 12px rgb(0 42 69 / .12);
+    transition: background-color .25s ease, color .25s ease, transform .25s ease, box-shadow .25s ease;
+  }
+  .dr-btn:hover { transform: translate3d(0, -2px, 0); box-shadow: 0 10px 22px rgb(0 42 69 / .2); }
+  .dr-btn--rouge { background: var(--cuivre); color: #fff; }
+  .dr-btn--rouge:hover { background: var(--cuivre-fonce); color: #fff; }
+  .dr-btn--bleu { background: var(--bleu); color: #fff; }
+  .dr-btn--bleu:hover { background: var(--bleu-fonce); color: #fff; }
+  .dr-btn--blanc { background: #fff; color: var(--bleu-fonce); }
+  .dr-btn--blanc:hover { background: var(--gris-100); color: var(--bleu-fonce); }
+  .dr-btn__fleche {
+    display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+    width: 26px; height: 26px; border-radius: 50%; background: #fff; color: var(--cuivre); overflow: hidden;
+  }
+  .dr-btn__fleche--bleue { color: var(--bleu); }
+  .dr-btn__fleche svg { width: 14px; height: 14px; transition: transform .3s ease; }
+  .dr-btn:hover .dr-btn__fleche svg { transform: translate3d(3px, 0, 0); }
+  @media (max-width: 767px) {
+    .dr-btn { min-height: 46px; padding: 12px 18px; font-size: 15px; gap: 10px; }
+  }
 
-  .avis-grille { display: grid; gap: 1.5rem; grid-template-columns: 1fr; margin-top: 2rem; }
-  @media (min-width: 720px) { .avis-grille { grid-template-columns: repeat(3, 1fr); } }
-  .avis-carte { display: flex; flex-direction: column; gap: 0.8rem; padding: 1.6rem; background: var(--blanc); margin: 0; }
-  .avis-carte:hover { transform: none; }
-  .avis-carte__etoiles { display: inline-flex; gap: 2px; }
-  .avis-carte__etoiles svg { width: 1.1rem; height: 1.1rem; fill: #fbbc04; }
-  .avis-carte blockquote { margin: 0; font-size: 1rem; line-height: 1.6; color: var(--gris-700); flex: 1; }
-  .avis-carte__nom { display: block; font-weight: 700; color: var(--bleu); }
-  .avis-carte__source { display: block; font-size: 0.85rem; color: var(--gris-500); }
+  /* Smartphone qui sonne */
+  .dr-tel { width: 20px; height: 20px; flex-shrink: 0; overflow: visible; }
+  .dr-tel__corps { transform-origin: 40% 50%; animation: dr-sonne 2.4s ease-in-out infinite; }
+  .dr-tel__onde { opacity: 0; animation: dr-onde 2.4s ease-out infinite; }
+  .dr-tel__onde--2 { animation-delay: .25s; }
+  @keyframes dr-sonne {
+    0%, 70%, 100% { transform: rotate(0); }
+    75% { transform: rotate(-12deg); } 80% { transform: rotate(10deg); }
+    85% { transform: rotate(-8deg); } 90% { transform: rotate(6deg); }
+  }
+  @keyframes dr-onde { 0%, 60% { opacity: 0; } 75% { opacity: 1; } 100% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) {
+    .dr-tel__corps, .dr-tel__onde { animation: none; }
+    .dr-tel__onde { opacity: 1; }
+    [data-anim] { opacity: 1; transform: none; transition: none; }
+  }
 
-  .editorial { display: grid; gap: 2.5rem; align-items: start; }
-  @media (min-width: 900px) { .editorial { grid-template-columns: minmax(0, 1fr) 300px; gap: 4rem; } }
-  .editorial .prose h2 { margin-top: 0; }
-  .mairie { background: var(--gris-50); border: 1px solid var(--gris-200); border-radius: var(--rayon); padding: 1.5rem 1.6rem; }
-  .mairie p { margin: 0.4rem 0; color: var(--gris-700); }
-  .mairie__titre { font-family: var(--font-titres); font-weight: 700; color: var(--bleu) !important; font-size: 1.1rem; }
+  /* Hero */
+  .dr-hero { background: var(--nuit); padding-block: 28px 56px; overflow: hidden; }
+  .et-ariane :global(.fil-ariane) { margin-bottom: 20px; color: #9fb6ca; }
+  .et-ariane :global(.fil-ariane a) { color: #9fb6ca; }
+  .et-ariane :global(.fil-ariane a:hover) { color: #fff; }
+  .et-ariane :global(.fil-ariane [aria-current]) { color: #fff; }
+  .dr-hero__grille {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas: "titre media" "texte media"; align-items: center; gap: 22px 52px;
+  }
+  .dr-hero__titre {
+    grid-area: titre; align-self: end; margin: 0; color: #fff;
+    font-family: var(--font-titres); font-weight: 700;
+    font-size: clamp(28px, 3.1vw, 40px); line-height: 1.15;
+  }
+  .dr-ligne { display: block; white-space: nowrap; }
+  .dr-hero__nom { color: var(--rouge-clair); }
+  .dr-hero__media {
+    grid-area: media; margin: 0; border-radius: 16px; overflow: hidden; position: relative;
+    box-shadow: 0 20px 50px rgb(0 0 0 / .3); aspect-ratio: 3 / 2;
+  }
+  .dr-media__poster { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .dr-hero__texte { grid-area: texte; align-self: start; display: flex; flex-direction: column; gap: 22px; }
+  .dr-hero__lead { margin: 0; color: #d6e2ee; font-size: 19px; line-height: 1.6; }
+  .dr-hero__lead strong { color: #fff; }
+  .dr-coches { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .dr-coches li { position: relative; padding-left: 34px; color: #fff; font-weight: 600; font-size: 17px; }
+  .dr-coches li::before {
+    content: ""; position: absolute; left: 0; top: 1px; width: 22px; height: 22px; border-radius: 50%;
+    background: var(--cuivre) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / 14px no-repeat;
+  }
+  @media (max-width: 1023px) {
+    .dr-hero { padding-block: 20px 44px; }
+    .dr-hero__grille { grid-template-columns: minmax(0, 1fr); grid-template-areas: "titre" "media" "texte"; gap: 22px; }
+    .dr-hero__titre { text-align: center; font-size: clamp(19px, 7vw, 40px); }
+    .dr-hero__media { aspect-ratio: 16 / 9; }
+    .dr-hero__texte .dr-actions { justify-content: center; }
+  }
+  @media (max-width: 479px) { .dr-hero__lead { font-size: 17px; } }
 
-  .cta-ville__grille { display: grid; gap: 2rem; align-items: center; }
-  .cta-ville__grille img { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; justify-self: center; border: 4px solid rgba(255,255,255,.9); }
-  .cta-ville p { margin: 0.8rem 0 1.4rem; max-width: 60ch; }
-  @media (min-width: 760px) { .cta-ville__grille { grid-template-columns: 220px 1fr; } .cta-ville__grille img { width: 220px; height: 220px; } }
+  /* Bureau d'Étréchy */
+  .et-bureau { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); align-items: center; gap: 64px; }
+  .et-bureau__texte { display: flex; flex-direction: column; gap: 18px; }
+  .et-bureau__texte > p { margin: 0; font-size: 17px; line-height: 1.7; color: var(--gris-700); }
+  .et-coord { list-style: none; margin: 4px 0 6px; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+  .et-coord li { display: flex; align-items: center; gap: 12px; font-size: 17px; color: var(--bleu-fonce); }
+  .et-coord svg { width: 22px; height: 22px; flex-shrink: 0; color: var(--cuivre); }
+  .et-coord a { color: var(--bleu-fonce); font-weight: 700; text-decoration: none; }
+  .et-coord a:hover { color: var(--cuivre); }
+  .et-bureau__media { display: flex; flex-direction: column; gap: 18px; }
+  .et-bureau__media img {
+    display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover;
+    border-radius: 16px; box-shadow: 0 20px 50px rgb(0 42 69 / .16);
+  }
+  .et-apps { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+  .et-app {
+    display: inline-flex; align-items: center; gap: 12px; padding: 8px 20px 8px 8px;
+    background: #fff; border-radius: 999px; box-shadow: var(--ombre-carte);
+    font-family: var(--font-titres); font-weight: 700; font-size: 16px; color: var(--bleu-fonce); text-decoration: none;
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .et-app:hover { transform: translate3d(0, -2px, 0); box-shadow: var(--ombre-carte-hover); color: var(--bleu-fonce); }
+  .et-app__icone {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px; border-radius: 11px; flex-shrink: 0;
+  }
+  .et-app__icone svg { width: 26px; height: 26px; }
+  .et-app__icone--waze { background: #33ccff; }
+  .et-app__icone--maps { background: #fff; box-shadow: inset 0 0 0 1px #e2e6ea; }
+  @media (max-width: 1023px) { .et-bureau { grid-template-columns: minmax(0, 1fr); gap: 36px; } }
+
+  /* Cartes prestations */
+  .dr-cartes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin-top: 44px; }
+  .dr-carte {
+    display: flex; flex-direction: column; overflow: hidden; background: #fff;
+    border: 1px solid var(--ligne); border-radius: 14px; box-shadow: var(--ombre-carte);
+    transition: transform .25s ease, box-shadow .25s ease, opacity .7s ease;
+  }
+  .dr-carte.is-visible:hover { transform: translate3d(0, -4px, 0); box-shadow: var(--ombre-carte-hover); }
+  .dr-carte img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+  .dr-carte__corps { padding: 20px 20px 24px; display: flex; flex-direction: column; gap: 12px; }
+  .dr-carte h3 {
+    margin: 0; font-family: var(--font-titres); font-weight: 700; font-size: 19px; line-height: 1.25;
+    color: var(--bleu-fonce); text-wrap: balance;
+  }
+  .dr-carte p { margin: 0; color: var(--gris-700); font-size: 15.5px; line-height: 1.65; }
+  .dr-carte :global(a) { color: var(--bleu); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+  .dr-carte :global(a:hover) { color: var(--cuivre); }
+  @media (max-width: 899px) { .dr-cartes { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; } }
+  @media (max-width: 599px)  { .dr-cartes { grid-template-columns: minmax(0, 1fr); gap: 22px; margin-top: 28px; } .dr-carte__corps { padding: 18px 18px 22px; } }
+
+  /* CTA véhicules */
+  .dr-section--cta { padding-top: 0; background: var(--gris-50); }
+  .dr-cta {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); overflow: hidden;
+    background: var(--nuit); border-radius: 18px; box-shadow: 0 20px 50px rgb(0 42 69 / .22);
+  }
+  .dr-cta__media { margin: 0; }
+  .dr-cta__media img { display: block; width: 100%; height: 100%; min-height: 320px; object-fit: cover; }
+  .dr-cta__corps { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 18px; padding: 48px 46px; }
+  .dr-cta h2 {
+    margin: 0; color: #fff; font-family: var(--font-titres); font-weight: 700;
+    font-size: clamp(19px, .6rem + 2.2vw, 34px); line-height: 1.2; text-wrap: balance;
+  }
+  .dr-cta p { margin: 0; color: #d6e2ee; font-size: 18px; }
+  .dr-cta .dr-actions { margin-top: 6px; }
+  @media (min-width: 900px) and (max-width: 1099px) { .dr-cta h2 { font-size: 25px; } .dr-cta__corps { padding: 36px 32px; } }
+  @media (max-width: 899px) {
+    .dr-cta { grid-template-columns: minmax(0, 1fr); }
+    .dr-cta__media img { min-height: 0; aspect-ratio: 16 / 9; }
+    .dr-cta__corps { align-items: center; text-align: center; padding: 30px 22px 34px; }
+    .dr-cta .dr-actions { justify-content: center; }
+  }
+
+  /* Avis */
+  .dr-entete { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; margin-bottom: 40px; }
+  .dr-note { margin: 0; color: var(--gris-700); }
+  .dr-etoiles { color: #f5b301; letter-spacing: 2px; }
+  .dr-avis { list-style: none; margin: 0 0 36px; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+  .dr-avis__carte { display: flex; flex-direction: column; gap: 12px; padding: 26px 24px; background: var(--gris-50); border-radius: 14px; }
+  .dr-avis__carte blockquote { margin: 0; color: var(--gris-700); font-size: 16px; line-height: 1.65; }
+  .dr-avis__nom { margin: auto 0 0; font-family: var(--font-titres); font-weight: 700; color: var(--bleu-fonce); }
+  @media (max-width: 1023px) { .dr-avis { grid-template-columns: minmax(0, 1fr); gap: 16px; } }
+
+  /* Drone : carte bleu nuit + photo */
+  .dr-section--drone { padding-top: 0; }
+  .dr-drone {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); overflow: hidden;
+    background: var(--nuit); border-radius: 18px; box-shadow: 0 20px 50px rgb(0 42 69 / .22);
+  }
+  .dr-drone__media { margin: 0; position: relative; min-height: 380px; }
+  .dr-drone__media .dr-media__poster { position: absolute; inset: 0; object-position: center 35%; }
+  .dr-drone__corps { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 16px; padding: 46px; }
+  .dr-drone h2 {
+    margin: 0; color: #fff; font-family: var(--font-titres); font-weight: 700;
+    font-size: clamp(19px, .6rem + 2.1vw, 32px); line-height: 1.2; text-wrap: balance;
+  }
+  .dr-drone p { margin: 0; color: #d6e2ee; font-size: 17px; line-height: 1.65; text-align: left; }
+  .dr-drone p a { color: #fff; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+  .dr-drone p a:hover { color: var(--rouge-clair); }
+  .dr-drone .dr-btn { margin-top: 6px; }
+  @media (min-width: 900px) and (max-width: 1099px) { .dr-drone h2 { font-size: 25px; } .dr-drone__corps { padding: 34px 32px; } .dr-drone p { font-size: 16px; } }
+  @media (max-width: 899px) {
+    .dr-drone { grid-template-columns: minmax(0, 1fr); }
+    .dr-drone__media { min-height: 0; aspect-ratio: 4 / 3; }
+    .dr-drone__corps { padding: 28px 22px 32px; }
+    .dr-drone h2 { text-align: center; align-self: stretch; }
+    .dr-drone .dr-btn { align-self: center; }
+    .dr-drone p { font-size: 16px; }
+  }
+
+  /* Ramonage : carte claire, photo à droite */
+  .dr-section--ramonage { padding-top: 0; }
+  .dr-ramonage {
+    display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); overflow: hidden;
+    background: var(--gris-50); border-radius: 18px;
+  }
+  .dr-ramonage__corps { display: flex; flex-direction: column; justify-content: center; gap: 16px; padding: 46px; }
+  .dr-ramonage h2 {
+    margin: 0; color: var(--bleu-fonce); font-family: var(--font-titres); font-weight: 700;
+    font-size: clamp(19px, .6rem + 2.1vw, 32px); line-height: 1.2; text-wrap: balance;
+  }
+  .dr-ramonage p { margin: 0; color: var(--gris-700); font-size: 17px; line-height: 1.7; text-align: left; }
+  .dr-ramonage p a { color: var(--bleu); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+  .dr-ramonage p a:hover { color: var(--cuivre); }
+  .dr-ramonage__media { margin: 0; }
+  .dr-ramonage__media img { display: block; width: 100%; height: 100%; min-height: 300px; max-height: 420px; object-fit: cover; object-position: center 40%; }
+  @media (min-width: 900px) and (max-width: 1099px) { .dr-ramonage h2 { font-size: 25px; } .dr-ramonage__corps { padding: 34px 32px; } .dr-ramonage p { font-size: 16px; } }
+  @media (max-width: 899px) {
+    .dr-ramonage { grid-template-columns: minmax(0, 1fr); }
+    .dr-ramonage__media { order: -1; }
+    .dr-ramonage__media img { min-height: 0; max-height: none; aspect-ratio: 16 / 9; }
+    .dr-ramonage__corps { padding: 28px 22px 32px; }
+    .dr-ramonage h2 { text-align: center; }
+    .dr-ramonage p { font-size: 16px; }
+  }
+
+  /* Autorisations de la mairie */
+  .et-urba { display: grid; grid-template-columns: minmax(0, 1fr) 320px; align-items: start; gap: 56px; margin-top: 44px; }
+  .et-urba__texte { display: flex; flex-direction: column; gap: 18px; }
+  .et-urba__texte > p { margin: 0; font-size: 17px; line-height: 1.7; color: var(--gris-700); }
+  .et-cas { list-style: none; margin: 6px 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  .et-cas__carte { display: flex; flex-direction: column; gap: 8px; padding: 22px 20px; background: #fff; border-radius: 14px; box-shadow: var(--ombre-carte); }
+  .et-cas__carte h3 { margin: 0; font-family: var(--font-titres); font-weight: 700; font-size: 17px; line-height: 1.3; color: var(--bleu-fonce); text-wrap: balance; }
+  .et-cas__carte p { margin: 0; font-size: 15.5px; line-height: 1.6; color: var(--gris-700); }
+  .et-mairie {
+    position: sticky; top: 110px; display: flex; flex-direction: column; align-items: flex-start; gap: 14px;
+    padding: 28px 26px; background: #fff; border-radius: 16px; box-shadow: var(--ombre-carte);
+  }
+  .et-mairie__titre { margin: 0 0 4px; font-family: var(--font-titres); font-weight: 700; font-size: 20px; color: var(--bleu-fonce); }
+  .et-mairie__ligne { display: flex; align-items: flex-start; gap: 12px; margin: 0; font-size: 16px; line-height: 1.5; color: var(--gris-700); }
+  .et-mairie__ligne svg { width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px; color: var(--bleu); }
+  .et-mairie__ligne a { color: var(--bleu-fonce); font-weight: 700; text-decoration: none; white-space: nowrap; }
+  .et-mairie__ligne a:hover { color: var(--cuivre); }
+  .et-mairie .dr-btn { margin-top: 6px; }
+  @media (max-width: 1099px) { .et-cas { grid-template-columns: minmax(0, 1fr); } }
+  @media (max-width: 899px) {
+    .et-urba { grid-template-columns: minmax(0, 1fr); gap: 32px; margin-top: 28px; }
+    .et-mairie { position: static; }
+  }
+
+  /* Réalisations : titres de cartes sur 2 lignes max */
+  :global(.realisations-bloc .grille-chantiers .carte-chantier h3) { font-size: clamp(16px, .45rem + 1vw, 18.4px); text-wrap: balance; }
+  /* Titres longs (ancres avec contexte) : 3 colonnes seulement sur grand écran, sinon 2 puis 1 */
+  :global(section.realisations-bloc ul.grille-chantiers) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  @media (max-width: 1099px) { :global(section.realisations-bloc ul.grille-chantiers) { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 699px)  { :global(section.realisations-bloc ul.grille-chantiers) { grid-template-columns: minmax(0, 1fr); } }
 </style>

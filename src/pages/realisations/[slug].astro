@@ -1,16 +1,28 @@
 ---
+// ════════════════════════════════════════════════════════════════════
+// GABARIT DES PAGES RÉALISATIONS (refonte 13 oct. 2026) — design de la
+// nouvelle page d'accueil / de /couvreur-etrechy/. Ancienne version :
+// _archives/realisation-slug-avant-refonte-2026-10-13.astro
+// Données : src/data/realisations.json
+//   accroche        → sous-titre du hero (HTML, un seul <strong>)
+//   sections[]      → { h2, html, photo?, video? } ; photo = index dans photos[],
+//                      video = la vidéo s'affiche dans cette section (sinon la 1re après la galerie)
+//                      (section en deux colonnes texte + photo)
+//   autresCartes    → { [slug]: { titre, texte } } : ancres et textes des
+//                      cartes « autres chantiers » propres à cette page
+// ════════════════════════════════════════════════════════════════════
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import FilAriane from '../../components/FilAriane.astro';
 import CartesRealisations from '../../components/CartesRealisations.astro';
 import realisations from '../../data/realisations.json';
+import '../../styles/design-accueil.css';
 
 export function getStaticPaths() {
   return realisations.map((r) => ({ params: { slug: r.slug }, props: { r } }));
 }
-const { r } = Astro.props;
-const cover = r.photos.find((p) => p.cover) || r.photos[0];
+const { r } = Astro.props as { r: any };
+const cover = r.photos.find((p: any) => p.cover) || r.photos[0];
 const [premiere, ...suite] = r.sections;
-// Autres chantiers : même commune d'abord, puis les plus récents
 // Cocon par commune : on ne relie entre elles que les réalisations de la même commune
 const autres = realisations
   .filter((x) => x.slug !== r.slug && x.commune === r.commune)
@@ -25,68 +37,74 @@ const extraSchemas = [{
   url: new URL(r.url, Astro.site).toString(),
   contentLocation: { '@type': 'Place', name: r.commune, address: { '@type': 'PostalAddress', addressLocality: r.commune, postalCode: r.codePostal, addressCountry: 'FR' } },
   author: { '@id': 'https://robert-daniel-couverture.fr/#localbusiness' },
-  image: r.photos.map((p) => new URL(p.src, Astro.site).toString()),
+  image: r.photos.map((p: any) => new URL(p.src, Astro.site).toString()),
 }];
-const tel = 'M16 1H8C6.34 1 5 2.34 5 4v16c0 1.66 1.34 3 3 3h8c1.66 0 3-1.34 3-3V4c0-1.66-1.34-3-3-3zm-2 20h-4v-1h4v1zm3.25-3H6.75V4h10.5v14z';
+const moisMaj = r.mois.charAt(0).toUpperCase() + r.mois.slice(1);
 ---
 <BaseLayout title={r.title} description={r.meta} ogImage={cover.src} extraSchemas={extraSchemas}>
-  <script is:inline>document.documentElement.classList.add('anim');</script>
+  <script is:inline>document.documentElement.classList.add('dr-anim');</script>
 
-  <section class="hero">
+  <!-- ══ HERO ══ -->
+  <section class="dr-hero">
     <div class="conteneur">
       <FilAriane items={[{ label: 'Accueil', href: '/' }, { label: 'Réalisations', href: '/realisations/' }, { label: r.h1 }]} />
     </div>
-    <div class="conteneur hero__grille">
-      <div class="hero__texte">
-        <h1 class="h1-long">{r.h1}</h1>
-        <div class="artisan">
-          <img src="/images/robert-daniel-artisan-couvreur-portrait.webp" alt="Robert Daniel, artisan couvreur à Étréchy" width="600" height="600" decoding="async" />
-          <p><strong>Robert Daniel</strong><br />Artisan couvreur à Étréchy</p>
-        </div>
-        <p class="hero__accroche" set:html={r.accroche} />
-        <dl class="fiche-chantier">
-          <div><dt>Commune</dt><dd><a href={r.pageVille}>{r.commune}</a> ({r.codePostal})</dd></div>
-          <div><dt>Date</dt><dd>{r.mois}</dd></div>
-          <div><dt>Prestation</dt><dd><a href={r.pageService}>{r.prestationLibelle}</a></dd></div>
-        </dl>
-        <div class="hero__actions">
-          <a href="tel:0683961518" class="btn btn--cuivre">
-            <svg class="icone-tel" viewBox="0 0 24 24" aria-hidden="true"><g class="icone-tel__corps"><path fill="currentColor" d="M14 1H6C4.9 1 4 1.9 4 3v18c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-4 21c-.8 0-1.5-.7-1.5-1.5S9.2 19 10 19s1.5.7 1.5 1.5S10.8 22 10 22zm4-4H6V4h8v14z"/></g><path class="icone-tel__onde" d="M18.5 8.5a4 4 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="icone-tel__onde icone-tel__onde--2" d="M21 6a7.5 7.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <div class="conteneur dr-hero__grille">
+      <h1 class="dr-hero__titre">{r.h1}</h1>
+      <figure class="dr-hero__media">
+        <img src={cover.src} srcset={`${cover.small} 800w, ${cover.src} 1600w`} sizes="(min-width: 1024px) 50vw, 100vw" alt={cover.alt} width={cover.width} height={cover.height} fetchpriority="high" decoding="async" />
+      </figure>
+      <div class="dr-hero__texte">
+        <p class="dr-hero__lead" set:html={r.accroche} />
+        <p class="rl-date">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg>
+          Chantier réalisé en {r.mois}
+        </p>
+        <div class="dr-actions">
+          <a href="/devis-gratuit/" class="dr-btn dr-btn--rouge">
+            Devis gratuit
+            <span class="dr-btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+          <a href="tel:0683961518" class="dr-btn dr-btn--blanc">
+            <svg class="dr-tel" viewBox="0 0 24 24" aria-hidden="true">
+              <g class="dr-tel__corps"><path fill="currentColor" d="M14 1H6C4.9 1 4 1.9 4 3v18c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-4 21c-.8 0-1.5-.7-1.5-1.5S9.2 19 10 19s1.5.7 1.5 1.5S10.8 22 10 22zm4-4H6V4h8v14z"/></g>
+              <path class="dr-tel__onde" d="M18.5 8.5a4 4 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path class="dr-tel__onde dr-tel__onde--2" d="M21 6a7.5 7.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
             06 83 96 15 18
           </a>
-          <a href="/devis-gratuit/" class="btn btn--bleu">Devis gratuit <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
         </div>
-      </div>
-      <div class="hero__media">
-        <img class="hero__photo" src={cover.src} srcset={`${cover.small} 800w, ${cover.src} 1600w`} sizes="(min-width: 900px) 50vw, 100vw" alt={cover.alt} width={cover.width} height={cover.height} fetchpriority="high" decoding="async" />
       </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="conteneur chantier-texte">
-      <div class="prose apparition">
-        <h2>{premiere.h2}</h2>
+  <!-- ══ INTRODUCTION + TRAVAUX RÉALISÉS ══ -->
+  <section class="dr-section">
+    <div class="conteneur rl-intro">
+      <div class="rl-texte" data-anim="up">
+        <h2 class="dr-h2">{premiere.h2}</h2>
         <Fragment set:html={premiere.html} />
       </div>
-      <aside class="travaux apparition" aria-label="Travaux réalisés">
-        <p class="travaux__titre">Travaux réalisés</p>
-        <ul>{r.travaux.map((t) => <li>{t}</li>)}</ul>
+      <aside class="rl-travaux" data-anim="up" aria-label="Travaux réalisés">
+        <p class="rl-travaux__titre">Travaux réalisés</p>
+        <ul>{r.travaux.map((t: string) => <li>{t}</li>)}</ul>
+        <p class="rl-travaux__date">{moisMaj} · {r.commune}</p>
       </aside>
     </div>
   </section>
 
-  <section class="section section--gris">
+  <!-- ══ LE CHANTIER EN PHOTOS ══ -->
+  <section class="dr-section dr-section--gris">
     <div class="conteneur">
-      <h2 class="apparition">Le chantier en photos</h2>
-      <ul class="galerie-chantier">
-        {r.photos.map((p, i) => (
-          <li class="apparition">
+      <h2 class="dr-h2 dr-centre" data-anim="up">Le chantier en photos</h2>
+      <ul class={`rl-galerie ${r.photos.length === 4 ? 'rl-galerie--4' : ''}`}>
+        {r.photos.map((p: any, i: number) => (
+          <li data-anim="up">
             <figure>
-              <button type="button" class="galerie-chantier__btn" data-src={p.src} data-alt={p.alt} aria-label={`Agrandir : ${p.alt}`}>
+              <button type="button" class="rl-galerie__btn" data-src={p.src} data-alt={p.alt} aria-label={`Agrandir : ${p.alt}`}>
                 <img src={p.small} alt={p.alt} width="800" height={Math.round(800 * p.height / p.width)} loading={i < 4 ? 'eager' : 'lazy'} decoding="async" />
               </button>
-              {p.legende && <figcaption>{p.legende}</figcaption>}
+              {p.legende && <figcaption><span class="rl-galerie__num">{String(i + 1).padStart(2, '0')}</span>{p.legende}</figcaption>}
             </figure>
           </li>
         ))}
@@ -94,107 +112,154 @@ const tel = 'M16 1H8C6.34 1 5 2.34 5 4v16c0 1.66 1.34 3 3 3h8c1.66 0 3-1.34 3-3V
     </div>
   </section>
 
-  {suite.map((s, i) => (
-    <section class={`section ${i % 2 ? 'section--gris' : ''}`}>
-      <div class="conteneur prose prose--large apparition">
-        <h2>{s.h2}</h2>
-        <Fragment set:html={s.html} />
-        {i === 0 && r.videos.map((v) => (
-          <video class="video-chantier" controls preload="none" playsinline muted poster={v.poster}>
-            <source src={v.src} type="video/mp4" />
-          </video>
-        ))}
-      </div>
-    </section>
-  ))}
+  <!-- ══ SECTIONS DE TEXTE (texte + photo en alternance quand une photo est indiquée) ══ -->
+  {suite.map((s: any, i: number) => {
+    const ph = typeof s.photo === 'number' ? r.photos[s.photo] : null;
+    return (
+      <section class={`dr-section ${i % 2 ? 'dr-section--gris' : ''}`}>
+        <div class={`conteneur ${ph ? 'rl-duo' + (i % 2 ? ' rl-duo--inverse' : '') : 'rl-seul'}`}>
+          <div class="rl-texte" data-anim="up">
+            <h2 class="dr-h2">{s.h2}</h2>
+            <Fragment set:html={s.html} />
+            {(s.video || (i === 0 && !suite.some((x: any) => x.video))) && r.videos.map((v: any) => (
+              <video class="rl-video" controls preload="none" playsinline muted poster={v.poster}>
+                <source src={v.src} type="video/mp4" />
+              </video>
+            ))}
+          </div>
+          {ph && (
+            <figure class="rl-duo__media" data-anim="up">
+              <img src={ph.small} alt={ph.alt} width="800" height={Math.round(800 * ph.height / ph.width)} loading="lazy" decoding="async" />
+            </figure>
+          )}
+        </div>
+      </section>
+    );
+  })}
 
-  <section class="section section--bleu cta-chantier">
-    <div class="conteneur cta-chantier__grille apparition">
-      <img src="/images/robert-daniel-artisan-couvreur-portrait.webp" alt="Robert Daniel, artisan couvreur dans l'Essonne" width="600" height="600" loading="lazy" decoding="async" />
-      <div>
-        <h2>{r.cta}</h2>
-        <p>Le devis est gratuit et sans engagement.</p>
-        <div class="hero__actions">
-          <a href="tel:0683961518" class="btn btn--cuivre">
-            <svg class="icone-tel" viewBox="0 0 24 24" aria-hidden="true"><g class="icone-tel__corps"><path fill="currentColor" d="M14 1H6C4.9 1 4 1.9 4 3v18c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-4 21c-.8 0-1.5-.7-1.5-1.5S9.2 19 10 19s1.5.7 1.5 1.5S10.8 22 10 22zm4-4H6V4h8v14z"/></g><path class="icone-tel__onde" d="M18.5 8.5a4 4 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="icone-tel__onde icone-tel__onde--2" d="M21 6a7.5 7.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            06 83 96 15 18
-          </a>
-          <a href="/devis-gratuit/" class="btn btn--blanc">Devis gratuit <span class="btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+  <!-- ══ CTA (camions) ══ -->
+  <section class={`dr-section rl-cta ${suite.length % 2 === 0 ? 'dr-section--gris' : ''}`}>
+    <div class="conteneur">
+      <div class="dr-cta" data-anim="up">
+        <figure class="dr-cta__media">
+          <img src="/images/vehicules-robert-daniel-couverture-essonne.jpg" alt={`Les camions de Robert Daniel, couvreur à ${r.commune}`} width="900" height="600" loading="lazy" decoding="async" />
+        </figure>
+        <div class="dr-cta__corps">
+          <h2>{r.cta}</h2>
+          <p>Le devis est gratuit et sans engagement.</p>
+          <div class="dr-actions">
+            <a href="/devis-gratuit/" class="dr-btn dr-btn--rouge">
+              Devis gratuit
+              <span class="dr-btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            </a>
+            <a href="tel:0683961518" class="dr-btn dr-btn--blanc">
+              <svg class="dr-tel" viewBox="0 0 24 24" aria-hidden="true">
+                <g class="dr-tel__corps"><path fill="currentColor" d="M14 1H6C4.9 1 4 1.9 4 3v18c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-4 21c-.8 0-1.5-.7-1.5-1.5S9.2 19 10 19s1.5.7 1.5 1.5S10.8 22 10 22zm4-4H6V4h8v14z"/></g>
+                <path class="dr-tel__onde" d="M18.5 8.5a4 4 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path class="dr-tel__onde dr-tel__onde--2" d="M21 6a7.5 7.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              06 83 96 15 18
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  {autres.length > 0 && <CartesRealisations slugs={autres} titre={`Mes autres chantiers à ${r.commune}`} />}
+  <!-- ══ AUTRES CHANTIERS DE LA COMMUNE (fin de page) ══ -->
+  {autres.length > 0 && <CartesRealisations slugs={autres} titre={`D'autres chantiers à ${r.commune}`} lienTout={false} centre={true} perso={r.autresCartes || {}} />}
 
-  <dialog class="visionneuse" aria-label="Photo agrandie">
-    <button type="button" class="visionneuse__fermer" aria-label="Fermer">&times;</button>
+  <dialog class="rl-visionneuse" aria-label="Photo agrandie">
+    <button type="button" class="rl-visionneuse__fermer" aria-label="Fermer">&times;</button>
     <img src="" alt="" />
   </dialog>
 </BaseLayout>
 
 <script>
-  const dlg = document.querySelector<HTMLDialogElement>('.visionneuse');
+  const dlg = document.querySelector<HTMLDialogElement>('.rl-visionneuse');
   const img = dlg?.querySelector('img');
-  document.querySelectorAll<HTMLButtonElement>('.galerie-chantier__btn').forEach((b) => {
+  document.querySelectorAll<HTMLButtonElement>('.rl-galerie__btn').forEach((b) => {
     b.addEventListener('click', () => {
       if (!dlg || !img) return;
       img.src = b.dataset.src || ''; img.alt = b.dataset.alt || '';
       dlg.showModal();
     });
   });
-  dlg?.addEventListener('click', (e) => { if (e.target === dlg || (e.target as HTMLElement).closest('.visionneuse__fermer')) dlg.close(); });
+  dlg?.addEventListener('click', (e) => { if (e.target === dlg || (e.target as HTMLElement).closest('.rl-visionneuse__fermer')) dlg.close(); });
 
-  const els = document.querySelectorAll('.apparition');
-  if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    const io = new IntersectionObserver((entries) => entries.forEach((en) => {
-      if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); }
-    }), { rootMargin: '0px 0px -8% 0px' });
+  // Animations d'apparition
+  const els = document.querySelectorAll('[data-anim]');
+  if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    els.forEach((el) => el.classList.add('is-visible'));
+  } else {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px' });
     els.forEach((el) => io.observe(el));
-  } else els.forEach((el) => el.classList.add('visible'));
+  }
 </script>
 
 <style>
-  :global(html.anim) .apparition { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
-  :global(html.anim) .apparition.visible { opacity: 1; transform: none; }
+  /* Date du chantier (hero) */
+  .rl-date { display: inline-flex; align-items: center; gap: 10px; margin: 0; color: #fff; font-weight: 600; font-size: 16px; }
+  .rl-date svg { width: 20px; height: 20px; color: var(--rouge-clair, #ff4d42); flex-shrink: 0; }
 
-  @media (max-width: 979px) {
-    .hero__texte > .artisan { order: 3; }
-    .hero__texte > .fiche-chantier { order: 6; }
+  /* Textes */
+  .rl-texte { display: flex; flex-direction: column; gap: 18px; }
+  .rl-texte :global(p) { margin: 0; font-size: 17px; line-height: 1.7; color: var(--gris-700); }
+  .rl-texte :global(a) { color: var(--bleu); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+  .rl-texte :global(a:hover) { color: var(--cuivre); }
+  .rl-texte :global(strong) { color: var(--bleu-fonce); }
+  .rl-seul .rl-texte { max-width: 78ch; }
+
+  /* Introduction + encadré travaux */
+  .rl-intro { display: grid; grid-template-columns: minmax(0, 1fr) 330px; align-items: start; gap: 64px; }
+  .rl-travaux {
+    position: sticky; top: 110px; padding: 28px 26px; background: var(--gris-50); border-radius: 16px;
   }
-  .artisan { display: flex; align-items: center; gap: 0.9rem; margin: 0.4rem 0 1rem; }
-  .artisan img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; object-position: top; box-shadow: var(--ombre); }
-  .artisan p { margin: 0; line-height: 1.35; color: var(--gris-700); }
-  .artisan strong { color: var(--cuivre); font-size: 1.05rem; }
+  .rl-travaux__titre { margin: 0 0 14px; font-family: var(--font-titres); font-weight: 700; font-size: 20px; color: var(--bleu-fonce); }
+  .rl-travaux ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 11px; }
+  .rl-travaux li { position: relative; padding-left: 32px; font-size: 16px; line-height: 1.45; color: var(--gris-700); }
+  .rl-travaux li::before {
+    content: ""; position: absolute; left: 0; top: 0; width: 21px; height: 21px; border-radius: 50%;
+    background: var(--cuivre) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / 13px no-repeat;
+  }
+  .rl-travaux__date { margin: 18px 0 0; padding-top: 14px; border-top: 1px solid var(--gris-200); font-size: 14px; font-weight: 600; color: var(--gris-500); }
+  @media (max-width: 899px) { .rl-intro { grid-template-columns: minmax(0, 1fr); gap: 32px; } .rl-travaux { position: static; } }
 
-  .fiche-chantier { display: flex; flex-wrap: wrap; gap: 0.6rem 2rem; margin: 1.2rem 0 1.6rem; }
-  .fiche-chantier dt { font-size: 0.82rem; font-weight: 600; color: var(--gris-500); }
-  .fiche-chantier dd { margin: 0; font-weight: 600; color: var(--gris-700); }
+  /* Galerie */
+  .rl-galerie { list-style: none; margin: 44px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+  .rl-galerie figure { margin: 0; }
+  .rl-galerie__btn { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; border-radius: 14px; overflow: hidden; box-shadow: 0 6px 20px rgb(0 73 123 / .1); }
+  .rl-galerie img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform .4s ease; }
+  .rl-galerie__btn:hover img { transform: scale(1.04); }
+  .rl-galerie figcaption { display: flex; align-items: baseline; gap: 10px; margin-top: 12px; font-size: 15.5px; line-height: 1.45; color: var(--gris-700); }
+  .rl-galerie__num { font-family: var(--font-titres); font-weight: 700; font-size: 14px; color: var(--cuivre); }
+  .rl-galerie--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  @media (max-width: 899px) { .rl-galerie { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 30px; } }
+  @media (max-width: 479px) { .rl-galerie { grid-template-columns: minmax(0, 1fr); } }
 
-  .chantier-texte { display: grid; gap: 2.5rem; align-items: start; }
-  @media (min-width: 900px) { .chantier-texte { grid-template-columns: minmax(0, 1fr) 320px; gap: 4rem; } }
-  .chantier-texte .prose h2 { margin-top: 0; }
-  .travaux { background: var(--gris-50); border: 1px solid var(--gris-200); border-radius: var(--rayon); padding: 1.5rem 1.6rem; }
-  .travaux__titre { margin: 0 0 0.6rem; font-family: var(--font-titres); font-weight: 700; color: var(--bleu); font-size: 1.1rem; }
-  .travaux ul { margin: 0; padding-left: 1.1rem; display: grid; gap: 0.45rem; color: var(--gris-700); }
+  /* Texte + photo */
+  .rl-duo { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); align-items: center; gap: 64px; }
+  .rl-duo--inverse .rl-duo__media { order: -1; }
+  .rl-duo__media { margin: 0; }
+  .rl-duo__media img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 16px; box-shadow: 0 20px 50px rgb(0 42 69 / .16); }
+  @media (max-width: 899px) {
+    .rl-duo { grid-template-columns: minmax(0, 1fr); gap: 30px; }
+    .rl-duo__media, .rl-duo--inverse .rl-duo__media { order: -1; }
+  }
 
-  .galerie-chantier { list-style: none; padding: 0; margin: 2rem 0 0; display: grid; gap: 1.2rem; grid-template-columns: repeat(2, 1fr); }
-  @media (min-width: 860px) { .galerie-chantier { grid-template-columns: repeat(4, 1fr); } }
-  .galerie-chantier figure { margin: 0; }
-  .galerie-chantier__btn { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; border-radius: var(--rayon); overflow: hidden; }
-  .galerie-chantier img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; box-shadow: var(--ombre); transition: transform .3s ease; }
-  .galerie-chantier__btn:hover img { transform: scale(1.03); }
-  .galerie-chantier figcaption { margin-top: 0.5rem; font-size: 0.9rem; color: var(--gris-700); }
+  .rl-video { display: block; width: 100%; max-height: 80vh; margin-top: 8px; border-radius: 14px; background: #000; box-shadow: 0 20px 50px rgb(0 42 69 / .16); }
 
-  .video-chantier { display: block; width: 100%; max-height: 80vh; margin-top: 1.5rem; border-radius: var(--rayon); background: #000; box-shadow: var(--ombre-forte); }
+  /* CTA */
+  .rl-cta { padding-top: 0; }
 
-  .cta-chantier__grille { display: grid; gap: 2rem; align-items: center; }
-  .cta-chantier__grille img { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; object-position: top; justify-self: center; border: 4px solid rgba(255,255,255,.9); }
-  .cta-chantier p { margin: 0.8rem 0 1.4rem; }
-  @media (min-width: 760px) { .cta-chantier__grille { grid-template-columns: 220px 1fr; } .cta-chantier__grille img { width: 220px; height: 220px; } }
+  /* Visionneuse */
+  .rl-visionneuse { border: 0; padding: 0; background: transparent; max-width: 94vw; max-height: 92vh; }
+  .rl-visionneuse::backdrop { background: rgba(0, 20, 40, 0.88); }
+  .rl-visionneuse img { display: block; max-width: 94vw; max-height: 92vh; border-radius: 12px; }
+  .rl-visionneuse__fermer { position: absolute; top: 0.4rem; right: 0.4rem; width: 2.6rem; height: 2.6rem; border-radius: 50%; border: 0; background: #fff; color: var(--bleu); font-size: 1.6rem; line-height: 1; cursor: pointer; }
 
-  .visionneuse { border: 0; padding: 0; background: transparent; max-width: 94vw; max-height: 92vh; }
-  .visionneuse::backdrop { background: rgba(0, 20, 40, 0.88); }
-  .visionneuse img { display: block; max-width: 94vw; max-height: 92vh; border-radius: var(--rayon); }
-  .visionneuse__fermer { position: absolute; top: 0.4rem; right: 0.4rem; width: 2.6rem; height: 2.6rem; border-radius: 50%; border: 0; background: var(--blanc); color: var(--bleu); font-size: 1.6rem; line-height: 1; cursor: pointer; }
+  /* Cartes « autres chantiers » : titres sur 2 lignes max */
+  :global(.realisations-bloc .grille-chantiers .carte-chantier h3) { font-size: clamp(16px, .45rem + 1vw, 18.4px); text-wrap: balance; }
 </style>

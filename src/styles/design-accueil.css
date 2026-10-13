@@ -1,0 +1,126 @@
+/* ════════════════════════════════════════════════════════════════════
+   Design « nouvelle page d'accueil » (oct. 2026), partagé par les pages
+   qui adoptent ce design (réalisations…). Classes préfixées dr- : aucun
+   conflit avec le reste du site. L'accueil et /couvreur-etrechy/ gardent
+   leur copie locale (styles scopés).
+   ════════════════════════════════════════════════════════════════════ */
+.dr-hero, .dr-section {
+  --nuit: #062a45;
+  --rouge-clair: #ff4d42;
+  --ombre-carte: 0 6px 20px rgb(0 73 123 / .07);
+  --ombre-carte-hover: 0 16px 34px rgb(0 73 123 / .15);
+  --ligne: #e2e6ea;
+}
+
+/* Apparitions */
+html.dr-anim [data-anim] { opacity: 0; transition: opacity .7s ease, transform .7s ease; }
+html.dr-anim [data-anim="up"] { transform: translate3d(0, 28px, 0); }
+html.dr-anim [data-anim].is-visible { opacity: 1; transform: none; }
+
+/* Sections */
+.dr-section { padding-block: 88px; }
+.dr-section--gris { background: var(--gris-50); }
+@media (max-width: 1023px) { .dr-section { padding-block: 64px; } }
+@media (max-width: 767px)  { .dr-section { padding-block: 52px; } }
+.dr-centre { text-align: center; }
+.dr-h2 {
+  font-family: var(--font-titres); font-weight: 700; color: var(--bleu-fonce);
+  font-size: clamp(19px, .6rem + 2.6vw, 36px); line-height: 1.2; text-wrap: balance; margin: 0;
+}
+
+/* Boutons (pilule, jamais pleine largeur) */
+.dr-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.dr-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+  width: auto; max-width: max-content; min-height: 50px; padding: 14px 26px;
+  border-radius: 999px; font-family: var(--font-titres); font-weight: 700; font-size: 16px;
+  line-height: 1.2; text-decoration: none; white-space: nowrap;
+  box-shadow: 0 4px 12px rgb(0 42 69 / .12);
+  transition: background-color .25s ease, color .25s ease, transform .25s ease, box-shadow .25s ease;
+}
+.dr-btn:hover { transform: translate3d(0, -2px, 0); box-shadow: 0 10px 22px rgb(0 42 69 / .2); }
+.dr-btn--rouge { background: var(--cuivre); color: #fff; }
+.dr-btn--rouge:hover { background: var(--cuivre-fonce); color: #fff; }
+.dr-btn--bleu { background: var(--bleu); color: #fff; }
+.dr-btn--bleu:hover { background: var(--bleu-fonce); color: #fff; }
+.dr-btn--blanc { background: #fff; color: var(--bleu-fonce); }
+.dr-btn--blanc:hover { background: var(--gris-100); color: var(--bleu-fonce); }
+.dr-btn__fleche {
+  display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+  width: 26px; height: 26px; border-radius: 50%; background: #fff; color: var(--cuivre); overflow: hidden;
+}
+.dr-btn__fleche--bleue { color: var(--bleu); }
+.dr-btn__fleche svg { width: 14px; height: 14px; transition: transform .3s ease; }
+.dr-btn:hover .dr-btn__fleche svg { transform: translate3d(3px, 0, 0); }
+@media (max-width: 767px) { .dr-btn { min-height: 46px; padding: 12px 18px; font-size: 15px; gap: 10px; } }
+
+/* Smartphone qui sonne */
+.dr-tel { width: 20px; height: 20px; flex-shrink: 0; overflow: visible; }
+.dr-tel__corps { transform-origin: 40% 50%; animation: dr-sonne 2.4s ease-in-out infinite; }
+.dr-tel__onde { opacity: 0; animation: dr-onde 2.4s ease-out infinite; }
+.dr-tel__onde--2 { animation-delay: .25s; }
+@keyframes dr-sonne {
+  0%, 70%, 100% { transform: rotate(0); }
+  75% { transform: rotate(-12deg); } 80% { transform: rotate(10deg); }
+  85% { transform: rotate(-8deg); } 90% { transform: rotate(6deg); }
+}
+@keyframes dr-onde { 0%, 60% { opacity: 0; } 75% { opacity: 1; } 100% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .dr-tel__corps, .dr-tel__onde { animation: none; }
+  .dr-tel__onde { opacity: 1; }
+  html.dr-anim [data-anim] { opacity: 1; transform: none; transition: none; }
+}
+
+/* Hero bleu nuit */
+.dr-hero { background: var(--nuit); padding-block: 28px 56px; overflow: hidden; }
+.dr-hero .fil-ariane { margin-bottom: 20px; color: #9fb6ca; }
+.dr-hero .fil-ariane a { color: #9fb6ca; }
+.dr-hero .fil-ariane a:hover { color: #fff; }
+.dr-hero .fil-ariane [aria-current] { color: #fff; }
+.dr-hero__grille {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-areas: "titre media" "texte media"; align-items: center; gap: 22px 52px;
+}
+.dr-hero__titre {
+  grid-area: titre; align-self: end; margin: 0; color: #fff;
+  font-family: var(--font-titres); font-weight: 700;
+  font-size: clamp(28px, 3.1vw, 40px); line-height: 1.15; text-wrap: balance;
+}
+.dr-hero__media {
+  grid-area: media; margin: 0; border-radius: 16px; overflow: hidden; position: relative;
+  box-shadow: 0 20px 50px rgb(0 0 0 / .3); aspect-ratio: 3 / 2;
+}
+.dr-hero__media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.dr-hero__texte { grid-area: texte; align-self: start; display: flex; flex-direction: column; gap: 22px; }
+.dr-hero__lead { margin: 0; color: #d6e2ee; font-size: 19px; line-height: 1.6; }
+.dr-hero__lead strong { color: #fff; }
+@media (max-width: 1023px) {
+  .dr-hero { padding-block: 20px 44px; }
+  .dr-hero__grille { grid-template-columns: minmax(0, 1fr); grid-template-areas: "titre" "media" "texte"; gap: 22px; }
+  .dr-hero__titre { text-align: center; font-size: clamp(24px, 6.4vw, 40px); }
+  .dr-hero__media { aspect-ratio: 16 / 9; }
+  .dr-hero__texte .dr-actions { justify-content: center; }
+}
+@media (max-width: 479px) { .dr-hero__lead { font-size: 17px; } }
+
+/* CTA : carte bleu nuit + photo des camions */
+.dr-cta {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); overflow: hidden;
+  background: var(--nuit); border-radius: 18px; box-shadow: 0 20px 50px rgb(0 42 69 / .22);
+}
+.dr-cta__media { margin: 0; }
+.dr-cta__media img { display: block; width: 100%; height: 100%; min-height: 320px; object-fit: cover; }
+.dr-cta__corps { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 18px; padding: 48px 46px; }
+.dr-cta h2 {
+  margin: 0; color: #fff; font-family: var(--font-titres); font-weight: 700;
+  font-size: clamp(19px, .6rem + 2.2vw, 34px); line-height: 1.2; text-wrap: balance;
+}
+.dr-cta p { margin: 0; color: #d6e2ee; font-size: 18px; }
+.dr-cta .dr-actions { margin-top: 6px; }
+@media (min-width: 900px) and (max-width: 1099px) { .dr-cta h2 { font-size: 25px; } .dr-cta__corps { padding: 36px 32px; } }
+@media (max-width: 899px) {
+  .dr-cta { grid-template-columns: minmax(0, 1fr); }
+  .dr-cta__media img { min-height: 0; aspect-ratio: 16 / 9; }
+  .dr-cta__corps { align-items: center; text-align: center; padding: 30px 22px 34px; }
+  .dr-cta .dr-actions { justify-content: center; }
+}

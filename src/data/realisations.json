@@ -3,8 +3,8 @@
     "slug": "renovation-toiture-auvers-saint-georges",
     "url": "/realisations/renovation-toiture-auvers-saint-georges/",
     "h1": "Rénovation de toiture à Auvers-Saint-Georges",
-    "title": "Toiture refaite à Auvers-Saint-Georges – Robert Daniel",
-    "meta": "✓ Couverture et lucarnes refaites à neuf à Auvers-Saint-Georges par Robert Daniel, artisan couvreur. Photos et vidéo drone. Tél. 06 83 96 15 18",
+    "title": "Toiture refaite à Auvers-Saint-Georges - Robert Daniel",
+    "meta": "✓ Rénovation de toiture à Auvers-Saint-Georges : couverture refaite à neuf, lucarnes reprises, résultat contrôlé au drone. Robert Daniel, 06 83 96 15 18",
     "commune": "Auvers-Saint-Georges",
     "codePostal": "91580",
     "pageVille": "/couvreur-auvers-saint-georges/",
@@ -15,23 +15,39 @@
     "date": "2026-01-14",
     "carte": "Couverture refaite à neuf, lucarnes reprises et vues au drone.",
     "travaux": [
-      "Dépose et repose complète de la couverture",
-      "Écran sous-toiture et liteaux neufs",
-      "Reprise des lucarnes et des raccords"
+      "Dépose de l'ancienne couverture",
+      "Écran sous toiture et liteaux neufs",
+      "Pose des tuiles neuves",
+      "Reprise des lucarnes : jouées, arêtiers et raccords",
+      "Raccord des fenêtres de toit",
+      "Contrôle du résultat au drone"
     ],
-    "accroche": "Voici, étape par étape, la <strong>rénovation complète d'une toiture à Auvers-Saint-Georges</strong> que j'ai menée en janvier 2026 sur une maison à lucarnes dont la couverture d'origine avait fait son temps.",
+    "accroche": "<strong>Rénovation complète de la toiture</strong> d'une maison à lucarnes",
     "sections": [
       {
         "h2": "Une couverture d'origine à bout de souffle",
-        "html": "<p>Cette maison familiale avait gardé sa couverture d'origine. Les tuiles étaient usées, les lucarnes montraient leur âge et les raccords autour des ouvertures ne jouaient plus pleinement leur rôle. Accumuler les petites réparations n'aurait fait que repousser le problème : une réfection complète était la solution la plus durable.</p>"
+        "html": "<p>En janvier 2026, j'ai refait entièrement la toiture d'une maison familiale d'Auvers-Saint-Georges. La couverture d'origine avait fait son temps : tuiles usées, lucarnes marquées par les années, raccords autour des ouvertures qui ne remplissaient plus leur rôle.</p><p>Multiplier les petites réparations n'aurait fait que repousser le problème. Une rénovation complète était la solution la plus durable.</p>"
       },
       {
-        "h2": "Les étapes de la rénovation",
-        "html": "<p>Une fois l'échafaudage installé, j'ai déposé les anciennes tuiles sur l'ensemble des pans. Un écran sous-toiture neuf a ensuite été tendu sur la charpente, avant la pose de nouveaux liteaux. Cet écran forme une seconde barrière contre l'eau et la poussière tout en laissant les bois respirer. Les tuiles neuves ont été posées rang par rang jusqu'au faîtage, comme sur chaque <a href=\"/renovation-toiture/\">rénovation de toiture</a> que je réalise.</p><p>Les lucarnes ont demandé un soin particulier : habillage des jouées, reprise des arêtiers et des <a href=\"/zinguerie/solins-raccords/\">raccords d'étanchéité</a>, là où l'eau cherche toujours à passer. Les <a href=\"/fenetre-de-toit-velux/\">fenêtres de toit</a> ont été raccordées proprement à la nouvelle couverture.</p>"
+        "h2": "Écran sous toiture, liteaux et tuiles neuves",
+        "photo": 2,
+        "html": "<p>Une fois l'échafaudage installé, j'ai déposé les anciennes tuiles sur l'ensemble des pans. J'ai ensuite tendu un écran sous toiture neuf sur la charpente, avant de poser de nouveaux liteaux. Cet écran forme une seconde barrière contre l'eau et la poussière, tout en laissant les bois respirer.</p><p>Les tuiles neuves ont été posées rang par rang, jusqu'au faîtage : la base de toute <a href=\"/renovation-toiture/\">rénovation de toiture</a> faite pour durer.</p>"
       },
       {
-        "h2": "Le résultat, contrôlé au drone",
-        "html": "<p>Les vues aériennes permettent de vérifier chaque pan, chaque lucarne et chaque rive sans marcher sur les tuiles neuves. C'est le même matériel que j'utilise pour l'<a href=\"/inspection-toiture-drone/\">inspection de toiture par drone</a>, quand un propriétaire veut connaître l'état réel de son toit avant d'engager des travaux.</p><p>Auvers-Saint-Georges est voisine de mon bureau d'Étréchy, dans la vallée de la Juine. Les propriétaires qui font appel à un <a href=\"/couvreur-auvers-saint-georges/\">artisan couvreur à Auvers-Saint-Georges</a> me confient des rénovations comme celle-ci mais aussi pour des réparations ou de l'entretien.</p>"
+        "h2": "Des lucarnes reprises une à une",
+        "photo": 11,
+        "html": "<p>Les lucarnes ont demandé un soin particulier. J'ai repris l'habillage des jouées, les arêtiers et tous les <a href=\"/zinguerie/solins-raccords/\">raccords d'étanchéité</a> : c'est autour des ouvertures que l'eau cherche toujours à passer.</p><p>Les fenêtres de toit existantes ont, elles aussi, été raccordées proprement à la nouvelle couverture.</p>"
+      },
+      {
+        "h2": "Le résultat vu du ciel",
+        "photo": 9,
+        "video": true,
+        "html": "<p>Le chantier terminé, j'ai contrôlé la toiture au drone : chaque pan, chaque lucarne et chaque rive, sans marcher sur les tuiles neuves. Les propriétaires ont vu le résultat de près, sur les images.</p><p>C'est le même matériel que j'utilise pour la <a href=\"/inspection-toiture-drone/\">vérification de toiture par drone</a>, quand vous voulez connaître l'état réel de votre toit avant d'engager des travaux.</p>"
+      },
+      {
+        "h2": "Une toiture prête pour les années à venir",
+        "photo": 15,
+        "html": "<p>La maison a retrouvé une couverture saine et régulière, avec des lucarnes étanches et soignées.</p><p>Auvers-Saint-Georges est voisine d'Étréchy, où se trouve mon bureau. Comme <a href=\"/couvreur-auvers-saint-georges/\">couvreur à Auvers-Saint-Georges</a>, j'interviens pour des rénovations comme celle-ci, mais aussi pour la réparation et l'entretien des toitures.</p>"
       }
     ],
     "cta": "Contactez votre couvreur à Auvers-Saint-Georges",
@@ -59,8 +75,8 @@
         "small": "/images/realisations/renovation-toiture-auvers-saint-georges/renovation-toiture-auvers-saint-georges-03-800w.webp",
         "width": 1600,
         "height": 1200,
-        "alt": "Rénovation de toiture à Auvers-Saint-Georges : vue drone : écran sous-toiture et liteaux",
-        "legende": "Vue drone : écran sous-toiture et liteaux",
+        "alt": "Rénovation de toiture à Auvers-Saint-Georges : vue drone : écran sous toiture et liteaux",
+        "legende": "Vue drone : écran sous toiture et liteaux",
         "cover": false
       },
       {
@@ -201,8 +217,8 @@
     "slug": "renovation-toiture-etrechy",
     "url": "/realisations/renovation-toiture-etrechy/",
     "h1": "Rénovation de toiture à Étréchy",
-    "title": "Toiture rénovée à Étréchy – chantier Robert Daniel",
-    "meta": "✓ Rénovation complète d'une toiture en tuiles à Étréchy par Robert Daniel, artisan couvreur : dépose, liteaux, tuiles neuves. Tél. 06 83 96 15 18",
+    "title": "Chantier de rénovation de toiture à Étréchy - Robert Daniel",
+    "meta": "✓ Remplacement de la toiture d'un pavillon à Étréchy, en tuiles mécaniques : une nouvelle toiture plus performante et mieux isolée. Robert Daniel, couvreur.",
     "commune": "Étréchy",
     "codePostal": "91580",
     "pageVille": "/couvreur-etrechy/",
@@ -214,33 +230,48 @@
     "carte": "Un pavillon qui retrouve une couverture neuve, de la dépose à la dernière tuile.",
     "travaux": [
       "Dépose de l'ancienne couverture",
-      "Liteaux et tuiles neuves",
-      "Reprise des rives et du faîtage"
+      "Isolation de la toiture renforcée",
+      "Pose d'un écran sous toiture",
+      "Liteaux et tuiles mécaniques neuves",
+      "Solin de la cheminée refait",
+      "Vérification des gouttières"
     ],
-    "accroche": "À l'automne 2025, j'ai mené la <strong>rénovation de toiture d'un pavillon d'Étréchy</strong>, dans la commune où se trouve mon bureau. Voici le chantier, de l'installation de l'échafaudage à la toiture terminée.",
+    "accroche": "<strong>Rénovation de la toiture d'un pavillon</strong> à l'automne 2025",
     "sections": [
       {
-        "h2": "Un chantier organisé dès le premier jour",
-        "html": "<p>Sur une rénovation, l'organisation compte autant que le geste. L'échafaudage a été monté sur la façade, les abords et le jardin protégés, puis les tuiles neuves ont été livrées par camion-grue directement au pied de la maison. Le chantier reste ainsi propre et dégagé du début à la fin.</p>"
+        "h2": "Un pavillon des années 80 qui avait besoin d'une vraie rénovation",
+        "html": "<p>En octobre 2025, j'ai refait la toiture d'un pavillon d'Étréchy construit dans les années 1980. Après une quarantaine d'années, la couverture d'origine arrivait en bout de course : la maison avait besoin d'une sérieuse rénovation de sa toiture.</p><p>La maison est facile d'accès : l'échafaudage a été monté sans contrainte et les tuiles neuves ont été livrées par camion-grue, directement au pied du chantier. Les travaux ont ainsi pu être menés rapidement, sans difficulté particulière.</p>"
       },
       {
-        "h2": "Des tuiles neuves posées rang par rang",
-        "html": "<p>Après la dépose de l'ancienne couverture, j'ai contrôlé le support et posé des liteaux neufs. Les tuiles ont ensuite été mises en œuvre rang par rang, avec un alignement net, visible depuis la rue. Les rives et le faîtage ont été repris avec la même exigence que lors de la <a href=\"/realisations/refection-faitage-etrechy/\">réfection d'un faîtage à Étréchy</a> menée quelques mois plus tôt.</p><p>Une <a href=\"/renovation-toiture/\">rénovation complète de toiture</a> bien conduite protège la maison pour plusieurs décennies. C'est aussi le bon moment pour penser à l'<a href=\"/isolation-toiture/\">isolation de la toiture</a> ou aux <a href=\"/zinguerie/\">gouttières et à la zinguerie</a>.</p>"
+        "h2": "Une toiture mieux isolée et plus performante",
+        "photo": 2,
+        "html": "<p>Refaire une toiture, c'est aussi l'occasion d'améliorer le confort de la maison. Une fois l'ancienne couverture déposée, j'ai renforcé l'<a href=\"/isolation-toiture/\">isolation de la toiture</a>, puis posé un écran sous toiture.</p><p>Cette membrane protège les combles des infiltrations, de la poussière et du vent, tout en laissant s'échapper la vapeur d'eau. Résultat : moins de chaleur perdue en hiver, des combles plus frais en été et une maison plus économe en énergie.</p>"
       },
       {
-        "h2": "Une maison qui retrouve son toit",
-        "html": "<p>La photo de fin de chantier parle d'elle-même : une couverture homogène, des lignes droites et une maison qui a retrouvé son allure. Comme <a href=\"/couvreur-etrechy/\">couvreur à Étréchy</a>, je connais bien ces pavillons et leurs toitures, et je reste joignable bien après la fin des travaux.</p>"
+        "h2": "Des tuiles mécaniques neuves",
+        "photo": 6,
+        "html": "<p>Sur des liteaux neufs, j'ai posé des tuiles mécaniques neuves, rang par rang, avec un alignement net visible depuis la rue. Les tuiles d'aujourd'hui sont bien plus modernes et performantes que celles posées il y a quarante ans : plus régulières, mieux emboîtées, elles assurent une meilleure étanchéité et résistent mieux aux intempéries.</p><p>C'est tout l'intérêt d'une <a href=\"/renovation-toiture/\">rénovation complète de toiture</a> : la maison est protégée pour plusieurs décennies.</p>"
+      },
+      {
+        "h2": "Cheminée et gouttières vérifiées",
+        "photo": 5,
+        "html": "<p>Une couverture neuve ne vaut que par ses raccords. Autour de la cheminée, j'ai refait le solin, la bande qui assure l'étanchéité entre la souche et les tuiles : c'est l'un des endroits où les fuites apparaissent le plus souvent.</p><p>J'ai également vérifié les gouttières et l'ensemble de la <a href=\"/zinguerie/\">zinguerie</a>, pour que l'eau de pluie soit bien conduite loin des murs et des fondations.</p>"
+      },
+      {
+        "h2": "Un client satisfait du résultat",
+        "photo": 7,
+        "html": "<p>La toiture terminée parle d'elle-même : une couverture homogène, des lignes droites et un pavillon qui a retrouvé toute son allure. Le client a été pleinement satisfait du résultat comme du déroulement du chantier.</p><p>Comme <a href=\"/couvreur-etrechy/\">couvreur à Étréchy</a>, je connais bien ces pavillons et leurs toitures. Mon bureau est installé dans la commune, Grande Rue, et je reste joignable bien après la fin des travaux.</p>"
       }
     ],
-    "cta": "Faites appel à votre couvreur à Étréchy",
+    "cta": "Contactez votre couvreur à Étréchy",
     "photos": [
       {
         "src": "/images/realisations/renovation-toiture-etrechy/renovation-toiture-etrechy-01.webp",
         "small": "/images/realisations/renovation-toiture-etrechy/renovation-toiture-etrechy-01-800w.webp",
         "width": 1600,
         "height": 1200,
-        "alt": "Rénovation de toiture à Étréchy : la maison avant les travaux",
-        "legende": "La maison avant les travaux",
+        "alt": "Pavillon d'Étréchy avec l'échafaudage installé avant la rénovation de la toiture",
+        "legende": "L'échafaudage est en place, avant la dépose",
         "cover": false
       },
       {
@@ -248,8 +279,8 @@
         "small": "/images/realisations/renovation-toiture-etrechy/renovation-toiture-etrechy-02-800w.webp",
         "width": 1600,
         "height": 1200,
-        "alt": "Rénovation de toiture à Étréchy : échafaudage et dépose de la couverture",
-        "legende": "Échafaudage et dépose de la couverture",
+        "alt": "Dépose de l'ancienne couverture d'un pavillon à Étréchy",
+        "legende": "Dépose de l'ancienne couverture",
         "cover": false
       },
       {
@@ -257,8 +288,8 @@
         "small": "/images/realisations/renovation-toiture-etrechy/renovation-toiture-etrechy-03-800w.webp",
         "width": 1600,
         "height": 1200,
-        "alt": "Rénovation de toiture à Étréchy : le chantier en cours",
-        "legende": "Le chantier en cours",
+        "alt": "Liteaux neufs posés sur l'écran sous toiture lors d'une rénovation de toiture à Étréchy",
+        "legende": "Liteaux neufs sur l'écran sous toiture",
         "cover": false
       },
       {
@@ -266,8 +297,8 @@
         "small": "/images/realisations/renovation-toiture-etrechy/renovation-toiture-etrechy-04-800w.webp",
         "width": 1600,
         "height": 1200,
-        "alt": "Rénovation de toiture à Étréchy : livraison des tuiles par camion-grue",
-        "legende": "Livraison des tuiles par camion-grue",
+        "alt": "Livraison des tuiles mécaniques neuves par camion-grue à Étréchy",
+        "legende": "Livraison des tuiles neuves par camion-grue",
         "cover": false
       },
       {
@@ -275,8 +306,8 @@
         "small": "/images/realisations/renovation-toiture-etrechy/renovation-toiture-etrechy-05-800w.webp",
         "width": 1600,
         "height": 1200,
-        "alt": "Rénovation de toiture à Étréchy : pose des tuiles neuves",
-        "legende": "Pose des tuiles neuves",
+        "alt": "Préparation de la pose des tuiles sur la toiture d'un pavillon à Étréchy",
+        "legende": "Préparation de la pose des tuiles",
         "cover": false
       },
       {
@@ -284,8 +315,8 @@
         "small": "/images/realisations/renovation-toiture-etrechy/renovation-toiture-etrechy-06-800w.webp",
         "width": 1200,
         "height": 1600,
-        "alt": "Rénovation de toiture à Étréchy : travail sur le pignon",
-        "legende": "Travail sur le pignon",
+        "alt": "Pignon et souche de cheminée pendant la rénovation d'une toiture à Étréchy",
+        "legende": "Le pignon et la souche de cheminée",
         "cover": false
       },
       {
@@ -293,8 +324,8 @@
         "small": "/images/realisations/renovation-toiture-etrechy/renovation-toiture-etrechy-07-800w.webp",
         "width": 1600,
         "height": 1200,
-        "alt": "Rénovation de toiture à Étréchy : pose des tuiles en cours",
-        "legende": "Pose des tuiles en cours",
+        "alt": "Pose des tuiles mécaniques neuves sur un pavillon d'Étréchy",
+        "legende": "Pose des tuiles mécaniques neuves",
         "cover": false
       },
       {
@@ -302,8 +333,8 @@
         "small": "/images/realisations/renovation-toiture-etrechy/renovation-toiture-etrechy-08-800w.webp",
         "width": 1600,
         "height": 1200,
-        "alt": "Rénovation de toiture à Étréchy : la toiture terminée",
-        "legende": "La toiture terminée",
+        "alt": "Toiture en tuiles mécaniques terminée, côté jardin, à Étréchy",
+        "legende": "La toiture terminée, côté jardin",
         "cover": false
       },
       {
@@ -311,19 +342,29 @@
         "small": "/images/realisations/renovation-toiture-etrechy/renovation-toiture-etrechy-09-800w.webp",
         "width": 1179,
         "height": 770,
-        "alt": "Rénovation de toiture à Étréchy : la toiture rénovée",
-        "legende": "La toiture rénovée",
+        "alt": "Pavillon d'Étréchy avec sa toiture rénovée, vu depuis la rue",
+        "legende": "La toiture rénovée, côté rue",
         "cover": true
       }
     ],
-    "videos": []
+    "videos": [],
+    "autresCartes": {
+      "fenetre-de-toit-etrechy": {
+        "titre": "Des combles éclairés par une fenêtre de toit à Étréchy",
+        "texte": "Une ouverture créée dans une couverture en tuiles plates, puis une fenêtre posée avec son raccord d'étanchéité : la pièce sous les toits gagne en lumière et en aération."
+      },
+      "refection-faitage-etrechy": {
+        "titre": "Un faîtage refait à neuf sur une maison d'Étréchy",
+        "texte": "Quand seul le faîtage fatigue, inutile de refaire toute la toiture : faîtières déposées, closoir neuf et ligne de faîte reposée, sans toucher au reste de la couverture."
+      }
+    }
   },
   {
     "slug": "fenetre-de-toit-etrechy",
     "url": "/realisations/fenetre-de-toit-etrechy/",
-    "h1": "Pose d'une fenêtre de toit à Étréchy",
-    "title": "Fenêtre de toit posée à Étréchy – Robert Daniel",
-    "meta": "✓ Pose d'une fenêtre de toit dans une couverture en tuiles plates à Étréchy par Robert Daniel, artisan couvreur. Photos. Tél. 06 83 96 15 18",
+    "h1": "Pose d'une fenêtre de toit Velux à Étréchy",
+    "title": "Fenêtre de toit Velux posée à Étréchy - Robert Daniel",
+    "meta": "✓ Pose d'une fenêtre de toit Velux dans une couverture en tuiles plates à Étréchy : plus de lumière sous les combles, étanchéité soignée. Robert Daniel.",
     "commune": "Étréchy",
     "codePostal": "91580",
     "pageVille": "/couvreur-etrechy/",
@@ -334,19 +375,30 @@
     "date": "2025-07-16",
     "carte": "Plus de lumière sous les combles, dans une couverture en tuiles plates.",
     "travaux": [
-      "Création de l'ouverture",
-      "Pose de la fenêtre et de son raccord",
-      "Reprise des tuiles plates autour"
+      "Dépose des tuiles plates à l'emplacement de la fenêtre",
+      "Ouverture préparée dans la charpente",
+      "Pose de la fenêtre et de son raccord d'étanchéité",
+      "Reprise des tuiles plates tout autour"
     ],
-    "accroche": "En juillet 2025, j'ai posé une <strong>fenêtre de toit à Étréchy</strong> dans une couverture en tuiles plates, pour apporter lumière et aération sous les combles.",
+    "accroche": "Plus de lumière sous les combles grâce à <strong>une fenêtre de toit posée dans des tuiles plates</strong>",
     "sections": [
       {
-        "h2": "Ouvrir une couverture en tuiles plates",
-        "html": "<p>La tuile plate demande de la patience : petites, nombreuses et posées serré, les tuiles doivent être retirées une à une autour de l'emplacement de la fenêtre. L'ouverture a ensuite été préparée dans la charpente, aux bonnes dimensions, pour que la fenêtre repose sur un cadre solide et d'équerre.</p><p>La fenêtre a été posée avec un raccord d'étanchéité prévu pour les tuiles plates. C'est ce raccord qui garantit l'étanchéité durable de la <a href=\"/fenetre-de-toit-velux/\">pose de fenêtre de toit</a>, bien plus que la fenêtre elle-même.</p>"
+        "h2": "Éclairer une pièce sous les toits",
+        "html": "<p>En juillet 2025, les propriétaires de cette maison d'Étréchy souhaitaient apporter de la lumière naturelle et de l'air dans une pièce sous les combles. J'ai posé une fenêtre de toit Velux dans leur couverture en tuiles plates.</p><p>Le modèle et la dimension se choisissent en fonction de la pièce à éclairer et de la pente du toit. Créer une ouverture dans une toiture demande aussi une déclaration préalable de travaux en mairie : je fournis les éléments techniques utiles au dossier.</p>"
       },
       {
-        "h2": "Une finition qui se fond dans la toiture",
-        "html": "<p>Les tuiles ont été reposées tout autour de la fenêtre pour une finition nette, presque invisible depuis la rue. La pièce sous les toits gagne en lumière naturelle et en aération. C'est aussi l'occasion de vérifier l'<a href=\"/isolation-toiture/\">isolation de la toiture</a> autour de la nouvelle ouverture.</p><p>Les propriétaires de la commune peuvent compter sur une <a href=\"/couvreur-etrechy/\">entreprise de couverture à Étréchy</a> qui connaît leurs toitures, de la tuile plate à la tuile mécanique, comme lors de cette <a href=\"/realisations/renovation-toiture-etrechy/\">rénovation de toiture à Étréchy</a>.</p>"
+        "h2": "Une ouverture dans des tuiles plates",
+        "photo": 0,
+        "html": "<p>La tuile plate demande de la patience : petites, nombreuses et posées serré, les tuiles sont retirées une à une autour de l'emplacement de la fenêtre.</p><p>L'ouverture est ensuite préparée dans la charpente, aux bonnes dimensions, pour que la fenêtre repose sur un cadre solide et d'équerre.</p>"
+      },
+      {
+        "h2": "L'étanchéité avant tout",
+        "photo": 2,
+        "html": "<p>La fenêtre est posée avec un raccord d'étanchéité conçu pour les tuiles plates. C'est lui qui conduit l'eau de pluie autour du châssis : bien posé, il garantit une fenêtre étanche pour de longues années.</p><p>Les tuiles sont ensuite reposées tout autour, pour une finition nette qui s'intègre à la couverture. Ce soin apporté aux raccords fait toute la différence dans la <a href=\"/fenetre-de-toit-velux/\">pose de fenêtres de toit</a>.</p>"
+      },
+      {
+        "h2": "Une pièce plus lumineuse",
+        "html": "<p>Le résultat : une pièce sous les toits qui gagne en lumière naturelle et en aération, et une fenêtre qui se fond dans la toiture. C'est aussi le bon moment pour vérifier l'<a href=\"/isolation-toiture/\">isolation de la toiture</a> autour de la nouvelle ouverture.</p><p>Comme <a href=\"/couvreur-etrechy/\">couvreur à Étréchy</a>, je pose des fenêtres neuves comme des fenêtres de remplacement, et je vous aide à choisir le modèle adapté à votre pièce.</p>"
       }
     ],
     "cta": "Faites intervenir un couvreur à Étréchy",
@@ -356,7 +408,7 @@
         "small": "/images/realisations/fenetre-de-toit-etrechy/fenetre-de-toit-etrechy-01-800w.webp",
         "width": 1600,
         "height": 1200,
-        "alt": "Pose de fenêtre de toit à Étréchy : le chantier et son échafaudage",
+        "alt": "Maison d'Étréchy avec son échafaudage pendant la pose d'une fenêtre de toit",
         "legende": "Le chantier et son échafaudage",
         "cover": false
       },
@@ -365,8 +417,8 @@
         "small": "/images/realisations/fenetre-de-toit-etrechy/fenetre-de-toit-etrechy-02-800w.webp",
         "width": 1200,
         "height": 1600,
-        "alt": "Pose de fenêtre de toit à Étréchy : fenêtre de toit posée dans les tuiles plates",
-        "legende": "Fenêtre de toit posée dans les tuiles plates",
+        "alt": "Fenêtre de toit Velux posée dans une couverture en tuiles plates à Étréchy",
+        "legende": "La fenêtre posée dans les tuiles plates",
         "cover": true
       },
       {
@@ -374,7 +426,7 @@
         "small": "/images/realisations/fenetre-de-toit-etrechy/fenetre-de-toit-etrechy-03-800w.webp",
         "width": 1600,
         "height": 1200,
-        "alt": "Pose de fenêtre de toit à Étréchy : la fenêtre de toit terminée",
+        "alt": "Robert Daniel devant la fenêtre de toit terminée, à Étréchy",
         "legende": "La fenêtre de toit terminée",
         "cover": false
       },
@@ -383,19 +435,29 @@
         "small": "/images/realisations/fenetre-de-toit-etrechy/fenetre-de-toit-etrechy-04-800w.webp",
         "width": 1600,
         "height": 1200,
-        "alt": "Pose de fenêtre de toit à Étréchy : reprise de la couverture autour",
-        "legende": "Reprise de la couverture autour",
+        "alt": "Couverture en tuiles plates pendant la pose d'une fenêtre de toit à Étréchy",
+        "legende": "La couverture en tuiles plates pendant le chantier",
         "cover": false
       }
     ],
-    "videos": []
+    "videos": [],
+    "autresCartes": {
+      "renovation-toiture-etrechy": {
+        "titre": "Une toiture en tuiles mécaniques refaite à neuf à Étréchy",
+        "texte": "Pavillon des années 80 : dépose de l'ancienne couverture, isolation renforcée, écran sous toiture et tuiles mécaniques neuves."
+      },
+      "refection-faitage-etrechy": {
+        "titre": "Une ligne de faîte reprise sur une maison d'Étréchy",
+        "texte": "Faîtières déposées, lattes et closoir neufs : une réparation ciblée au point le plus exposé du toit, sans refaire toute la couverture."
+      }
+    }
   },
   {
     "slug": "refection-faitage-etrechy",
     "url": "/realisations/refection-faitage-etrechy/",
     "h1": "Réfection d'un faîtage à Étréchy",
-    "title": "Faîtage refait à Étréchy – chantier Robert Daniel",
-    "meta": "✓ Réparation de toiture à Étréchy : faîtage déposé, closoir neuf et faîtières reposées par Robert Daniel, artisan couvreur. Tél. 06 83 96 15 18",
+    "title": "Réparation de faîtage à Étréchy - Robert Daniel",
+    "meta": "✓ Réparation de toiture à Étréchy : faîtières déposées, closoir neuf et faîtage reposé pour une ligne de faîte étanche. Robert Daniel, tél. 06 83 96 15 18",
     "commune": "Étréchy",
     "codePostal": "91580",
     "pageVille": "/couvreur-etrechy/",
@@ -406,30 +468,37 @@
     "date": "2025-06-03",
     "carte": "Faîtières déposées, closoir neuf et faîtage reposé au point le plus exposé du toit.",
     "travaux": [
-      "Dépose des faîtières",
-      "Lattes et closoir neufs",
-      "Repose du faîtage"
+      "Dépose des anciennes faîtières",
+      "Remplacement des lattes de support",
+      "Pose d'un closoir neuf",
+      "Repose et fixation des faîtières"
     ],
-    "accroche": "En juin 2025, j'ai repris entièrement le faîtage d'une maison d'Étréchy : une <strong>réparation de toiture à Étréchy</strong> ciblée, au point le plus haut et le plus exposé du toit.",
+    "accroche": "Une <strong>réparation de toiture ciblée</strong> au point le plus exposé du toit",
     "sections": [
       {
         "h2": "Un faîtage qui ne protégeait plus",
-        "html": "<p>Le faîtage couvre la ligne la plus haute du toit, là où les deux pans se rejoignent. Quand les faîtières bougent ou que le mortier se fissure, l'eau finit par trouver un passage sous la couverture. Sur cette maison, le reste de la couverture était sain : inutile de tout refaire, une <a href=\"/reparation-toiture/\">réparation de toiture</a> bien ciblée suffisait.</p>"
+        "html": "<p>Le faîtage couvre la ligne la plus haute du toit, là où les deux pans se rejoignent. C'est aussi l'endroit le plus exposé au vent et à la pluie. Sur cette maison d'Étréchy, le faîtage était abîmé : à terme, l'eau aurait trouvé un passage sous la couverture.</p><p>Le reste de la toiture était en bon état. Inutile de tout refaire : en juin 2025, j'ai repris uniquement le faîtage.</p>"
       },
       {
         "h2": "Dépose, closoir neuf et repose",
-        "html": "<p>J'ai déposé les anciennes faîtières et remplacé les lattes de support. Un closoir neuf a ensuite été posé : il assure l'étanchéité tout en laissant la toiture respirer, sans mortier qui se fissure au premier hiver. Les faîtières ont été reposées et fixées une à une, pour une ligne de faîte droite et solide.</p><p>Quand la couverture entière est usée, la réparation ne suffit plus : c'est alors une <a href=\"/realisations/renovation-toiture-etrechy/\">rénovation complète de toiture à Étréchy</a> qu'il faut envisager. Un <a href=\"/inspection-toiture-drone/\">contrôle de la toiture par drone</a> permet de trancher en connaissance de cause.</p><p>Habitants de la commune, vous pouvez faire appel à votre <a href=\"/couvreur-etrechy/\">artisan couvreur à Étréchy</a> pour ce type de réparation comme pour l'entretien courant de votre toit.</p>"
+        "photo": 2,
+        "html": "<p>J'ai déposé les anciennes faîtières et remplacé les lattes de support. Un closoir neuf a ensuite été posé : cette bande souple assure l'étanchéité tout en laissant la toiture respirer, sans mortier qui se fissure au fil des hivers.</p><p>Les faîtières ont été reposées et fixées une à une, pour une ligne de faîte droite et solide.</p>"
+      },
+      {
+        "h2": "Intervenir avant la fuite",
+        "photo": 0,
+        "html": "<p>Des faîtières déplacées, du mortier qui tombe dans la gouttière : ce sont les premiers signes d'un faîtage fatigué. À ce stade, une <a href=\"/reparation-toiture/\">réparation de toiture</a> ciblée suffit le plus souvent, et elle coûte bien moins cher que les dégâts d'une infiltration.</p><p>Pour connaître l'état de votre faîtage, la <a href=\"/inspection-toiture-drone/\">vérification de toiture par drone</a> montre chaque détail de la couverture. Comme <a href=\"/couvreur-etrechy/\">couvreur à Étréchy</a>, j'interviens rapidement dans toute la commune pour ce type de réparation.</p>"
       }
     ],
-    "cta": "Contactez votre couvreur à Étréchy",
+    "cta": "Faites appel à votre couvreur à Étréchy",
     "photos": [
       {
         "src": "/images/realisations/refection-faitage-etrechy/refection-faitage-etrechy-01.webp",
         "small": "/images/realisations/refection-faitage-etrechy/refection-faitage-etrechy-01-800w.webp",
         "width": 1200,
         "height": 1600,
-        "alt": "Réfection de faîtage à Étréchy : la toiture avant intervention",
-        "legende": "La toiture avant intervention",
+        "alt": "Toiture en tuiles d'une maison d'Étréchy avant la réfection du faîtage",
+        "legende": "La toiture avant l'intervention",
         "cover": false
       },
       {
@@ -437,7 +506,7 @@
         "small": "/images/realisations/refection-faitage-etrechy/refection-faitage-etrechy-02-800w.webp",
         "width": 1200,
         "height": 1600,
-        "alt": "Réfection de faîtage à Étréchy : le faîtage abîmé",
+        "alt": "Faîtage abîmé sur une toiture en tuiles à Étréchy",
         "legende": "Le faîtage abîmé",
         "cover": false
       },
@@ -446,8 +515,8 @@
         "small": "/images/realisations/refection-faitage-etrechy/refection-faitage-etrechy-03-800w.webp",
         "width": 1200,
         "height": 1600,
-        "alt": "Réfection de faîtage à Étréchy : faîtage déposé, closoir et lattes neufs",
-        "legende": "Faîtage déposé, closoir et lattes neufs",
+        "alt": "Faîtières déposées, lattes et closoir neufs sur une toiture à Étréchy",
+        "legende": "Faîtières déposées, lattes et closoir neufs",
         "cover": false
       },
       {
@@ -455,7 +524,7 @@
         "small": "/images/realisations/refection-faitage-etrechy/refection-faitage-etrechy-04-800w.webp",
         "width": 1200,
         "height": 1600,
-        "alt": "Réfection de faîtage à Étréchy : le faîtage refait",
+        "alt": "Faîtage refait sur une toiture en tuiles à Étréchy",
         "legende": "Le faîtage refait",
         "cover": true
       }
@@ -465,14 +534,24 @@
         "src": "/videos/realisations/refection-faitage-etrechy.mp4",
         "poster": "/videos/realisations/refection-faitage-etrechy-poster.webp"
       }
-    ]
+    ],
+    "autresCartes": {
+      "renovation-toiture-etrechy": {
+        "titre": "Rénovation complète de la toiture d'un pavillon à Étréchy",
+        "texte": "Isolation renforcée, écran sous toiture et tuiles mécaniques neuves : un pavillon des années 80 retrouve une toiture performante."
+      },
+      "fenetre-de-toit-etrechy": {
+        "titre": "Une fenêtre de toit Velux dans des tuiles plates à Étréchy",
+        "texte": "Ouverture préparée dans la charpente, raccord d'étanchéité adapté et tuiles reposées tout autour : une pièce sous les toits enfin lumineuse."
+      }
+    }
   },
   {
     "slug": "entretien-gouttieres-janville-sur-juine",
     "url": "/realisations/entretien-gouttieres-janville-sur-juine/",
     "h1": "Entretien des gouttières à Janville-sur-Juine",
-    "title": "Gouttières nettoyées à Janville-sur-Juine – Robert Daniel",
-    "meta": "✓ Nettoyage et contrôle des gouttières d'une maison en meulière à Janville-sur-Juine par Robert Daniel, artisan couvreur. Tél. 06 83 96 15 18",
+    "title": "Gouttières nettoyées à Janville-sur-Juine - Robert Daniel",
+    "meta": "✓ Entretien des gouttières d'une maison en meulière à Janville-sur-Juine : nettoyage complet et contrôle de l'écoulement. Robert Daniel, 06 83 96 15 18",
     "commune": "Janville-sur-Juine",
     "codePostal": "91510",
     "pageVille": "/couvreur-janville-sur-juine/",
@@ -487,26 +566,32 @@
       "Contrôle de l'écoulement",
       "Vérification des descentes"
     ],
-    "accroche": "En juin 2025, j'ai réalisé l'<strong>entretien des gouttières d'une maison de Janville-sur-Juine</strong>, une belle bâtisse en meulière dont les gouttières débordaient.",
+    "accroche": "<strong>Nettoyage des gouttières</strong> d'une maison en meulière",
     "sections": [
       {
         "h2": "Des gouttières qui débordaient",
-        "html": "<p>Feuilles, mousses tombées du toit et dépôts finissent toujours par s'accumuler dans les gouttières. L'eau ne s'écoule plus, déborde le long des façades et peut abîmer les murs, les enduits et même les fondations. Sur une maison en meulière, ces coulures laissent aussi des traces disgracieuses.</p>"
+        "html": "<p>En juin 2025, j'ai entretenu les gouttières d'une belle maison en meulière de Janville-sur-Juine : elles débordaient.</p><p>Feuilles, mousses tombées du toit et dépôts finissent toujours par s'accumuler. L'eau ne s'écoule plus, ruisselle le long des façades et peut abîmer les murs, les enduits et même les fondations. Sur la meulière, ces coulures laissent aussi des traces disgracieuses.</p>"
       },
       {
         "h2": "Nettoyage et contrôle de l'écoulement",
-        "html": "<p>J'ai vidé entièrement les gouttières, puis vérifié l'écoulement jusqu'aux <a href=\"/zinguerie/descentes-eaux-pluviales/\">descentes d'eaux pluviales</a>. Ce contrôle permet de repérer une pente insuffisante, un crochet desserré ou une jonction fatiguée avant qu'ils ne causent une fuite. Si une gouttière est trop abîmée, je propose son remplacement dans le cadre de mes travaux de <a href=\"/zinguerie/\">zinguerie</a>.</p><p>Quand les gouttières se remplissent vite de mousse, c'est souvent la toiture elle-même qui en est couverte : un <a href=\"/nettoyage-toiture/\">démoussage de la toiture</a> règle alors le problème à la source.</p><p>Janville-sur-Juine est toute proche de mon bureau d'Étréchy. Les propriétaires y trouvent une <a href=\"/couvreur-janville-sur-juine/\">entreprise de couverture à Janville-sur-Juine</a> disponible pour l'entretien comme pour les travaux plus importants.</p>"
+        "photo": 0,
+        "html": "<p>J'ai vidé entièrement les gouttières, puis vérifié l'écoulement jusqu'aux <a href=\"/zinguerie/descentes-eaux-pluviales/\">descentes d'eaux pluviales</a>. Ce contrôle permet de repérer une pente insuffisante, un crochet desserré ou une jonction fatiguée avant qu'ils ne provoquent une fuite.</p><p>Quand une gouttière est trop abîmée, mieux vaut la remplacer : la <a href=\"/zinguerie/\">zinguerie</a> se choisit en zinc, en aluminium ou en PVC, selon le style de la maison.</p>"
+      },
+      {
+        "h2": "Traiter la cause : la mousse sur le toit",
+        "photo": 2,
+        "html": "<p>Quand les gouttières se remplissent vite de mousse, c'est souvent que la toiture elle-même en est couverte. Un <a href=\"/nettoyage-toiture/\">démoussage de la toiture</a> règle alors le problème à la source.</p><p>Janville-sur-Juine est toute proche de mon bureau d'Étréchy. Comme <a href=\"/couvreur-janville-sur-juine/\">couvreur à Janville-sur-Juine</a>, j'interviens pour l'entretien des toitures et des gouttières, comme pour des travaux plus importants.</p>"
       }
     ],
-    "cta": "Faites appel à votre couvreur à Janville-sur-Juine",
+    "cta": "Contactez votre couvreur à Janville-sur-Juine",
     "photos": [
       {
         "src": "/images/realisations/entretien-gouttieres-janville-sur-juine/entretien-gouttieres-janville-sur-juine-01.webp",
         "small": "/images/realisations/entretien-gouttieres-janville-sur-juine/entretien-gouttieres-janville-sur-juine-01-800w.webp",
         "width": 1200,
         "height": 1600,
-        "alt": "Entretien des gouttières à Janville-sur-Juine : gouttière encombrée avant nettoyage",
-        "legende": "Gouttière encombrée avant nettoyage",
+        "alt": "Gouttière encombrée de mousse et de feuilles à Janville-sur-Juine",
+        "legende": "Gouttière encombrée avant le nettoyage",
         "cover": false
       },
       {
@@ -514,8 +599,8 @@
         "small": "/images/realisations/entretien-gouttieres-janville-sur-juine/entretien-gouttieres-janville-sur-juine-02-800w.webp",
         "width": 1600,
         "height": 1200,
-        "alt": "Entretien des gouttières à Janville-sur-Juine : la maison et l'échelle de travail",
-        "legende": "La maison et l'échelle de travail",
+        "alt": "Maison en meulière à Janville-sur-Juine pendant l'entretien des gouttières",
+        "legende": "La maison en meulière",
         "cover": true
       },
       {
@@ -523,8 +608,8 @@
         "small": "/images/realisations/entretien-gouttieres-janville-sur-juine/entretien-gouttieres-janville-sur-juine-03-800w.webp",
         "width": 1200,
         "height": 1600,
-        "alt": "Entretien des gouttières à Janville-sur-Juine : gouttière nettoyée",
-        "legende": "Gouttière nettoyée",
+        "alt": "Gouttière nettoyée sur une maison de Janville-sur-Juine",
+        "legende": "La gouttière nettoyée",
         "cover": false
       },
       {
@@ -532,8 +617,8 @@
         "small": "/images/realisations/entretien-gouttieres-janville-sur-juine/entretien-gouttieres-janville-sur-juine-04-800w.webp",
         "width": 1200,
         "height": 1600,
-        "alt": "Entretien des gouttières à Janville-sur-Juine : la maison après intervention",
-        "legende": "La maison après intervention",
+        "alt": "Maison en meulière de Janville-sur-Juine après l'entretien des gouttières",
+        "legende": "La maison après l'intervention",
         "cover": false
       }
     ],

@@ -4,109 +4,29 @@
     "fenetre-de-toit-etrechy",
     "refection-faitage-etrechy"
   ],
-  "couvreur-etampes": [
-    "renovation-toiture-auvers-saint-georges",
-    "fenetre-de-toit-etrechy",
-    "entretien-gouttieres-janville-sur-juine"
-  ],
-  "couvreur-orsay": [
-    "refection-faitage-etrechy",
-    "entretien-gouttieres-janville-sur-juine",
-    "renovation-toiture-auvers-saint-georges"
-  ],
-  "couvreur-chamarande": [
-    "entretien-gouttieres-janville-sur-juine",
-    "renovation-toiture-etrechy",
-    "renovation-toiture-auvers-saint-georges"
-  ],
+  "couvreur-etampes": [],
+  "couvreur-orsay": [],
+  "couvreur-chamarande": [],
   "couvreur-auvers-saint-georges": [
-    "renovation-toiture-auvers-saint-georges",
-    "entretien-gouttieres-janville-sur-juine",
-    "fenetre-de-toit-etrechy"
-  ],
-  "couvreur-morigny-champigny": [
-    "renovation-toiture-auvers-saint-georges",
-    "refection-faitage-etrechy",
-    "entretien-gouttieres-janville-sur-juine"
-  ],
-  "couvreur-saint-sulpice-de-favieres": [
-    "renovation-toiture-etrechy",
-    "entretien-gouttieres-janville-sur-juine",
     "renovation-toiture-auvers-saint-georges"
   ],
-  "couvreur-mauchamps": [
-    "fenetre-de-toit-etrechy",
-    "entretien-gouttieres-janville-sur-juine",
-    "renovation-toiture-auvers-saint-georges"
-  ],
-  "couvreur-boissy-sous-saint-yon": [
-    "entretien-gouttieres-janville-sur-juine",
-    "refection-faitage-etrechy",
-    "renovation-toiture-auvers-saint-georges"
-  ],
-  "couvreur-chauffour-les-etrechy": [
-    "renovation-toiture-etrechy",
-    "renovation-toiture-auvers-saint-georges",
-    "entretien-gouttieres-janville-sur-juine"
-  ],
-  "couvreur-souzy-la-briche": [
-    "fenetre-de-toit-etrechy",
-    "renovation-toiture-auvers-saint-georges",
-    "entretien-gouttieres-janville-sur-juine"
-  ],
-  "couvreur-villeconin": [
-    "refection-faitage-etrechy",
-    "renovation-toiture-auvers-saint-georges",
-    "entretien-gouttieres-janville-sur-juine"
-  ],
-  "couvreur-lardy": [
-    "entretien-gouttieres-janville-sur-juine",
-    "renovation-toiture-auvers-saint-georges",
-    "renovation-toiture-etrechy"
-  ],
-  "couvreur-torfou": [
-    "entretien-gouttieres-janville-sur-juine",
-    "fenetre-de-toit-etrechy",
-    "renovation-toiture-auvers-saint-georges"
-  ],
+  "couvreur-morigny-champigny": [],
+  "couvreur-saint-sulpice-de-favieres": [],
+  "couvreur-mauchamps": [],
+  "couvreur-boissy-sous-saint-yon": [],
+  "couvreur-chauffour-les-etrechy": [],
+  "couvreur-souzy-la-briche": [],
+  "couvreur-villeconin": [],
+  "couvreur-lardy": [],
+  "couvreur-torfou": [],
   "couvreur-janville-sur-juine": [
-    "entretien-gouttieres-janville-sur-juine",
-    "renovation-toiture-auvers-saint-georges",
-    "refection-faitage-etrechy"
-  ],
-  "couvreur-bouray-sur-juine": [
-    "entretien-gouttieres-janville-sur-juine",
-    "renovation-toiture-auvers-saint-georges",
-    "renovation-toiture-etrechy"
-  ],
-  "couvreur-villeneuve-sur-auvers": [
-    "renovation-toiture-auvers-saint-georges",
-    "entretien-gouttieres-janville-sur-juine",
-    "fenetre-de-toit-etrechy"
-  ],
-  "couvreur-cerny": [
-    "entretien-gouttieres-janville-sur-juine",
-    "renovation-toiture-auvers-saint-georges",
-    "refection-faitage-etrechy"
-  ],
-  "couvreur-brieres-les-scelles": [
-    "renovation-toiture-etrechy",
-    "renovation-toiture-auvers-saint-georges",
     "entretien-gouttieres-janville-sur-juine"
   ],
-  "couvreur-egly": [
-    "entretien-gouttieres-janville-sur-juine",
-    "fenetre-de-toit-etrechy",
-    "renovation-toiture-auvers-saint-georges"
-  ],
-  "couvreur-breuillet": [
-    "refection-faitage-etrechy",
-    "entretien-gouttieres-janville-sur-juine",
-    "renovation-toiture-auvers-saint-georges"
-  ],
-  "couvreur-saint-yon": [
-    "renovation-toiture-etrechy",
-    "entretien-gouttieres-janville-sur-juine",
-    "renovation-toiture-auvers-saint-georges"
-  ]
+  "couvreur-bouray-sur-juine": [],
+  "couvreur-villeneuve-sur-auvers": [],
+  "couvreur-cerny": [],
+  "couvreur-brieres-les-scelles": [],
+  "couvreur-egly": [],
+  "couvreur-breuillet": [],
+  "couvreur-saint-yon": []
 }

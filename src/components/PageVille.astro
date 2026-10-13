@@ -21,12 +21,11 @@ const d = (contenu as any)[slug];
 const SITE = 'https://robert-daniel-couverture.fr';
 const PAGE = `${SITE}/${slug}/`;
 
-// Réalisations : chantiers de la commune d'abord, sinon les plus proches
-const slugsChantiers: string[] = (proches as any)[slug] || [];
-const nbIci = realisations.filter((r) => r.pageVille === `/${slug}/`).length;
-const titreChantiers = nbIci >= slugsChantiers.length && nbIci > 0
-  ? `Mes chantiers à ${d.nom}`
-  : nbIci > 0 ? `Mes chantiers à ${d.nom} et aux alentours` : `Mes chantiers près de ${d.nom}`;
+// Réalisations : COCON ISOLÉ PAR COMMUNE — uniquement les chantiers rattachés à cette
+// page (pageVille), jamais ceux d'une autre commune, et pas de lien vers l'index des
+// réalisations. Une commune sans chantier n'affiche pas la section.
+const slugsChantiers: string[] = ((proches as any)[slug] || [])
+  .filter((s: string) => realisations.find((x) => x.slug === s)?.pageVille === `/${slug}/`);
 
 const telLien = (t: string) => `tel:${t.replace(/\s/g, '')}`;
 const heroSrcset = d.hero.src800 ? `${d.hero.src800} 800w, ${d.hero.src} ${d.hero.w}w` : undefined;
@@ -45,7 +44,8 @@ const extraSchemas = [{
   about: { '@id': `${PAGE}#service` },
   breadcrumb: { '@id': `${PAGE}#breadcrumb` },
   primaryImageOfPage: { '@type': 'ImageObject', url: `${SITE}${d.hero.src}`, width: d.hero.w, height: d.hero.h },
-  ...(chantiers.length ? { relatedLink: chantiers.map((c) => `${SITE}${c.url}`) } : {}),
+  // Pages enfants du cocon : les chantiers réalisés dans la commune
+  ...(chantiers.length ? { hasPart: chantiers.map((c) => ({ '@type': 'WebPage', '@id': `${SITE}${c.url}#webpage`, url: `${SITE}${c.url}`, name: c.h1 })) } : {}),
 }, {
   '@context': 'https://schema.org',
   '@type': 'Service',
@@ -267,7 +267,9 @@ const fleche = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
   </section>
 
   <!-- ══ RÉALISATIONS (fin de page) ══ -->
-  <CartesRealisations slugs={slugsChantiers} titre={d.realisationsTitre || titreChantiers} titreStyle={`--em:${d.em.realisations}`} intro={d.realisationsIntro} />
+  {slugsChantiers.length > 0 && (
+    <CartesRealisations slugs={slugsChantiers} titre={`Mes chantiers à ${d.nom}`} intro={d.realisationsIntro} lienTout={false} centre={true} />
+  )}
 </BaseLayout>
 
 <script>

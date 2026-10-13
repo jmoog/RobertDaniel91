@@ -208,17 +208,13 @@
     "site": "https://www.mairie-etampes.fr/"
    }
   },
-  "realisationsIntro": "Rénovation complète, entretien de gouttières, pose de fenêtre de toit : découvrez en photos, étape par étape, des chantiers que j'ai réalisés dans le secteur.",
-  "realisationsTitre": "Mes chantiers près d'Étampes",
-  "em_r": 15.124,
   "em": {
    "intro": 18.657,
    "prestations": 20.119,
    "cta": 18.631,
    "drone": 22.273,
    "ramonage": 20.893,
-   "mairie": 18.264,
-   "realisations": 15.124
+   "mairie": 18.264
   }
  },
  "couvreur-orsay": {
@@ -390,17 +386,13 @@
     "site": "https://www.mairie-orsay.fr/"
    }
   },
-  "realisationsIntro": "Voici quelques chantiers récents, présentés en photos de la dépose aux finitions.",
-  "realisationsTitre": "Mes chantiers près d'Orsay",
-  "em_r": 13.754,
   "em": {
    "intro": 19.395,
    "prestations": 18.749,
    "cta": 19.386,
    "drone": 20.45,
    "ramonage": 22.285,
-   "mairie": 21.817,
-   "realisations": 13.754
+   "mairie": 21.817
   }
  },
  "couvreur-chamarande": {
@@ -572,17 +564,13 @@
     "site": "https://www.chamarande.fr/"
    }
   },
-  "realisationsIntro": "Chaque chantier est présenté en photos, étape par étape : de quoi vous faire une idée précise de ma façon de travailler.",
-  "realisationsTitre": "Mes chantiers près de Chamarande",
-  "em_r": 17.955,
   "em": {
    "intro": 20.264,
    "prestations": 22.296,
    "cta": 22.739,
    "drone": 25.819,
    "ramonage": 20.102,
-   "mairie": 21.095,
-   "realisations": 17.955
+   "mairie": 21.095
   }
  },
  "couvreur-auvers-saint-georges": {
@@ -755,17 +743,14 @@
     "site": "https://auvers-saint-georges.fr/"
    }
   },
-  "realisationsIntro": "Rénovation complète, entretien de gouttières, pose de fenêtre de toit : découvrez en photos, étape par étape, des chantiers que j'ai réalisés dans le secteur.",
-  "realisationsTitre": "Mes chantiers à Auvers-Saint-Georges et alentours",
-  "em_r": 25.921,
+  "realisationsIntro": "Couverture refaite à neuf, lucarnes reprises et contrôle final au drone : retrouvez en photos, étape par étape, ce chantier réalisé à Auvers-Saint-Georges.",
   "em": {
    "intro": 24.03,
    "prestations": 26.912,
    "cta": 25.424,
    "drone": 23.774,
    "ramonage": 24.718,
-   "mairie": 25.057,
-   "realisations": 25.921
+   "mairie": 25.057
   }
  },
  "couvreur-morigny-champigny": {
@@ -937,17 +922,13 @@
     "site": "https://www.morignychampigny.fr/"
    }
   },
-  "realisationsIntro": "Voici quelques chantiers récents, présentés en photos de la dépose aux finitions.",
-  "realisationsTitre": "Mes chantiers près de Morigny-Champigny",
-  "em_r": 21.886,
   "em": {
    "intro": 23.345,
    "prestations": 26.227,
    "cta": 24.739,
    "drone": 23.089,
    "ramonage": 24.033,
-   "mairie": 25.026,
-   "realisations": 21.886
+   "mairie": 25.026
   }
  },
  "couvreur-saint-sulpice-de-favieres": {
@@ -1119,17 +1100,13 @@
     "site": "https://saint-sulpice-de-favieres.fr/"
    }
   },
-  "realisationsIntro": "Chaque chantier est présenté en photos, étape par étape : de quoi vous faire une idée précise de ma façon de travailler.",
-  "realisationsTitre": "Mes chantiers près de Saint-Sulpice-de-Favières",
-  "em_r": 24.571,
   "em": {
    "intro": 26.541,
    "prestations": 28.912,
    "cta": 27.424,
    "drone": 25.774,
    "ramonage": 26.718,
-   "mairie": 27.711,
-   "realisations": 24.571
+   "mairie": 27.711
   }
  },
  "couvreur-mauchamps": {
@@ -1301,17 +1278,13 @@
     "site": "https://www.mauchamps.org/"
    }
   },
-  "realisationsIntro": "Rénovation complète, entretien de gouttières, pose de fenêtre de toit : découvrez en photos, étape par étape, des chantiers que j'ai réalisés dans le secteur.",
-  "realisationsTitre": "Mes chantiers près de Mauchamps",
-  "em_r": 17.503,
   "em": {
    "intro": 18.962,
    "prestations": 21.844,
    "cta": 20.356,
    "drone": 23.998,
    "ramonage": 22.618,
-   "mairie": 20.643,
-   "realisations": 17.503
+   "mairie": 20.643
   }
  },
  "couvreur-boissy-sous-saint-yon": {
@@ -1483,17 +1456,13 @@
     "site": "https://www.boissy-ssy.fr/"
    }
   },
-  "realisationsIntro": "Voici quelques chantiers récents, présentés en photos de la dépose aux finitions.",
-  "realisationsTitre": "Mes chantiers près de Boissy-sous-Saint-Yon",
-  "em_r": 22.796,
   "em": {
    "intro": 27.671,
    "prestations": 27.137,
    "cta": 25.649,
    "drone": 23.999,
    "ramonage": 24.943,
-   "mairie": 25.936,
-   "realisations": 22.796
+   "mairie": 25.936
   }
  },
  "couvreur-chauffour-les-etrechy": {
@@ -1666,17 +1635,13 @@
     "site": "https://www.chauffour-les-etrechy.fr/"
    }
   },
-  "realisationsIntro": "Chaque chantier est présenté en photos, étape par étape : de quoi vous faire une idée précise de ma façon de travailler.",
-  "realisationsTitre": "Mes chantiers près de Chauffour-lès-Étréchy",
-  "em_r": 22.631,
   "em": {
    "intro": 24.09,
    "prestations": 26.972,
    "cta": 25.484,
    "drone": 23.834,
    "ramonage": 24.778,
-   "mairie": 25.771,
-   "realisations": 22.631
+   "mairie": 25.771
   }
  },
  "couvreur-souzy-la-briche": {
@@ -1848,17 +1813,13 @@
     "site": "https://souzylabriche.fr/"
    }
   },
-  "realisationsIntro": "Rénovation complète, entretien de gouttières, pose de fenêtre de toit : découvrez en photos, étape par étape, des chantiers que j'ai réalisés dans le secteur.",
-  "realisationsTitre": "Mes chantiers près de Souzy-la-Briche",
-  "em_r": 19.556,
   "em": {
    "intro": 26.669,
    "prestations": 23.897,
    "cta": 22.409,
    "drone": 25.598,
    "ramonage": 24.671,
-   "mairie": 22.696,
-   "realisations": 19.556
+   "mairie": 22.696
   }
  },
  "couvreur-villeconin": {
@@ -2030,17 +1991,13 @@
     "site": "https://villeconin.fr/"
    }
   },
-  "realisationsIntro": "Voici quelques chantiers récents, présentés en photos de la dépose aux finitions.",
-  "realisationsTitre": "Mes chantiers près de Villeconin",
-  "em_r": 16.369,
   "em": {
    "intro": 17.828,
    "prestations": 20.71,
    "cta": 21.347,
    "drone": 22.411,
    "ramonage": 24.246,
-   "mairie": 24.432,
-   "realisations": 16.369
+   "mairie": 24.432
   }
  },
  "couvreur-lardy": {
@@ -2212,17 +2169,13 @@
     "site": "https://www.ville-lardy.fr/"
    }
   },
-  "realisationsIntro": "Chaque chantier est présenté en photos, étape par étape : de quoi vous faire une idée précise de ma façon de travailler.",
-  "realisationsTitre": "Mes chantiers près de Lardy",
-  "em_r": 14.334,
   "em": {
    "intro": 15.709,
    "prestations": 18.675,
    "cta": 19.118,
    "drone": 22.198,
    "ramonage": 16.481,
-   "mairie": 17.474,
-   "realisations": 14.334
+   "mairie": 17.474
   }
  },
  "couvreur-torfou": {
@@ -2395,17 +2348,13 @@
     "site": "https://www.torfou.com/mairie/"
    }
   },
-  "realisationsIntro": "Rénovation complète, entretien de gouttières, pose de fenêtre de toit : découvrez en photos, étape par étape, des chantiers que j'ai réalisés dans le secteur.",
-  "realisationsTitre": "Mes chantiers près de Torfou",
-  "em_r": 14.686,
   "em": {
    "intro": 14.835,
    "prestations": 19.027,
    "cta": 17.539,
    "drone": 21.181,
    "ramonage": 19.801,
-   "mairie": 17.826,
-   "realisations": 14.686
+   "mairie": 17.826
   }
  },
  "couvreur-janville-sur-juine": {
@@ -2578,17 +2527,14 @@
     "site": "https://www.janville-sur-juine.fr/"
    }
   },
-  "realisationsIntro": "Voici quelques chantiers récents, présentés en photos de la dépose aux finitions.",
-  "realisationsTitre": "Mes chantiers à Janville-sur-Juine et alentours",
-  "em_r": 24.031,
+  "realisationsIntro": "Gouttières vidées et écoulement contrôlé sur une maison en meulière : retrouvez en photos ce chantier réalisé à Janville-sur-Juine.",
   "em": {
    "intro": 22.14,
    "prestations": 25.022,
    "cta": 25.659,
    "drone": 21.884,
    "ramonage": 22.828,
-   "mairie": 23.821,
-   "realisations": 24.031
+   "mairie": 23.821
   }
  },
  "couvreur-bouray-sur-juine": {
@@ -2760,17 +2706,13 @@
     "site": "https://www.bouraysurjuine.fr/"
    }
   },
-  "realisationsIntro": "Chaque chantier est présenté en photos, étape par étape : de quoi vous faire une idée précise de ma façon de travailler.",
-  "realisationsTitre": "Mes chantiers près de Bouray-sur-Juine",
-  "em_r": 20.347,
   "em": {
    "intro": 25.143,
    "prestations": 24.688,
    "cta": 25.131,
    "drone": 21.55,
    "ramonage": 22.494,
-   "mairie": 23.487,
-   "realisations": 20.347
+   "mairie": 23.487
   }
  },
  "couvreur-villeneuve-sur-auvers": {
@@ -2943,17 +2885,13 @@
     "site": "https://www.villeneuve-mesnil.fr/"
    }
   },
-  "realisationsIntro": "Rénovation complète, entretien de gouttières, pose de fenêtre de toit : découvrez en photos, étape par étape, des chantiers que j'ai réalisés dans le secteur.",
-  "realisationsTitre": "Mes chantiers près de Villeneuve-sur-Auvers",
-  "em_r": 22.573,
   "em": {
    "intro": 24.032,
    "prestations": 26.914,
    "cta": 25.426,
    "drone": 23.776,
    "ramonage": 24.72,
-   "mairie": 25.713,
-   "realisations": 22.573
+   "mairie": 25.713
   }
  },
  "couvreur-cerny": {
@@ -3126,17 +3064,13 @@
     "site": "https://cerny.fr/fr/"
    }
   },
-  "realisationsIntro": "Voici quelques chantiers récents, présentés en photos de la dépose aux finitions.",
-  "realisationsTitre": "Mes chantiers près de Cerny",
-  "em_r": 14.364,
   "em": {
    "intro": 15.823,
    "prestations": 18.705,
    "cta": 19.342,
    "drone": 20.406,
    "ramonage": 22.241,
-   "mairie": 22.427,
-   "realisations": 14.364
+   "mairie": 22.427
   }
  },
  "couvreur-brieres-les-scelles": {
@@ -3309,17 +3243,13 @@
     "site": "http://www.mairie-brieres.com/"
    }
   },
-  "realisationsIntro": "Chaque chantier est présenté en photos, étape par étape : de quoi vous faire une idée précise de ma façon de travailler.",
-  "realisationsTitre": "Mes chantiers près de Brières-les-Scellés",
-  "em_r": 20.669,
   "em": {
    "intro": 25.656,
    "prestations": 25.01,
    "cta": 25.453,
    "drone": 21.872,
    "ramonage": 22.816,
-   "mairie": 23.809,
-   "realisations": 20.669
+   "mairie": 23.809
   }
  },
  "couvreur-egly": {
@@ -3491,17 +3421,13 @@
     "site": "https://mairie-egly.fr/fr/"
    }
   },
-  "realisationsIntro": "Rénovation complète, entretien de gouttières, pose de fenêtre de toit : découvrez en photos, étape par étape, des chantiers que j'ai réalisés dans le secteur.",
-  "realisationsTitre": "Mes chantiers près d'Égly",
-  "em_r": 12.938,
   "em": {
    "intro": 15.051,
    "prestations": 17.933,
    "cta": 16.445,
    "drone": 20.087,
    "ramonage": 18.707,
-   "mairie": 16.078,
-   "realisations": 12.938
+   "mairie": 16.078
   }
  },
  "couvreur-breuillet": {
@@ -3673,17 +3599,13 @@
     "site": "https://www.ville-breuillet.fr/"
    }
   },
-  "realisationsIntro": "Voici quelques chantiers récents, présentés en photos de la dépose aux finitions.",
-  "realisationsTitre": "Mes chantiers près de Breuillet",
-  "em_r": 15.642,
   "em": {
    "intro": 20.517,
    "prestations": 19.983,
    "cta": 20.62,
    "drone": 21.684,
    "ramonage": 23.519,
-   "mairie": 23.705,
-   "realisations": 15.642
+   "mairie": 23.705
   }
  },
  "couvreur-saint-yon": {
@@ -3856,17 +3778,13 @@
     "site": "https://www.saint-yon.fr/"
    }
   },
-  "realisationsIntro": "Chaque chantier est présenté en photos, étape par étape : de quoi vous faire une idée précise de ma façon de travailler.",
-  "realisationsTitre": "Mes chantiers près de Saint-Yon",
-  "em_r": 16.357,
   "em": {
    "intro": 13.856,
    "prestations": 20.698,
    "cta": 21.141,
    "drone": 24.221,
    "ramonage": 18.504,
-   "mairie": 19.497,
-   "realisations": 16.357
+   "mairie": 19.497
   }
  }
 }

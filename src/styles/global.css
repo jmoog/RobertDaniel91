@@ -220,6 +220,7 @@ h3 { font-size: 1.2rem; }
 }
 .btn:hover { transform: translate3d(0, -2px, 0); box-shadow: 0 10px 22px rgb(0 42 69 / .2); }
 .btn:active { transform: translate3d(0, 0, 0); }
+@media (max-width: 359px) { .btn { white-space: normal; max-width: 100%; text-align: left; } }
 .btn--cuivre { background: var(--cuivre); color: var(--blanc); }
 .btn--cuivre:hover { background: var(--cuivre-fonce); color: var(--blanc); }
 .btn--blanc { background: var(--blanc); color: var(--bleu-fonce); }

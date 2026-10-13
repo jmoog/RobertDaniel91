@@ -1,26 +1,47 @@
 ---
-// Section « avis clients » alimentée par src/data/avis-google.json
+// Section « avis clients » en carrousel, alimentée par src/data/avis-google.json
 // (relevé de la fiche Google). Note moyenne et nombre d'avis calculés
 // depuis le fichier : une seule mise à jour suffit pour tout le site.
+// Carrousel : 3 avis visibles sur ordinateur, 2 sur tablette, 1 sur mobile,
+// flèches de part et d'autre (sous l'avis sur mobile) + points de pagination.
 // Affichage seulement : AUCUN balisage Review/AggregateRating (avis sur
 // sa propre entreprise = « self-serving », non éligible aux étoiles Google).
 import data from '../data/avis-google.json';
 
 interface Props {
   titre: string;
-  ids: string[];
+  /** Avis choisis à la main (pages communes : avis propres à la commune) */
+  ids?: string[];
+  /** OU les N avis les plus récents de la fiche (mis à jour à chaque relevé) */
+  recents?: number;
   intro?: string;
   fond?: 'blanc' | 'gris';
 }
-const { titre, ids, intro, fond = 'gris' } = Astro.props;
+const { titre, ids, recents, intro, fond = 'gris' } = Astro.props;
 
-const avis = ids
-  .map((id) => data.avis.find((a) => a.id === id))
-  .filter((a) => a && a.texte);
+// « septembre 2026 » → 202609 pour trier du plus récent au plus ancien
+const MOIS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
+const cle = (visite: string) => {
+  const [m, an] = visite.trim().toLowerCase().split(/\s+/);
+  return Number(an) * 100 + (MOIS.indexOf(m) + 1);
+};
+const TEXTE_MIN = 60; // avis de quelques mots écartés de la sélection automatique
+
+const avis = recents
+  ? data.avis
+      .filter((a) => a.texte && a.texte.length >= TEXTE_MIN)
+      .map((a, i) => ({ a, i }))
+      .sort((x, y) => cle(y.a.visite) - cle(x.a.visite) || x.i - y.i)
+      .slice(0, recents)
+      .map(({ a }) => a)
+  : (ids ?? [])
+      .map((id) => data.avis.find((a) => a.id === id))
+      .filter((a) => a && a.texte);
 
 const etoile = 'M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z';
 const LONG = 260; // au-delà, le texte est replié avec « Lire la suite »
-const initiale = (nom: string) => nom.trim().charAt(0).toUpperCase();
+const chevron = (sens: 'g' | 'd') =>
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${sens === 'g' ? 'M15 5l-7 7 7 7' : 'M9 5l7 7-7 7'}"/></svg>`;
 ---
 <section class:list={['avis-g', `avis-g--${fond}`]}>
   <div class="conteneur">
@@ -41,30 +62,42 @@ const initiale = (nom: string) => nom.trim().charAt(0).toUpperCase();
       </a>
     </div>
 
-    <ul class="avis-g__liste">
-      {avis.map((a) => (
-        <li class="avis-g__carte" data-avis-anim>
-          <div class="avis-g__note" role="img" aria-label={`Note : ${a.note} sur 5`}>
-            {Array(5).fill(0).map((_, i) => (
-              <svg viewBox="0 0 24 24" aria-hidden="true" class={i < a.note ? 'plein' : 'vide'}><path d={etoile} /></svg>
-            ))}
-          </div>
-          <blockquote class:list={['avis-g__texte', { 'avis-g__texte--long': a.texte.length > LONG }]}>
-            {a.texte.split('\n').map((ligne) => <p>{ligne}</p>)}
-          </blockquote>
-          {a.texte.length > LONG && (
-            <button type="button" class="avis-g__suite" aria-expanded="false">Lire la suite</button>
-          )}
-          <p class="avis-g__auteur">
-            <span class="avis-g__avatar" aria-hidden="true">{initiale(a.nom)}</span>
-            <span>
-              <span class="avis-g__nom">{a.nom}</span>
-              <span class="avis-g__source">Avis Google · {a.visite}</span>
-            </span>
-          </p>
-        </li>
-      ))}
-    </ul>
+    <div class="avis-g__carrousel" data-avis-carrousel data-avis-anim aria-roledescription="carrousel" aria-label="Avis clients">
+      <button type="button" class="avis-g__nav avis-g__nav--prec" data-avis-prec aria-label="Avis précédents" set:html={chevron('g')} />
+
+      <ul class="avis-g__liste" data-avis-piste>
+        {avis.map((a) => (
+          <li class="avis-g__carte">
+            <div class="avis-g__note" role="img" aria-label={`Note : ${a.note} sur 5`}>
+              {Array(5).fill(0).map((_, i) => (
+                <svg viewBox="0 0 24 24" aria-hidden="true" class={i < a.note ? 'plein' : 'vide'}><path d={etoile} /></svg>
+              ))}
+            </div>
+            <blockquote class:list={['avis-g__texte', { 'avis-g__texte--long': a.texte.length > LONG }]}>
+              {a.texte.split('\n').map((ligne) => <p>{ligne}</p>)}
+            </blockquote>
+            {a.texte.length > LONG && (
+              <button type="button" class="avis-g__suite" aria-expanded="false">Lire la suite</button>
+            )}
+            <p class="avis-g__auteur">
+              <span class="avis-g__ident">
+                <span class="avis-g__nom">{a.nom}</span>
+                <span class="avis-g__date">{a.visite}</span>
+              </span>
+              <svg class="avis-g__google" viewBox="0 0 48 48" role="img" aria-label="Avis Google">
+                <path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 13 4 4 13 4 24s9 20 20 20 20-9 20-20c0-1.3-.1-2.6-.4-3.9z"/>
+                <path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/>
+                <path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/>
+                <path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.6-.4-3.9z"/>
+              </svg>
+            </p>
+          </li>
+        ))}
+      </ul>
+
+      <button type="button" class="avis-g__nav avis-g__nav--suiv" data-avis-suiv aria-label="Avis suivants" set:html={chevron('d')} />
+      <div class="avis-g__points" data-avis-points></div>
+    </div>
 
     <p class="avis-g__cta">
       <a href={data.lien} class="avis-g__btn" target="_blank" rel="noopener">
@@ -85,6 +118,69 @@ const initiale = (nom: string) => nom.trim().charAt(0).toUpperCase();
       btn.textContent = ouvert ? 'Réduire' : 'Lire la suite';
     });
   });
+
+  // Carrousel : défilement par « page » (3 / 2 / 1 avis selon l'écran), bouclage aux extrémités
+  document.querySelectorAll<HTMLElement>('[data-avis-carrousel]').forEach((car) => {
+    const piste = car.querySelector<HTMLElement>('[data-avis-piste]');
+    const prec = car.querySelector<HTMLButtonElement>('[data-avis-prec]');
+    const suiv = car.querySelector<HTMLButtonElement>('[data-avis-suiv]');
+    const points = car.querySelector<HTMLElement>('[data-avis-points]');
+    if (!piste || !prec || !suiv || !points) return;
+    const cartes = Array.from(piste.children) as HTMLElement[];
+    if (!cartes.length) return;
+
+    const mesures = () => {
+      const gap = parseFloat(getComputedStyle(piste).columnGap) || 0;
+      const pas = cartes[0].offsetWidth + gap;
+      const parVue = Math.max(1, Math.round((piste.clientWidth - parseFloat(getComputedStyle(piste).paddingLeft) * 2 + gap) / pas));
+      const pages = Math.ceil(cartes.length / parVue);
+      return { pas, parVue, pages };
+    };
+    const pageCourante = () => {
+      const { pas, parVue, pages } = mesures();
+      const max = piste.scrollWidth - piste.clientWidth;
+      if (piste.scrollLeft >= max - 4) return pages - 1;
+      return Math.min(pages - 1, Math.round(piste.scrollLeft / (pas * parVue)));
+    };
+    const allerA = (page: number) => {
+      const { pas, parVue, pages } = mesures();
+      const p = (page + pages) % pages;
+      piste.scrollTo({ left: p * pas * parVue, behavior: 'smooth' });
+    };
+
+    let nbPoints = -1;
+    const majPoints = () => {
+      const { pages } = mesures();
+      const actif = car.classList.toggle('est-actif', pages > 1);
+      if (pages !== nbPoints) {
+        nbPoints = pages;
+        points.innerHTML = '';
+        if (actif) {
+          for (let i = 0; i < pages; i++) {
+            const b = document.createElement('button');
+            b.type = 'button';
+            b.setAttribute('aria-label', `Afficher la série d'avis ${i + 1} sur ${pages}`);
+            b.addEventListener('click', () => allerA(i));
+            points.appendChild(b);
+          }
+        }
+      }
+      const cour = pageCourante();
+      Array.from(points.children).forEach((b, i) => b.setAttribute('aria-current', i === cour ? 'true' : 'false'));
+    };
+
+    prec.addEventListener('click', () => allerA(pageCourante() - 1));
+    suiv.addEventListener('click', () => allerA(pageCourante() + 1));
+    let raf = 0;
+    piste.addEventListener('scroll', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(majPoints); }, { passive: true });
+    window.addEventListener('resize', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(majPoints); });
+    piste.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') { e.preventDefault(); allerA(pageCourante() + 1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); allerA(pageCourante() - 1); }
+    });
+    majPoints();
+  });
+
   // Apparition au défilement (désactivée si l'utilisateur réduit les animations)
   const blocs = document.querySelectorAll('[data-avis-anim]');
   if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -104,7 +200,7 @@ const initiale = (nom: string) => nom.trim().charAt(0).toUpperCase();
   /* En-tête : titre à gauche, note moyenne à droite */
   .avis-g__entete {
     display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
-    gap: 20px 40px; margin-bottom: 36px;
+    gap: 20px 40px; margin-bottom: 32px;
   }
   .avis-g__titres { flex: 1 1 420px; min-width: 0; }
   .avis-g__h2 {
@@ -130,13 +226,47 @@ const initiale = (nom: string) => nom.trim().charAt(0).toUpperCase();
   .avis-g__etoiles svg { width: 20px; height: 20px; fill: #fbbc04; }
   .avis-g__nombre { font-weight: 700; color: var(--gris-700); font-size: 15px; }
 
-  /* Cartes */
-  .avis-g__liste {
-    list-style: none; margin: 0; padding: 0;
-    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; align-items: start;
+  /* ── Carrousel : flèche | piste | flèche ── */
+  .avis-g__carrousel {
+    display: grid; grid-template-columns: minmax(0, 1fr); align-items: center; gap: 0 14px;
   }
+  .avis-g__carrousel.est-actif { grid-template-columns: auto minmax(0, 1fr) auto; }
+  .avis-g__nav, .avis-g__points { display: none; }
+  .est-actif .avis-g__nav { display: inline-flex; }
+  .est-actif .avis-g__points { display: flex; grid-column: 1 / -1; }
+
+  .avis-g__liste {
+    list-style: none; margin: 0; padding: 8px 10px 24px;
+    display: flex; align-items: stretch; gap: 24px;
+    overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 10px;
+    overscroll-behavior-x: contain; scrollbar-width: none;
+  }
+  .avis-g__liste::-webkit-scrollbar { display: none; }
+
+  .avis-g__nav {
+    align-items: center; justify-content: center; flex-shrink: 0;
+    width: 46px; height: 46px; padding: 0; border: 0; border-radius: 50%; cursor: pointer;
+    background: var(--blanc); color: var(--bleu); box-shadow: 0 4px 14px rgb(0 73 123 / .14);
+    transition: background-color .25s ease, color .25s ease, transform .25s ease;
+  }
+  .avis-g--blanc .avis-g__nav { background: var(--gris-50); box-shadow: none; }
+  .avis-g__nav:hover, .avis-g--blanc .avis-g__nav:hover { background: var(--bleu); color: var(--blanc); }
+  .avis-g__nav--prec:hover { transform: translate3d(-2px, 0, 0); }
+  .avis-g__nav--suiv:hover { transform: translate3d(2px, 0, 0); }
+  .avis-g__nav :global(svg) { width: 20px; height: 20px; }
+  .avis-g__nav:focus-visible { outline: 3px solid var(--bleu-clair); outline-offset: 2px; }
+
+  .avis-g__points { justify-content: center; gap: 8px; margin-top: 2px; }
+  .avis-g__points :global(button) {
+    width: 9px; height: 9px; padding: 0; border: 0; border-radius: 999px; cursor: pointer;
+    background: var(--gris-200); transition: width .3s ease, background-color .3s ease;
+  }
+  .avis-g__points :global(button[aria-current='true']) { width: 26px; background: var(--bleu); }
+
+  /* Cartes : 3 par vue */
   .avis-g__carte {
-    display: flex; flex-direction: column; gap: 14px; height: 100%;
+    flex: 0 0 calc((100% - 48px) / 3); min-width: 0; scroll-snap-align: start;
+    display: flex; flex-direction: column; gap: 14px;
     padding: 26px 24px; background: var(--blanc); border-radius: 14px;
     box-shadow: 0 6px 20px rgb(0 73 123 / .07); text-align: left;
   }
@@ -161,17 +291,18 @@ const initiale = (nom: string) => nom.trim().charAt(0).toUpperCase();
   }
   .avis-g__suite:hover { color: var(--bleu-fonce); }
 
-  .avis-g__auteur { display: flex; align-items: center; gap: 12px; margin: auto 0 0; padding-top: 6px; }
-  .avis-g__avatar {
-    display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
-    width: 40px; height: 40px; border-radius: 50%; background: var(--bleu); color: var(--blanc);
-    font-family: var(--font-titres); font-weight: 700; font-size: 17px;
+  /* Pied de carte : nom + date à gauche, logo Google à droite */
+  .avis-g__auteur {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    margin: auto 0 0; padding-top: 14px; border-top: 1px solid var(--gris-100);
   }
-  .avis-g__nom { display: block; font-family: var(--font-titres); font-weight: 700; color: var(--bleu-fonce); }
-  .avis-g__source { display: block; font-size: 14px; color: var(--gris-500); }
+  .avis-g__ident { min-width: 0; }
+  .avis-g__nom { display: block; font-family: var(--font-titres); font-weight: 700; color: var(--bleu-fonce); line-height: 1.3; }
+  .avis-g__date { display: block; margin-top: 2px; font-size: 14px; color: var(--gris-500); }
+  .avis-g__google { width: 26px; height: 26px; flex-shrink: 0; }
 
   /* Bouton (pilule, largeur du contenu, centré) */
-  .avis-g__cta { text-align: center; margin: 36px 0 0; }
+  .avis-g__cta { text-align: center; margin: 32px 0 0; }
   .avis-g__btn {
     display: inline-flex; align-items: center; gap: 12px; width: auto; max-width: max-content;
     min-height: 50px; padding: 14px 26px; border-radius: 999px; background: var(--bleu); color: var(--blanc);
@@ -187,22 +318,33 @@ const initiale = (nom: string) => nom.trim().charAt(0).toUpperCase();
   .avis-g__fleche svg { width: 14px; height: 14px; transition: transform .3s ease; }
   .avis-g__btn:hover .avis-g__fleche svg { transform: translate3d(3px, 0, 0); }
 
-  /* Tablette : 2 colonnes */
+  /* Tablette : 2 avis par vue */
   @media (max-width: 1023px) {
-    .avis-g__liste { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+    .avis-g__liste { gap: 18px; }
+    .avis-g__carte { flex-basis: calc((100% - 18px) / 2); }
   }
-  /* Mobile : défilement horizontal (pas de longue pile de textes) */
+
+  /* Mobile : 1 avis par vue, flèches sous l'avis de part et d'autre des points */
   @media (max-width: 767px) {
-    .avis-g__entete { flex-direction: column; align-items: center; margin-bottom: 26px; }
+    .avis-g__entete { flex-direction: column; align-items: center; margin-bottom: 22px; }
     .avis-g__titres { flex-basis: auto; width: 100%; }
     .avis-g__h2 { text-align: center; }
     .avis-g__intro { text-align: center; margin-inline: auto; }
-    .avis-g__liste {
-      display: flex; align-items: stretch; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory;
-      margin-inline: -1rem; padding: 4px 1rem 14px; scrollbar-width: none;
+
+    .avis-g__carrousel.est-actif {
+      grid-template-columns: auto 1fr auto;
+      grid-template-areas: 'piste piste piste' 'prec points suiv';
+      gap: 4px 12px;
     }
-    .avis-g__liste::-webkit-scrollbar { display: none; }
-    .avis-g__carte { flex: 0 0 84%; scroll-snap-align: center; height: auto; }
+    .est-actif .avis-g__liste { grid-area: piste; }
+    .est-actif .avis-g__nav--prec { grid-area: prec; }
+    .est-actif .avis-g__nav--suiv { grid-area: suiv; }
+    .est-actif .avis-g__points { grid-area: points; grid-column: auto; align-self: center; margin-top: 0; }
+
+    .avis-g__liste { margin-inline: -1rem; padding: 6px 1rem 18px; gap: 14px; scroll-padding-inline: 1rem; }
+    .avis-g__carte { flex-basis: 100%; padding: 22px 20px; }
+    .avis-g__nav { width: 42px; height: 42px; }
+    .avis-g__cta { margin-top: 24px; }
     .avis-g__btn { min-height: 46px; padding: 12px 18px; font-size: 15px; gap: 10px; }
   }
 

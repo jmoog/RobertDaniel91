@@ -1,5 +1,298 @@
 [
   {
+    "slug": "toiture-hydrofuge-brieres-les-scelles",
+    "url": "/realisations/toiture-hydrofuge-brieres-les-scelles/",
+    "h1": "Toiture neuve et hydrofuge à Brières-les-Scellés",
+    "title": "Remplacement de toiture et hydrofuge à Brières-les-Scellés",
+    "meta": "✓ Remplacement d'une toiture en tuiles plates à Brières-les-Scellés, puis traitement hydrofuge des tuiles neuves. Robert Daniel, couvreur.",
+    "commune": "Brières-les-Scellés",
+    "codePostal": "91150",
+    "pageVille": "/couvreur-brieres-les-scelles/",
+    "prestation": "traitement-hydrofuge",
+    "prestationLibelle": "Remplacement de toiture et traitement hydrofuge",
+    "pageService": "/nettoyage-toiture/",
+    "mois": "octobre 2026",
+    "date": "2026-10-06",
+    "carte": "Une toiture en tuiles plates remplacée, puis protégée par un traitement hydrofuge sur toute sa surface.",
+    "travaux": [
+      "Remplacement de la couverture",
+      "Tuiles plates en terre cuite",
+      "Faîtage neuf",
+      "Traitement hydrofuge des tuiles"
+    ],
+    "accroche": "<strong>Remplacement de la toiture</strong> et traitement hydrofuge des tuiles neuves",
+    "sections": [
+      {
+        "h2": "Une toiture remplacée, puis protégée",
+        "html": "<p>En octobre 2026, j'ai réalisé le <a href=\"/renovation-toiture/\">remplacement de la toiture</a> d'une maison de Brières-les-Scellés, couverte en tuiles plates en terre cuite. Une fois la nouvelle couverture posée et le faîtage refait, j'ai terminé le chantier par l'application d'un traitement hydrofuge sur l'ensemble des tuiles.</p><p>Les photos de ce chantier montrent surtout cette dernière étape : la toiture neuve, encore humide du produit, et l'application du traitement, que vous pouvez voir en vidéo un peu plus bas.</p>"
+      },
+      {
+        "h2": "Pourquoi traiter une toiture neuve ?",
+        "photo": 1,
+        "html": "<p>La terre cuite est un matériau poreux : elle absorbe une partie de l'eau de pluie. En hiver, cette eau gèle dans la tuile, et ce sont les cycles de gel et de dégel qui finissent par la faire éclater ou s'effriter. Une tuile qui reste humide est aussi le terrain idéal pour les mousses et les lichens.</p><p>L'hydrofuge pénètre dans la tuile et la rend imperméable sans former de film en surface : l'eau perle et s'écoule, et la tuile continue de respirer. Appliqué sur une couverture neuve et propre, il protège les tuiles dès le départ et retarde l'installation des mousses.</p>"
+      },
+      {
+        "h2": "Le traitement hydrofuge en vidéo",
+        "video": true,
+        "html": "<p>Le produit est pulvérisé à basse pression, de façon régulière, sur toute la surface de la couverture, en partant du haut de chaque pan. Il s'applique par temps sec, sur des tuiles saines et propres. Sur une toiture ancienne, il vient toujours après un <a href=\"/nettoyage-toiture/\">démoussage et un nettoyage de la toiture</a>.</p>"
+      },
+      {
+        "h2": "Votre toiture à Brières-les-Scellés",
+        "photo": 2,
+        "html": "<p>Des tuiles cassées, une couverture qui a fait son temps, des infiltrations qui reviennent malgré les réparations ? Quand une toiture ne peut plus être sauvée, la remplacer permet de repartir sur une base saine, avec un écran sous-toiture, des liteaux et des tuiles neuves.</p><p>J'interviens comme <a href=\"/couvreur-brieres-les-scelles/\">couvreur à Brières-les-Scellés</a> pour remplacer, réparer ou entretenir votre toit, et pour protéger durablement vos tuiles.</p>"
+      }
+    ],
+    "cta": "Faites intervenir un couvreur à Brières-les-Scellés",
+    "photos": [
+      {
+        "src": "/images/realisations/toiture-hydrofuge-brieres-les-scelles/toiture-hydrofuge-brieres-les-scelles-01.webp",
+        "small": "/images/realisations/toiture-hydrofuge-brieres-les-scelles/toiture-hydrofuge-brieres-les-scelles-01-800w.webp",
+        "width": 1600,
+        "height": 1200,
+        "alt": "Toiture neuve en tuiles plates traitée à l'hydrofuge à Brières-les-Scellés",
+        "legende": "La toiture neuve, traitée à l'hydrofuge",
+        "cover": true
+      },
+      {
+        "src": "/images/realisations/toiture-hydrofuge-brieres-les-scelles/toiture-hydrofuge-brieres-les-scelles-02.webp",
+        "small": "/images/realisations/toiture-hydrofuge-brieres-les-scelles/toiture-hydrofuge-brieres-les-scelles-02-800w.webp",
+        "width": 1200,
+        "height": 1600,
+        "alt": "Faîtage et tuiles plates neuves après le traitement hydrofuge à Brières-les-Scellés",
+        "legende": "Le faîtage et le pan de toiture traités",
+        "cover": false
+      },
+      {
+        "src": "/images/realisations/toiture-hydrofuge-brieres-les-scelles/toiture-hydrofuge-brieres-les-scelles-03.webp",
+        "small": "/images/realisations/toiture-hydrofuge-brieres-les-scelles/toiture-hydrofuge-brieres-les-scelles-03-800w.webp",
+        "width": 1600,
+        "height": 1200,
+        "alt": "Maison de Brières-les-Scellés dont la toiture a été remplacée par Robert Daniel",
+        "legende": "La maison, côté rue",
+        "cover": false
+      }
+    ],
+    "videos": [
+      {
+        "src": "/videos/realisations/toiture-hydrofuge-brieres-les-scelles.mp4",
+        "poster": "/videos/realisations/toiture-hydrofuge-brieres-les-scelles-poster.webp"
+      }
+    ],
+    "maj": "2026-10-13"
+  },
+  {
+    "slug": "noue-zinc-saint-germain-les-arpajon",
+    "url": "/realisations/noue-zinc-saint-germain-les-arpajon/",
+    "h1": "Noue en zinc à Saint-Germain-lès-Arpajon",
+    "title": "Pose d'une noue en zinc à Saint-Germain-lès-Arpajon",
+    "meta": "✓ Remplacement d'une noue par une noue en zinc entre deux pans de toiture à Saint-Germain-lès-Arpajon. Robert Daniel, couvreur zingueur.",
+    "commune": "Saint-Germain-lès-Arpajon",
+    "codePostal": "91180",
+    "pageVille": "/couvreur-saint-germain-les-arpajon/",
+    "prestation": "noue-zinc",
+    "prestationLibelle": "Pose de noue en zinc",
+    "pageService": "/zinguerie/noues-aretiers/",
+    "mois": "septembre 2026",
+    "date": "2026-09-25",
+    "carte": "Une noue neuve en zinc posée entre deux pans de toiture, puis les tuiles reposées tout le long.",
+    "travaux": [
+      "Dépose des tuiles le long de la noue",
+      "Dépose de l'ancienne noue",
+      "Pose d'une noue en zinc neuve",
+      "Fixation par pattes",
+      "Repose et ajustement des tuiles"
+    ],
+    "accroche": "<strong>Remplacement d'une noue en zinc</strong> sur une toiture en tuiles",
+    "sections": [
+      {
+        "h2": "Une noue à remplacer entre deux pans de toiture",
+        "html": "<p>En septembre 2026, je suis intervenu sur une maison de Saint-Germain-lès-Arpajon pour remplacer une noue. La noue, c'est l'angle rentrant où deux pans de toiture se rejoignent : toute l'eau de ces deux pans s'y concentre avant de rejoindre la gouttière.</p><p>C'est l'un des points les plus sollicités d'une toiture. Quand le métal se perce ou se corrode, ou que les tuiles qui la bordent se déplacent, l'eau finit par passer dessous et s'infiltrer dans la charpente et les combles.</p>"
+      },
+      {
+        "h2": "La pose de la noue en zinc",
+        "photo": 0,
+        "html": "<p>J'ai déposé les tuiles de part et d'autre de la noue pour retirer l'ancienne, puis posé une noue neuve en zinc. Elle est maintenue par des pattes de fixation, sans percer le métal là où l'eau s'écoule, ce qui lui permet de se dilater librement avec les écarts de température.</p><p>Les tuiles ont ensuite été reposées le long de la noue et ajustées une à une, en laissant au centre un passage dégagé, assez large pour évacuer une forte averse sans que les feuilles s'y accumulent.</p>"
+      },
+      {
+        "h2": "Noue en zinc ou noue en tuiles ?",
+        "html": "<p>La noue en zinc supporte de gros volumes d'eau et s'entretient sans difficulté : il suffit de la débarrasser des feuilles de temps en temps. La noue en tuiles taillées se fond davantage dans la couverture, mais sa pose demande beaucoup de précision. Le choix se fait selon la pente du toit, le matériau de couverture et l'aspect de la maison : les <a href=\"/zinguerie/noues-aretiers/\">noues et les arêtiers</a> font partie des ouvrages de zinguerie que je réalise sur mesure.</p>"
+      },
+      {
+        "h2": "Votre couvreur zingueur à Saint-Germain-lès-Arpajon",
+        "photo": 1,
+        "html": "<p>Une tache d'humidité dans l'angle des combles, des feuilles qui s'entassent entre deux pans, des tuiles déplacées le long d'une noue ? Ce sont les signes qu'une noue doit être contrôlée sans attendre.</p><p>Comme <a href=\"/couvreur-saint-germain-les-arpajon/\">couvreur à Saint-Germain-lès-Arpajon</a>, j'interviens dans votre commune pour la zinguerie, la réparation et la rénovation de votre toiture.</p>"
+      }
+    ],
+    "cta": "Faites appel à votre couvreur à Saint-Germain-lès-Arpajon",
+    "photos": [
+      {
+        "src": "/images/realisations/noue-zinc-saint-germain-les-arpajon/noue-zinc-saint-germain-les-arpajon-01.webp",
+        "small": "/images/realisations/noue-zinc-saint-germain-les-arpajon/noue-zinc-saint-germain-les-arpajon-01-800w.webp",
+        "width": 1200,
+        "height": 1600,
+        "alt": "Noue en zinc neuve fixée entre deux pans de toiture à Saint-Germain-lès-Arpajon",
+        "legende": "La noue en zinc neuve, avant la repose des tuiles",
+        "cover": true
+      },
+      {
+        "src": "/images/realisations/noue-zinc-saint-germain-les-arpajon/noue-zinc-saint-germain-les-arpajon-02.webp",
+        "small": "/images/realisations/noue-zinc-saint-germain-les-arpajon/noue-zinc-saint-germain-les-arpajon-02-800w.webp",
+        "width": 1600,
+        "height": 1200,
+        "alt": "Maison de Saint-Germain-lès-Arpajon après le remplacement de la noue de sa toiture",
+        "legende": "La maison, chantier terminé",
+        "cover": false
+      }
+    ],
+    "videos": [],
+    "maj": "2026-10-13"
+  },
+  {
+    "slug": "refection-toiture-morigny-champigny",
+    "url": "/realisations/refection-toiture-morigny-champigny/",
+    "h1": "Réfection de toiture à Morigny-Champigny",
+    "title": "Réfection complète de toiture à Morigny-Champigny",
+    "meta": "✓ Réfection complète de la toiture d'un pavillon à Morigny-Champigny : écran sous-toiture, liteaux et tuiles neuves. Robert Daniel, couvreur.",
+    "commune": "Morigny-Champigny",
+    "codePostal": "91150",
+    "pageVille": "/couvreur-morigny-champigny/",
+    "prestation": "renovation-toiture",
+    "prestationLibelle": "Réfection de toiture",
+    "pageService": "/renovation-toiture/",
+    "mois": "septembre 2026",
+    "date": "2026-09-24",
+    "carte": "Couverture déposée, écran sous-toiture et liteaux neufs, puis tuiles neuves sur tout le pavillon.",
+    "travaux": [
+      "Dépose de l'ancienne couverture",
+      "Pose d'un écran sous-toiture",
+      "Contre-liteaux et liteaux neufs",
+      "Pose des tuiles neuves",
+      "Raccords de la fenêtre de toit et de la cheminée",
+      "Faîtage et rives refaits"
+    ],
+    "accroche": "<strong>Réfection complète de la toiture</strong> d'un pavillon",
+    "sections": [
+      {
+        "h2": "Une toiture refaite entièrement, du support aux tuiles",
+        "html": "<p>En septembre 2026, j'ai refait entièrement la toiture d'un pavillon de Morigny-Champigny. Une réfection complète donne à la maison une couverture neuve, étanche et ventilée, pour plusieurs dizaines d'années.</p><p>Une réfection ne se limite pas aux tuiles. Tout ce qui se trouve dessous, et que l'on ne voit plus une fois le toit fermé, est refait à neuf : l'écran sous-toiture, les contre-liteaux et les liteaux qui portent la couverture.</p>"
+      },
+      {
+        "h2": "L'écran sous-toiture et les liteaux, la partie cachée du chantier",
+        "photo": 0,
+        "html": "<p>Une fois l'ancienne couverture déposée, j'ai posé un écran sous-toiture sur toute la surface du toit. Ce film respirant arrête l'eau et la poussière qui pourraient passer sous les tuiles par grand vent, tout en laissant s'échapper l'humidité de la maison.</p><p>Par-dessus, les contre-liteaux, fixés dans l'axe des chevrons, créent une lame d'air qui ventile la couverture. Viennent ensuite les liteaux, posés au pas exact des tuiles : la régularité de la toiture finie dépend de leur alignement.</p>"
+      },
+      {
+        "h2": "Une couverture neuve, du faîtage à la gouttière",
+        "photo": 2,
+        "html": "<p>Les tuiles neuves ont été posées rang par rang. J'ai ensuite refait les rives, le faîtage et les raccords autour de la fenêtre de toit et de la souche de cheminée, là où les infiltrations commencent le plus souvent.</p><p>Le résultat se voit depuis la rue : une toiture régulière, d'une teinte homogène, qui protège de nouveau toute la maison. Lorsque les tuiles sont poreuses ou cassées et que le support a vieilli, la <a href=\"/renovation-toiture/\">rénovation complète de la toiture</a> reste la solution la plus durable.</p>"
+      },
+      {
+        "h2": "Votre toiture à Morigny-Champigny",
+        "photo": 1,
+        "html": "<p>Des tuiles qui s'effritent, des mousses qui s'installent, des traces d'humidité après les fortes pluies ? Avant de refaire une toiture, je regarde avec vous ce qui peut être réparé et ce qui doit être remplacé, et je vous remets un devis détaillé, poste par poste.</p><p>Comme <a href=\"/couvreur-morigny-champigny/\">couvreur à Morigny-Champigny</a>, j'interviens dans votre commune pour la réfection comme pour l'entretien et la réparation de votre toit.</p>"
+      }
+    ],
+    "cta": "Faites appel à votre couvreur à Morigny-Champigny",
+    "photos": [
+      {
+        "src": "/images/realisations/refection-toiture-morigny-champigny/refection-toiture-morigny-champigny-01.webp",
+        "small": "/images/realisations/refection-toiture-morigny-champigny/refection-toiture-morigny-champigny-01-800w.webp",
+        "width": 1600,
+        "height": 1200,
+        "alt": "Écran sous-toiture et contre-liteaux posés pendant la réfection d'une toiture à Morigny-Champigny",
+        "legende": "L'écran sous-toiture et les contre-liteaux posés",
+        "cover": true
+      },
+      {
+        "src": "/images/realisations/refection-toiture-morigny-champigny/refection-toiture-morigny-champigny-02.webp",
+        "small": "/images/realisations/refection-toiture-morigny-champigny/refection-toiture-morigny-champigny-02-800w.webp",
+        "width": 1600,
+        "height": 1200,
+        "alt": "Pavillon de Morigny-Champigny avec sa toiture refaite, vu de la rue",
+        "legende": "La toiture terminée, vue de la rue",
+        "cover": false
+      },
+      {
+        "src": "/images/realisations/refection-toiture-morigny-champigny/refection-toiture-morigny-champigny-03.webp",
+        "small": "/images/realisations/refection-toiture-morigny-champigny/refection-toiture-morigny-champigny-03-800w.webp",
+        "width": 1600,
+        "height": 1200,
+        "alt": "Toiture neuve en tuiles brunes d'un pavillon de Morigny-Champigny",
+        "legende": "La couverture neuve, fenêtre de toit et cheminée raccordées",
+        "cover": false
+      }
+    ],
+    "videos": [],
+    "maj": "2026-10-13"
+  },
+  {
+    "slug": "remplacement-toiture-ormoy-la-riviere",
+    "url": "/realisations/remplacement-toiture-ormoy-la-riviere/",
+    "h1": "Remplacement de toiture à Ormoy-la-Rivière",
+    "title": "Toiture remplacée à Ormoy-la-Rivière - Robert Daniel",
+    "meta": "✓ Remplacement complet de la toiture d'une maison à trois lucarnes à Ormoy-la-Rivière : tuiles neuves et raccords refaits. Robert Daniel, couvreur.",
+    "commune": "Ormoy-la-Rivière",
+    "codePostal": "91150",
+    "pageVille": "/couvreur-ormoy-la-riviere/",
+    "prestation": "renovation-toiture",
+    "prestationLibelle": "Remplacement de toiture",
+    "pageService": "/renovation-toiture/",
+    "mois": "septembre 2026",
+    "date": "2026-09-09",
+    "carte": "Une maison à trois lucarnes qui retrouve une couverture neuve, raccords des lucarnes compris.",
+    "travaux": [
+      "Dépose de l'ancienne couverture",
+      "Écran sous-toiture et liteaux neufs",
+      "Pose des tuiles neuves",
+      "Raccords autour des trois lucarnes",
+      "Faîtage et arêtiers refaits"
+    ],
+    "accroche": "<strong>Remplacement de la toiture</strong> d'une maison à trois lucarnes",
+    "sections": [
+      {
+        "h2": "Une maison à lucarnes, une toiture à remplacer",
+        "html": "<p>En septembre 2026, j'ai remplacé la toiture d'une maison d'Ormoy-la-Rivière, reconnaissable à ses trois lucarnes en façade. Sur ce type de maison, changer la couverture demande une attention particulière : chaque lucarne crée des raccords et des angles où l'eau de pluie doit être parfaitement guidée.</p><p>Après la dépose de l'ancienne couverture, le support a été remis à neuf avec un écran sous-toiture et des liteaux neufs, avant la pose des tuiles.</p>"
+      },
+      {
+        "h2": "Les raccords des lucarnes, le point délicat",
+        "photo": 1,
+        "html": "<p>Autour de chaque lucarne, les tuiles sont taillées et ajustées une à une, et les raccords sont façonnés pour renvoyer l'eau vers la couverture, jamais vers l'intérieur. L'étanchéité et la durée de vie d'une toiture à lucarnes se jouent à ces endroits.</p><p>La croupe, ce pan en bout de toit, est bordée d'arêtiers qui doivent rester parfaitement alignés et étanches : ils ont été refaits avec le reste de la couverture.</p>"
+      },
+      {
+        "h2": "Quand faut-il remplacer sa toiture ?",
+        "html": "<p>Des tuiles qui se fendent ou s'effritent, des réparations qui se succèdent, des traces d'humidité dans les combles : quand la couverture a fait son temps, la réparer au coup par coup finit par coûter plus cher que de la refaire. Le <a href=\"/renovation-toiture/\">remplacement de la toiture</a> permet aussi de vérifier la charpente et, si besoin, de renforcer l'isolation.</p>"
+      },
+      {
+        "h2": "Votre couvreur à Ormoy-la-Rivière",
+        "photo": 0,
+        "html": "<p>Comme <a href=\"/couvreur-ormoy-la-riviere/\">couvreur à Ormoy-la-Rivière</a>, j'interviens pour le remplacement, la réparation et l'entretien des toitures de la commune.</p><p>Je vous aide à choisir des tuiles qui s'accordent à votre maison et respectent les règles d'urbanisme de la commune, et je vous remets un devis détaillé avant tout engagement.</p>"
+      }
+    ],
+    "cta": "Contactez votre couvreur à Ormoy-la-Rivière",
+    "photos": [
+      {
+        "src": "/images/realisations/remplacement-toiture-ormoy-la-riviere/remplacement-toiture-ormoy-la-riviere-01.webp",
+        "small": "/images/realisations/remplacement-toiture-ormoy-la-riviere/remplacement-toiture-ormoy-la-riviere-01-800w.webp",
+        "width": 1600,
+        "height": 1200,
+        "alt": "Maison à trois lucarnes d'Ormoy-la-Rivière après le remplacement de sa toiture",
+        "legende": "La maison et sa toiture neuve",
+        "cover": true
+      },
+      {
+        "src": "/images/realisations/remplacement-toiture-ormoy-la-riviere/remplacement-toiture-ormoy-la-riviere-02.webp",
+        "small": "/images/realisations/remplacement-toiture-ormoy-la-riviere/remplacement-toiture-ormoy-la-riviere-02-800w.webp",
+        "width": 1600,
+        "height": 1200,
+        "alt": "Toiture remplacée par Robert Daniel sur une maison d'Ormoy-la-Rivière, vue de la rue",
+        "legende": "La toiture terminée, vue de la rue",
+        "cover": false
+      }
+    ],
+    "videos": [],
+    "maj": "2026-10-13"
+  },
+  {
     "slug": "renovation-toiture-auvers-saint-georges",
     "url": "/realisations/renovation-toiture-auvers-saint-georges/",
     "h1": "Rénovation de toiture à Auvers-Saint-Georges",

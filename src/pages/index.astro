@@ -182,8 +182,14 @@ const savoirFaire = [
     </div>
   </section>
 
-  <!-- ══ RÉALISATIONS (composant existant) ══ -->
-  <CartesRealisations titre="Mes derniers chantiers dans l'Essonne" slugs={['renovation-toiture-auvers-saint-georges', 'fenetre-de-toit-etrechy', 'entretien-gouttieres-janville-sur-juine']} />
+  <!-- ══ RÉALISATIONS : les 4 derniers chantiers (sept.-oct. 2026), cartes horizontales sur 2 colonnes ══ -->
+  <CartesRealisations
+    titre="Mes derniers chantiers dans l'Essonne"
+    intro="Réfection et remplacement de toiture, traitement hydrofuge, noue en zinc : les chantiers que je viens de terminer, présentés en photos."
+    slugs={['toiture-hydrofuge-brieres-les-scelles', 'noue-zinc-saint-germain-les-arpajon', 'refection-toiture-morigny-champigny', 'remplacement-toiture-ormoy-la-riviere']}
+    disposition="duo"
+    centre
+  />
 
   <!-- ══ AVIS ══ -->
   <AvisGoogle titre="Les avis de mes clients dans l'Essonne" ids={['morgane-duval-yoan-palumbo', 'anais-renaudin', 'caroline-david', 'michel-curan', 'mathieu-ponson', 'july']} fond="gris" />

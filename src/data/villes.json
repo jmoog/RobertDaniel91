@@ -20,5 +20,7 @@
   { "slug": "couvreur-brieres-les-scelles", "nom": "Brières-les-Scellés", "codePostal": "91150" },
   { "slug": "couvreur-egly", "nom": "Égly", "codePostal": "91520" },
   { "slug": "couvreur-breuillet", "nom": "Breuillet", "codePostal": "91650" },
-  { "slug": "couvreur-saint-yon", "nom": "Saint-Yon", "codePostal": "91650" }
+  { "slug": "couvreur-saint-yon", "nom": "Saint-Yon", "codePostal": "91650" },
+  { "slug": "couvreur-ormoy-la-riviere", "nom": "Ormoy-la-Rivière", "codePostal": "91150" },
+  { "slug": "couvreur-saint-germain-les-arpajon", "nom": "Saint-Germain-lès-Arpajon", "codePostal": "91180" }
 ]

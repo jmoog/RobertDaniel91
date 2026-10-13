@@ -17,8 +17,10 @@ export interface Props {
   centre?: boolean;
   /** Style en ligne du titre (ex. variable --em pour l'ajustement de taille) */
   titreStyle?: string;
+  /** « duo » : cartes horizontales (photo à gauche) sur deux colonnes, pour mettre en avant 4 chantiers */
+  disposition?: 'grille' | 'duo';
 }
-const { slugs, titre, intro, limite, lienTout = true, fond = 'blanc', perso = {}, centre = false, titreStyle } = Astro.props;
+const { slugs, titre, intro, limite, lienTout = true, fond = 'blanc', perso = {}, centre = false, titreStyle, disposition = 'grille' } = Astro.props;
 let items = slugs ? slugs.map((s) => realisations.find((r) => r.slug === s)).filter(Boolean) : realisations;
 if (limite) items = items.slice(0, limite);
 ---
@@ -27,15 +29,27 @@ if (limite) items = items.slice(0, limite);
     <div class="conteneur">
       {titre && <h2 style={titreStyle}>{titre}</h2>}
       {intro && <p class="realisations-bloc__intro" set:html={intro} />}
-      <ul class={`grille-chantiers ${centre && items.length < 3 ? `grille-chantiers--centre grille-chantiers--${items.length}` : ''}`}>
+      <ul class:list={[
+        'grille-chantiers',
+        { [`grille-chantiers--centre grille-chantiers--${items.length}`]: centre && items.length < 3 },
+        { 'grille-chantiers--flex': centre && items.length > 3 && disposition === 'grille' },
+        { 'grille-chantiers--duo': disposition === 'duo' },
+      ]}>
         {items.map((r) => {
           const c = r.photos.find((p) => p.cover) || r.photos[0];
           return (
             <li class="carte carte-chantier">
               <img src={c.small} alt={c.alt} width="800" height={Math.round(800 * c.height / c.width)} loading="lazy" decoding="async" />
               <div class="carte-chantier__corps">
-                <p class="carte-chantier__infos">{r.commune} · {r.mois}</p>
-                <h3><a href={r.url} class="carte-chantier__lien">{perso[r.slug]?.titre || r.h1}</a></h3>
+                <p class="carte-chantier__infos"><span class="carte-chantier__insec">{r.commune}</span> · <span class="carte-chantier__insec">{r.mois}</span></p>
+                <h3><a href={r.url} class="carte-chantier__lien">{(() => {
+                  // Le nom de la commune reste sur une seule ligne (pas de coupure au trait d'union)
+                  const t = perso[r.slug]?.titre || r.h1;
+                  const fin = ` à ${r.commune}`;
+                  return t.endsWith(fin)
+                    ? <Fragment>{t.slice(0, -r.commune.length)}<span class="carte-chantier__insec">{r.commune}</span></Fragment>
+                    : t;
+                })()}</a></h3>
                 <p>{perso[r.slug]?.texte || r.carte}</p>
               </div>
             </li>
@@ -72,4 +86,20 @@ if (limite) items = items.slice(0, limite);
   .carte-chantier:hover .carte-chantier__lien, .carte-chantier__lien:focus-visible { text-decoration: underline; }
   .carte-chantier p:last-child { margin: 0; color: var(--gris-700); font-size: 0.95rem; }
   .realisations-bloc__tout { margin: 2rem 0 0; text-align: center; }
+  .carte-chantier__insec { white-space: nowrap; }
+
+  /* Plus de 3 cartes centrées : la dernière rangée reste centrée */
+  .grille-chantiers--flex { display: flex; flex-wrap: wrap; justify-content: center; }
+  .grille-chantiers--flex > li { flex: 0 1 calc((100% - 3rem) / 3); min-width: 260px; }
+  @media (max-width: 899px) { .grille-chantiers--flex > li { flex-basis: calc((100% - 1.5rem) / 2); } }
+  @media (max-width: 599px) { .grille-chantiers--flex > li { flex-basis: 100%; min-width: 0; } }
+
+  /* Disposition « duo » : 2 colonnes de cartes horizontales (photo à gauche) */
+  @media (min-width: 900px) {
+    .grille-chantiers--duo { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grille-chantiers--duo .carte-chantier { flex-direction: row; align-items: stretch; }
+    .grille-chantiers--duo .carte-chantier img { width: 44%; flex-shrink: 0; aspect-ratio: auto; height: auto; align-self: stretch; min-height: 230px; object-fit: cover; }
+    .grille-chantiers--duo .carte-chantier__corps { justify-content: center; padding: 1.4rem 1.5rem; }
+  }
+  @media (min-width: 640px) and (max-width: 899px) { .grille-chantiers--duo { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 </style>

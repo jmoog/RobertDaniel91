@@ -10,7 +10,9 @@
   "couvreur-auvers-saint-georges": [
     "renovation-toiture-auvers-saint-georges"
   ],
-  "couvreur-morigny-champigny": [],
+  "couvreur-morigny-champigny": [
+    "refection-toiture-morigny-champigny"
+  ],
   "couvreur-saint-sulpice-de-favieres": [],
   "couvreur-mauchamps": [],
   "couvreur-boissy-sous-saint-yon": [],
@@ -25,8 +27,16 @@
   "couvreur-bouray-sur-juine": [],
   "couvreur-villeneuve-sur-auvers": [],
   "couvreur-cerny": [],
-  "couvreur-brieres-les-scelles": [],
+  "couvreur-brieres-les-scelles": [
+    "toiture-hydrofuge-brieres-les-scelles"
+  ],
   "couvreur-egly": [],
   "couvreur-breuillet": [],
-  "couvreur-saint-yon": []
+  "couvreur-saint-yon": [],
+  "couvreur-ormoy-la-riviere": [
+    "remplacement-toiture-ormoy-la-riviere"
+  ],
+  "couvreur-saint-germain-les-arpajon": [
+    "noue-zinc-saint-germain-les-arpajon"
+  ]
 }

@@ -1,21 +1,21 @@
 [
   {
     "slug": "renovation-toiture",
-    "labelNav": "Renovation",
-    "label": "Renovation de toiture",
+    "labelNav": "Rénovation",
+    "label": "Rénovation de toiture",
     "accroche": "Je refais votre toiture à neuf, étanche et durable.",
     "image": "/images/services/renovation-toiture.jpg",
-    "alt": "Renovation de toiture dans l'Essonne par Robert Daniel Couverture",
-    "lien": "Renover ma toiture"
+    "alt": "Rénovation de toiture dans l'Essonne par Robert Daniel Couverture",
+    "lien": "Rénover ma toiture"
   },
   {
     "slug": "reparation-toiture",
-    "labelNav": "Reparation",
-    "label": "Reparation de toiture",
+    "labelNav": "Réparation",
+    "label": "Réparation de toiture",
     "accroche": "Je répare fuites, tuiles cassées et infiltrations, rapidement.",
     "image": "/images/services/reparation-toiture.jpg",
-    "alt": "Reparation de toiture et recherche de fuites dans l'Essonne",
-    "lien": "Reparer ma toiture"
+    "alt": "Réparation de toiture et recherche de fuites dans l'Essonne",
+    "lien": "Réparer ma toiture"
   },
   {
     "slug": "nettoyage-toiture",
@@ -23,7 +23,7 @@
     "label": "Nettoyage de toiture",
     "accroche": "Je nettoie et démousse votre toiture pour prolonger sa durée de vie.",
     "image": "/images/services/nettoyage-toiture.jpg",
-    "alt": "Nettoyage et demoussage de toiture dans l'Essonne",
+    "alt": "Nettoyage et démoussage de toiture dans l'Essonne",
     "lien": "Nettoyer ma toiture"
   },
   {
@@ -47,17 +47,17 @@
   {
     "slug": "fenetre-de-toit-velux",
     "labelNav": "Velux",
-    "label": "Fenetre de toit Velux",
+    "label": "Fenêtre de toit Velux",
     "accroche": "Je pose et remplace vos fenêtres de toit Velux.",
     "image": "/images/services/velux.jpg",
-    "alt": "Pose de fenetre de toit Velux dans l'Essonne",
+    "alt": "Pose de fenêtre de toit Velux dans l'Essonne",
     "lien": "Poser un Velux"
   },
   {
     "slug": "inspection-toiture-drone",
     "labelNav": "Inspection drone",
     "label": "Inspection de toiture par drone",
-    "accroche": "J'inspecte votre toiture par drone, sans monter sur le toit.",
+    "accroche": "J'inspecte votre toiture par drone, photos et vidéos à l'appui.",
     "image": "/images/services/inspection-drone.jpg",
     "alt": "Inspection de toiture par drone dans le 91",
     "lien": "Inspecter ma toiture"
@@ -65,11 +65,11 @@
   {
     "slug": "ramonage-cheminee",
     "labelNav": "Ramonage",
-    "label": "Ramonage de cheminee",
-    "accroche": "Je ramone votre cheminée dans les règles, en toute sécurité.",
-    "image": "/images/services/ramonage.jpg",
-    "alt": "Ramonage de cheminee dans l'Essonne",
-    "lien": "Ramoner ma cheminee"
+    "label": "Ramonage de cheminée",
+    "accroche": "Ramonage mécanique de vos cheminées, poêles et inserts, certificat de ramonage fourni.",
+    "image": "/images/ramonage-cheminee-essonne.jpg",
+    "alt": "Ramonage d'un conduit de cheminée au hérisson dans l'Essonne",
+    "lien": "Faire ramoner ma cheminée"
   },
   {
     "slug": "zinguerie",
@@ -77,7 +77,7 @@
     "label": "Zinguerie",
     "accroche": "Je réalise gouttières, descentes, couvertines et zinc sur mesure.",
     "image": "/images/services/zinguerie.jpg",
-    "alt": "Travaux de zinguerie et gouttieres dans l'Essonne",
+    "alt": "Travaux de zinguerie et gouttières dans l'Essonne",
     "lien": "Voir nos prestations zinguerie"
   }
 ]

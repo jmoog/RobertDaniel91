@@ -135,5 +135,18 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).toStri
     <Footer />
     <FloatingContact />
     <CookieBanner />
+    <!-- Images différées : on lance le téléchargement ~1000 px avant qu'elles arrivent à l'écran
+         (Safari iOS attend sinon le dernier moment, d'où un affichage tardif avec les fondus). -->
+    <script is:inline>
+      (function () {
+        if (!('IntersectionObserver' in window)) return;
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.loading = 'eager'; io.unobserve(e.target); }
+          });
+        }, { rootMargin: '1000px 0px' });
+        document.querySelectorAll('img[loading="lazy"]').forEach(function (img) { io.observe(img); });
+      })();
+    </script>
   </body>
 </html>

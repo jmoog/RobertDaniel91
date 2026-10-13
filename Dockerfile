@@ -30,11 +30,12 @@ COPY package.json package-lock.json ./
 RUN --mount=type=cache,target=/root/.npm npm ci --omit=dev && npm cache clean --force
 
 COPY --from=builder /app/dist ./dist
+COPY server.mjs ./server.mjs
 
 RUN addgroup -S astro && adduser -S astro -G astro && chown -R astro:astro /app
 USER astro
 
 EXPOSE 4321
 
-# Serveur Astro Node (standalone) — sert les pages statiques + /api/devis
-CMD ["node", "./dist/server/entry.mjs"]
+# Serveur Astro Node (standalone) via server.mjs — pages statiques + /api/devis + cache médias 30 j
+CMD ["node", "./server.mjs"]

@@ -211,7 +211,8 @@
         "src": "/videos/realisations/renovation-toiture-auvers-saint-georges.mp4",
         "poster": "/videos/realisations/renovation-toiture-auvers-saint-georges-poster.webp"
       }
-    ]
+    ],
+    "maj": "2026-10-13"
   },
   {
     "slug": "renovation-toiture-etrechy",
@@ -357,7 +358,8 @@
         "titre": "Un faîtage refait à neuf sur une maison d'Étréchy",
         "texte": "Quand seul le faîtage fatigue, inutile de refaire toute la toiture : faîtières déposées, closoir neuf et ligne de faîte reposée, sans toucher au reste de la couverture."
       }
-    }
+    },
+    "maj": "2026-10-13"
   },
   {
     "slug": "fenetre-de-toit-etrechy",
@@ -450,7 +452,8 @@
         "titre": "Une ligne de faîte reprise sur une maison d'Étréchy",
         "texte": "Faîtières déposées, lattes et closoir neufs : une réparation ciblée au point le plus exposé du toit, sans refaire toute la couverture."
       }
-    }
+    },
+    "maj": "2026-10-13"
   },
   {
     "slug": "refection-faitage-etrechy",
@@ -544,7 +547,8 @@
         "titre": "Une fenêtre de toit Velux dans des tuiles plates à Étréchy",
         "texte": "Ouverture préparée dans la charpente, raccord d'étanchéité adapté et tuiles reposées tout autour : une pièce sous les toits enfin lumineuse."
       }
-    }
+    },
+    "maj": "2026-10-13"
   },
   {
     "slug": "entretien-gouttieres-janville-sur-juine",
@@ -622,6 +626,7 @@
         "cover": false
       }
     ],
-    "videos": []
+    "videos": [],
+    "maj": "2026-10-13"
   }
 ]

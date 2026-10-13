@@ -10,6 +10,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import FilAriane from '../components/FilAriane.astro';
 import CartesRealisations from '../components/CartesRealisations.astro';
+import realisations from '../data/realisations.json';
 
 const title = "Artisan couvreur à Étréchy - Devis gratuit - Robert Daniel";
 const description = "✓ Tous travaux de couverture à Étréchy : remplacement de toiture ancienne, recherche de fuite, interventions en urgence. Robert Daniel, tél. 06 83 96 15 18";
@@ -69,7 +70,27 @@ const autorisations = [
   { titre: 'Le changement de couleur ou de matériau', texte: "Passer de la tuile mécanique à la tuile plate, ou changer la teinte de la couverture, demande une déclaration préalable. Le PLU peut imposer certaines teintes." },
 ];
 
-const extraSchemas = [{
+const SITE = 'https://robert-daniel-couverture.fr';
+const PAGE = `${SITE}/couvreur-etrechy/`;
+const slugsChantiers = ['renovation-toiture-etrechy', 'fenetre-de-toit-etrechy', 'refection-faitage-etrechy'];
+const chantiers = slugsChantiers.map((s) => realisations.find((x) => x.slug === s)).filter(Boolean) as any[];
+const webPage = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${PAGE}#webpage`,
+  url: PAGE,
+  name: 'Couvreur à Étréchy – Robert Daniel',
+  description: description.replace(/^✓\s*/, '').replace(/\s*Robert Daniel.*$/, '').trim(),
+  inLanguage: 'fr-FR',
+  dateModified: '2026-10-13',
+  isPartOf: { '@type': 'WebSite', '@id': `${SITE}/#website`, url: `${SITE}/`, name: 'Robert Daniel Couverture' },
+  about: { '@id': `${PAGE}#service` },
+  breadcrumb: { '@id': `${PAGE}#breadcrumb` },
+  primaryImageOfPage: { '@type': 'ImageObject', url: `${SITE}/images/realisations/renovation-toiture-etrechy/renovation-toiture-etrechy-08.webp`, width: 1600, height: 1200 },
+  // Pages enfants du cocon : les chantiers réalisés à Étréchy
+  hasPart: chantiers.map((c) => ({ '@type': 'WebPage', '@id': `${SITE}${c.url}#webpage`, url: `${SITE}${c.url}`, name: c.h1 })),
+};
+const extraSchemas = [webPage, {
   '@context': 'https://schema.org',
   '@type': 'Service',
   '@id': 'https://robert-daniel-couverture.fr/couvreur-etrechy/#service',
@@ -96,7 +117,7 @@ const extraSchemas = [{
   <!-- ══ HERO ══ -->
   <section class="dr-hero">
     <div class="conteneur et-ariane">
-      <FilAriane items={[{ label: 'Accueil', href: '/' }, { label: 'Couvreur à Étréchy' }]} />
+      <FilAriane id={`${PAGE}#breadcrumb`} items={[{ label: 'Accueil', href: '/' }, { label: 'Couvreur à Étréchy' }]} />
     </div>
     <div class="conteneur dr-hero__grille">
       <h1 class="dr-hero__titre">
@@ -320,7 +341,7 @@ const extraSchemas = [{
 
   <!-- ══ RÉALISATIONS À ÉTRÉCHY (fin de page, pas de CTA après) ══ -->
   <CartesRealisations
-    slugs={['renovation-toiture-etrechy', 'fenetre-de-toit-etrechy', 'refection-faitage-etrechy']}
+    slugs={slugsChantiers}
     titre="Mes chantiers à Étréchy"
     intro="Rénovation complète, pose de fenêtre de toit, réfection de faîtage : retrouvez en photos, étape par étape, les travaux de couverture réalisés dans la commune."
     lienTout={false}

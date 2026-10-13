@@ -2,12 +2,15 @@
 // Fil d'Ariane avec donnees structurees BreadcrumbList (SEO).
 export interface Props {
   items: Array<{ label: string; href?: string }>;
+  /** @id du BreadcrumbList (permet de le référencer depuis le nœud WebPage) */
+  id?: string;
 }
-const { items } = Astro.props;
+const { items, id } = Astro.props;
 
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
+  ...(id ? { '@id': id } : {}),
   itemListElement: items.map((it, i) => ({
     '@type': 'ListItem',
     position: i + 1,

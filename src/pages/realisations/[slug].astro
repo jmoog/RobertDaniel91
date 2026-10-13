@@ -29,15 +29,75 @@ const autres = realisations
   .slice(0, 3)
   .map((x) => x.slug);
 
+// ── Données structurées : WebPage (rattachée au cocon de la commune), photos et vidéos ──
+const SITE = 'https://robert-daniel-couverture.fr';
+const abs = (u: string) => new URL(u, Astro.site).toString();
+const pageUrl = abs(r.url);
+const villeUrl = abs(r.pageVille);
+const villeNom = `Couvreur à ${r.commune}`;
+// Description propre : sans la coche ni la signature / le téléphone de la meta
+const descriptionPropre = r.meta.replace(/^✓\s*/, '').replace(/\s*Robert Daniel.*$/, '').trim();
+const lieu = {
+  '@type': 'Place', name: r.commune,
+  address: { '@type': 'PostalAddress', addressLocality: r.commune, postalCode: r.codePostal, addressRegion: 'Essonne', addressCountry: 'FR' },
+};
+const images = r.photos.map((p: any) => ({
+  '@type': 'ImageObject',
+  contentUrl: abs(p.src),
+  url: abs(p.src),
+  width: p.width, height: p.height,
+  caption: p.legende || p.alt,
+  description: p.alt,
+  contentLocation: lieu,
+  creator: { '@id': `${SITE}/#localbusiness` },
+  creditText: 'Robert Daniel Couverture',
+  copyrightNotice: 'Robert Daniel Couverture',
+}));
+const videos = r.videos.map((v: any, i: number) => ({
+  '@type': 'VideoObject',
+  '@id': `${pageUrl}#video-${i + 1}`,
+  name: `${r.h1} : la vidéo du chantier`,
+  description: descriptionPropre,
+  thumbnailUrl: [abs(v.poster)],
+  contentUrl: abs(v.src),
+  uploadDate: r.date,
+  contentLocation: lieu,
+  publisher: { '@id': `${SITE}/#localbusiness` },
+}));
 const extraSchemas = [{
   '@context': 'https://schema.org',
-  '@type': 'ImageGallery',
-  name: r.h1,
-  description: r.meta.replace(/^✓\s*/, ''),
-  url: new URL(r.url, Astro.site).toString(),
-  contentLocation: { '@type': 'Place', name: r.commune, address: { '@type': 'PostalAddress', addressLocality: r.commune, postalCode: r.codePostal, addressCountry: 'FR' } },
-  author: { '@id': 'https://robert-daniel-couverture.fr/#localbusiness' },
-  image: r.photos.map((p: any) => new URL(p.src, Astro.site).toString()),
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      '@id': `${pageUrl}#webpage`,
+      url: pageUrl,
+      name: r.h1,
+      description: descriptionPropre,
+      inLanguage: 'fr-FR',
+      temporalCoverage: r.date,
+      dateModified: r.maj || r.date,
+      isPartOf: [
+        { '@type': 'WebSite', '@id': `${SITE}/#website`, url: `${SITE}/`, name: 'Robert Daniel Couverture' },
+        { '@type': 'WebPage', '@id': `${villeUrl}#webpage`, url: villeUrl, name: villeNom },
+      ],
+      about: {
+        '@type': 'Service',
+        name: `${r.prestationLibelle} à ${r.commune}`,
+        serviceType: r.prestationLibelle,
+        url: abs(r.pageService),
+        provider: { '@id': `${SITE}/#localbusiness` },
+        areaServed: { '@type': 'City', name: r.commune, address: lieu.address },
+        isRelatedTo: { '@id': `${villeUrl}#service` },
+      },
+      contentLocation: lieu,
+      author: { '@id': `${SITE}/#localbusiness` },
+      publisher: { '@id': `${SITE}/#localbusiness` },
+      breadcrumb: { '@id': `${pageUrl}#breadcrumb` },
+      primaryImageOfPage: images[r.photos.indexOf(cover)],
+      image: images,
+      ...(videos.length ? { video: videos } : {}),
+    },
+  ],
 }];
 const moisMaj = r.mois.charAt(0).toUpperCase() + r.mois.slice(1);
 ---
@@ -47,7 +107,7 @@ const moisMaj = r.mois.charAt(0).toUpperCase() + r.mois.slice(1);
   <!-- ══ HERO ══ -->
   <section class="dr-hero">
     <div class="conteneur">
-      <FilAriane items={[{ label: 'Accueil', href: '/' }, { label: 'Réalisations', href: '/realisations/' }, { label: r.h1 }]} />
+      <FilAriane id={`${pageUrl}#breadcrumb`} items={[{ label: 'Accueil', href: '/' }, { label: villeNom, href: r.pageVille }, { label: r.h1 }]} />
     </div>
     <div class="conteneur dr-hero__grille">
       <h1 class="dr-hero__titre">{r.h1}</h1>

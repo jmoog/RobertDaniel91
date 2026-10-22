@@ -67,7 +67,7 @@ const autorisations = [
 
 const SITE = 'https://robert-daniel-couverture.fr';
 const PAGE = `${SITE}/couvreur-etrechy/`;
-const slugsChantiers = ['renovation-toiture-etrechy', 'fenetre-de-toit-etrechy', 'refection-faitage-etrechy'];
+const slugsChantiers = ['refection-toiture-tuiles-plates-etrechy', 'renovation-toiture-etrechy', 'fenetre-de-toit-etrechy', 'refection-faitage-etrechy'];
 const chantiers = slugsChantiers.map((s) => realisations.find((x) => x.slug === s)).filter(Boolean) as any[];
 const webPage = {
   '@context': 'https://schema.org',
@@ -320,9 +320,14 @@ const extraSchemas = [webPage, {
   <CartesRealisations
     slugs={slugsChantiers}
     titre="Mes chantiers à Étréchy"
-    intro="Rénovation complète, pose de fenêtre de toit, réfection de faîtage : retrouvez en photos, étape par étape, les travaux de couverture réalisés dans la commune."
+    intro="Toiture refaite en tuiles plates, rénovation complète, pose de fenêtre de toit, réparation du faîtage : retrouvez en photos, étape par étape, les travaux de couverture réalisés dans la commune."
     lienTout={false}
+    disposition="duo"
     perso={{
+      'refection-toiture-tuiles-plates-etrechy': {
+        titre: 'Réfection de toiture en tuiles plates à Étréchy',
+        texte: "Une maison en pierre du centre ancien : échafaudage et filet côté rue, anciennes tuiles évacuées par goulotte, écran sous toiture et liteaux neufs, puis petites tuiles plates taillées à la mesure autour des deux lucarnes.",
+      },
       'renovation-toiture-etrechy': {
         titre: "Remplacement de la toiture d'un pavillon à Étréchy",
         texte: "Ancienne couverture déposée, support contrôlé, liteaux et tuiles neuves posés rang par rang, rives et faîtage repris. Un chantier mené de l'échafaudage à la dernière tuile, avec des abords protégés et un jardin laissé propre.",
@@ -626,7 +631,7 @@ const extraSchemas = [webPage, {
   /* Réalisations : titres de cartes sur 2 lignes max */
   :global(.realisations-bloc .grille-chantiers .carte-chantier h3) { font-size: clamp(16px, .45rem + 1vw, 18.4px); text-wrap: balance; }
   /* Titres longs (ancres avec contexte) : 3 colonnes seulement sur grand écran, sinon 2 puis 1 */
-  :global(section.realisations-bloc ul.grille-chantiers) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  @media (max-width: 1099px) { :global(section.realisations-bloc ul.grille-chantiers) { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (max-width: 699px)  { :global(section.realisations-bloc ul.grille-chantiers) { grid-template-columns: minmax(0, 1fr); } }
+  :global(section.realisations-bloc ul.grille-chantiers:not(.grille-chantiers--duo)) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  @media (max-width: 1099px) { :global(section.realisations-bloc ul.grille-chantiers:not(.grille-chantiers--duo)) { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 699px)  { :global(section.realisations-bloc ul.grille-chantiers:not(.grille-chantiers--duo)) { grid-template-columns: minmax(0, 1fr); } }
 </style>

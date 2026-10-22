@@ -1,5 +1,111 @@
 [
   {
+    "slug": "refection-toiture-tuiles-plates-etrechy",
+    "url": "/realisations/refection-toiture-tuiles-plates-etrechy/",
+    "h1": "Réfection d'une toiture en tuiles plates à Étréchy",
+    "title": "Toiture en tuiles plates refaite à Étréchy - Robert Daniel",
+    "meta": "✓ Maison de bourg à Étréchy : toiture refaite en petites tuiles plates, écran sous toiture et liteaux neufs. Robert Daniel, tél. 06 83 96 15 18",
+    "commune": "Étréchy",
+    "codePostal": "91580",
+    "pageVille": "/couvreur-etrechy/",
+    "prestation": "renovation-toiture",
+    "prestationLibelle": "Réfection de toiture",
+    "pageService": "/renovation-toiture/",
+    "mois": "octobre 2026",
+    "date": "2026-10-13",
+    "carte": "Anciennes tuiles déposées, écran sous toiture, liteaux neufs et petites tuiles plates autour de deux lucarnes.",
+    "travaux": [
+      "Échafaudage de façade avec filet de protection",
+      "Dépose des anciennes tuiles et des liteaux",
+      "Évacuation par goulotte jusqu'à la benne",
+      "Pose d'un écran sous toiture",
+      "Liteaux neufs",
+      "Petites tuiles plates en terre cuite",
+      "Tuiles taillées autour des deux lucarnes"
+    ],
+    "accroche": "<strong>Réfection d'une toiture en tuiles plates</strong> sur une maison de bourg du centre d'Étréchy",
+    "sections": [
+      {
+        "h2": "Une maison de bourg au cœur d'Étréchy",
+        "html": "<p>Mi-octobre 2026, j'ai commencé la réfection de la toiture d'une maison en pierre du centre ancien d'Étréchy, à deux pas de mon bureau de la Grande Rue. Une maison de bourg typique de la commune : façade sur rue, deux lucarnes à fronton en bois et deux souches de cheminée en brique.</p><p>Après des décennies de service, la couverture était arrivée en bout de course. Elle est entièrement refaite en petites tuiles plates en terre cuite, la couverture qui convient à ce type de maison ancienne.</p>"
+      },
+      {
+        "h2": "Un chantier en plein centre-ville",
+        "photo": 1,
+        "html": "<p>La maison donne directement sur le trottoir : avant toute chose, il fallait protéger les passants. J'ai monté un échafaudage sur toute la largeur de la façade, fermé par un filet de protection, en laissant libre l'accès à la maison.</p><p>Les anciennes tuiles descendent par une goulotte à gravats jusqu'à la benne, posée sur la chaussée et balisée par des cônes. Rien ne tombe dans la rue et les gravats ne s'éparpillent pas sur le trottoir pendant toute la durée des travaux.</p>"
+      },
+      {
+        "h2": "Dépose de la toiture",
+        "photo": 2,
+        "html": "<p>La dépose se fait tuile par tuile. Sous l'ancienne couverture, les liteaux d'origine avaient fait leur temps : usés par les années, ils ne pouvaient plus porter une couverture neuve. Ils ont été retirés eux aussi.</p><p>Une fois la toiture découverte, la charpente apparaît en entier. C'est le moment de contrôler <a href=\"/charpente/\">les bois de la charpente</a> : un chevron affaibli se remplace avant de refaire le toit, pas après.</p>"
+      },
+      {
+        "h2": "Des petites tuiles plates autour des lucarnes",
+        "photo": 3,
+        "html": "<p>Sur la charpente, j'ai posé un écran sous toiture : cette membrane protège les combles de l'eau, de la poussière et du vent, tout en laissant s'évacuer la vapeur d'eau. Viennent ensuite les liteaux neufs, espacés au pas des tuiles.</p><p>La tuile plate demande de la patience : petites et nombreuses, les tuiles se posent rang par rang en partant du bas, chaque rang recouvrant le précédent. Autour des lucarnes, elles sont taillées à la mesure pour épouser chaque angle. Ce savoir-faire propre à la tuile plate est indispensable pour la <a href=\"/renovation-toiture/\">réfection complète d'une toiture ancienne</a>.</p>"
+      },
+      {
+        "h2": "Respect du PLU",
+        "html": "<p>Dans le centre ancien d'Étréchy, l'aspect des toitures est encadré par le plan local d'urbanisme (PLU). Changer de matériau ou de teinte de couverture demande une déclaration préalable de travaux, déposée au service urbanisme de la mairie. L'autorisation reste ensuite affichée de façon visible depuis la rue pendant toute la durée du chantier, comme ici sur la porte de la maison.</p><p>Je fournis aux propriétaires les éléments techniques utiles au dossier : type de tuile, teinte, surface de couverture. Comme <a href=\"/couvreur-etrechy/\">couvreur à Étréchy</a>, je connais bien ces maisons de bourg et les règles qui s'appliquent à leurs toitures.</p><p>La couverture est en cours d'achèvement : les photos de la toiture terminée viendront compléter cette page.</p>"
+      }
+    ],
+    "cta": "Faites appel à votre couvreur à Étréchy",
+    "photos": [
+      {
+        "src": "/images/realisations/refection-toiture-tuiles-plates-etrechy/refection-toiture-tuiles-plates-etrechy-01.webp",
+        "small": "/images/realisations/refection-toiture-tuiles-plates-etrechy/refection-toiture-tuiles-plates-etrechy-01-800w.webp",
+        "width": 1600,
+        "height": 1200,
+        "alt": "Échafaudage et benne devant une maison en pierre du centre d'Étréchy pendant la réfection de sa toiture",
+        "legende": "L'échafaudage monté sur toute la façade",
+        "cover": true
+      },
+      {
+        "src": "/images/realisations/refection-toiture-tuiles-plates-etrechy/refection-toiture-tuiles-plates-etrechy-02.webp",
+        "small": "/images/realisations/refection-toiture-tuiles-plates-etrechy/refection-toiture-tuiles-plates-etrechy-02-800w.webp",
+        "width": 1200,
+        "height": 1600,
+        "alt": "Goulotte à gravats descendant vers la benne remplie d'anciennes tuiles à Étréchy",
+        "legende": "Les anciennes tuiles évacuées par la goulotte",
+        "cover": false
+      },
+      {
+        "src": "/images/realisations/refection-toiture-tuiles-plates-etrechy/refection-toiture-tuiles-plates-etrechy-03.webp",
+        "small": "/images/realisations/refection-toiture-tuiles-plates-etrechy/refection-toiture-tuiles-plates-etrechy-03-800w.webp",
+        "width": 1200,
+        "height": 1600,
+        "alt": "Toiture découverte et anciens liteaux à côté d'une lucarne, sur une maison d'Étréchy",
+        "legende": "La toiture mise à nu",
+        "cover": false
+      },
+      {
+        "src": "/images/realisations/refection-toiture-tuiles-plates-etrechy/refection-toiture-tuiles-plates-etrechy-04.webp",
+        "small": "/images/realisations/refection-toiture-tuiles-plates-etrechy/refection-toiture-tuiles-plates-etrechy-04-800w.webp",
+        "width": 1600,
+        "height": 1200,
+        "alt": "Pose de petites tuiles plates en terre cuite autour d'une lucarne à Étréchy",
+        "legende": "Les tuiles plates posées autour de la lucarne",
+        "cover": false
+      }
+    ],
+    "videos": [],
+    "autresCartes": {
+      "renovation-toiture-etrechy": {
+        "titre": "Tuiles mécaniques neuves sur un pavillon à Étréchy",
+        "texte": "Un pavillon des années 80 : ancienne couverture déposée, isolation renforcée, écran sous toiture et tuiles mécaniques neuves."
+      },
+      "fenetre-de-toit-etrechy": {
+        "titre": "Pose d'une fenêtre de toit en tuiles plates à Étréchy",
+        "texte": "Tuiles plates retirées une à une, ouverture préparée dans la charpente et raccord d'étanchéité adapté : la pièce sous les toits gagne en lumière."
+      },
+      "refection-faitage-etrechy": {
+        "titre": "Réparation du faîtage d'une maison à Étréchy",
+        "texte": "Faîtières déposées, closoir neuf et ligne de faîte reposée, sans toucher au reste de la couverture."
+      }
+    },
+    "maj": "2026-10-22"
+  },
+  {
     "slug": "toiture-hydrofuge-brieres-les-scelles",
     "url": "/realisations/toiture-hydrofuge-brieres-les-scelles/",
     "h1": "Toiture neuve et hydrofuge à Brières-les-Scellés",
@@ -650,6 +756,10 @@
       "refection-faitage-etrechy": {
         "titre": "Un faîtage refait à neuf sur une maison d'Étréchy",
         "texte": "Quand seul le faîtage fatigue, inutile de refaire toute la toiture : faîtières déposées, closoir neuf et ligne de faîte reposée, sans toucher au reste de la couverture."
+      },
+      "refection-toiture-tuiles-plates-etrechy": {
+        "titre": "Une maison de bourg recouverte en tuiles plates à Étréchy",
+        "texte": "Centre ancien, deux lucarnes et une rue à protéger : dépose complète, écran sous toiture et petites tuiles plates taillées à la mesure."
       }
     },
     "maj": "2026-10-13"
@@ -744,6 +854,10 @@
       "refection-faitage-etrechy": {
         "titre": "Une ligne de faîte reprise sur une maison d'Étréchy",
         "texte": "Faîtières déposées, lattes et closoir neufs : une réparation ciblée au point le plus exposé du toit, sans refaire toute la couverture."
+      },
+      "refection-toiture-tuiles-plates-etrechy": {
+        "titre": "Une couverture en petites tuiles plates refaite à Étréchy",
+        "texte": "Toiture déposée jusqu'à la charpente, écran sous toiture et liteaux neufs, puis tuiles plates posées rang par rang autour des lucarnes."
       }
     },
     "maj": "2026-10-13"
@@ -839,6 +953,10 @@
       "fenetre-de-toit-etrechy": {
         "titre": "Une fenêtre de toit Velux dans des tuiles plates à Étréchy",
         "texte": "Ouverture préparée dans la charpente, raccord d'étanchéité adapté et tuiles reposées tout autour : une pièce sous les toits enfin lumineuse."
+      },
+      "refection-toiture-tuiles-plates-etrechy": {
+        "titre": "Réfection complète d'une toiture ancienne à Étréchy",
+        "texte": "Quand toute la couverture arrive en bout de course : dépose, écran sous toiture, liteaux neufs et petites tuiles plates en terre cuite."
       }
     },
     "maj": "2026-10-13"

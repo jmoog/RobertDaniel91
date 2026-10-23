@@ -38,6 +38,10 @@ const fiche = 'https://maps.app.goo.gl/rYpVbKYbBB64Uk2y6';
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.9 7.9"/></svg>
           <span>{email}</span>
         </a>
+        <a href="https://local-place.fr/entreprise/robert-daniel-couverture/" class="btn btn--contour pied__localplace" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg>
+          <span>Mes avis sur Local Place</span>
+        </a>
       </div>
 
       <p class="pied__horaires">
@@ -137,6 +141,9 @@ const fiche = 'https://maps.app.goo.gl/rYpVbKYbBB64Uk2y6';
   .pied .btn--contour, .pied .btn--contour:hover { color: var(--blanc); text-decoration: none; }
   .pied__mail { font-family: var(--font); font-weight: 600; }
   .pied__mail svg { width: 20px; height: 20px; flex-shrink: 0; }
+  /* Bouton vers la fiche Local Place (même style que le bouton e-mail) */
+  .pied__localplace { font-family: var(--font); font-weight: 600; }
+  .pied__localplace svg { width: 20px; height: 20px; flex-shrink: 0; }
 
   .pied__horaires {
     display: flex;

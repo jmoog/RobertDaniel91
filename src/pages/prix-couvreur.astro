@@ -1,0 +1,243 @@
+---
+// Page « Prix couvreur 91 » (oct. 2026) — inspirée des pages prix d'artisans
+// qui se positionnent sur « prix couvreur 91 » : des chantiers réels, racontés,
+// avec le prix qui correspond. Tarifs de base (fourchettes TTC fourniture et
+// pose) : à remplacer chantier par chantier par le prix réellement facturé
+// quand M. Robert le communique (champ `prixFacture` à ajouter alors).
+// Gabarit PageService, centrée sur l'Essonne.
+import PageService from '../components/PageService.astro';
+import realisations from '../data/realisations.json';
+
+const url = 'https://robert-daniel-couverture.fr/prix-couvreur/';
+const title = 'Prix couvreur 91 : tarifs de toiture 2026 – Robert Daniel';
+const description = "✓ Prix d'un couvreur dans l'Essonne : tarifs 2026 de réfection, réparation, nettoyage et zinguerie, chantiers à l'appui. Robert Daniel, 06 83 96 15 18";
+
+// Tarifs de base 2026, TTC, fourniture et pose
+const tarifs = [
+  { poste: 'Réfection en tuiles mécaniques', prix: '90 à 160 € le m²', lien: '/renovation-toiture/' },
+  { poste: 'Réfection en tuiles plates terre cuite', prix: '120 à 180 € le m²', lien: '/renovation-toiture/' },
+  { poste: 'Couverture en ardoise naturelle', prix: '140 à 270 € le m²', lien: '/renovation-toiture/' },
+  { poste: "Rénovation partielle d'un pan de toiture", prix: '50 à 100 € le m²', lien: '/renovation-toiture/' },
+  { poste: 'Recherche et réparation de fuite', prix: '200 à 800 €', lien: '/reparation-toiture/' },
+  { poste: 'Remplacement de tuiles cassées', prix: '8 à 15 € la tuile', lien: '/reparation-toiture/' },
+  { poste: 'Réfection de faîtage', prix: '50 à 150 € le mètre', lien: '/reparation-toiture/' },
+  { poste: 'Nettoyage, démoussage et traitement hydrofuge', prix: '15 à 35 € le m²', lien: '/nettoyage-toiture/' },
+  { poste: 'Gouttières neuves (zinc, aluminium ou PVC)', prix: '20 à 80 € le mètre', lien: '/zinguerie/' },
+  { poste: 'Noue en zinc', prix: '80 à 150 € le mètre', lien: '/zinguerie/noues-aretiers/' },
+  { poste: 'Pose de fenêtre de toit', prix: '400 à 1 500 €', lien: '/fenetre-de-toit-velux/' },
+  { poste: "Isolation de la toiture par l'extérieur", prix: '120 à 250 € le m²', lien: '/isolation-toiture/' },
+  { poste: 'Traitement de charpente', prix: '20 à 40 € le m²', lien: '/charpente/' },
+  { poste: 'Ramonage de cheminée', prix: '60 à 100 €', lien: '/ramonage-cheminee/' },
+  { poste: "Taux horaire de main-d'œuvre", prix: '40 à 70 € de l\'heure' },
+];
+
+// Chantiers réalisés, chacun avec le tarif de base du type de travaux
+const chantiers = [
+  { slug: 'refection-toiture-tuiles-plates-etrechy', prix: '120 à 180 € TTC le m²', base: 'réfection en tuiles plates terre cuite, dépose, écran sous-toiture et liteaux compris' },
+  { slug: 'renovation-toiture-etrechy', prix: '90 à 160 € TTC le m²', base: 'réfection en tuiles mécaniques, dépose, écran sous-toiture et liteaux compris' },
+  { slug: 'refection-faitage-etrechy', prix: '50 à 150 € TTC le mètre', base: 'réfection de faîtage avec closoir neuf' },
+  { slug: 'noue-zinc-saint-germain-les-arpajon', prix: '80 à 150 € TTC le mètre', base: 'noue en zinc neuve, dépose et repose des tuiles comprises' },
+  { slug: 'fenetre-de-toit-etrechy', prix: '400 à 1 500 € TTC', base: "fenêtre de toit fournie et posée, raccord d'étanchéité compris" },
+  { slug: 'toiture-hydrofuge-brieres-les-scelles', prix: '15 à 35 € TTC le m²', base: 'traitement hydrofuge seul, appliqué sur une couverture saine' },
+].map((c) => {
+  const r = realisations.find((x) => x.slug === c.slug)!;
+  const photo = r.photos.find((p) => p.cover) || r.photos[0];
+  return { ...c, r, photo };
+});
+
+// Photos du hero et de l'introduction : deux chantiers qui ne sont pas repris plus bas
+const couv = (slug: string) => { const r = realisations.find((x) => x.slug === slug)!; return r.photos.find((p) => p.cover) || r.photos[0]; };
+const heroImg = couv('renovation-toiture-auvers-saint-georges');
+const introImg = couv('refection-toiture-morigny-champigny');
+
+const extraSchemas = [{
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: "Quel est le prix d'un couvreur au m² dans l'Essonne ?",
+      acceptedAnswer: { '@type': 'Answer', text: "Pour une réfection complète, comptez 90 à 160 € TTC le m² en tuiles mécaniques, 120 à 180 € en tuiles plates et 140 à 270 € en ardoise, fourniture et pose comprises. Un nettoyage avec traitement hydrofuge revient à 15 à 35 € le m²." },
+    },
+    {
+      '@type': 'Question',
+      name: "Combien coûte la réparation d'une fuite de toiture ?",
+      acceptedAnswer: { '@type': 'Answer', text: "Entre 200 et 800 € TTC pour une recherche de fuite suivie d'une réparation ponctuelle. Une reprise de faîtage se chiffre au mètre, de 50 à 150 € TTC." },
+    },
+    {
+      '@type': 'Question',
+      name: 'Quel taux de TVA pour des travaux de toiture ?',
+      acceptedAnswer: { '@type': 'Answer', text: "10 % pour la rénovation d'un logement de plus de deux ans, 5,5 % sur la partie isolation thermique, 20 % en construction neuve." },
+    },
+  ],
+}];
+---
+<PageService
+  title={title}
+  description={description}
+  extraSchemas={extraSchemas}
+  ogImage="/images/chantier-renovation-toiture-etrechy-1.jpg"
+  ariane={[{ label: 'Accueil', href: '/' }, { label: 'Prix couvreur' }]}
+  h1="Prix couvreur 91 –"
+  hero={{ src: heroImg.src, alt: heroImg.alt, width: heroImg.width, height: heroImg.height }}
+  lead="Les <strong>prix d'un couvreur dans l'Essonne</strong>, poste par poste, et les chantiers que j'ai réalisés avec le tarif de chaque type de travaux."
+  coches={['Tarifs 2026 TTC, fourniture et pose', 'Des chantiers réels dans le 91', 'Devis gratuit et détaillé']}
+  bande={['Réfection', 'Réparation', 'Nettoyage', 'Zinguerie']}
+  artisan={{
+    titre: 'Un prix juste pour un travail bien fait',
+    html: `<p>Depuis plus de 15 ans, je refais les toitures des maisons de l'Essonne. J'ai appris le métier auprès de mon père, et je suis présent sur chacun de mes chantiers, avec mon équipe.</p>
+<p>Un devis, chez moi, détaille chaque poste : la dépose, les fournitures, la pose, la zinguerie, l'échafaudage et l'évacuation des gravats. Vous savez ce que vous payez, et le prix signé est le prix facturé.</p>`,
+  }}
+  avis={{ titre: "Ce que mes clients disent de mon travail", ids: ['zazounette', 'regina-guiguen', 'line-lameth'] }}
+  cta={{ titre: "Connaître le prix de votre toiture dans l'Essonne" }}
+>
+
+  <!-- ══ INTRODUCTION ══ -->
+  <section class="dr-section">
+    <div class="conteneur">
+      <div class="dr-duo dr-duo--seul" data-anim="up">
+        <figure class="dr-duo__media">
+          <img src={introImg.src} alt={introImg.alt} width={introImg.width} height={introImg.height} loading="lazy" decoding="async" />
+        </figure>
+        <div class="dr-duo__texte">
+          <h2 class="dr-h2">Combien coûte un couvreur dans l'Essonne ?</h2>
+          <p>C'est souvent la première question que l'on me pose au téléphone, et elle est légitime. Le prix d'une toiture dépend de sa surface, de sa pente, du matériau, de l'accès à la maison et de l'état de la charpente que l'on découvre à la dépose.</p>
+          <p>Pour vous donner des repères honnêtes, j'ai réuni ici mes tarifs de base pour 2026, puis des chantiers que j'ai menés dans le 91, de la <a href="/renovation-toiture/">rénovation de toiture</a> complète à la reprise d'un faîtage. Tous les prix sont TTC, fourniture et pose comprises.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TARIFS ══ -->
+  <section class="dr-section dr-section--gris">
+    <div class="conteneur">
+      <div class="dr-entete" data-anim="up">
+        <h2 class="dr-h2">Mes tarifs de couverture en 2026</h2>
+        <p>Des fourchettes TTC, fourniture et pose comprises, pour une maison de l'Essonne.</p>
+      </div>
+      <div class="dr-tableau-wrap" data-anim="up">
+        <table class="dr-tableau">
+          <thead><tr><th scope="col">Travaux</th><th scope="col">Prix TTC</th></tr></thead>
+          <tbody>
+            {tarifs.map((t) => (
+              <tr>
+                <th scope="row">{t.lien ? <a href={t.lien}>{t.poste}</a> : t.poste}</th>
+                <td data-label="Prix"><strong>{t.prix}</strong></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div class="dr-texte dr-apres" data-anim="up">
+        <p>L'échafaudage, quand il est nécessaire, figure sur une ligne à part de mon devis. Ces prix sont des repères : celui de votre toiture est établi sur votre devis, gratuit et sans engagement.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CHANTIERS ET PRIX ══ -->
+  <section class="dr-section">
+    <div class="conteneur">
+      <div class="dr-entete" data-anim="up">
+        <h2 class="dr-h2">Mes chantiers dans l'Essonne et leur prix</h2>
+        <p>Des toitures que j'ai refaites ou réparées, et ce que coûte ce type de travaux.</p>
+      </div>
+      {chantiers.map((c, i) => (
+        <article class:list={['dr-duo', 'px-chantier', { 'dr-duo--inverse': i % 2 === 1 }]} data-anim="up">
+          <figure class="dr-duo__media">
+            <img src={c.photo.src} alt={c.photo.alt} width={c.photo.width} height={c.photo.height} loading="lazy" decoding="async" />
+          </figure>
+          <div class="dr-duo__texte">
+            <h3 class="dr-h3"><a href={c.r.url}>{c.r.h1}</a></h3>
+            <p>{c.r.carte}</p>
+            <ul class="dr-puces">
+              {c.r.travaux.slice(0, 5).map((t) => <li>{t}</li>)}
+            </ul>
+            <div class="px-prix">
+              <span class="px-prix__lib">Prix de ce type de chantier</span>
+              <strong class="px-prix__val">{c.prix}</strong>
+              <span class="px-prix__base">Tarif de base : {c.base}.</span>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- ══ CE QUI FAIT VARIER LE PRIX ══ -->
+  <section class="dr-section dr-section--gris">
+    <div class="conteneur">
+      <div class="dr-entete" data-anim="up">
+        <h2 class="dr-h2">Ce qui fait varier le prix de votre toiture</h2>
+        <p>Deux toitures de même surface n'ont presque jamais le même prix.</p>
+      </div>
+      <div class="dr-conseils">
+        <article class="dr-conseil" data-anim="up">
+          <h3>Ce qui fait monter la facture</h3>
+          <ul class="dr-puces">
+            <li>Une pente forte, qui demande plus de sécurité pendant la pose.</li>
+            <li>Un accès difficile : maison en cœur d'îlot, rue étroite, façade sur trottoir.</li>
+            <li>Des bois de charpente abîmés, découverts à la dépose.</li>
+            <li>Des points singuliers nombreux : lucarnes, cheminées, noues, fenêtres de toit.</li>
+          </ul>
+        </article>
+        <article class="dr-conseil" data-anim="up">
+          <h3>Ce qui la fait baisser</h3>
+          <ul class="dr-puces">
+            <li>Grouper les travaux pendant que l'échafaudage est monté : couverture, gouttières, fenêtre de toit.</li>
+            <li>Entretenir le toit : un <a href="/nettoyage-toiture/">nettoyage de toiture</a> coûte bien moins cher qu'une réfection avancée de dix ans.</li>
+            <li>Réparer tôt : une <a href="/reparation-toiture/">réparation de toiture</a> faite à la première fuite évite d'abîmer la charpente.</li>
+            <li>Rénover un pan quand le reste de la couverture est sain.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TVA ET AIDES (carte bleu nuit) ══ -->
+  <section class="dr-section dr-section--serre">
+    <div class="conteneur">
+      <article class="dr-regle" data-anim="up">
+        <div class="dr-regle__corps">
+          <h2>TVA réduite et aides pour votre toiture</h2>
+          <p>Pour la rénovation d'une maison de plus de deux ans, la TVA est de 10 % sur la couverture, et de 5,5 % sur la partie isolation. Je vous fais signer l'attestation simplifiée avec le devis.</p>
+          <p>Les aides de l'État, MaPrimeRénov' et les certificats d'économie d'énergie, portent sur l'isolation. Une réfection de couverture seule n'y ouvre pas droit, mais une <a href="/isolation-toiture/">isolation de la toiture</a> posée en même temps, oui.</p>
+          <a href="/devis-gratuit/" class="dr-btn dr-btn--rouge">
+            Demander mon devis
+            <span class="dr-btn__fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+        </div>
+        <div class="dr-regle__certif">
+          <h3>Ce que détaille mon devis</h3>
+          <ul class="dr-coches dr-coches--sombre">
+            <li>La dépose et l'évacuation des gravats</li>
+            <li>Les fournitures, marque et référence</li>
+            <li>La pose et la zinguerie</li>
+            <li>L'échafaudage et le taux de TVA</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+</PageService>
+
+<style>
+  .px-chantier { margin-top: 56px; }
+  .px-chantier .dr-duo__media img { aspect-ratio: 4 / 3; }
+  .px-chantier .dr-h3 { margin: 0; }
+  .px-chantier .dr-h3 a { color: var(--bleu-fonce); text-decoration: none; }
+  .px-chantier .dr-h3 a:hover { color: var(--cuivre); }
+  .px-chantier .dr-puces { margin: 0; }
+  .px-prix { display: flex; flex-direction: column; gap: 4px; background: #f2f5f8; border-radius: 12px; padding: 16px 18px; }
+  .px-prix__lib { font-size: 14px; color: var(--gris-700); }
+  .px-prix__val { font-family: var(--font-titres); font-size: 22px; color: var(--bleu-fonce); }
+  .px-prix__base { font-size: 14px; color: var(--gris-700); }
+  .dr-tableau th a { color: var(--bleu-fonce); text-decoration: none; }
+  .dr-tableau th a:hover { color: var(--cuivre); text-decoration: underline; }
+  .dr-tableau td strong { color: var(--bleu-fonce); white-space: nowrap; }
+  @media (max-width: 899px) {
+    .px-chantier { margin-top: 40px; }
+    .px-prix__val { font-size: 19px; }
+    /* Mobile : tous les textes alignés à gauche */
+    .px-chantier .dr-h3, .dr-duo--seul .dr-duo__texte .dr-h2 { text-align: left; }
+  }
+</style>

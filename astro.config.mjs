@@ -122,7 +122,7 @@ export default defineConfig({
           '/renovation-toiture/', '/reparation-toiture/',
           '/nettoyage-toiture/', '/charpente/', '/isolation-toiture/',
           '/fenetre-de-toit-velux/', '/inspection-toiture-drone/',
-          '/ramonage-cheminee/', '/zinguerie/',
+          '/ramonage-cheminee/', '/zinguerie/', '/prix-couvreur/',
         ].includes(path)) item.priority = 0.8;
         else if (path.startsWith('/zinguerie/')) item.priority = 0.7;
         else if ([
